@@ -1,0 +1,1606 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propuestas Completas de Diseño Web Premium - HG S.A.S</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700;800&family=Crimson+Text:wght@400;600;700&family=Lora:wght@400;500;600;700&family=Source+Serif+Pro:wght@300;400;600;700&family=IBM+Plex+Serif:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&family=EB+Garamond:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Serif Pro', serif;
+            background: #f8fafc;
+            line-height: 1.6;
+            overflow-x: hidden;
+            font-weight: 400;
+        }
+
+        .presentation-header {
+            background: linear-gradient(135deg, #0f172a, #1e293b, #334155);
+            color: white;
+            padding: 100px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .presentation-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23ffffff" fill-opacity="0.03"><circle cx="30" cy="30" r="2"/></g></svg>') repeat;
+            opacity: 0.4;
+        }
+
+        .presentation-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 6vw, 5.5rem);
+            font-weight: 300;
+            margin-bottom: 25px;
+            letter-spacing: -3px;
+            position: relative;
+            z-index: 2;
+            line-height: 1.1;
+        }
+
+        .presentation-header .subtitle {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.4rem;
+            opacity: 0.92;
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            font-weight: 400;
+            position: relative;
+            z-index: 2;
+            line-height: 1.5;
+        }
+
+        .presentation-header .client-logo {
+            font-family: 'EB Garamond', serif;
+            font-size: 3rem;
+            font-weight: 500;
+            letter-spacing: 4px;
+            border: 3px solid rgba(255,255,255,0.25);
+            padding: 25px 50px;
+            display: inline-block;
+            border-radius: 12px;
+            backdrop-filter: blur(15px);
+            position: relative;
+            z-index: 2;
+            background: rgba(255,255,255,0.05);
+        }
+
+        .mockups-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 100px 50px;
+        }
+
+        .mockup-section {
+            margin-bottom: 120px;
+            background: white;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 35px 70px rgba(0,0,0,0.12);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .mockup-section:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 45px 90px rgba(0,0,0,0.18);
+        }
+
+        .mockup-header {
+            padding: 50px 60px;
+            border-bottom: 2px solid #f1f5f9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, #fafbfc, #f8fafc);
+        }
+
+        .mockup-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.6rem;
+            color: #0f172a;
+            font-weight: 400;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .recommendation-badge {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-family: 'IBM Plex Serif', serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.35);
+        }
+
+        .mockup-frame {
+            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+            padding: 60px;
+            position: relative;
+        }
+
+        .browser-frame {
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.18);
+            transform: perspective(1200px) rotateX(10deg);
+            transition: transform 0.6s ease;
+        }
+
+        .mockup-section:hover .browser-frame {
+            transform: perspective(1200px) rotateX(0deg);
+        }
+
+        .browser-header {
+            background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
+            padding: 18px 30px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid #cbd5e1;
+        }
+
+        .browser-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .dot-red { background: linear-gradient(135deg, #ef4444, #dc2626); }
+        .dot-yellow { background: linear-gradient(135deg, #eab308, #ca8a04); }
+        .dot-green { background: linear-gradient(135deg, #22c55e, #16a34a); }
+
+        .browser-url {
+            background: white;
+            padding: 8px 18px;
+            border-radius: 10px;
+            margin-left: 30px;
+            font-family: 'Source Serif Pro', serif;
+            font-size: 0.9rem;
+            color: #64748b;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+        }
+
+        .website-content {
+            min-height: 750px;
+            position: relative;
+        }
+
+        /* Logo Components */
+        .logo-hg {
+            font-family: 'EB Garamond', serif;
+            font-weight: 500;
+            letter-spacing: 3px;
+            line-height: 1.1;
+        }
+
+        .logo-subtitle {
+            font-family: 'Crimson Text', serif;
+            font-size: 0.65em;
+            font-weight: 600;
+            letter-spacing: 2px;
+            opacity: 0.85;
+            margin-top: 8px;
+        }
+
+        .wine-glass-icon {
+            width: 35px;
+            height: 35px;
+            display: inline-block;
+            background: currentColor;
+            mask: url('data:image/svg+xml,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 2h8l-1 9c0 2.2-1.8 4-4 4s-4-1.8-4-4L8 2zm3 17v3h2v-3c2.8-.7 5-3.1 5-6l.8-7.2L19 6H5l.2.8L6 13c0 2.9 2.2 5.3 5 6z"/></svg>') center/contain no-repeat;
+        }
+
+        .shield-icon {
+            width: 40px;
+            height: 40px;
+            display: inline-block;
+            background: currentColor;
+            mask: url('data:image/svg+xml,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>') center/contain no-repeat;
+            position: relative;
+        }
+
+        /* 1. Burgundy Premium */
+        .burgundy-theme {
+            background: linear-gradient(135deg, #722f37 0%, #8b4653 30%, #a04553 70%, #b85666 100%);
+            position: relative;
+        }
+
+        .burgundy-theme::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 25% 25%, rgba(212, 175, 55, 0.12) 0%, transparent 50%),
+                        radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+        }
+
+        .burgundy-theme .hero-section {
+            padding: 120px 90px;
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 2;
+        }
+
+        .burgundy-theme .logo-hg {
+            font-size: 5.5rem;
+            color: #d4af37;
+            text-shadow: 4px 4px 8px rgba(0,0,0,0.4);
+            margin-bottom: 20px;
+        }
+
+        .burgundy-theme .company-tagline {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.2rem;
+            margin-bottom: 60px;
+            opacity: 0.92;
+            font-style: italic;
+            letter-spacing: 0.8px;
+            font-weight: 400;
+        }
+
+        .burgundy-theme .nav-section {
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(20px);
+            padding: 30px 90px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .burgundy-theme .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            color: #d4af37;
+            font-family: 'EB Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+        }
+
+        .burgundy-theme .nav-menu {
+            display: flex;
+            gap: 45px;
+        }
+
+        .burgundy-theme .nav-item {
+            color: white;
+            text-decoration: none;
+            font-family: 'Crimson Text', serif;
+            font-weight: 600;
+            padding: 15px 30px;
+            border-radius: 35px;
+            transition: all 0.4s ease;
+            position: relative;
+            font-size: 1rem;
+        }
+
+        .burgundy-theme .nav-item:hover {
+            background: #d4af37;
+            color: #722f37;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .burgundy-theme .content-section {
+            background: #f7f3e9;
+            padding: 100px 90px;
+            display: grid;
+            grid-template-columns: 2.2fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .burgundy-theme .products-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 35px;
+        }
+
+        .burgundy-theme .product-card {
+            background: white;
+            padding: 45px 35px;
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(114, 47, 55, 0.12);
+            color: #722f37;
+            transition: all 0.4s ease;
+            border-top: 5px solid #d4af37;
+        }
+
+        .burgundy-theme .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(114, 47, 55, 0.18);
+        }
+
+        .burgundy-theme .wine-glass-icon {
+            color: #d4af37;
+            margin-bottom: 20px;
+        }
+
+        /* 2. Elegant Black Gold */
+        .elegant-theme {
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 30%, #2c2c2c 70%, #404040 100%);
+            position: relative;
+        }
+
+        .elegant-theme::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 60% 40%, rgba(212, 175, 55, 0.08) 0%, transparent 50%);
+        }
+
+        .elegant-theme .hero-section {
+            padding: 120px 90px;
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 2;
+        }
+
+        .elegant-theme .logo-hg {
+            font-size: 5.5rem;
+            background: linear-gradient(135deg, #d4af37, #f5e050, #d4af37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 40px rgba(212, 175, 55, 0.4);
+            margin-bottom: 20px;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+        }
+
+        .elegant-theme .company-tagline {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.2rem;
+            margin-bottom: 60px;
+            opacity: 0.85;
+            color: #d4af37;
+            letter-spacing: 1.2px;
+            font-weight: 400;
+        }
+
+        .elegant-theme .nav-section {
+            background: #2c2c2c;
+            padding: 30px 90px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #d4af37;
+        }
+
+        .elegant-theme .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            color: #d4af37;
+            font-family: 'EB Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+        }
+
+        .elegant-theme .nav-menu {
+            display: flex;
+            gap: 45px;
+        }
+
+        .elegant-theme .nav-item {
+            color: #d4af37;
+            text-decoration: none;
+            font-family: 'Crimson Text', serif;
+            font-weight: 600;
+            padding: 15px 30px;
+            border: 2px solid #d4af37;
+            border-radius: 35px;
+            transition: all 0.4s ease;
+            font-size: 1rem;
+        }
+
+        .elegant-theme .nav-item:hover {
+            background: #d4af37;
+            color: #1a1a1a;
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+            transform: translateY(-3px);
+        }
+
+        .elegant-theme .content-section {
+            background: #1a1a1a;
+            padding: 100px 90px;
+            display: grid;
+            grid-template-columns: 2.2fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .elegant-theme .products-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 35px;
+        }
+
+        .elegant-theme .product-card {
+            background: linear-gradient(135deg, #2c2c2c, #1a1a1a);
+            padding: 45px 35px;
+            border-radius: 25px;
+            text-align: center;
+            border: 2px solid #d4af37;
+            color: white;
+            transition: all 0.4s ease;
+        }
+
+        .elegant-theme .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(212, 175, 55, 0.25);
+            background: linear-gradient(135deg, #d4af37, #f5e050);
+            color: #1a1a1a;
+        }
+
+        .elegant-theme .wine-glass-icon {
+            color: #d4af37;
+            margin-bottom: 20px;
+        }
+
+        /* 3. Corporate Blue */
+        .corporate-theme {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 40%, #60a5fa 100%);
+            position: relative;
+        }
+
+        .corporate-theme .hero-section {
+            padding: 120px 90px;
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 2;
+        }
+
+        .corporate-theme .logo-hg {
+            font-family: 'IBM Plex Serif', serif;
+            font-size: 5.5rem;
+            color: #c19a47;
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .corporate-theme .company-tagline {
+            font-family: 'Source Serif Pro', serif;
+            font-size: 1.2rem;
+            margin-bottom: 60px;
+            opacity: 0.92;
+            letter-spacing: 0.8px;
+            font-weight: 400;
+        }
+
+        .corporate-theme .nav-section {
+            background: white;
+            padding: 30px 90px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .corporate-theme .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            color: #1e3a8a;
+            font-family: 'IBM Plex Serif', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+
+        .corporate-theme .nav-menu {
+            display: flex;
+            gap: 45px;
+        }
+
+        .corporate-theme .nav-item {
+            color: #1e3a8a;
+            text-decoration: none;
+            font-family: 'Source Serif Pro', serif;
+            font-weight: 600;
+            padding: 15px 30px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .corporate-theme .nav-item:hover {
+            background: #1e3a8a;
+            color: white;
+            box-shadow: 0 8px 20px rgba(30, 58, 138, 0.3);
+        }
+
+        .corporate-theme .content-section {
+            background: #f8fafc;
+            padding: 100px 90px;
+            display: grid;
+            grid-template-columns: 2.2fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .corporate-theme .products-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 35px;
+        }
+
+        .corporate-theme .product-card {
+            background: white;
+            padding: 45px 35px;
+            border-radius: 18px;
+            text-align: center;
+            box-shadow: 0 12px 30px rgba(30, 58, 138, 0.12);
+            color: #1e3a8a;
+            border-left: 6px solid #c19a47;
+            transition: all 0.3s ease;
+        }
+
+        .corporate-theme .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 45px rgba(30, 58, 138, 0.18);
+        }
+
+        .corporate-theme .wine-glass-icon {
+            color: #c19a47;
+            margin-bottom: 20px;
+        }
+
+        /* 4. Green Sophisticated */
+        .green-theme {
+            background: linear-gradient(135deg, #0c3b2e 0%, #16a085 40%, #48c9b0 100%);
+            position: relative;
+        }
+
+        .green-theme .hero-section {
+            padding: 120px 90px;
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 2;
+        }
+
+        .green-theme .logo-hg {
+            font-size: 5.5rem;
+            color: #d4af37;
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+        }
+
+        .green-theme .company-tagline {
+            font-family: 'Lora', serif;
+            font-size: 1.2rem;
+            margin-bottom: 60px;
+            opacity: 0.92;
+            letter-spacing: 0.8px;
+            font-weight: 400;
+        }
+
+        .green-theme .nav-section {
+            background: rgba(255,255,255,0.18);
+            backdrop-filter: blur(20px);
+            padding: 30px 90px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .green-theme .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            color: #d4af37;
+            font-family: 'EB Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+        }
+
+        .green-theme .nav-menu {
+            display: flex;
+            gap: 45px;
+        }
+
+        .green-theme .nav-item {
+            color: white;
+            text-decoration: none;
+            font-family: 'Lora', serif;
+            font-weight: 500;
+            padding: 15px 30px;
+            border-radius: 35px;
+            transition: all 0.4s ease;
+            font-size: 1rem;
+        }
+
+        .green-theme .nav-item:hover {
+            background: #d4af37;
+            color: #0c3b2e;
+            transform: translateY(-3px);
+        }
+
+        .green-theme .content-section {
+            background: #ecf0f1;
+            padding: 100px 90px;
+            display: grid;
+            grid-template-columns: 2.2fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .green-theme .products-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 35px;
+        }
+
+        .green-theme .product-card {
+            background: white;
+            padding: 45px 35px;
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(12, 59, 46, 0.12);
+            color: #0c3b2e;
+            border-top: 5px solid #16a085;
+            transition: all 0.4s ease;
+        }
+
+        .green-theme .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(12, 59, 46, 0.18);
+        }
+
+        .green-theme .wine-glass-icon {
+            color: #16a085;
+            margin-bottom: 20px;
+        }
+
+        /* 5. Dark Modern */
+        .dark-theme {
+            background: linear-gradient(135deg, #0f0f23 0%, #1e1e3f 50%, #2d2d5f 100%);
+            position: relative;
+        }
+
+        .dark-theme::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 70%, rgba(189, 147, 249, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 30%, rgba(80, 250, 123, 0.08) 0%, transparent 50%);
+        }
+
+        .dark-theme .hero-section {
+            padding: 120px 90px;
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 2;
+        }
+
+        .dark-theme .logo-hg {
+            font-family: 'IBM Plex Serif', serif;
+            font-size: 5.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #bd93f9, #50fa7b, #ff79c6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 20px rgba(189, 147, 249, 0.3));
+        }
+
+        .dark-theme .company-tagline {
+            font-family: 'Source Serif Pro', serif;
+            font-size: 1.2rem;
+            margin-bottom: 60px;
+            color: #bd93f9;
+            letter-spacing: 1px;
+            font-weight: 400;
+        }
+
+        .dark-theme .nav-section {
+            background: rgba(189, 147, 249, 0.12);
+            backdrop-filter: blur(20px);
+            padding: 30px 90px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(189, 147, 249, 0.2);
+        }
+
+        .dark-theme .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            color: #bd93f9;
+            font-family: 'IBM Plex Serif', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+        }
+
+        .dark-theme .nav-menu {
+            display: flex;
+            gap: 45px;
+        }
+
+        .dark-theme .nav-item {
+            color: #bd93f9;
+            text-decoration: none;
+            font-family: 'Source Serif Pro', serif;
+            font-weight: 500;
+            padding: 15px 30px;
+            border: 2px solid #bd93f9;
+            border-radius: 35px;
+            transition: all 0.4s ease;
+            font-size: 1rem;
+        }
+
+        .dark-theme .nav-item:hover {
+            background: #bd93f9;
+            color: #0f0f23;
+            box-shadow: 0 10px 25px rgba(189, 147, 249, 0.3);
+        }
+
+        .dark-theme .content-section {
+            background: #1e1e3f;
+            padding: 100px 90px;
+            display: grid;
+            grid-template-columns: 2.2fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .dark-theme .products-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 35px;
+        }
+
+        .dark-theme .product-card {
+            background: #0f0f23;
+            padding: 45px 35px;
+            border-radius: 25px;
+            text-align: center;
+            border: 2px solid #bd93f9;
+            color: white;
+            transition: all 0.4s ease;
+        }
+
+        .dark-theme .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(189, 147, 249, 0.25);
+            background: linear-gradient(135deg, #bd93f9, #50fa7b);
+            color: #0f0f23;
+        }
+
+        .dark-theme .wine-glass-icon {
+            color: #bd93f9;
+            margin-bottom: 20px;
+        }
+
+        /* 6. Gradient Modern */
+        .gradient-theme {
+            background: linear-gradient(135deg, #2d1b69 0%, #11998e 35%, #38ef7d 70%, #ffd89b 100%);
+            position: relative;
+        }
+
+        .gradient-theme::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+        }
+
+        .gradient-theme .hero-section {
+            padding: 120px 90px;
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 2;
+        }
+
+        .gradient-theme .logo-hg {
+            font-family: 'IBM Plex Serif', serif;
+            font-size: 5.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.4);
+            filter: drop-shadow(0 0 20px rgba(255,255,255,0.2));
+        }
+
+        .gradient-theme .company-tagline {
+            font-family: 'Source Serif Pro', serif;
+            font-size: 1.2rem;
+            margin-bottom: 60px;
+            opacity: 0.92;
+            letter-spacing: 1px;
+            font-weight: 400;
+        }
+
+        .gradient-theme .nav-section {
+            background: rgba(255,255,255,0.25);
+            backdrop-filter: blur(25px);
+            padding: 30px 90px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .gradient-theme .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            color: white;
+            font-family: 'IBM Plex Serif', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+        }
+
+        .gradient-theme .nav-menu {
+            display: flex;
+            gap: 45px;
+        }
+
+        .gradient-theme .nav-item {
+            color: white;
+            text-decoration: none;
+            font-family: 'Source Serif Pro', serif;
+            font-weight: 600;
+            padding: 15px 30px;
+            border-radius: 35px;
+            transition: all 0.4s ease;
+            background: rgba(255,255,255,0.15);
+            font-size: 1rem;
+        }
+
+        .gradient-theme .nav-item:hover {
+            background: white;
+            color: #2d1b69;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255,255,255,0.2);
+        }
+
+        .gradient-theme .content-section {
+            background: white;
+            padding: 100px 90px;
+            display: grid;
+            grid-template-columns: 2.2fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .gradient-theme .products-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 35px;
+        }
+
+        .gradient-theme .product-card {
+            background: linear-gradient(135deg, #ffd89b, #19d3ae, #2d1b69);
+            padding: 45px 35px;
+            border-radius: 25px;
+            text-align: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            transition: all 0.4s ease;
+            box-shadow: 0 15px 35px rgba(45, 27, 105, 0.2);
+        }
+
+        .gradient-theme .product-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(45, 27, 105, 0.3);
+        }
+
+        .gradient-theme .wine-glass-icon {
+            color: white;
+            margin-bottom: 20px;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+        }
+
+        /* Company Info Sidebar */
+        .company-info {
+            background: rgba(255,255,255,0.98);
+            padding: 50px;
+            border-radius: 25px;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255,255,255,0.3);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .company-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 25px;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 500;
+        }
+
+        .company-info p {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.05rem;
+            margin-bottom: 12px;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        .company-info strong {
+            font-weight: 600;
+        }
+
+        .product-card h4 {
+            font-family: 'Lora', serif;
+            font-size: 1.3rem;
+            margin: 20px 0 15px 0;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .product-card p {
+            font-family: 'Source Serif Pro', serif;
+            font-size: 0.95rem;
+            opacity: 0.85;
+            line-height: 1.5;
+            font-weight: 400;
+        }
+
+        .selection-info {
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            padding: 60px;
+            text-align: center;
+            border-top: 2px solid #e2e8f0;
+        }
+
+        .selection-info h3 {
+            color: #0f172a;
+            margin-bottom: 25px;
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 500;
+        }
+
+        .selection-info p {
+            color: #64748b;
+            max-width: 800px;
+            margin: 0 auto;
+            font-family: 'Crimson Text', serif;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            font-weight: 400;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 50px;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 40px;
+            font-weight: 300;
+            letter-spacing: -1px;
+        }
+
+        .cta-section p {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.3rem;
+            margin-bottom: 50px;
+            opacity: 0.92;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 20px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-family: 'IBM Plex Serif', serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.4s ease;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            letter-spacing: 0.5px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            color: white;
+            border: 3px solid white;
+        }
+
+        .cta-button.secondary:hover {
+            background: white;
+            color: #667eea;
+        }
+
+        @media (max-width: 1200px) {
+            .mockups-container {
+                padding: 60px 30px;
+            }
+            
+            .mockup-frame {
+                padding: 40px;
+            }
+            
+            .hero-section {
+                padding: 80px 60px !important;
+            }
+            
+            .logo-hg {
+                font-size: 4rem !important;
+            }
+            
+            .nav-section {
+                padding: 25px 60px !important;
+            }
+            
+            .content-section {
+                padding: 70px 60px !important;
+                gap: 60px !important;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .nav-section {
+                flex-direction: column;
+                gap: 25px;
+            }
+            
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px !important;
+            }
+            
+            .content-section {
+                grid-template-columns: 1fr !important;
+                gap: 50px !important;
+            }
+            
+            .products-showcase {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mockup-header {
+                padding: 40px 30px;
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            
+            .mockup-title {
+                font-size: 2rem;
+            }
+            
+            .website-content {
+                min-height: 600px;
+            }
+            
+            .hero-section {
+                padding: 60px 40px !important;
+            }
+            
+            .logo-hg {
+                font-size: 3rem !important;
+            }
+            
+            .nav-section {
+                padding: 20px 40px !important;
+            }
+            
+            .content-section {
+                padding: 50px 40px !important;
+            }
+            
+            .company-info {
+                padding: 35px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-header">
+        <h1>Propuestas de Diseño Web Premium</h1>
+        <p class="subtitle">Seis propuestas cuidadosamente elaboradas para definir la presencia digital de su empresa. Cada diseño transmite valores únicos y está optimizado para diferentes objetivos comerciales.</p>
+        <div class="client-logo">HG S.A.S</div>
+    </div>
+
+    <div class="mockups-container">
+        <!-- 1. Burgundy Premium -->
+        <div class="mockup-section">
+            <div class="mockup-header">
+                <h2 class="mockup-title">Burgundy Premium — Tradición Vinícola</h2>
+                <span class="recommendation-badge">Más Recomendada</span>
+            </div>
+            <div class="mockup-frame">
+                <div class="browser-frame">
+                    <div class="browser-header">
+                        <div class="browser-dot dot-red"></div>
+                        <div class="browser-dot dot-yellow"></div>
+                        <div class="browser-dot dot-green"></div>
+                        <div class="browser-url">www.hgsas.com</div>
+                    </div>
+                    <div class="website-content burgundy-theme">
+                        <div class="hero-section">
+                            <h1 class="logo-hg">HG S.A.S</h1>
+                            <div class="logo-subtitle">COMERCIALIZADORA Y DISTRIBUIDORA</div>
+                            <p class="company-tagline">"Distribuidores de excelencia desde 2016"</p>
+                        </div>
+                        <div class="nav-section">
+                            <div class="nav-logo">
+                                <div class="shield-icon"></div>
+                                <span>HG S.A.S</span>
+                            </div>
+                            <div class="nav-menu">
+                                <a href="#" class="nav-item">Inicio</a>
+                                <a href="#" class="nav-item">Productos AJEDREZ</a>
+                                <a href="#" class="nav-item">Nosotros</a>
+                                <a href="#" class="nav-item">Distribución</a>
+                                <a href="#" class="nav-item">Contacto</a>
+                            </div>
+                        </div>
+                        <div class="content-section">
+                            <div class="products-showcase">
+                                <div class="product-card">
+                                    <div class="wine-glass-icon"></div>
+                                    <h4>AJEDREZ Rosado</h4>
+                                    <p>Bebida gasificada con sabor a champaña. Elegancia en cada sorbo.</p>
+                                </div>
+                                <div class="product-card">
+                                    <div class="wine-glass-icon"></div>
+                                    <h4>AJEDREZ Blanco</h4>
+                                    <p>Tradición y frescura en perfecta armonía premium.</p>
+                                </div>
+                                <div class="product-card">
+                                    <div class="wine-glass-icon"></div>
+                                    <h4>AJEDREZ Tinto</h4>
+                                    <p>Sofisticación y carácter premium definido.</p>
+                                </div>
+                            </div>
+                            <div class="company-info" style="color: #722f37;">
+                                <h3>
+                                    <div class="shield-icon"></div>
+                                    Nuestra Empresa
+                                </h3>
+                                <p><strong>NIT:</strong> 901.000.572 - 1</p>
+                                <p><strong>Fundada:</strong> 2016</p>
+                                <p><strong>Especialidad:</strong> Distribución nacional de bebidas premium</p>
+                                <p><strong>Lema:</strong> "Responsabilidad, Cumplimiento y Calidad"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="selection-info">
+                <h3>¿Por qué Burgundy Premium?</h3>
+                <p>Esta paleta evoca directamente la tradición vinícola y establece una conexión emocional inmediata con productos de calidad. El burgundy transmite herencia, sofisticación y confianza, mientras que los acentos dorados añaden el toque premium necesario para posicionar a HG S.A.S como líder en distribución de bebidas de alta gama.</p>
+            </div>
+        </div>
+
+        <!-- 2. Elegant Black Gold -->
+        <div class="mockup-section">
+            <div class="mockup-header">
+                <h2 class="mockup-title">Elegancia Clásica — Ultra Premium</h2>
+            </div>
+            <div class="mockup-frame">
+                <div class="browser-frame">
+                    <div class="browser-header">
+                        <div class="browser-dot dot-red"></div>
+                        <div class="browser-dot dot-yellow"></div>
+                        <div class="browser-dot dot-green"></div>
+                        <div class="browser-url">www.hgsas.com</div>
+                    </div>
+                    <div class="website-content elegant-theme">
+                        <div class="hero-section">
+                            <h1 class="logo-hg">HG S.A.S</h1>
+                            <div class="logo-subtitle">COMERCIALIZADORA Y DISTRIBUIDORA</div>
+                            <p class="company-tagline">"Exclusividad y distinción desde 2016"</p>
+                        </div>
+                        <div class="nav-section">
+                            <div class="nav-logo">
+                                <div class="shield-icon"></div>
+                                <span>HG S.A.S</span>
+                            </div>
+                            <div class="nav-menu">
+                                <a href="#" class="nav-item">Inicio</a>
+                                <a href="#" class="nav-item">Colección AJEDREZ</a>
+                                <a href="#" class="nav-item">Nosotros</a>
+                                <a href="#" class="nav-item">Distribución</a>
+                                <a href="#" class="nav-item">Contacto</a>
+                            </div>
+                        </div>
+                        <div class="content-section">
+                            <div class="products-showcase">
+                                <div class="product-card">
+                                    <div class="wine-glass-icon"></div>
+                                    <h4>AJEDREZ Rosado</h4>
+                                    <p>Edición limitada de lujo y distinción absoluta.</p>
+                                </div>
+                                <div class="product-card">
+                                    <div class="wine-glass-icon"></div>
+                                    <h4>AJEDREZ Blanco</h4>
+                                    <p>Selección dorada para paladares exigentes.</p>
+                                </div>
+                                <div class="product-card">
+                                    <div class="wine-glass-icon"></div>
+                                    <h4>AJEDREZ Tinto</h4>
+                                    <p>Reserva especial de máxima exclusividad.</p>
+                                </div>
+                            </div>
+                            <div class="company-info" style="color: #d4af37; background: rgba(212, 175, 55, 0.1);">
+                                <h3>
+                                    <div class="shield-icon"></div>
+                                    Exclusividad Premium
+                                </h3>
+                                <p><strong>NIT:</strong> 901.000.572 - 1</p>
+                                <p><strong>Establecida:</strong> 2016</p>
+                                <p><strong>Posicionamiento:</strong> Ultra-premium en bebidas selectas</p>
+                                <p><strong>Filosofía:</strong> "Donde la excelencia encuentra la exclusividad"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="selection-info">
+                <h3>¿Por qué Elegancia Clásica?</h3>
+                <p>El negro con dorado es la combinación definitiva para transmitir lujo absoluto y exclusividad. Esta paleta posiciona a HG S.A.S en el segmento ultra-premium, ideal para clientes que buscan productos de máxima distinción. Perfecta para eventos exclusivos y clientela VIP que valora la sofisticación sin concesiones.</p>
+            </div>
+        </div>
+
+        <!-- 3. Corporate Blue -->
+        <div class="mockup-section">
+            <div class="mockup-header">
+                <h2 class="mockup-title">Corporativa Confiable — Profesionalismo Total</h2>
+            </div>
+            <div class="mockup-frame">
+                <div class="browser-frame">
+                    <div class="browser-header">
+                        <div class="browser-dot dot-red"></div>
+                        <div class="browser-dot dot-yellow"></div>
+                        <div class="browser-dot dot-green"></div>
+                        <div class="browser-url">www.hgsas.com</div>
+                    </div>
+                    <div class="website-content corporate-theme">
+                        <div class="hero-section">
+                            <h1 class="logo-hg">HG S.A.S</h1>
+                            <div class="logo-subtitle">COMERCIALIZADORA Y DISTRIBUIDORA</div>
+                            <p class="company-tagline">"Su socio estratégico en distribución nacional"</p>
+                        </div>
+                        <div class="nav-section">
+                            <div class="nav-logo">
+                                <div class="shield-icon"></div>
+                                <span>HG S.A.S</span>
+                            </div>
+                            <div class="nav-menu">
+                                <a href="#" class="nav-item">Inicio</a>
+                                <a href="#" class="nav-item">Productos AJEDREZ</a>
+                                <a href="#" class="nav-item">Empresa</a>
+                                <a href="#" class="nav-item">Servicios</a>
+                                <a href="#" class="nav-item">Contacto</a>
+                            </div>
+                        </div>
+                        <div class="content-section">
+                            <div class="products-showcase">
+                                <div class="product-card">
+                                    <div class="wine-glass-icon"></div>
+                                    <h4>AJEDREZ Rosado</h4>
+                                    <p>Calidad garantizada y distribución nacional confiable.</p>
+                                </div>
+                                <div class="product-card">
+                                    <div class="wine-glass-icon"></div>
+                                    <h4>AJEDREZ Blanco</h4>
+                                    <p>Servicio profesional para todo el territorio nacional.</p>
+                                </div>
+                                <div class="product-card">
+                                    <div class="wine-glass-icon"></div>
+                                    <h4>AJEDREZ Tinto</h4>
+                                    <p>Estándares de calidad empresarial certificados.</p>
+                                </div>
+                            </div>
+                            <div class="company-info" style="color: #1e3a8a;">
+                                <h3>
+                                    <div class="shield-icon"></div>
+                                    Solidez Empresarial
+                                </h3>
+                                <p><strong>NIT:</strong> 901.000.572 - 1</p>
+                                <p><strong>Fundación:</strong> 2016</p>
+                                <p><strong>Cobertura:</strong> Distribución nacional completa</p>
+                                <p><strong>Compromiso:</strong> "Responsabilidad, Cumplimiento y Calidad"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="selection-info">
+                <h3>¿Por qué Corporativa Confiable?</h3>
+                <p>El azul corporativo con acentos dorados transmite confianza, estabilidad y profesionalismo empresarial. Esta paleta es ideal para establecer relaciones comerciales sólidas con empresas grandes, distribuidores mayoristas y clientes institucionales que valoran la seriedad, consistencia y trayectoria comprobada en sus proveedores estratégicos.</p>
+            </div>
+        </div>
+
+        <!-- 4. Green Sophisticated -->
+        <div class="mockup-section">
+            <div class="mockup-header">
+                <h2 class="mockup-title">Verde Sofisticado — Crecimiento Natural</h2>
+            </div>
+            <div class="mockup-frame">
+                <div class="browser-frame">
+                    <div class="browser-header">
+                        <div class="browser-dot dot-red"></div>
+                        <div class="browser-dot dot-yellow"></div>
+                        <div class="browser-dot dot-green"></div>
+                        <div class="browser-url">www.hgsas.com</div>
+                    </div>
+                    <div class="website-content green-theme">
+                        <div class="hero-section">
+                            <h1 class="logo-hg">HG S.A.S</h1>
+                            <div class="logo-subtitle">COMERCIALIZADORA Y DISTRIBUIDORA</div>
+                            <p class="company-tagline">"Crecimiento sostenible y calidad natural desde 2016"</p>
+                        </div>
+                        <div class="nav-section">
+                            <div class="nav-logo">
+                                <div class="shield-icon"></div>
+                                <span>HG S.A.S</span>
+                            </div>
+                            <div class="nav-menu">
+                                <a href="#" class="nav-item">Inicio</a>
+                                <a href="#" class="nav-item">Línea AJEDREZ</a>
+                                <a href="#" class="nav-item">Sostenibilidad</a>
+                                <a href="#" class="nav-item">Distribución</a>
+                                <a href="#" class="nav-item">Contacto</a>
+                            </div>
+                        </div>
+                        <div class="content-section">
+                            <div class="products-showcase">
+                                <div class="product-card">
+                                    <div class="wine-glass-icon"></div>
+                                    <h4>AJEDREZ Rosado</h4>
+                                    <p>Ingredientes naturales y procesos responsables.</p>
+                                </div>
+                                <div class="product-card">
+                                    <div class="wine-glass-icon"></div>
+                                    <h4>AJEDREZ Blanco</h4>
+                                    <p>Frescura natural y compromiso ambiental.</p>
+                                </div>
+                                <div class="product-card">
+                                    <div class="wine-glass-icon"></div>
+                                    <h4>AJEDREZ Tinto</h4>
+                                    <p>Tradición natural y crecimiento sostenible.</p>
+                                </div>
+                            </div>
+                            <div class="company-info" style="color: #0c3b2e;">
+                                <h3>
+                                    <div class="shield-icon"></div>
+                                    Crecimiento Verde
+                                </h3>
+                                <p><strong>NIT:</strong> 901.000.572 - 1</p>
+                                <p><strong>Desde:</strong> 2016</p>
+                                <p><strong>Enfoque:</strong> Distribución responsable y sostenible</p>
+                                <p><strong>Valores:</strong> "Calidad natural y crecimiento responsable"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="selection-info">
+                <h3>¿Por qué Verde Sofisticado?</h3>
+                <p>El verde esmeralda con dorado representa crecimiento, naturaleza y prosperidad sostenible. Esta paleta es perfecta para posicionar a HG S.A.S como una empresa responsable que valora la calidad natural y el crecimiento consciente, atrayendo a consumidores que buscan productos con valores ambientales y compromiso social auténtico.</p>
+            </div>
+        </div>
+
+        <!-- 5. Dark Modern -->
+        <div class="mockup-section">
+            <div class="mockup-header">
+                <h2 class="mockup-title">Tecnológica Moderna — Innovación Digital</h2>
+            </div>
+            <div class="mockup-frame">
+                <div class="browser-frame">
+                    <div class="browser-header">
+                        <div class="browser-dot dot-red"></div>
+                        <div class="browser-dot dot-yellow"></div>
+                        <div class="browser-dot dot-green"></div>
+                        <div class="browser-url">www.hgsas.com</div>
+                    </div>
+                    <div class="website-content dark-theme">
+                        <div class="hero-section">
+                            <h1 class="logo-hg">HG S.A.S</h1>
+                            <div class="logo-subtitle">COMERCIALIZADORA Y DISTRIBUIDORA</div>
+                            <p class="company-tagline">"Innovación tecnológica en distribución desde 2016"</p>
+                        </div>
+                        <div class="nav-section">
+                            <div class="nav-logo">
+                                <div class="shield-icon"></div>
+                                <span>HG S.A.S</span>
+                            </div>
+                            <div class="nav-menu">
+                                <a href="#" class="nav-item">Inicio</a>
+                                <a href="#" class="nav-item">Tech AJEDREZ</a>
+                                <a href="#" class="nav-item">Innovación</a>
+                                <a href="#" class="nav-item">Plataforma</a>
+                                <a href="#" class="nav-item">Contacto</a>
+                            </div>
+                        </div>
+                        <div class="content-section">
+                            <div class="products-showcase">
+                                <div class="product-card">
+                                    <div class="wine-glass-icon"></div>
+                                    <h4>AJEDREZ Rosado</h4>
+                                    <p>Tecnología avanzada en cada proceso productivo.</p>
+                                </div>
+                                <div class="product-card">
+                                    <div class="wine-glass-icon"></div>
+                                    <h4>AJEDREZ Blanco</h4>
+                                    <p>Innovación digital en distribución inteligente.</p>
+                                </div>
+                                <div class="product-card">
+                                    <div class="wine-glass-icon"></div>
+                                    <h4>AJEDREZ Tinto</h4>
+                                    <p>Futuro de las bebidas con tecnología disruptiva.</p>
+                                </div>
+                            </div>
+                            <div class="company-info" style="color: #bd93f9; background: rgba(189, 147, 249, 0.1);">
+                                <h3>
+                                    <div class="shield-icon"></div>
+                                    Innovación Tecnológica
+                                </h3>
+                                <p><strong>NIT:</strong> 901.000.572 - 1</p>
+                                <p><strong>Era Digital:</strong> Desde 2016</p>
+                                <p><strong>Especialidad:</strong> Distribución inteligente y tecnológica</p>
+                                <p><strong>Visión:</strong> "Transformando la industria con innovación"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="selection-info">
+                <h3>¿Por qué Tecnológica Moderna?</h3>
+                <p>La paleta dark con acentos vibrantes representa innovación, modernidad y disruption tecnológica. Perfecta para posicionar a HG S.A.S como una empresa vanguardista que abraza la transformación digital. Ideal para atraer audiencias jóvenes, startups tecnológicas y empresas que valoran la innovación por encima de la tradición.</p>
+            </div>
+        </div>
+
+        <!-- 6. Gradient Modern -->
+        <div class="mockup-section">
+            <div class="mockup-header">
+                <h2 class="mockup-title">Gradiente Contemporáneo — Dinamismo Visual</h2>
+            </div>
+            <div class="mockup-frame">
+                <div class="browser-frame">
+                    <div class="browser-header">
+                        <div class="browser-dot dot-red"></div>
+                        <div class="browser-dot dot-yellow"></div>
+                        <div class="browser-dot dot-green"></div>
+                        <div class="browser-url">www.hgsas.com</div>
+                    </div>
+                    <div class="website-content gradient-theme">
+                        <div class="hero-section">
+                            <h1 class="logo-hg">HG S.A.S</h1>
+                            <div class="logo-subtitle">COMERCIALIZADORA Y DISTRIBUIDORA</div>
+                            <p class="company-tagline">"Evolución constante y dinamismo empresarial desde 2016"</p>
+                        </div>
+                        <div class="nav-section">
+                            <div class="nav-logo">
+                                <div class="shield-icon"></div>
+                                <span>HG S.A.S</span>
+                            </div>
+                            <div class="nav-menu">
+                                <a href="#" class="nav-item">Inicio</a>
+                                <a href="#" class="nav-item">Evolución AJEDREZ</a>
+                                <a href="#" class="nav-item">Dinamismo</a>
+                                <a href="#" class="nav-item">Transformación</a>
+                                <a href="#" class="nav-item">Contacto</a>
+                            </div>
+                        </div>
+                        <div class="content-section">
+                            <div class="products-showcase">
+                                <div class="product-card">
+                                    <div class="wine-glass-icon"></div>
+                                    <h4>AJEDREZ Rosado</h4>
+                                    <p>Transformación constante y sabores dinámicos.</p>
+                                </div>
+                                <div class="product-card">
+                                    <div class="wine-glass-icon"></div>
+                                    <h4>AJEDREZ Blanco</h4>
+                                    <p>Evolución continua en cada experiencia.</p>
+                                </div>
+                                <div class="product-card">
+                                    <div class="wine-glass-icon"></div>
+                                    <h4>AJEDREZ Tinto</h4>
+                                    <p>Dinamismo empresarial en constante movimiento.</p>
+                                </div>
+                            </div>
+                            <div class="company-info" style="color: #2d1b69; background: rgba(255, 216, 155, 0.2);">
+                                <h3>
+                                    <div class="shield-icon"></div>
+                                    Dinamismo Empresarial
+                                </h3>
+                                <p><strong>NIT:</strong> 901.000.572 - 1</p>
+                                <p><strong>En Evolución:</strong> Desde 2016</p>
+                                <p><strong>Filosofía:</strong> Adaptación y transformación constante</p>
+                                <p><strong>Propósito:</strong> "Impulsando el cambio en cada decisión"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="selection-info">
+                <h3>¿Por qué Gradiente Contemporáneo?</h3>
+                <p>Los gradientes vibrantes representan dinamismo, transformación y adaptabilidad empresarial. Esta paleta es ideal para mostrar una empresa en constante evolución que se adapta a las tendencias del mercado. Perfecta para redes sociales, marketing digital y para atraer audiencias que buscan marcas dinámicas y en movimiento constante.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="cta-section">
+        <h2>¿Cuál refleja mejor su visión empresarial?</h2>
+        <p>Cada propuesta ha sido meticulosamente diseñada para transmitir valores específicos y conectar con diferentes segmentos de mercado. La elección correcta definirá cómo el mundo percibe a HG S.A.S y establecerá las bases para su éxito digital.</p>
+        <div class="cta-buttons">
+            <a href="#" class="cta-button" onclick="alert('Excelente elección. Procederemos con la implementación completa de esta paleta, incluyendo sitio web, materiales digitales y guía de marca.')">Seleccionar Esta Propuesta</a>
+            <a href="#" class="cta-button secondary" onclick="alert('Perfecto. Agendemos una reunión para discutir personalizaciones específicas, adaptaciones adicionales y detalles de implementación.')">Consultar Personalización</a>
+        </div>
+        <div style="margin-top: 40px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.2);">
+            <p style="font-size: 1rem; opacity: 0.8; font-style: italic;">
+                "La identidad visual es la primera impresión que perdura para siempre"
+            </p>
+        </div>
+    </div>
+</body>
+</html>
