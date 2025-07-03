@@ -1,37 +1,43 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- SEO Meta Tags -->
     <title>AJEDREZ - Vinos Espumosos Sin Alcohol | COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S</title>
-    <meta name="description" content="Distribuimos AJEDREZ, vinos espumosos premium sin alcohol en 4 sabores únicos. Rosado, Cereza, Manzana y Uva. Distribución nacional desde Cundinamarca desde 2016.">
-    <meta name="keywords" content="vinos sin alcohol colombia, ajedrez vinos, bebidas sin alcohol, espumosos sin alcohol, distribuidora bebidas, HG SAS">
+    <meta name="description"
+        content="Distribuimos AJEDREZ, vinos espumosos premium sin alcohol en 4 sabores únicos. Rosado, Cereza, Manzana y Uva. Distribución nacional desde Cundinamarca desde 2016.">
+    <meta name="keywords"
+        content="vinos sin alcohol colombia, ajedrez vinos, bebidas sin alcohol, espumosos sin alcohol, distribuidora bebidas, HG SAS">
     <meta name="author" content="COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S">
     <meta name="robots" content="index, follow">
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="business.business">
     <meta property="og:url" content="https://www.discomerhgsas.com.co">
     <meta property="og:title" content="AJEDREZ - Vinos Espumosos Sin Alcohol Premium">
-    <meta property="og:description" content="Descubre los 4 sabores únicos de AJEDREZ: Rosado, Cereza, Manzana y Uva. Distribución nacional garantizada.">
+    <meta property="og:description"
+        content="Descubre los 4 sabores únicos de AJEDREZ: Rosado, Cereza, Manzana y Uva. Distribución nacional garantizada.">
     <meta property="og:image" content="https://www.discomerhgsas.com.co/assets/images/ajedrez-collection-social.jpg">
-    
+
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://www.discomerhgsas.com.co">
     <meta property="twitter:title" content="AJEDREZ - Vinos Espumosos Sin Alcohol Premium">
-    <meta property="twitter:description" content="Descubre los 4 sabores únicos de AJEDREZ: Rosado, Cereza, Manzana y Uva. Distribución nacional garantizada.">
-    <meta property="twitter:image" content="https://www.discomerhgsas.com.co/assets/images/ajedrez-collection-social.jpg">
-    
+    <meta property="twitter:description"
+        content="Descubre los 4 sabores únicos de AJEDREZ: Rosado, Cereza, Manzana y Uva. Distribución nacional garantizada.">
+    <meta property="twitter:image"
+        content="https://www.discomerhgsas.com.co/assets/images/ajedrez-collection-social.jpg">
+
     <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="assets/favicons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicons/favicon-16x16.png">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#0f0f23">
-    
+
     <!-- CSS Files -->
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/responsive.css">
@@ -40,7 +46,7 @@
     <link rel="stylesheet" href="css/menu-hexagonal.css">
     <link rel="stylesheet" href="css/menu-morphing.css">
     <link rel="stylesheet" href="css/accessibility.css">
-    
+
     <!-- Schema Markup -->
     <script type="application/ld+json">
     {
@@ -99,7 +105,7 @@
 <body>
     <!-- Skip Navigation for Accessibility -->
     <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
-    
+
     <!-- Loading Screen -->
     <div id="loading-screen" class="loading-screen" aria-hidden="true">
         <div class="loading-content">
@@ -109,19 +115,20 @@
             <div class="loading-text">Cargando experiencia AJEDREZ...</div>
             <div class="loading-progress">
                 <div class="progress-bar"></div>
-                
+
                 <!-- Copa de vino que se llena -->
                 <div class="wine-glass-container">
                     <div class="wine-glass">
-                        <svg class="wine-glass-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M8 2h8l-2 8c0 2.2-1.8 4-4 4s-4-1.8-4-4L8 2z"/>
-                            <line x1="12" y1="14" x2="12" y2="22"/>
-                            <line x1="8" y1="22" x2="16" y2="22"/>
+                        <svg class="wine-glass-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M8 2h8l-2 8c0 2.2-1.8 4-4 4s-4-1.8-4-4L8 2z" />
+                            <line x1="12" y1="14" x2="12" y2="22" />
+                            <line x1="8" y1="22" x2="16" y2="22" />
                         </svg>
                         <div class="wine-fill"></div>
                     </div>
                 </div>
-                
+
                 <!-- Burbujas flotantes -->
                 <div class="wine-bubbles">
                     <div class="bubble"></div>
@@ -131,7 +138,7 @@
                     <div class="bubble"></div>
                     <div class="bubble"></div>
                 </div>
-                
+
                 <!-- Partículas de vino -->
                 <div class="wine-particles">
                     <div class="particle"></div>
@@ -141,7 +148,7 @@
                     <div class="particle"></div>
                     <div class="particle"></div>
                 </div>
-                
+
                 <div class="progress-percentage" id="progress-percentage">0</div>
             </div>
         </div>
@@ -164,26 +171,48 @@
             <div class="menu-system">
                 <!-- Desktop: Orbital Menu -->
                 <div class="menu-orbital desktop-only" aria-label="Menú orbital">
-                    <button class="orbital-activator" aria-expanded="false" aria-controls="orbital-menu" aria-label="Abrir menú orbital">
+                    <button class="orbital-activator" aria-expanded="false" aria-controls="orbital-menu"
+                        aria-label="Abrir menú orbital">
                         <div class="orbital-icon">
                             <div class="orbital-center">HG</div>
                         </div>
                     </button>
                     <nav id="orbital-menu" class="orbital-items" role="menu">
                         <a href="#home" class="orbital-item" role="menuitem" data-position="12">
-                            <span class="item-icon">🏠</span>
+                            <div class="item-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                                    <polyline points="9,22 9,12 15,12 15,22"/>
+                                </svg>
+                            </div>
                             <span class="item-text">Inicio</span>
                         </a>
                         <a href="#productos" class="orbital-item" role="menuitem" data-position="3">
-                            <span class="item-icon">🍾</span>
+                            <div class="item-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                    <circle cx="12" cy="12" r="3" fill="currentColor" opacity="0.3"/>
+                                </svg>
+                            </div>
                             <span class="item-text">Productos AJEDREZ</span>
                         </a>
                         <a href="#quienes-somos" class="orbital-item" role="menuitem" data-position="6">
-                            <span class="item-icon">👥</span>
+                            <div class="item-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                </svg>
+                            </div>
                             <span class="item-text">Quiénes Somos</span>
                         </a>
                         <a href="#contacto" class="orbital-item" role="menuitem" data-position="9">
-                            <span class="item-icon">📞</span>
+                            <div class="item-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                                </svg>
+                            </div>
                             <span class="item-text">Contacto</span>
                         </a>
                     </nav>
@@ -191,7 +220,8 @@
 
                 <!-- Tablet: Hexagonal Menu -->
                 <div class="menu-hexagonal tablet-only" aria-label="Menú hexagonal">
-                    <button class="hex-activator" aria-expanded="false" aria-controls="hex-menu" aria-label="Abrir menú hexagonal">
+                    <button class="hex-activator" aria-expanded="false" aria-controls="hex-menu"
+                        aria-label="Abrir menú hexagonal">
                         <div class="hex-shape"></div>
                     </button>
                     <nav id="hex-menu" class="hex-items" role="menu">
@@ -206,7 +236,8 @@
 
                 <!-- Mobile: Morphing Dots Menu -->
                 <div class="menu-morphing mobile-only" aria-label="Menú móvil">
-                    <button class="morphing-trigger" aria-expanded="false" aria-controls="morphing-menu" aria-label="Abrir menú">
+                    <button class="morphing-trigger" aria-expanded="false" aria-controls="morphing-menu"
+                        aria-label="Abrir menú">
                         <div class="morphing-dots">
                             <span class="dot dot-1"></span>
                             <span class="dot dot-2"></span>
@@ -226,14 +257,15 @@
         </nav>
 
         <!-- Scroll Progress Indicator -->
-        <div class="scroll-progress" role="progressbar" aria-label="Progreso de lectura" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+        <div class="scroll-progress" role="progressbar" aria-label="Progreso de lectura" aria-valuenow="0"
+            aria-valuemin="0" aria-valuemax="100">
             <div class="progress-fill"></div>
         </div>
     </header>
 
     <!-- Main Content -->
     <main id="main-content" class="main-content" role="main">
-        
+
         <!-- Hero Section -->
         <section id="home" class="hero-section" aria-labelledby="hero-title">
             <div class="hero-container">
@@ -242,7 +274,8 @@
                         AJEDREZ <span class="title-subtitle">Vinos Espumosos Sin Alcohol</span>
                     </h1>
                     <p class="hero-subtitle">Cuatro sabores únicos para cada celebración</p>
-                    <p class="hero-description">Desde 2016 distribuimos las mejores bebidas sin alcohol premium en Colombia</p>
+                    <p class="hero-description">Desde 2016 distribuimos las mejores bebidas sin alcohol premium en
+                        Colombia</p>
                     <div class="hero-cta">
                         <a href="#productos" class="btn btn-primary" aria-describedby="productos-section">
                             Conoce Nuestros Productos
@@ -251,10 +284,9 @@
                 </div>
                 <div class="hero-visual">
                     <div class="products-showcase-hero">
-                        <img src="assets/images/products/ajedrez-collection.webp" 
-                             alt="Colección completa AJEDREZ: 4 variedades de vinos espumosos sin alcohol"
-                             class="hero-products-image"
-                             loading="eager">
+                        <img src="assets/images/products/ajedrez-collection.webp"
+                            alt="Colección completa AJEDREZ: 4 variedades de vinos espumosos sin alcohol"
+                            class="hero-products-image" loading="eager">
                     </div>
                 </div>
             </div>
@@ -272,10 +304,9 @@
                     <!-- AJEDREZ Rosado -->
                     <article class="product-card" data-product="rosado">
                         <div class="product-preview">
-                            <img src="assets/images/products/ajedrez-rosado.webp" 
-                                 alt="AJEDREZ Rosado - Vino espumoso sin alcohol sabor rosado 750ml"
-                                 class="product-image"
-                                 loading="lazy">
+                            <img src="assets/images/products/ajedrez-rosado.webp"
+                                alt="AJEDREZ Rosado - Vino espumoso sin alcohol sabor rosado 750ml"
+                                class="product-image" loading="lazy">
                             <div class="product-info-preview">
                                 <h3 class="product-name">AJEDREZ Rosado</h3>
                                 <p class="product-description-short">Elegancia y frescura para brindis especiales</p>
@@ -289,15 +320,17 @@
                         <!-- Digital Catalog for Rosado -->
                         <div class="product-catalog" id="catalog-rosado" aria-hidden="true">
                             <div class="catalog-content">
-                                <button class="catalog-close" aria-label="Cerrar catálogo de AJEDREZ Rosado">&times;</button>
+                                <button class="catalog-close"
+                                    aria-label="Cerrar catálogo de AJEDREZ Rosado">&times;</button>
                                 <div class="catalog-image">
-                                    <img src="assets/images/products/ajedrez-rosado-detail.webp" 
-                                         alt="AJEDREZ Rosado - Vista detallada del producto"
-                                         loading="lazy">
+                                    <img src="assets/images/products/ajedrez-rosado-detail.webp"
+                                        alt="AJEDREZ Rosado - Vista detallada del producto" loading="lazy">
                                 </div>
                                 <div class="catalog-details">
                                     <h3>AJEDREZ Rosado</h3>
-                                    <p class="catalog-description">Elegancia y frescura para brindis especiales. Una experiencia premium sin alcohol que mantiene toda la sofisticación de un espumoso tradicional.</p>
+                                    <p class="catalog-description">Elegancia y frescura para brindis especiales. Una
+                                        experiencia premium sin alcohol que mantiene toda la sofisticación de un
+                                        espumoso tradicional.</p>
                                     <div class="catalog-specs">
                                         <h4>Especificaciones:</h4>
                                         <ul>
@@ -309,17 +342,17 @@
                                     </div>
                                     <div class="catalog-ingredients">
                                         <h4>Ingredientes:</h4>
-                                        <p>Agua carbonatada, edulcorantes naturales, aromas naturales de frutas, ácido cítrico, conservantes naturales.</p>
+                                        <p>Agua carbonatada, edulcorantes naturales, aromas naturales de frutas, ácido
+                                            cítrico, conservantes naturales.</p>
                                     </div>
                                     <div class="catalog-occasions">
                                         <h4>Ocasiones ideales:</h4>
-                                        <p>Celebraciones, brindis, reuniones familiares, eventos corporativos, cenas especiales.</p>
+                                        <p>Celebraciones, brindis, reuniones familiares, eventos corporativos, cenas
+                                            especiales.</p>
                                     </div>
-                                    <a href="https://wa.me/573XXXXXXXXX?text=Buenos%20días,%20me%20interesa%20obtener%20información%20sobre%20el%20producto%20AJEDREZ%20Rosado%20750ml.%20¿Podrían%20proporcionarme%20detalles%20sobre%20precios,%20disponibilidad%20y%20condiciones%20de%20distribución?%20Quedo%20atento%20a%20su%20respuesta.%20Saludos%20cordiales." 
-                                       class="btn btn-whatsapp" 
-                                       target="_blank"
-                                       rel="noopener noreferrer"
-                                       aria-label="Solicitar AJEDREZ Rosado por WhatsApp">
+                                    <a href="https://wa.me/573XXXXXXXXX?text=Buenos%20días,%20me%20interesa%20obtener%20información%20sobre%20el%20producto%20AJEDREZ%20Rosado%20750ml.%20¿Podrían%20proporcionarme%20detalles%20sobre%20precios,%20disponibilidad%20y%20condiciones%20de%20distribución?%20Quedo%20atento%20a%20su%20respuesta.%20Saludos%20cordiales."
+                                        class="btn btn-whatsapp" target="_blank" rel="noopener noreferrer"
+                                        aria-label="Solicitar AJEDREZ Rosado por WhatsApp">
                                         Solicitar AJEDREZ Rosado
                                     </a>
                                 </div>
@@ -330,10 +363,9 @@
                     <!-- AJEDREZ Cereza -->
                     <article class="product-card" data-product="cereza">
                         <div class="product-preview">
-                            <img src="assets/images/products/ajedrez-cereza.webp" 
-                                 alt="AJEDREZ Cereza - Vino espumoso sin alcohol sabor cereza 750ml"
-                                 class="product-image"
-                                 loading="lazy">
+                            <img src="assets/images/products/ajedrez-cereza.webp"
+                                alt="AJEDREZ Cereza - Vino espumoso sin alcohol sabor cereza 750ml"
+                                class="product-image" loading="lazy">
                             <div class="product-info-preview">
                                 <h3 class="product-name">AJEDREZ Cereza</h3>
                                 <p class="product-description-short">Intensidad frutal para celebraciones únicas</p>
@@ -347,15 +379,17 @@
                         <!-- Digital Catalog for Cereza -->
                         <div class="product-catalog" id="catalog-cereza" aria-hidden="true">
                             <div class="catalog-content">
-                                <button class="catalog-close" aria-label="Cerrar catálogo de AJEDREZ Cereza">&times;</button>
+                                <button class="catalog-close"
+                                    aria-label="Cerrar catálogo de AJEDREZ Cereza">&times;</button>
                                 <div class="catalog-image">
-                                    <img src="assets/images/products/ajedrez-cereza-detail.webp" 
-                                         alt="AJEDREZ Cereza - Vista detallada del producto"
-                                         loading="lazy">
+                                    <img src="assets/images/products/ajedrez-cereza-detail.webp"
+                                        alt="AJEDREZ Cereza - Vista detallada del producto" loading="lazy">
                                 </div>
                                 <div class="catalog-details">
                                     <h3>AJEDREZ Cereza</h3>
-                                    <p class="catalog-description">Intensidad frutal para celebraciones únicas. El sabor vibrante de la cereza en una experiencia espumosa sin alcohol que despierta todos los sentidos.</p>
+                                    <p class="catalog-description">Intensidad frutal para celebraciones únicas. El sabor
+                                        vibrante de la cereza en una experiencia espumosa sin alcohol que despierta
+                                        todos los sentidos.</p>
                                     <div class="catalog-specs">
                                         <h4>Especificaciones:</h4>
                                         <ul>
@@ -367,17 +401,17 @@
                                     </div>
                                     <div class="catalog-ingredients">
                                         <h4>Ingredientes:</h4>
-                                        <p>Agua carbonatada, extracto natural de cereza, edulcorantes naturales, ácido málico, conservantes naturales.</p>
+                                        <p>Agua carbonatada, extracto natural de cereza, edulcorantes naturales, ácido
+                                            málico, conservantes naturales.</p>
                                     </div>
                                     <div class="catalog-profile">
                                         <h4>Perfil de sabor:</h4>
-                                        <p>Dulce, frutal, refrescante con notas intensas de cereza madura y final burbujeante.</p>
+                                        <p>Dulce, frutal, refrescante con notas intensas de cereza madura y final
+                                            burbujeante.</p>
                                     </div>
-                                    <a href="https://wa.me/573XXXXXXXXX?text=Buenos%20días,%20me%20interesa%20el%20producto%20AJEDREZ%20Cereza%20750ml.%20¿Podrían%20facilitarme%20información%20sobre%20precios%20mayoristas,%20cantidades%20mínimas%20de%20pedido%20y%20tiempos%20de%20entrega?%20Agradezco%20su%20pronta%20respuesta." 
-                                       class="btn btn-whatsapp" 
-                                       target="_blank"
-                                       rel="noopener noreferrer"
-                                       aria-label="Solicitar AJEDREZ Cereza por WhatsApp">
+                                    <a href="https://wa.me/573XXXXXXXXX?text=Buenos%20días,%20me%20interesa%20el%20producto%20AJEDREZ%20Cereza%20750ml.%20¿Podrían%20facilitarme%20información%20sobre%20precios%20mayoristas,%20cantidades%20mínimas%20de%20pedido%20y%20tiempos%20de%20entrega?%20Agradezco%20su%20pronta%20respuesta."
+                                        class="btn btn-whatsapp" target="_blank" rel="noopener noreferrer"
+                                        aria-label="Solicitar AJEDREZ Cereza por WhatsApp">
                                         Solicitar AJEDREZ Cereza
                                     </a>
                                 </div>
@@ -388,10 +422,9 @@
                     <!-- AJEDREZ Manzana -->
                     <article class="product-card" data-product="manzana">
                         <div class="product-preview">
-                            <img src="assets/images/products/ajedrez-manzana.webp" 
-                                 alt="AJEDREZ Manzana - Vino espumoso sin alcohol sabor manzana 750ml"
-                                 class="product-image"
-                                 loading="lazy">
+                            <img src="assets/images/products/ajedrez-manzana.webp"
+                                alt="AJEDREZ Manzana - Vino espumoso sin alcohol sabor manzana 750ml"
+                                class="product-image" loading="lazy">
                             <div class="product-info-preview">
                                 <h3 class="product-name">AJEDREZ Manzana</h3>
                                 <p class="product-description-short">Refrescancia natural y sofisticación</p>
@@ -405,15 +438,17 @@
                         <!-- Digital Catalog for Manzana -->
                         <div class="product-catalog" id="catalog-manzana" aria-hidden="true">
                             <div class="catalog-content">
-                                <button class="catalog-close" aria-label="Cerrar catálogo de AJEDREZ Manzana">&times;</button>
+                                <button class="catalog-close"
+                                    aria-label="Cerrar catálogo de AJEDREZ Manzana">&times;</button>
                                 <div class="catalog-image">
-                                    <img src="assets/images/products/ajedrez-manzana-detail.webp" 
-                                         alt="AJEDREZ Manzana - Vista detallada del producto"
-                                         loading="lazy">
+                                    <img src="assets/images/products/ajedrez-manzana-detail.webp"
+                                        alt="AJEDREZ Manzana - Vista detallada del producto" loading="lazy">
                                 </div>
                                 <div class="catalog-details">
                                     <h3>AJEDREZ Manzana</h3>
-                                    <p class="catalog-description">Refrescancia natural y sofisticación en cada sorbo. La frescura de la manzana verde combinada con la elegancia de un espumoso premium.</p>
+                                    <p class="catalog-description">Refrescancia natural y sofisticación en cada sorbo.
+                                        La frescura de la manzana verde combinada con la elegancia de un espumoso
+                                        premium.</p>
                                     <div class="catalog-specs">
                                         <h4>Especificaciones:</h4>
                                         <ul>
@@ -425,17 +460,17 @@
                                     </div>
                                     <div class="catalog-benefits">
                                         <h4>Beneficios:</h4>
-                                        <p>Sin azúcar agregada, edulcorantes naturales, rico en vitamina C natural, bajo en calorías.</p>
+                                        <p>Sin azúcar agregada, edulcorantes naturales, rico en vitamina C natural, bajo
+                                            en calorías.</p>
                                     </div>
                                     <div class="catalog-recommendations">
                                         <h4>Recomendaciones:</h4>
-                                        <p>Servir frío entre 4-6°C, ideal para acompañar comidas ligeras, ensaladas y mariscos.</p>
+                                        <p>Servir frío entre 4-6°C, ideal para acompañar comidas ligeras, ensaladas y
+                                            mariscos.</p>
                                     </div>
-                                    <a href="https://wa.me/573XXXXXXXXX?text=Estimados,%20solicito%20cotización%20para%20el%20producto%20AJEDREZ%20Manzana%20750ml.%20Requiero%20información%20sobre%20precios,%20descuentos%20por%20volumen%20y%20cobertura%20de%20distribución%20en%20mi%20zona.%20Muchas%20gracias." 
-                                       class="btn btn-whatsapp" 
-                                       target="_blank"
-                                       rel="noopener noreferrer"
-                                       aria-label="Solicitar AJEDREZ Manzana por WhatsApp">
+                                    <a href="https://wa.me/573XXXXXXXXX?text=Estimados,%20solicito%20cotización%20para%20el%20producto%20AJEDREZ%20Manzana%20750ml.%20Requiero%20información%20sobre%20precios,%20descuentos%20por%20volumen%20y%20cobertura%20de%20distribución%20en%20mi%20zona.%20Muchas%20gracias."
+                                        class="btn btn-whatsapp" target="_blank" rel="noopener noreferrer"
+                                        aria-label="Solicitar AJEDREZ Manzana por WhatsApp">
                                         Solicitar AJEDREZ Manzana
                                     </a>
                                 </div>
@@ -446,10 +481,9 @@
                     <!-- AJEDREZ Uva -->
                     <article class="product-card" data-product="uva">
                         <div class="product-preview">
-                            <img src="assets/images/products/ajedrez-uva.webp" 
-                                 alt="AJEDREZ Uva - Vino espumoso sin alcohol sabor uva 750ml"
-                                 class="product-image"
-                                 loading="lazy">
+                            <img src="assets/images/products/ajedrez-uva.webp"
+                                alt="AJEDREZ Uva - Vino espumoso sin alcohol sabor uva 750ml" class="product-image"
+                                loading="lazy">
                             <div class="product-info-preview">
                                 <h3 class="product-name">AJEDREZ Uva</h3>
                                 <p class="product-description-short">Tradición y calidad en cada sorbo</p>
@@ -463,15 +497,17 @@
                         <!-- Digital Catalog for Uva -->
                         <div class="product-catalog" id="catalog-uva" aria-hidden="true">
                             <div class="catalog-content">
-                                <button class="catalog-close" aria-label="Cerrar catálogo de AJEDREZ Uva">&times;</button>
+                                <button class="catalog-close"
+                                    aria-label="Cerrar catálogo de AJEDREZ Uva">&times;</button>
                                 <div class="catalog-image">
-                                    <img src="assets/images/products/ajedrez-uva-detail.webp" 
-                                         alt="AJEDREZ Uva - Vista detallada del producto"
-                                         loading="lazy">
+                                    <img src="assets/images/products/ajedrez-uva-detail.webp"
+                                        alt="AJEDREZ Uva - Vista detallada del producto" loading="lazy">
                                 </div>
                                 <div class="catalog-details">
                                     <h3>AJEDREZ Uva</h3>
-                                    <p class="catalog-description">Tradición y calidad en cada sorbo. El sabor clásico de la uva en una versión moderna y sofisticada, sin alcohol pero con toda la personalidad.</p>
+                                    <p class="catalog-description">Tradición y calidad en cada sorbo. El sabor clásico
+                                        de la uva en una versión moderna y sofisticada, sin alcohol pero con toda la
+                                        personalidad.</p>
                                     <div class="catalog-specs">
                                         <h4>Especificaciones:</h4>
                                         <ul>
@@ -483,17 +519,16 @@
                                     </div>
                                     <div class="catalog-characteristics">
                                         <h4>Características:</h4>
-                                        <p>Sabor tradicional de uva, burbujas finas y persistentes, aroma frutal intenso, final suave y equilibrado.</p>
+                                        <p>Sabor tradicional de uva, burbujas finas y persistentes, aroma frutal
+                                            intenso, final suave y equilibrado.</p>
                                     </div>
                                     <div class="catalog-pairing">
                                         <h4>Maridaje sugerido:</h4>
                                         <p>Postres, frutas frescas, aperitivos, quesos suaves, chocolate blanco.</p>
                                     </div>
-                                    <a href="https://wa.me/573XXXXXXXXX?text=Buen%20día,%20me%20dirijo%20a%20ustedes%20para%20solicitar%20información%20comercial%20sobre%20AJEDREZ%20Uva%20750ml.%20Necesito%20conocer%20precios,%20condiciones%20de%20pago%20y%20requisitos%20para%20convertirme%20en%20distribuidor.%20Quedo%20pendiente%20de%20su%20respuesta." 
-                                       class="btn btn-whatsapp" 
-                                       target="_blank"
-                                       rel="noopener noreferrer"
-                                       aria-label="Solicitar AJEDREZ Uva por WhatsApp">
+                                    <a href="https://wa.me/573XXXXXXXXX?text=Buen%20día,%20me%20dirijo%20a%20ustedes%20para%20solicitar%20información%20comercial%20sobre%20AJEDREZ%20Uva%20750ml.%20Necesito%20conocer%20precios,%20condiciones%20de%20pago%20y%20requisitos%20para%20convertirme%20en%20distribuidor.%20Quedo%20pendiente%20de%20su%20respuesta."
+                                        class="btn btn-whatsapp" target="_blank" rel="noopener noreferrer"
+                                        aria-label="Solicitar AJEDREZ Uva por WhatsApp">
                                         Solicitar AJEDREZ Uva
                                     </a>
                                 </div>
@@ -510,28 +545,30 @@
                 <header class="section-header">
                     <h2 id="testimonials-title" class="section-title">Lo Que Dicen Nuestros Distribuidores</h2>
                 </header>
-                
+
                 <div class="testimonials-grid">
                     <article class="testimonial-card">
                         <blockquote class="testimonial-quote">
-                            "AJEDREZ se ha convertido en nuestro producto estrella. La calidad y aceptación del cliente es excepcional."
+                            "AJEDREZ se ha convertido en nuestro producto estrella. La calidad y aceptación del cliente
+                            es excepcional."
                         </blockquote>
                         <cite class="testimonial-author">
                             <strong>Distribuidor Bogotá</strong>
                             <span>Cliente desde 2018</span>
                         </cite>
                     </article>
-                    
+
                     <article class="testimonial-card">
                         <blockquote class="testimonial-quote">
-                            "Para nuestros eventos corporativos, AJEDREZ es la elección perfecta. Elegancia sin alcohol."
+                            "Para nuestros eventos corporativos, AJEDREZ es la elección perfecta. Elegancia sin
+                            alcohol."
                         </blockquote>
                         <cite class="testimonial-author">
                             <strong>Eventos Premium Medellín</strong>
                             <span>Socio estratégico</span>
                         </cite>
                     </article>
-                    
+
                     <article class="testimonial-card">
                         <blockquote class="testimonial-quote">
                             "La rotación de AJEDREZ supera nuestras expectativas. Excelente relación calidad-precio."
@@ -630,49 +667,30 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="nombre" class="form-label">Nombre Completo *</label>
-                                <input type="text" 
-                                       id="nombre" 
-                                       name="nombre" 
-                                       class="form-input" 
-                                       required 
-                                       aria-describedby="nombre-error"
-                                       autocomplete="name">
+                                <input type="text" id="nombre" name="nombre" class="form-input" required
+                                    aria-describedby="nombre-error" autocomplete="name">
                                 <span id="nombre-error" class="error-message" aria-live="polite"></span>
                             </div>
 
                             <div class="form-group">
                                 <label for="empresa" class="form-label">Empresa/Negocio</label>
-                                <input type="text" 
-                                       id="empresa" 
-                                       name="empresa" 
-                                       class="form-input"
-                                       autocomplete="organization">
+                                <input type="text" id="empresa" name="empresa" class="form-input"
+                                    autocomplete="organization">
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="telefono" class="form-label">Teléfono *</label>
-                                <input type="tel" 
-                                       id="telefono" 
-                                       name="telefono" 
-                                       class="form-input" 
-                                       required 
-                                       aria-describedby="telefono-error"
-                                       autocomplete="tel"
-                                       pattern="[0-9+\-\s()]+">
+                                <input type="tel" id="telefono" name="telefono" class="form-input" required
+                                    aria-describedby="telefono-error" autocomplete="tel" pattern="[0-9+\-\s()]+">
                                 <span id="telefono-error" class="error-message" aria-live="polite"></span>
                             </div>
 
                             <div class="form-group">
                                 <label for="email" class="form-label">Email *</label>
-                                <input type="email" 
-                                       id="email" 
-                                       name="email" 
-                                       class="form-input" 
-                                       required 
-                                       aria-describedby="email-error"
-                                       autocomplete="email">
+                                <input type="email" id="email" name="email" class="form-input" required
+                                    aria-describedby="email-error" autocomplete="email">
                                 <span id="email-error" class="error-message" aria-live="polite"></span>
                             </div>
                         </div>
@@ -680,13 +698,8 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="ciudad" class="form-label">Ciudad *</label>
-                                <input type="text" 
-                                       id="ciudad" 
-                                       name="ciudad" 
-                                       class="form-input" 
-                                       required 
-                                       aria-describedby="ciudad-error"
-                                       autocomplete="address-level2">
+                                <input type="text" id="ciudad" name="ciudad" class="form-input" required
+                                    aria-describedby="ciudad-error" autocomplete="address-level2">
                                 <span id="ciudad-error" class="error-message" aria-live="polite"></span>
                             </div>
 
@@ -704,11 +717,8 @@
 
                         <div class="form-group">
                             <label for="mensaje" class="form-label">Mensaje</label>
-                            <textarea id="mensaje" 
-                                      name="mensaje" 
-                                      class="form-textarea" 
-                                      rows="5" 
-                                      placeholder="Cuéntanos sobre tu interés en distribuir AJEDREZ..."></textarea>
+                            <textarea id="mensaje" name="mensaje" class="form-textarea" rows="5"
+                                placeholder="Cuéntanos sobre tu interés en distribuir AJEDREZ..."></textarea>
                         </div>
 
                         <div class="form-actions">
@@ -775,36 +785,31 @@
 
                 <div class="gallery-grid">
                     <div class="gallery-item">
-                        <img src="assets/images/gallery/evento-corporativo.webp" 
-                             alt="AJEDREZ en evento corporativo"
-                             loading="lazy">
+                        <img src="assets/images/gallery/evento-corporativo.webp" alt="AJEDREZ en evento corporativo"
+                            loading="lazy">
                         <div class="gallery-overlay">
                             <span>Eventos Corporativos</span>
                         </div>
                     </div>
 
                     <div class="gallery-item">
-                        <img src="assets/images/gallery/celebracion-familiar.webp" 
-                             alt="AJEDREZ en celebración familiar"
-                             loading="lazy">
+                        <img src="assets/images/gallery/celebracion-familiar.webp" alt="AJEDREZ en celebración familiar"
+                            loading="lazy">
                         <div class="gallery-overlay">
                             <span>Celebraciones Familiares</span>
                         </div>
                     </div>
 
                     <div class="gallery-item">
-                        <img src="assets/images/gallery/brindis-especial.webp" 
-                             alt="Brindis con AJEDREZ"
-                             loading="lazy">
+                        <img src="assets/images/gallery/brindis-especial.webp" alt="Brindis con AJEDREZ" loading="lazy">
                         <div class="gallery-overlay">
                             <span>Brindis Especiales</span>
                         </div>
                     </div>
 
                     <div class="gallery-item">
-                        <img src="assets/images/gallery/distribuidor-satisfecho.webp" 
-                             alt="Distribuidor satisfecho con AJEDREZ"
-                             loading="lazy">
+                        <img src="assets/images/gallery/distribuidor-satisfecho.webp"
+                            alt="Distribuidor satisfecho con AJEDREZ" loading="lazy">
                         <div class="gallery-overlay">
                             <span>Distribuidores Satisfechos</span>
                         </div>
@@ -824,9 +829,8 @@
                 <div class="news-grid">
                     <article class="news-card">
                         <div class="news-image">
-                            <img src="assets/images/news/expansion-nacional.webp" 
-                                 alt="Expansión nacional de AJEDREZ"
-                                 loading="lazy">
+                            <img src="assets/images/news/expansion-nacional.webp" alt="Expansión nacional de AJEDREZ"
+                                loading="lazy">
                         </div>
                         <div class="news-content">
                             <h3>Expansión Nacional 2025</h3>
@@ -837,9 +841,8 @@
 
                     <article class="news-card">
                         <div class="news-image">
-                            <img src="assets/images/news/nuevos-distribuidores.webp" 
-                                 alt="Nuevos distribuidores AJEDREZ"
-                                 loading="lazy">
+                            <img src="assets/images/news/nuevos-distribuidores.webp" alt="Nuevos distribuidores AJEDREZ"
+                                loading="lazy">
                         </div>
                         <div class="news-content">
                             <h3>Nuevos Distribuidores Autorizados</h3>
@@ -850,9 +853,8 @@
 
                     <article class="news-card">
                         <div class="news-image">
-                            <img src="assets/images/news/tendencias-sin-alcohol.webp" 
-                                 alt="Tendencias bebidas sin alcohol"
-                                 loading="lazy">
+                            <img src="assets/images/news/tendencias-sin-alcohol.webp"
+                                alt="Tendencias bebidas sin alcohol" loading="lazy">
                         </div>
                         <div class="news-content">
                             <h3>Tendencias en Bebidas Sin Alcohol</h3>
@@ -866,27 +868,22 @@
     </main>
 
     <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/573XXXXXXXXX?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20los%20productos%20AJEDREZ" 
-       class="whatsapp-float" 
-       target="_blank" 
-       rel="noopener noreferrer"
-       aria-label="Contactar por WhatsApp"
-       title="¡Escríbenos por WhatsApp!">
+    <a href="https://wa.me/573XXXXXXXXX?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20los%20productos%20AJEDREZ"
+        class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp"
+        title="¡Escríbenos por WhatsApp!">
         <div class="whatsapp-icon">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.531 3.488"/>
+                <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.531 3.488" />
             </svg>
         </div>
     </a>
 
     <!-- Back to Top Button -->
-    <button id="back-to-top" 
-            class="back-to-top" 
-            aria-label="Volver al inicio" 
-            title="Volver arriba"
-            style="display: none;">
+    <button id="back-to-top" class="back-to-top" aria-label="Volver al inicio" title="Volver arriba"
+        style="display: none;">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+            <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z" />
         </svg>
     </button>
 
@@ -942,10 +939,12 @@
     </footer>
 
     <!-- Cookies Banner -->
-    <div id="cookies-banner" class="cookies-banner" style="display: none;" role="dialog" aria-labelledby="cookies-title" aria-describedby="cookies-description">
+    <div id="cookies-banner" class="cookies-banner" style="display: none;" role="dialog" aria-labelledby="cookies-title"
+        aria-describedby="cookies-description">
         <div class="cookies-content">
             <h3 id="cookies-title">Utilizamos cookies</h3>
-            <p id="cookies-description">Utilizamos cookies para mejorar tu experiencia de navegación y analizar el tráfico del sitio web.</p>
+            <p id="cookies-description">Utilizamos cookies para mejorar tu experiencia de navegación y analizar el
+                tráfico del sitio web.</p>
             <div class="cookies-actions">
                 <button id="accept-cookies" class="btn btn-primary btn-small">Aceptar</button>
                 <button id="configure-cookies" class="btn btn-secondary btn-small">Configurar</button>
@@ -954,16 +953,14 @@
     </div>
 
     <!-- Dark Mode Toggle (Optional) -->
-    <button id="theme-toggle" 
-            class="theme-toggle" 
-            aria-label="Cambiar tema" 
-            title="Cambiar a modo claro/oscuro"
-            style="display: none;">
+    <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema" title="Cambiar a modo claro/oscuro"
+        style="display: none;">
         <svg class="theme-icon theme-icon-dark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
         </svg>
         <svg class="theme-icon theme-icon-light" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M12 2v2m6.364.636l-1.414 1.414M22 12h-2m-1.636 6.364l-1.414-1.414M12 20v2m-6.364-1.636l1.414-1.414M2 12h2m1.636-6.364l1.414 1.414M12 6a6 6 0 1 0 0 12 6 6 0 0 0 0-12z"/>
+            <path
+                d="M12 2v2m6.364.636l-1.414 1.414M22 12h-2m-1.636 6.364l-1.414-1.414M12 20v2m-6.364-1.636l1.414-1.414M2 12h2m1.636-6.364l1.414 1.414M12 6a6 6 0 1 0 0 12 6 6 0 0 0 0-12z" />
         </svg>
     </button>
 
@@ -984,23 +981,27 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+        function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'GA_MEASUREMENT_ID');
     </script>
 
     <!-- Facebook Pixel -->
     <script>
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window, document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
         fbq('init', 'YOUR_PIXEL_ID');
         fbq('track', 'PageView');
     </script>
 </body>
+
 </html>
