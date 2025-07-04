@@ -1,6 +1,7 @@
 /* ===================================================================
    MENU HEXAGONAL TABLET - COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S
    Sistema de navegación hexagonal para tablets (768px - 1023px)
+   Efecto: Expansión en 6 direcciones con geometría perfecta
    =================================================================== */
 
 /* ===== HEXAGONAL MENU CONTAINER ===== */
@@ -23,23 +24,46 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all var(--transition-normal);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     overflow: visible;
     user-select: none;
 }
 
+/* ===== HEXAGON SHAPE ===== */
 .hex-shape {
     position: relative;
     width: 60px;
     height: 60px;
     background: var(--gradient-accent);
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    transition: all var(--transition-bounce);
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
     display: flex;
     align-items: center;
     justify-content: center;
+    animation: hexFloating 4s ease-in-out infinite;
 }
 
+/* ===== FLOATING ANIMATION ===== */
+@keyframes hexFloating {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+        filter: hue-rotate(0deg);
+    }
+    25% {
+        transform: translateY(-3px) rotate(90deg);
+        filter: hue-rotate(30deg);
+    }
+    50% {
+        transform: translateY(0px) rotate(180deg);
+        filter: hue-rotate(60deg);
+    }
+    75% {
+        transform: translateY(-2px) rotate(270deg);
+        filter: hue-rotate(30deg);
+    }
+}
+
+/* ===== HEXAGON CENTER TEXT ===== */
 .hex-shape::before {
     content: 'HG';
     position: absolute;
@@ -47,13 +71,15 @@
     left: 50%;
     transform: translate(-50%, -50%);
     font-family: var(--font-heading);
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 700;
     color: var(--primary-dark);
     letter-spacing: 1px;
     z-index: 2;
+    transition: all 0.4s ease;
 }
 
+/* ===== HEXAGON BORDER GLOW ===== */
 .hex-shape::after {
     content: '';
     position: absolute;
@@ -62,7 +88,7 @@
     right: -3px;
     bottom: -3px;
     background: conic-gradient(
-        from 30deg,
+        from 60deg,
         var(--accent-purple),
         var(--accent-pink),
         var(--accent-green),
@@ -71,32 +97,50 @@
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     z-index: -1;
     opacity: 0;
-    animation: hexRotate 3s linear infinite;
+    animation: hexBorderRotate 6s linear infinite;
+}
+
+@keyframes hexBorderRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ===== HOVER STATES ===== */
+.hex-activator:hover .hex-shape {
+    transform: scale(1.15) rotate(30deg);
+    box-shadow: 
+        0 15px 40px rgba(189, 147, 249, 0.4),
+        0 0 30px rgba(80, 250, 123, 0.3);
+    animation-play-state: paused;
 }
 
 .hex-activator:hover .hex-shape::after {
     opacity: 0.8;
 }
 
-.hex-activator:hover .hex-shape {
-    transform: scale(1.1) rotate(15deg);
-    box-shadow: 0 10px 30px rgba(189, 147, 249, 0.4);
+.hex-activator:hover .hex-shape::before {
+    color: var(--white);
+    text-shadow: 0 0 10px rgba(189, 147, 249, 0.8);
 }
 
+/* ===== ACTIVE STATE ===== */
 .hex-activator[aria-expanded="true"] .hex-shape {
-    transform: scale(0.8) rotate(180deg);
+    transform: scale(0.85) rotate(180deg);
     background: var(--gradient-primary);
-    box-shadow: 0 0 0 2px var(--accent-purple);
+    box-shadow: 
+        0 0 0 3px var(--accent-purple),
+        inset 0 0 20px rgba(189, 147, 249, 0.3);
+    animation-play-state: paused;
 }
 
 .hex-activator[aria-expanded="true"] .hex-shape::before {
     color: var(--accent-purple);
-    transform: translate(-50%, -50%) scale(0.9);
+    transform: translate(-50%, -50%) scale(0.9) rotate(-180deg);
 }
 
-@keyframes hexRotate {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+.hex-activator[aria-expanded="true"] .hex-shape::after {
+    opacity: 1;
+    animation-direction: reverse;
 }
 
 /* ===== HEXAGONAL ITEMS CONTAINER ===== */
@@ -105,8 +149,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 280px;
-    height: 280px;
+    width: 320px;
+    height: 320px;
     pointer-events: none;
     z-index: 1000;
 }
@@ -120,10 +164,12 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 55px;
-    height: 55px;
-    margin: -27.5px 0 0 -27.5px;
-    background: rgba(255, 255, 255, 0.1);
+    width: 70px;
+    height: 70px;
+    margin: -35px 0 0 -35px;
+    background: 
+        radial-gradient(circle at 30% 30%, rgba(189, 147, 249, 0.2), rgba(80, 250, 123, 0.15) 50%, rgba(255, 121, 198, 0.1) 70%, transparent 85%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05), rgba(15, 15, 35, 0.3));
     backdrop-filter: blur(15px);
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     display: flex;
@@ -131,150 +177,158 @@
     justify-content: center;
     text-decoration: none;
     color: var(--white);
-    font-size: 0.65rem;
-    font-weight: 600;
+    font-size: 0.75rem;
+    font-weight: 700;
     text-align: center;
     line-height: 1.1;
-    transition: all var(--transition-bounce);
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     opacity: 0;
     visibility: hidden;
-    transform: translate(-50%, -50%) scale(0.2);
-    border: 2px solid rgba(189, 147, 249, 0.3);
+    transform: translate(-50%, -50%) scale(0.2) rotate(-120deg);
+    border: 2px solid rgba(189, 147, 249, 0.4);
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    padding: 8px;
+    box-shadow: 
+        0 10px 25px rgba(15, 15, 35, 0.4),
+        0 5px 15px rgba(189, 147, 249, 0.2),
+        inset 0 2px 5px rgba(255, 255, 255, 0.1);
 }
 
+/* ===== ITEM STATES ===== */
 .menu-hexagonal[aria-expanded="true"] .hex-item {
     opacity: 1;
     visibility: visible;
-    transform: scale(1);
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
 }
 
 .hex-item:hover {
-    background: rgba(189, 147, 249, 0.2);
-    transform: scale(1.15);
-    color: var(--accent-purple);
+    background: 
+        radial-gradient(circle at 30% 30%, rgba(189, 147, 249, 0.4), rgba(80, 250, 123, 0.25) 50%, rgba(255, 121, 198, 0.15) 70%, transparent 85%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1), rgba(15, 15, 35, 0.4));
+    transform: translate(-50%, -50%) scale(1.2) rotate(15deg);
     border-color: var(--accent-purple);
-    box-shadow: 0 8px 25px rgba(189, 147, 249, 0.4);
+    box-shadow: 
+        0 15px 35px rgba(15, 15, 35, 0.6),
+        0 8px 20px rgba(189, 147, 249, 0.4),
+        inset 0 3px 8px rgba(255, 255, 255, 0.2),
+        0 0 30px currentColor;
+    z-index: 10;
 }
 
-/* ===== POSICIONES HEXAGONALES (6 vértices) ===== */
+/* ===== HEXAGONAL VERTEX POSITIONS ===== */
 
-/* Vértice 1 - Superior */
+/* Vértice 1 - Superior (12 en punto) */
 .hex-item[data-vertex="1"] {
-    transform: translate(-50%, -50%) translateY(-110px);
+    transform: translate(-50%, -50%) translateY(-130px) scale(0.2) rotate(-120deg);
     transition-delay: 0.1s;
     background: linear-gradient(135deg, var(--accent-purple), rgba(189, 147, 249, 0.3));
 }
 
 .menu-hexagonal[aria-expanded="true"] .hex-item[data-vertex="1"] {
-    transform: translateY(-110px);
+    transform: translateY(-130px);
 }
 
-/* Vértice 2 - Superior Derecho */
+/* Vértice 2 - Superior Derecho (2 en punto) */
 .hex-item[data-vertex="2"] {
-    transform: translate(-50%, -50%) translate(95px, -55px);
+    transform: translate(-50%, -50%) translate(115px, -65px) scale(0.2) rotate(-120deg);
     transition-delay: 0.15s;
     background: linear-gradient(135deg, var(--accent-green), rgba(80, 250, 123, 0.3));
 }
 
 .menu-hexagonal[aria-expanded="true"] .hex-item[data-vertex="2"] {
-    transform: translate(95px, -55px);
+    transform: translate(115px, -65px);
 }
 
-/* Vértice 3 - Inferior Derecho */
+/* Vértice 3 - Inferior Derecho (4 en punto) */
 .hex-item[data-vertex="3"] {
-    transform: translate(-50%, -50%) translate(95px, 55px);
+    transform: translate(-50%, -50%) translate(115px, 65px) scale(0.2) rotate(-120deg);
     transition-delay: 0.2s;
     background: linear-gradient(135deg, var(--accent-pink), rgba(255, 121, 198, 0.3));
 }
 
 .menu-hexagonal[aria-expanded="true"] .hex-item[data-vertex="3"] {
-    transform: translate(95px, 55px);
+    transform: translate(115px, 65px);
 }
 
-/* Vértice 4 - Inferior */
+/* Vértice 4 - Inferior (6 en punto) */
 .hex-item[data-vertex="4"] {
-    transform: translate(-50%, -50%) translateY(110px);
+    transform: translate(-50%, -50%) translateY(130px) scale(0.2) rotate(-120deg);
     transition-delay: 0.25s;
-    background: linear-gradient(135deg, var(--accent-purple), var(--accent-green));
-}
-
-.menu-hexagonal[aria-expanded="true"] .hex-item[data-vertex="4"] {
-    transform: translateY(110px);
-}
-
-/* Vértice 5 - Inferior Izquierdo */
-.hex-item[data-vertex="5"] {
-    transform: translate(-50%, -50%) translate(-95px, 55px);
-    transition-delay: 0.3s;
     background: linear-gradient(135deg, var(--whatsapp-green), rgba(29, 185, 84, 0.3));
 }
 
-.menu-hexagonal[aria-expanded="true"] .hex-item[data-vertex="5"] {
-    transform: translate(-95px, 55px);
+.menu-hexagonal[aria-expanded="true"] .hex-item[data-vertex="4"] {
+    transform: translateY(130px);
 }
 
-/* Vértice 6 - Superior Izquierdo */
-.hex-item[data-vertex="6"] {
-    transform: translate(-50%, -50%) translate(-95px, -55px);
-    transition-delay: 0.35s;
+/* Vértice 5 - Inferior Izquierdo (8 en punto) */
+.hex-item[data-vertex="5"] {
+    transform: translate(-50%, -50%) translate(-115px, 65px) scale(0.2) rotate(-120deg);
+    transition-delay: 0.3s;
     background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
 }
 
-.menu-hexagonal[aria-expanded="true"] .hex-item[data-vertex="6"] {
-    transform: translate(-95px, -55px);
+.menu-hexagonal[aria-expanded="true"] .hex-item[data-vertex="5"] {
+    transform: translate(-115px, 65px);
 }
 
-/* ===== HOVER EFFECTS ESPECÍFICOS ===== */
+/* Vértice 6 - Superior Izquierdo (10 en punto) */
+.hex-item[data-vertex="6"] {
+    transform: translate(-50%, -50%) translate(-115px, -65px) scale(0.2) rotate(-120deg);
+    transition-delay: 0.35s;
+    background: linear-gradient(135deg, var(--accent-green), var(--accent-purple));
+}
+
+.menu-hexagonal[aria-expanded="true"] .hex-item[data-vertex="6"] {
+    transform: translate(-115px, -65px);
+}
+
+/* ===== HOVER EFFECTS ESPECÍFICOS POR VÉRTICE ===== */
 .hex-item[data-vertex="1"]:hover {
-    background: var(--accent-purple);
-    color: var(--primary-dark);
+    color: var(--accent-purple);
+    border-color: var(--accent-purple);
     clip-path: polygon(50% 0%, 90% 20%, 90% 80%, 50% 100%, 10% 80%, 10% 20%);
 }
 
 .hex-item[data-vertex="2"]:hover {
-    background: var(--accent-green);
-    color: var(--primary-dark);
+    color: var(--accent-green);
+    border-color: var(--accent-green);
     clip-path: polygon(50% 0%, 90% 20%, 90% 80%, 50% 100%, 10% 80%, 10% 20%);
 }
 
 .hex-item[data-vertex="3"]:hover {
-    background: var(--accent-pink);
-    color: var(--primary-dark);
+    color: var(--accent-pink);
+    border-color: var(--accent-pink);
     clip-path: polygon(50% 0%, 90% 20%, 90% 80%, 50% 100%, 10% 80%, 10% 20%);
 }
 
 .hex-item[data-vertex="4"]:hover {
-    background: linear-gradient(45deg, var(--accent-purple), var(--accent-green));
-    color: var(--primary-dark);
+    color: var(--whatsapp-green);
+    border-color: var(--whatsapp-green);
     clip-path: polygon(50% 0%, 90% 20%, 90% 80%, 50% 100%, 10% 80%, 10% 20%);
 }
 
 .hex-item[data-vertex="5"]:hover {
-    background: var(--whatsapp-green);
-    color: var(--white);
+    color: var(--accent-pink);
+    border-color: var(--accent-pink);
     clip-path: polygon(50% 0%, 90% 20%, 90% 80%, 50% 100%, 10% 80%, 10% 20%);
 }
 
 .hex-item[data-vertex="6"]:hover {
-    background: linear-gradient(45deg, var(--accent-pink), var(--accent-purple));
-    color: var(--primary-dark);
+    color: var(--accent-green);
+    border-color: var(--accent-green);
     clip-path: polygon(50% 0%, 90% 20%, 90% 80%, 50% 100%, 10% 80%, 10% 20%);
 }
 
-/* ===== EFECTOS AVANZADOS ===== */
-.hex-activator {
-    position: relative;
-}
-
+/* ===== PARTICLE EFFECTS ===== */
 .hex-activator::before {
     content: '';
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
     transform: translate(-50%, -50%);
     background: radial-gradient(
         circle,
@@ -284,13 +338,135 @@
     );
     border-radius: 50%;
     opacity: 0;
-    transition: var(--transition-normal);
+    transition: all 0.4s ease;
     z-index: -1;
 }
 
 .hex-activator:hover::before {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1.5);
+}
+
+/* ===== ELASTIC ENTRANCE ANIMATION ===== */
+.menu-hexagonal[aria-expanded="true"] .hex-item {
+    animation: hexElasticExpand 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes hexElasticExpand {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.2) rotate(-120deg);
+        filter: blur(5px);
+    }
+    40% {
+        opacity: 0.7;
+        transform: translate(-50%, -50%) scale(0.6) rotate(-60deg);
+        filter: blur(2px);
+    }
+    70% {
+        opacity: 0.9;
+        transform: translate(-50%, -50%) scale(1.2) rotate(15deg);
+        filter: blur(0px);
+    }
+    85% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(0.95) rotate(-5deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+        filter: blur(0px);
+    }
+}
+
+/* ===== CLOSING ANIMATION ===== */
+.menu-hexagonal[aria-expanded="false"] .hex-item {
+    animation: hexElasticCollapse 0.5s ease-in forwards;
+}
+
+@keyframes hexElasticCollapse {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    }
+    30% {
+        opacity: 0.7;
+        transform: translate(-50%, -50%) scale(1.1) rotate(30deg);
+    }
+    70% {
+        opacity: 0.3;
+        transform: translate(-50%, -50%) scale(0.4) rotate(-90deg);
+        filter: blur(3px);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.2) rotate(-120deg);
+        filter: blur(5px);
+    }
+}
+
+/* ===== CRYSTALLINE STRUCTURE EFFECT ===== */
+.menu-hexagonal[aria-expanded="true"]::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 400px;
+    transform: translate(-50%, -50%);
+    background: 
+        radial-gradient(circle at 50% 0%, rgba(189, 147, 249, 0.1) 2px, transparent 2px),
+        radial-gradient(circle at 100% 25%, rgba(80, 250, 123, 0.1) 2px, transparent 2px),
+        radial-gradient(circle at 100% 75%, rgba(255, 121, 198, 0.1) 2px, transparent 2px),
+        radial-gradient(circle at 50% 100%, rgba(189, 147, 249, 0.1) 2px, transparent 2px),
+        radial-gradient(circle at 0% 75%, rgba(80, 250, 123, 0.1) 2px, transparent 2px),
+        radial-gradient(circle at 0% 25%, rgba(255, 121, 198, 0.1) 2px, transparent 2px);
+    background-size: 140px 140px;
+    opacity: 0;
+    animation: crystallinePattern 1s ease-out 0.3s forwards;
+    pointer-events: none;
+    z-index: -3;
+}
+
+@keyframes crystallinePattern {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5) rotate(0deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1) rotate(60deg);
+    }
+}
+
+/* ===== CONNECTION LINES ===== */
+.menu-hexagonal[aria-expanded="true"] .hex-items::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 240px;
+    height: 240px;
+    transform: translate(-50%, -50%);
+    background: 
+        linear-gradient(0deg, transparent 49%, rgba(189, 147, 249, 0.3) 50%, transparent 51%),
+        linear-gradient(60deg, transparent 49%, rgba(80, 250, 123, 0.3) 50%, transparent 51%),
+        linear-gradient(120deg, transparent 49%, rgba(255, 121, 198, 0.3) 50%, transparent 51%);
+    opacity: 0;
+    animation: hexConnectionLines 1.2s ease-out 0.4s forwards;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes hexConnectionLines {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.1);
+    }
+    100% {
+        opacity: 0.6;
+        transform: translate(-50%, -50%) scale(1);
+    }
 }
 
 /* ===== ACCESSIBILITY ===== */
@@ -304,6 +480,7 @@
     .hex-shape,
     .hex-item {
         transition: none;
+        animation: none;
     }
     
     .hex-shape::after {
@@ -324,103 +501,68 @@
     }
     
     .hex-shape::before {
-        font-size: 0.8rem;
+        font-size: 0.85rem;
     }
     
     .hex-items {
-        width: 240px;
-        height: 240px;
+        width: 280px;
+        height: 280px;
     }
     
     .hex-item {
-        width: 45px;
-        height: 45px;
-        margin: -22.5px 0 0 -22.5px;
-        font-size: 0.6rem;
+        width: 60px;
+        height: 60px;
+        margin: -30px 0 0 -30px;
+        font-size: 0.7rem;
     }
     
+    /* Adjusted vertex positions for smaller screens */
     .hex-item[data-vertex="1"] {
-        transform: translate(-50%, -50%) translateY(-90px);
+        transform: translate(-50%, -50%) translateY(-110px) scale(0.2) rotate(-120deg);
     }
     
     .menu-hexagonal[aria-expanded="true"] .hex-item[data-vertex="1"] {
-        transform: translateY(-90px);
+        transform: translateY(-110px);
     }
     
     .hex-item[data-vertex="2"] {
-        transform: translate(-50%, -50%) translate(78px, -45px);
+        transform: translate(-50%, -50%) translate(95px, -55px) scale(0.2) rotate(-120deg);
     }
     
     .menu-hexagonal[aria-expanded="true"] .hex-item[data-vertex="2"] {
-        transform: translate(78px, -45px);
+        transform: translate(95px, -55px);
     }
     
     .hex-item[data-vertex="3"] {
-        transform: translate(-50%, -50%) translate(78px, 45px);
+        transform: translate(-50%, -50%) translate(95px, 55px) scale(0.2) rotate(-120deg);
     }
     
     .menu-hexagonal[aria-expanded="true"] .hex-item[data-vertex="3"] {
-        transform: translate(78px, 45px);
+        transform: translate(95px, 55px);
     }
     
     .hex-item[data-vertex="4"] {
-        transform: translate(-50%, -50%) translateY(90px);
+        transform: translate(-50%, -50%) translateY(110px) scale(0.2) rotate(-120deg);
     }
     
     .menu-hexagonal[aria-expanded="true"] .hex-item[data-vertex="4"] {
-        transform: translateY(90px);
+        transform: translateY(110px);
     }
     
     .hex-item[data-vertex="5"] {
-        transform: translate(-50%, -50%) translate(-78px, 45px);
+        transform: translate(-50%, -50%) translate(-95px, 55px) scale(0.2) rotate(-120deg);
     }
     
     .menu-hexagonal[aria-expanded="true"] .hex-item[data-vertex="5"] {
-        transform: translate(-78px, 45px);
+        transform: translate(-95px, 55px);
     }
     
     .hex-item[data-vertex="6"] {
-        transform: translate(-50%, -50%) translate(-78px, -45px);
+        transform: translate(-50%, -50%) translate(-95px, -55px) scale(0.2) rotate(-120deg);
     }
     
     .menu-hexagonal[aria-expanded="true"] .hex-item[data-vertex="6"] {
-        transform: translate(-78px, -45px);
-    }
-}
-
-/* ===== ELASTIC BOUNCE EFFECT ===== */
-.menu-hexagonal[aria-expanded="true"] .hex-item {
-    animation: hexExpand 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-}
-
-@keyframes hexExpand {
-    0% {
-        opacity: 0;
-        transform: scale(0.2);
-    }
-    60% {
-        opacity: 0.8;
-        transform: scale(1.1);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-/* ===== CLOSING ANIMATION ===== */
-.menu-hexagonal[aria-expanded="false"] .hex-item {
-    animation: hexCollapse 0.4s ease-in forwards;
-}
-
-@keyframes hexCollapse {
-    0% {
-        opacity: 1;
-        transform: scale(1);
-    }
-    100% {
-        opacity: 0;
-        transform: scale(0.2);
+        transform: translate(-95px, -55px);
     }
 }
 
@@ -436,7 +578,7 @@
 }
 
 .header.scrolled .hex-shape::before {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
 }
 
 /* ===== SMART POSITIONING ===== */
@@ -445,94 +587,7 @@
     margin-right: var(--spacing-lg);
 }
 
-/* ===== GLOW EFFECTS ===== */
-.hex-activator:hover {
-    animation: hexGlow 2s ease-in-out infinite alternate;
-}
-
-@keyframes hexGlow {
-    0% {
-        filter: drop-shadow(0 0 10px rgba(189, 147, 249, 0.3));
-    }
-    100% {
-        filter: drop-shadow(0 0 20px rgba(189, 147, 249, 0.6));
-    }
-}
-
-/* ===== MICRO-INTERACTIONS ===== */
-.hex-item {
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.hex-item:active {
-    transform: scale(0.9);
-}
-
-/* ===== TOOLTIP EFFECTS ===== */
-.hex-item {
-    position: relative;
-}
-
-.hex-item::before {
-    content: attr(data-tooltip);
-    position: absolute;
-    bottom: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.9);
-    color: var(--white);
-    padding: 3px 6px;
-    border-radius: 3px;
-    font-size: 0.6rem;
-    white-space: nowrap;
-    opacity: 0;
-    visibility: hidden;
-    transition: var(--transition-normal);
-    z-index: 1002;
-}
-
-.hex-item:hover::before {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) translateY(-3px);
-}
-
-/* ===== ADVANCED HEXAGONAL PATTERNS ===== */
-.hex-activator::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100px;
-    height: 100px;
-    transform: translate(-50%, -50%);
-    background: conic-gradient(
-        from 60deg,
-        transparent,
-        rgba(189, 147, 249, 0.1),
-        transparent,
-        rgba(80, 250, 123, 0.1),
-        transparent,
-        rgba(255, 121, 198, 0.1),
-        transparent
-    );
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    opacity: 0;
-    animation: hexagonalPattern 4s linear infinite;
-    z-index: -1;
-}
-
-.hex-activator:hover::after {
-    opacity: 0.6;
-}
-
-@keyframes hexagonalPattern {
-    0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
-    50% { transform: translate(-50%, -50%) rotate(180deg) scale(1.2); }
-    100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
-}
-
-/* ===== HEXAGONAL PULSE EFFECT ===== */
+/* ===== ENERGY PULSE EFFECT ===== */
 .menu-hexagonal[aria-expanded="true"] .hex-activator::before {
     content: '';
     position: absolute;
@@ -548,213 +603,24 @@
         transparent 70%
     );
     border-radius: 50%;
-    animation: hexPulse 2s ease-in-out infinite;
+    animation: hexEnergyPulse 2s ease-in-out infinite;
     z-index: -2;
 }
 
-@keyframes hexPulse {
+@keyframes hexEnergyPulse {
     0%, 100% {
         transform: translate(-50%, -50%) scale(1);
         opacity: 0.3;
     }
     50% {
-        transform: translate(-50%, -50%) scale(1.5);
+        transform: translate(-50%, -50%) scale(1.8);
         opacity: 0.1;
-    }
-}
-
-/* ===== VERTEX SPECIFIC ANIMATIONS ===== */
-.hex-item[data-vertex="1"] {
-    animation-delay: 0.1s;
-}
-
-.hex-item[data-vertex="2"] {
-    animation-delay: 0.15s;
-}
-
-.hex-item[data-vertex="3"] {
-    animation-delay: 0.2s;
-}
-
-.hex-item[data-vertex="4"] {
-    animation-delay: 0.25s;
-}
-
-.hex-item[data-vertex="5"] {
-    animation-delay: 0.3s;
-}
-
-.hex-item[data-vertex="6"] {
-    animation-delay: 0.35s;
-}
-
-/* ===== GEOMETRIC PROGRESSION EFFECT ===== */
-.menu-hexagonal[aria-expanded="true"] .hex-item {
-    position: relative;
-}
-
-.menu-hexagonal[aria-expanded="true"] .hex-item::after {
-    content: '';
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    right: -5px;
-    bottom: -5px;
-    background: linear-gradient(
-        60deg,
-        transparent,
-        rgba(189, 147, 249, 0.3),
-        transparent
-    );
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    z-index: -1;
-    opacity: 0;
-    animation: hexItemGlow 3s ease-in-out infinite;
-    animation-delay: calc(var(--vertex-index, 1) * 0.2s);
-}
-
-@keyframes hexItemGlow {
-    0%, 100% {
-        opacity: 0;
-        transform: scale(1);
-    }
-    50% {
-        opacity: 0.6;
-        transform: scale(1.1);
-    }
-}
-
-/* Asignar variables CSS para cada vértice */
-.hex-item[data-vertex="1"] { --vertex-index: 1; }
-.hex-item[data-vertex="2"] { --vertex-index: 2; }
-.hex-item[data-vertex="3"] { --vertex-index: 3; }
-.hex-item[data-vertex="4"] { --vertex-index: 4; }
-.hex-item[data-vertex="5"] { --vertex-index: 5; }
-.hex-item[data-vertex="6"] { --vertex-index: 6; }
-
-/* ===== MAGNETIC ATTRACTION EFFECT ===== */
-.hex-activator:hover ~ .hex-items .hex-item {
-    transform: scale(1.05);
-    filter: brightness(1.2);
-}
-
-.hex-activator:hover ~ .hex-items .hex-item[data-vertex="1"] {
-    transform: translateY(-115px) scale(1.05);
-}
-
-.hex-activator:hover ~ .hex-items .hex-item[data-vertex="2"] {
-    transform: translate(100px, -60px) scale(1.05);
-}
-
-.hex-activator:hover ~ .hex-items .hex-item[data-vertex="3"] {
-    transform: translate(100px, 60px) scale(1.05);
-}
-
-.hex-activator:hover ~ .hex-items .hex-item[data-vertex="4"] {
-    transform: translateY(115px) scale(1.05);
-}
-
-.hex-activator:hover ~ .hex-items .hex-item[data-vertex="5"] {
-    transform: translate(-100px, 60px) scale(1.05);
-}
-
-.hex-activator:hover ~ .hex-items .hex-item[data-vertex="6"] {
-    transform: translate(-100px, -60px) scale(1.05);
-}
-
-/* ===== CRYSTALLINE STRUCTURE EFFECT ===== */
-.menu-hexagonal[aria-expanded="true"]::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 400px;
-    height: 400px;
-    transform: translate(-50%, -50%);
-    background: 
-        radial-gradient(circle at 50% 0%, rgba(189, 147, 249, 0.1) 2px, transparent 2px),
-        radial-gradient(circle at 100% 25%, rgba(80, 250, 123, 0.1) 2px, transparent 2px),
-        radial-gradient(circle at 100% 75%, rgba(255, 121, 198, 0.1) 2px, transparent 2px),
-        radial-gradient(circle at 50% 100%, rgba(189, 147, 249, 0.1) 2px, transparent 2px),
-        radial-gradient(circle at 0% 75%, rgba(80, 250, 123, 0.1) 2px, transparent 2px),
-        radial-gradient(circle at 0% 25%, rgba(255, 121, 198, 0.1) 2px, transparent 2px);
-    background-size: 120px 120px;
-    opacity: 0;
-    animation: crystallineAppear 0.8s ease-out 0.3s forwards;
-    pointer-events: none;
-    z-index: -3;
-}
-
-@keyframes crystallineAppear {
-    0% {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0.5) rotate(0deg);
-    }
-    100% {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1) rotate(30deg);
-    }
-}
-
-/* ===== CONNECTION LINES EFFECT ===== */
-.menu-hexagonal[aria-expanded="true"] .hex-items::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 200px;
-    height: 200px;
-    transform: translate(-50%, -50%);
-    background: 
-        linear-gradient(0deg, transparent 49%, rgba(189, 147, 249, 0.3) 50%, transparent 51%),
-        linear-gradient(60deg, transparent 49%, rgba(80, 250, 123, 0.3) 50%, transparent 51%),
-        linear-gradient(120deg, transparent 49%, rgba(255, 121, 198, 0.3) 50%, transparent 51%);
-    opacity: 0;
-    animation: connectionLines 1s ease-out 0.5s forwards;
-    pointer-events: none;
-    z-index: -1;
-}
-
-@keyframes connectionLines {
-    0% {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0.1);
-    }
-    100% {
-        opacity: 0.6;
-        transform: translate(-50%, -50%) scale(1);
-    }
-}
-
-/* ===== ENERGY WAVE EFFECT ===== */
-.hex-activator:active .hex-shape {
-    position: relative;
-}
-
-.hex-activator:active .hex-shape::before {
-    animation: energyWave 0.6s ease-out;
-}
-
-@keyframes energyWave {
-    0% {
-        box-shadow: 0 0 0 0 rgba(189, 147, 249, 0.7);
-        transform: translate(-50%, -50%) scale(1);
-    }
-    70% {
-        box-shadow: 0 0 0 30px rgba(189, 147, 249, 0);
-        transform: translate(-50%, -50%) scale(1.1);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(189, 147, 249, 0);
-        transform: translate(-50%, -50%) scale(1);
     }
 }
 
 /* ===== GRADIENT BORDER ANIMATION ===== */
 .hex-item {
     position: relative;
-    background: rgba(255, 255, 255, 0.1);
-    border: 2px solid transparent;
     background-clip: padding-box;
 }
 
@@ -775,42 +641,17 @@
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     z-index: -1;
     opacity: 0;
-    transition: var(--transition-normal);
+    transition: all 0.4s ease;
 }
 
 .hex-item:hover::before {
     opacity: 0.8;
-    animation: rotateBorder 2s linear infinite;
+    animation: hexRotatingBorder 2s linear infinite;
 }
 
-@keyframes rotateBorder {
+@keyframes hexRotatingBorder {
     0% { --gradient-angle: 0deg; }
     100% { --gradient-angle: 360deg; }
-}
-
-/* ===== RESPONSIVE FINE-TUNING ===== */
-@media (max-width: 850px) and (min-width: 768px) {
-    .hex-activator {
-        width: 55px;
-        height: 55px;
-    }
-    
-    .hex-shape {
-        width: 45px;
-        height: 45px;
-    }
-    
-    .hex-items {
-        width: 220px;
-        height: 220px;
-    }
-    
-    .hex-item {
-        width: 40px;
-        height: 40px;
-        margin: -20px 0 0 -20px;
-        font-size: 0.55rem;
-    }
 }
 
 /* ===== PERFORMANCE OPTIMIZATIONS ===== */
@@ -823,15 +664,4 @@
     will-change: transform, opacity;
     backface-visibility: hidden;
     perspective: 1000px;
-}
-
-/* ===== FINAL POLISH EFFECTS ===== */
-.menu-hexagonal[aria-expanded="true"] {
-    z-index: 1002;
-}
-
-.menu-hexagonal[aria-expanded="false"] .hex-items::before,
-.menu-hexagonal[aria-expanded="false"]::before {
-    animation: none;
-    opacity: 0;
 }

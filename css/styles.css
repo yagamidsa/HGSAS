@@ -2284,12 +2284,14 @@ body.light-mode .theme-icon-light {
 }
 
 
+
+
+
 /* ===================================================================
-   CATÁLOGO DIGITAL - COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S
-   Efecto revista digital con animaciones 3D
+   CATÁLOGO DIGITAL - AGREGAR AL FINAL DE css/styles.css
    =================================================================== */
 
-/* ===== CATÁLOGO OVERLAY ===== */
+/* OVERLAY DEL CATÁLOGO */
 .product-catalog {
     position: fixed;
     top: 0;
@@ -2297,15 +2299,14 @@ body.light-mode .theme-icon-light {
     width: 100%;
     height: 100%;
     background: rgba(15, 15, 35, 0.95);
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(15px);
     z-index: 3000;
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
     visibility: hidden;
-    transition: all var(--transition-slow);
-    perspective: 1200px;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
 }
 
 .product-catalog.active {
@@ -2313,313 +2314,308 @@ body.light-mode .theme-icon-light {
     visibility: visible;
 }
 
-/* ===== CONTENEDOR DEL CATÁLOGO TIPO REVISTA ===== */
+/* CONTENIDO PRINCIPAL DEL CATÁLOGO */
 .catalog-content {
-    position: relative;
     width: 90%;
     max-width: 1000px;
     height: 85vh;
-    max-height: 700px;
-    background: var(--gradient-primary);
-    border-radius: var(--border-radius-xl);
-    border: 3px solid rgba(189, 147, 249, 0.4);
+    background: linear-gradient(135deg, #1e1e3f, #2d2d5f);
+    border-radius: 20px;
+    border: 2px solid #bd93f9;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
     overflow: hidden;
-    transform: rotateY(-15deg) scale(0.8);
-    transition: all var(--transition-slow);
-    box-shadow: 
-        0 25px 50px rgba(0, 0, 0, 0.6),
-        0 15px 30px rgba(189, 147, 249, 0.3),
-        inset 0 2px 10px rgba(255, 255, 255, 0.1);
+    transform: scale(0.8);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
 }
 
 .product-catalog.active .catalog-content {
-    transform: rotateY(0deg) scale(1);
+    transform: scale(1);
 }
 
-/* ===== EFECTO DE PÁGINAS DE REVISTA ===== */
-.catalog-pages {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    transition: transform var(--transition-slow);
-    transform-style: preserve-3d;
-}
-
-.catalog-page {
+/* BOTÓN CERRAR */
+.catalog-close {
     position: absolute;
-    width: 100%;
-    height: 100%;
-    background: 
-        radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.08), transparent 60%),
-        linear-gradient(135deg, rgba(189, 147, 249, 0.1), rgba(80, 250, 123, 0.05));
-    backface-visibility: hidden;
-    border-radius: var(--border-radius-xl);
-    overflow-y: auto;
-    padding: var(--spacing-2xl);
-    transform-origin: left center;
-    transition: transform var(--transition-slow);
-}
-
-/* ===== PÁGINA IZQUIERDA (IMAGEN) ===== */
-.catalog-page-left {
-    left: 0;
+    top: 20px;
+    right: 20px;
+    background: #ff79c6;
+    color: white;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    z-index: 10;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: 
-        radial-gradient(circle at 70% 30%, rgba(189, 147, 249, 0.15), transparent 60%),
-        linear-gradient(45deg, rgba(15, 15, 35, 0.8), rgba(30, 30, 63, 0.6));
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 121, 198, 0.3);
 }
 
-/* ===== PÁGINA DERECHA (INFORMACIÓN) ===== */
-.catalog-page-right {
-    right: 0;
-    background: 
-        radial-gradient(circle at 30% 70%, rgba(80, 250, 123, 0.1), transparent 60%),
-        linear-gradient(225deg, rgba(15, 15, 35, 0.9), rgba(30, 30, 63, 0.7));
+.catalog-close:hover {
+    background: #ff8fd6;
+    transform: scale(1.1);
 }
 
-/* ===== IMAGEN DEL PRODUCTO ===== */
+/* ÁREA DE IMAGEN DEL PRODUCTO */
 .catalog-image {
-    position: relative;
-    max-width: 80%;
-    max-height: 80%;
-    transform: rotateY(-5deg);
-    transition: transform var(--transition-normal);
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at 60% 40%, rgba(189, 147, 249, 0.1), transparent 70%);
+    border-right: 1px solid rgba(255,255,255,0.1);
 }
 
 .catalog-image img {
-    width: 100%;
-    height: auto;
-    border-radius: var(--border-radius-lg);
-    box-shadow: 
-        0 20px 40px rgba(0, 0, 0, 0.4),
-        0 10px 20px rgba(189, 147, 249, 0.3);
-    filter: drop-shadow(0 0 20px rgba(189, 147, 249, 0.4));
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    transition: transform 0.3s ease;
 }
 
-.catalog-image:hover {
-    transform: rotateY(0deg) scale(1.05);
+.catalog-image:hover img {
+    transform: scale(1.05);
 }
 
-/* ===== CONTENIDO DE INFORMACIÓN ===== */
+/* ÁREA DE DETALLES DEL PRODUCTO */
 .catalog-details {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-lg);
+    padding: 40px;
+    overflow-y: auto;
+    background: radial-gradient(circle at 40% 60%, rgba(80, 250, 123, 0.05), transparent 70%);
 }
 
+/* TÍTULO DEL PRODUCTO */
 .catalog-details h3 {
     font-family: var(--font-heading);
-    font-size: clamp(1.8rem, 4vw, 2.5rem);
-    color: var(--accent-purple);
-    margin-bottom: var(--spacing-lg);
+    font-size: 2.2rem;
+    color: #bd93f9;
+    margin-bottom: 25px;
     text-align: center;
-    background: var(--gradient-accent);
+    background: linear-gradient(135deg, #bd93f9, #ff79c6);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
 
+/* DESCRIPCIÓN PRINCIPAL */
 .catalog-description {
-    font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.9);
-    line-height: 1.6;
-    margin-bottom: var(--spacing-lg);
-}
-
-/* ===== SECCIONES DE INFORMACIÓN ===== */
-.catalog-section {
-    background: rgba(255, 255, 255, 0.05);
-    padding: var(--spacing-lg);
-    border-radius: var(--border-radius-md);
-    border-left: 4px solid var(--accent-green);
-    margin-bottom: var(--spacing-md);
-    transition: all var(--transition-normal);
-}
-
-.catalog-section:hover {
-    background: rgba(255, 255, 255, 0.08);
-    transform: translateX(5px);
-    border-left-color: var(--accent-pink);
-}
-
-.catalog-section h4 {
-    color: var(--accent-green);
     font-size: 1.2rem;
-    margin-bottom: var(--spacing-sm);
-    font-family: var(--font-heading);
+    line-height: 1.7;
+    margin-bottom: 30px;
+    color: rgba(255,255,255,0.95);
+    text-align: center;
+    font-style: italic;
 }
 
-.catalog-section ul {
+/* SECCIONES DE INFORMACIÓN */
+.catalog-specs,
+.catalog-ingredients,
+.catalog-occasions,
+.catalog-benefits,
+.catalog-profile,
+.catalog-recommendations,
+.catalog-characteristics,
+.catalog-pairing {
+    background: rgba(255,255,255,0.06);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    border-left: 4px solid #50fa7b;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.catalog-specs:hover,
+.catalog-ingredients:hover,
+.catalog-occasions:hover,
+.catalog-benefits:hover,
+.catalog-profile:hover,
+.catalog-recommendations:hover,
+.catalog-characteristics:hover,
+.catalog-pairing:hover {
+    background: rgba(255,255,255,0.1);
+    transform: translateX(5px);
+    border-left-color: #ff79c6;
+}
+
+/* TÍTULOS DE SECCIÓN */
+.catalog-specs h4,
+.catalog-ingredients h4,
+.catalog-occasions h4,
+.catalog-benefits h4,
+.catalog-profile h4,
+.catalog-recommendations h4,
+.catalog-characteristics h4,
+.catalog-pairing h4 {
+    color: #50fa7b;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* LISTAS EN SECCIONES */
+.catalog-specs ul,
+.catalog-ingredients ul,
+.catalog-occasions ul,
+.catalog-benefits ul {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
-.catalog-section li {
-    color: rgba(255, 255, 255, 0.85);
-    margin-bottom: var(--spacing-xs);
-    padding-left: var(--spacing-md);
+.catalog-specs li,
+.catalog-ingredients li,
+.catalog-occasions li,
+.catalog-benefits li {
+    margin-bottom: 8px;
+    padding-left: 20px;
     position: relative;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.5;
 }
 
-.catalog-section li::before {
-    content: '▶';
-    color: var(--accent-purple);
+.catalog-specs li::before,
+.catalog-ingredients li::before,
+.catalog-occasions li::before,
+.catalog-benefits li::before {
+    content: "▶";
+    color: #bd93f9;
     position: absolute;
     left: 0;
     top: 0;
+    font-size: 0.9rem;
 }
 
-/* ===== BOTÓN DE CIERRE ===== */
-.catalog-close {
-    position: absolute;
-    top: var(--spacing-lg);
-    right: var(--spacing-lg);
-    width: 50px;
-    height: 50px;
-    background: rgba(255, 121, 198, 0.2);
-    border: 2px solid rgba(255, 121, 198, 0.5);
-    border-radius: 50%;
-    color: var(--accent-pink);
-    font-size: 1.8rem;
-    font-weight: 300;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all var(--transition-bounce);
-    z-index: 10;
+/* PÁRRAFOS EN SECCIONES */
+.catalog-ingredients p,
+.catalog-occasions p,
+.catalog-benefits p,
+.catalog-profile p,
+.catalog-recommendations p,
+.catalog-characteristics p,
+.catalog-pairing p {
+    color: rgba(255,255,255,0.85);
+    line-height: 1.6;
+    margin: 0;
 }
 
-.catalog-close:hover {
-    background: var(--accent-pink);
-    color: var(--primary-dark);
-    transform: scale(1.1) rotate(90deg);
-    box-shadow: 0 0 20px rgba(255, 121, 198, 0.6);
+/* BOTÓN WHATSAPP */
+.btn-whatsapp {
+    background: #1DB954;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 12px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 25px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(29, 185, 84, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-/* ===== INDICADOR DE PÁGINAS ===== */
-.catalog-pagination {
-    position: absolute;
-    bottom: var(--spacing-lg);
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: var(--spacing-sm);
-    z-index: 10;
+.btn-whatsapp:hover {
+    background: #1ed760;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(29, 185, 84, 0.4);
 }
 
-.page-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: rgba(189, 147, 249, 0.3);
-    cursor: pointer;
-    transition: all var(--transition-normal);
+/* SCROLL PERSONALIZADO */
+.catalog-details {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(189, 147, 249, 0.4) transparent;
 }
 
-.page-dot.active {
-    background: var(--accent-purple);
-    transform: scale(1.3);
-    box-shadow: 0 0 15px rgba(189, 147, 249, 0.8);
+.catalog-details::-webkit-scrollbar {
+    width: 8px;
 }
 
-/* ===== EFECTOS DE TRANSICIÓN ENTRE PÁGINAS ===== */
-.catalog-page.flip-out {
-    transform: rotateY(-180deg);
-    opacity: 0;
+.catalog-details::-webkit-scrollbar-track {
+    background: transparent;
 }
 
-.catalog-page.flip-in {
-    transform: rotateY(0deg);
-    opacity: 1;
+.catalog-details::-webkit-scrollbar-thumb {
+    background: rgba(189, 147, 249, 0.4);
+    border-radius: 4px;
 }
 
-/* ===== RESPONSIVE PARA CATÁLOGO ===== */
-@media (max-width: 1023px) {
+.catalog-details::-webkit-scrollbar-thumb:hover {
+    background: rgba(189, 147, 249, 0.6);
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
     .catalog-content {
         width: 95%;
         height: 90vh;
-        max-height: none;
+        grid-template-columns: 1fr;
+        grid-template-rows: 40% 1fr;
     }
     
-    .catalog-pages {
-        flex-direction: column;
+    .catalog-image {
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        padding: 25px;
     }
     
-    .catalog-page-left {
-        height: 40%;
-        left: 0;
-        right: 0;
-    }
-    
-    .catalog-page-right {
-        height: 60%;
-        top: 40%;
-        left: 0;
-        right: 0;
-    }
-}
-
-@media (max-width: 767px) {
-    .catalog-content {
-        width: 98%;
-        height: 95vh;
-        border-radius: var(--border-radius-md);
-    }
-    
-    .catalog-page {
-        padding: var(--spacing-lg);
+    .catalog-details {
+        padding: 25px;
     }
     
     .catalog-details h3 {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+    }
+    
+    .catalog-description {
+        font-size: 1rem;
+        margin-bottom: 20px;
     }
     
     .catalog-close {
+        top: 15px;
+        right: 15px;
         width: 40px;
         height: 40px;
-        font-size: 1.4rem;
+        font-size: 18px;
     }
 }
 
-/* ===== ANIMACIONES ESPECÍFICAS ===== */
-@keyframes catalogOpen {
-    0% {
-        transform: rotateY(-15deg) scale(0.8);
-        opacity: 0;
+@media (max-width: 480px) {
+    .catalog-content {
+        width: 98%;
+        height: 95vh;
+        border-radius: 15px;
     }
-    100% {
-        transform: rotateY(0deg) scale(1);
-        opacity: 1;
+    
+    .catalog-image {
+        padding: 20px;
     }
-}
-
-@keyframes pageFlip {
-    0% {
-        transform: rotateY(0deg);
+    
+    .catalog-details {
+        padding: 20px;
     }
-    50% {
-        transform: rotateY(-90deg);
+    
+    .catalog-specs,
+    .catalog-ingredients,
+    .catalog-occasions,
+    .catalog-benefits,
+    .catalog-profile,
+    .catalog-recommendations,
+    .catalog-characteristics,
+    .catalog-pairing {
+        padding: 15px;
+        margin-bottom: 15px;
     }
-    100% {
-        transform: rotateY(-180deg);
-    }
-}
-
-/* ===== EFECTOS DE HOVER EN SECCIONES ===== */
-.catalog-specs:hover {
-    border-left-color: var(--accent-purple);
-}
-
-.catalog-ingredients:hover {
-    border-left-color: var(--accent-green);
-}
-
-.catalog-occasions:hover,
-.catalog-benefits:hover {
-    border-left-color: var(--accent-pink);
 }

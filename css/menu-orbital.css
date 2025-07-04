@@ -1,6 +1,6 @@
 /* ===================================================================
    MENU ORBITAL DESKTOP - COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S
-   Sistema de navegación orbital para pantallas grandes (1024px+)
+   Sistema de navegación orbital - POSICIONES CORREGIDAS CON MÁS SEPARACIÓN
    =================================================================== */
 
 /* ===== ORBITAL MENU CONTAINER ===== */
@@ -93,14 +93,14 @@
     transform: scale(0.8);
 }
 
-/* ===== ORBITAL ITEMS CONTAINER - MÁS COMPACTO ===== */
+/* ===== ORBITAL ITEMS CONTAINER - ALINEADO VERTICALMENTE ===== */
 .orbital-items {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 160px;
-    height: 400px;
+    width: 200px;
+    height: 600px; /* Aumentado para acomodar mayor separación */
     pointer-events: none;
     z-index: 1000;
 }
@@ -109,7 +109,7 @@
     pointer-events: auto;
 }
 
-/* ===== INDIVIDUAL ORBITAL ITEMS - CRISTAL CON COLORES DE LA WEB ===== */
+/* ===== INDIVIDUAL ORBITAL ITEMS - EFECTO CREATIVO MEJORADO ===== */
 .orbital-item {
     position: absolute;
     width: 100px;
@@ -128,13 +128,12 @@
     color: var(--white);
     font-size: 1rem;
     font-weight: 600;
-    transition: all var(--transition-bounce);
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     opacity: 0;
     visibility: hidden;
-    transform: translate(-50%, -50%) scale(0.3);
+    transform: translate(-50%, -50%) scale(0) rotate(-180deg);
     padding: var(--spacing-sm);
     
-    /* EFECTO 3D CON COLORES DE LA WEB */
     box-shadow: 
         0 15px 35px rgba(15, 15, 35, 0.6),
         0 6px 15px rgba(189, 147, 249, 0.3),
@@ -147,20 +146,113 @@
 .menu-orbital[aria-expanded="true"] .orbital-item {
     opacity: 1;
     visibility: visible;
-    transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    animation: orbitalSpiral 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* ===== ANIMACIÓN CREATIVA EN ESPIRAL ===== */
+@keyframes orbitalSpiral {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0) rotate(-360deg);
+        filter: blur(10px) hue-rotate(180deg);
+    }
+    30% {
+        opacity: 0.6;
+        transform: translate(-50%, -50%) scale(0.7) rotate(-120deg);
+        filter: blur(5px) hue-rotate(90deg);
+    }
+    60% {
+        opacity: 0.9;
+        transform: translate(-50%, -50%) scale(1.2) rotate(-30deg);
+        filter: blur(2px) hue-rotate(30deg);
+    }
+    80% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(0.95) rotate(15deg);
+        filter: blur(0px) hue-rotate(0deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+        filter: blur(0px) hue-rotate(0deg);
+    }
+}
+
+/* ===== EFECTO DE ENTRADA SECUENCIAL MEJORADO ===== */
+.orbital-item[data-position="12"] {
+    animation-delay: 0.1s;
+}
+
+.orbital-item[data-position="3"] {
+    animation-delay: 0.25s;
+}
+
+.orbital-item[data-position="6"] {
+    animation-delay: 0.4s;
+}
+
+.orbital-item[data-position="9"] {
+    animation-delay: 0.55s;
 }
 
 .orbital-item:hover {
     background: rgba(189, 147, 249, 0.2);
     border-color: var(--accent-purple);
-    transform: scale(1.15);
+    transform: translate(-50%, -50%) scale(1.15);
     box-shadow: 
         0 8px 25px rgba(189, 147, 249, 0.4),
         0 0 20px rgba(189, 147, 249, 0.3);
     color: var(--accent-purple);
 }
 
-/* ===== SVG ICONOS SÚPER BRILLANTES - SIN AFECTAR POR BLUR ===== */
+/* ===== POSICIONES VERTICALES - AJUSTES FINALES ===== */
+
+/* Inicio - 7px más abajo adicionales */
+.orbital-item[data-position="12"] {
+    top: calc(50% + 102px); /* 95px + 7px más abajo = 102px */
+    left: calc(50% + 2px);  /* Mantener posición horizontal */
+    transition-delay: 0.1s;
+}
+
+.menu-orbital[aria-expanded="true"] .orbital-item[data-position="12"] {
+    transform: translate(-50%, -50%);
+}
+
+/* Productos - Ajustado por el movimiento del Inicio */
+.orbital-item[data-position="3"] {
+    top: calc(50% + 227px); /* 220px + 7px por Inicio = 227px */
+    left: calc(50% + 2px);  
+    transition-delay: 0.2s;
+}
+
+.menu-orbital[aria-expanded="true"] .orbital-item[data-position="3"] {
+    transform: translate(-50%, -50%);
+}
+
+/* Quiénes Somos - Ajustado por el movimiento del Inicio */
+.orbital-item[data-position="6"] {
+    top: calc(50% + 352px); /* 345px + 7px por Inicio = 352px */
+    left: calc(50% + 2px);  
+    transition-delay: 0.3s;
+}
+
+.menu-orbital[aria-expanded="true"] .orbital-item[data-position="6"] {
+    transform: translate(-50%, -50%);
+}
+
+/* Contacto - Ajustado por el movimiento del Inicio */
+.orbital-item[data-position="9"] {
+    top: calc(50% + 477px); /* 470px + 7px por Inicio = 477px */
+    left: calc(50% + 2px);  
+    transition-delay: 0.4s;
+}
+
+.menu-orbital[aria-expanded="true"] .orbital-item[data-position="9"] {
+    transform: translate(-50%, -50%);
+}
+
+/* ===== SVG ICONOS ===== */
 .orbital-item .item-icon {
     width: 32px;
     height: 32px;
@@ -171,7 +263,6 @@
     filter: 
         drop-shadow(0 0 8px currentColor)
         drop-shadow(0 0 16px currentColor)
-        drop-shadow(0 0 24px currentColor)
         brightness(2.5)
         saturate(3)
         contrast(1.8);
@@ -204,79 +295,81 @@
         0 1px 3px rgba(0, 0, 0, 0.9);
 }
 
-/* ===== HOVER STATES - CRISTAL CON COLORES VIBRANTES ===== */
-.orbital-item:hover {
+/* ===== COLORES ESPECÍFICOS POR POSICIÓN ===== */
+.orbital-item[data-position="12"] {
+    color: #ff00ff; /* Magenta súper vibrante */
     background: 
-        radial-gradient(circle at 30% 30%, rgba(189, 147, 249, 0.4), rgba(80, 250, 123, 0.25) 50%, rgba(255, 121, 198, 0.15) 70%, transparent 85%),
-        linear-gradient(135deg, rgba(189, 147, 249, 0.3), rgba(80, 250, 123, 0.2), rgba(255, 121, 198, 0.15), rgba(15, 15, 35, 0.4));
-    backdrop-filter: blur(10px) saturate(1.5);
-    border-color: var(--accent-purple);
-    
-    /* EFECTO 3D CON COLORES INTENSIFICADOS */
+        radial-gradient(circle at 30% 30%, rgba(255, 0, 255, 0.3), rgba(255, 0, 255, 0.15) 50%, rgba(15, 15, 35, 0.2) 70%, transparent 85%),
+        linear-gradient(135deg, rgba(255, 0, 255, 0.25), rgba(30, 30, 63, 0.4), rgba(15, 15, 35, 0.3));
+}
+
+.orbital-item[data-position="12"]:hover {
+    border-color: #ff00ff;
+    color: #ff00ff;
     box-shadow: 
         0 20px 45px rgba(15, 15, 35, 0.7),
-        0 10px 25px rgba(189, 147, 249, 0.4),
-        inset 0 3px 6px rgba(189, 147, 249, 0.5),
-        inset 0 -3px 6px rgba(15, 15, 35, 0.6),
-        inset 0 0 30px rgba(80, 250, 123, 0.2),
-        0 0 50px currentColor;
+        0 10px 25px rgba(255, 0, 255, 0.4),
+        0 0 30px rgba(255, 0, 255, 0.8);
 }
 
-.orbital-item:hover .item-text {
-    color: var(--white);
-    text-shadow: 
-        0 0 12px rgba(15, 15, 35, 0.9),
-        0 2px 4px rgba(15, 15, 35, 1);
-}
-
-.orbital-item:hover .item-icon {
-    filter: 
-        drop-shadow(0 0 15px currentColor)
-        drop-shadow(0 0 30px currentColor)
-        drop-shadow(0 0 45px currentColor)
-        drop-shadow(0 0 60px currentColor)
-        brightness(3)
-        saturate(4)
-        contrast(2);
-}
-
-/* ===== POSICIONES ORBITALES (12, 3, 6, 9 en punto) ===== */
-
-/* ===== POSICIONES FINALES - 46PX HACIA LA IZQUIERDA ===== */
-
-/* Inicio - DIRECTAMENTE debajo del botón HG principal */
-.orbital-item[data-position="12"] {
-    top: calc(50% + 60px);
-    left: calc(50% - 46px);
-    transform: translate(-50%, -50%);
-    transition-delay: 0.1s;
-}
-
-/* Productos - Más cerca de Inicio */
 .orbital-item[data-position="3"] {
-    top: calc(50% + 130px);
-    left: calc(50% - 46px);
-    transform: translate(-50%, -50%);
-    transition-delay: 0.2s;
+    color: #00ffff; /* Cyan eléctrico */
+    background: 
+        radial-gradient(circle at 30% 30%, rgba(0, 255, 255, 0.3), rgba(0, 255, 255, 0.15) 50%, rgba(15, 15, 35, 0.2) 70%, transparent 85%),
+        linear-gradient(135deg, rgba(0, 255, 255, 0.25), rgba(30, 30, 63, 0.4), rgba(15, 15, 35, 0.3));
 }
 
-/* Quiénes Somos - Más cerca de Productos */
+.orbital-item[data-position="3"]:hover {
+    border-color: #00ffff;
+    color: #00ffff;
+    box-shadow: 
+        0 20px 45px rgba(15, 15, 35, 0.7),
+        0 10px 25px rgba(0, 255, 255, 0.4),
+        0 0 30px rgba(0, 255, 255, 0.8);
+}
+
 .orbital-item[data-position="6"] {
-    top: calc(50% + 200px);
-    left: calc(50% - 46px);
-    transform: translate(-50%, -50%);
-    transition-delay: 0.3s;
+    color: #ff0080; /* Rosa neón intenso */
+    background: 
+        radial-gradient(circle at 30% 30%, rgba(255, 0, 128, 0.3), rgba(255, 0, 128, 0.15) 50%, rgba(15, 15, 35, 0.2) 70%, transparent 85%),
+        linear-gradient(135deg, rgba(255, 0, 128, 0.25), rgba(30, 30, 63, 0.4), rgba(15, 15, 35, 0.3));
 }
 
-/* Contacto - Más cerca de Quiénes Somos */
+.orbital-item[data-position="6"]:hover {
+    border-color: #ff0080;
+    color: #ff0080;
+    box-shadow: 
+        0 20px 45px rgba(15, 15, 35, 0.7),
+        0 10px 25px rgba(255, 0, 128, 0.4),
+        0 0 30px rgba(255, 0, 128, 0.8);
+}
+
 .orbital-item[data-position="9"] {
-    top: calc(50% + 270px);
-    left: calc(50% - 46px);
-    transform: translate(-50%, -50%);
-    transition-delay: 0.4s;
+    color: #00ff40; /* Verde lima brillante */
+    background: 
+        radial-gradient(circle at 30% 30%, rgba(0, 255, 64, 0.3), rgba(0, 255, 64, 0.15) 50%, rgba(15, 15, 35, 0.2) 70%, transparent 85%),
+        linear-gradient(135deg, rgba(0, 255, 64, 0.25), rgba(30, 30, 63, 0.4), rgba(15, 15, 35, 0.3));
 }
 
-/* ===== EFECTOS DE PARTÍCULAS ===== */
+.orbital-item[data-position="9"]:hover {
+    border-color: #00ff40;
+    color: #00ff40;
+    box-shadow: 
+        0 20px 45px rgba(15, 15, 35, 0.7),
+        0 10px 25px rgba(0, 255, 64, 0.4),
+        0 0 30px rgba(0, 255, 64, 0.8);
+}
+
+/* ASEGURAR QUE EL TEXTO SIEMPRE SEA BLANCO */
+.orbital-item .item-text,
+.orbital-item:hover .item-text {
+    color: var(--white) !important;
+    text-shadow: 
+        0 0 8px rgba(15, 15, 35, 0.8),
+        0 1px 3px rgba(15, 15, 35, 0.9);
+}
+
+/* ===== EFECTOS ADICIONALES ===== */
 .orbital-activator::after {
     content: '';
     position: absolute;
@@ -306,23 +399,11 @@
     100% { transform: rotate(360deg); }
 }
 
-/* ===== CURSOR TRAIL EFFECT ===== */
-.orbital-activator {
-    position: relative;
-}
-
-.orbital-activator:hover {
-    cursor: pointer;
-}
-
 /* ===== RESPONSIVE ADJUSTMENTS ===== */
-/* ===== RESPONSIVE ADJUSTMENTS - CÍRCULOS MÁS GRANDES ===== */
-
-/* Laptop Estándar (1024px - 1199px) */
 @media (min-width: 1024px) and (max-width: 1199px) {
     .orbital-items {
-        width: 160px;
-        height: 400px;
+        width: 200px;
+        height: 580px; /* Aumentado proporcionalmente */
     }
     
     .orbital-activator {
@@ -330,59 +411,72 @@
         height: 80px;
     }
     
-    .orbital-center {
-        font-size: 1.2rem;
-    }
-    
     .orbital-item {
         width: 100px;
         height: 100px;
-        font-size: 1rem;
     }
     
-    .orbital-item .item-icon {
-        width: 32px;
-        height: 32px;
+    /* Posiciones ajustadas - Inicio 7px más abajo */
+    .orbital-item[data-position="12"] {
+        top: calc(50% + 102px); /* 95px + 7px más = 102px */
+        left: calc(50% + 2px);  
     }
     
-    .orbital-item .item-text {
-        font-size: 0.8rem;
+    .orbital-item[data-position="3"] {
+        top: calc(50% + 227px); /* Ajustado por movimiento de Inicio */
+        left: calc(50% + 2px);
+    }
+    
+    .orbital-item[data-position="6"] {
+        top: calc(50% + 352px);
+        left: calc(50% + 2px);
+    }
+    
+    .orbital-item[data-position="9"] {
+        top: calc(50% + 477px);
+        left: calc(50% + 2px);
     }
 }
 
-/* Desktop Grande (1200px+) */
 @media (min-width: 1200px) {
     .orbital-items {
-        width: 160px;
-        height: 400px;
+        width: 200px;
+        height: 620px; /* Aún más espacio en pantallas grandes */
     }
     
     .orbital-activator {
-        width: 80px;
-        height: 80px;
-    }
-    
-    .orbital-center {
-        font-size: 1.2rem;
+        width: 85px;
+        height: 85px;
     }
     
     .orbital-item {
-        width: 100px;
-        height: 100px;
-        font-size: 1rem;
+        width: 105px;
+        height: 105px;
     }
     
-    .orbital-item .item-icon {
-        width: 32px;
-        height: 32px;
+    /* Espaciado ajustado - Inicio 7px más abajo */
+    .orbital-item[data-position="12"] {
+        top: calc(50% + 107px); /* 100px + 7px más = 107px */
+        left: calc(50% + 2px);  
     }
     
-    .orbital-item .item-text {
-        font-size: 0.8rem;
+    .orbital-item[data-position="3"] {
+        top: calc(50% + 242px); /* 235px + 7px por Inicio = 242px */
+        left: calc(50% + 2px);
+    }
+    
+    .orbital-item[data-position="6"] {
+        top: calc(50% + 377px); /* 370px + 7px por Inicio = 377px */
+        left: calc(50% + 2px);
+    }
+    
+    .orbital-item[data-position="9"] {
+        top: calc(50% + 512px); /* 505px + 7px por Inicio = 512px */
+        left: calc(50% + 2px);
     }
 }
 
-/* ===== ACCESSIBILITY ENHANCEMENTS ===== */
+/* ===== ACCESSIBILITY ===== */
 .orbital-item:focus {
     outline: 3px solid var(--accent-purple);
     outline-offset: 3px;
@@ -400,183 +494,47 @@
     }
 }
 
-/* ===== COLORES SÚPER LLAMATIVOS PARA SVG - SOMBRA REDUCIDA ===== */
-.orbital-item[data-position="12"] {
-    color: #ff00ff; /* Magenta súper vibrante */
-    background: 
-        radial-gradient(circle at 30% 30%, rgba(255, 0, 255, 0.3), rgba(255, 0, 255, 0.15) 50%, rgba(15, 15, 35, 0.2) 70%, transparent 85%),
-        linear-gradient(135deg, rgba(255, 0, 255, 0.25), rgba(30, 30, 63, 0.4), rgba(15, 15, 35, 0.3));
-}
-
-.orbital-item[data-position="12"]:hover {
-    border-color: #ff00ff;
-    color: #ff00ff;
-    background: 
-        radial-gradient(circle at 30% 30%, rgba(255, 0, 255, 0.5), rgba(255, 0, 255, 0.25) 50%, rgba(15, 15, 35, 0.3) 70%, transparent 85%),
-        linear-gradient(135deg, rgba(255, 0, 255, 0.4), rgba(30, 30, 63, 0.5), rgba(15, 15, 35, 0.4));
-    box-shadow: 
-        0 20px 45px rgba(15, 15, 35, 0.7),
-        0 10px 25px rgba(255, 0, 255, 0.4),
-        inset 0 3px 6px rgba(255, 0, 255, 0.6),
-        inset 0 -3px 6px rgba(15, 15, 35, 0.6),
-        0 0 30px rgba(255, 0, 255, 0.8);
-}
-
-.orbital-item[data-position="3"] {
-    color: #00ffff; /* Cyan eléctrico */
-    background: 
-        radial-gradient(circle at 30% 30%, rgba(0, 255, 255, 0.3), rgba(0, 255, 255, 0.15) 50%, rgba(15, 15, 35, 0.2) 70%, transparent 85%),
-        linear-gradient(135deg, rgba(0, 255, 255, 0.25), rgba(30, 30, 63, 0.4), rgba(15, 15, 35, 0.3));
-}
-
-.orbital-item[data-position="3"]:hover {
-    border-color: #00ffff;
-    color: #00ffff;
-    background: 
-        radial-gradient(circle at 30% 30%, rgba(0, 255, 255, 0.5), rgba(0, 255, 255, 0.25) 50%, rgba(15, 15, 35, 0.3) 70%, transparent 85%),
-        linear-gradient(135deg, rgba(0, 255, 255, 0.4), rgba(30, 30, 63, 0.5), rgba(15, 15, 35, 0.4));
-    box-shadow: 
-        0 20px 45px rgba(15, 15, 35, 0.7),
-        0 10px 25px rgba(0, 255, 255, 0.4),
-        inset 0 3px 6px rgba(0, 255, 255, 0.6),
-        inset 0 -3px 6px rgba(15, 15, 35, 0.6),
-        0 0 30px rgba(0, 255, 255, 0.8);
-}
-
-.orbital-item[data-position="6"] {
-    color: #ff0080; /* Rosa neón intenso */
-    background: 
-        radial-gradient(circle at 30% 30%, rgba(255, 0, 128, 0.3), rgba(255, 0, 128, 0.15) 50%, rgba(15, 15, 35, 0.2) 70%, transparent 85%),
-        linear-gradient(135deg, rgba(255, 0, 128, 0.25), rgba(30, 30, 63, 0.4), rgba(15, 15, 35, 0.3));
-}
-
-.orbital-item[data-position="6"]:hover {
-    border-color: #ff0080;
-    color: #ff0080;
-    background: 
-        radial-gradient(circle at 30% 30%, rgba(255, 0, 128, 0.5), rgba(255, 0, 128, 0.25) 50%, rgba(15, 15, 35, 0.3) 70%, transparent 85%),
-        linear-gradient(135deg, rgba(255, 0, 128, 0.4), rgba(30, 30, 63, 0.5), rgba(15, 15, 35, 0.4));
-    box-shadow: 
-        0 20px 45px rgba(15, 15, 35, 0.7),
-        0 10px 25px rgba(255, 0, 128, 0.4),
-        inset 0 3px 6px rgba(255, 0, 128, 0.6),
-        inset 0 -3px 6px rgba(15, 15, 35, 0.6),
-        0 0 30px rgba(255, 0, 128, 0.8);
-}
-
-.orbital-item[data-position="9"] {
-    color: #00ff40; /* Verde lima brillante */
-    background: 
-        radial-gradient(circle at 30% 30%, rgba(0, 255, 64, 0.3), rgba(0, 255, 64, 0.15) 50%, rgba(15, 15, 35, 0.2) 70%, transparent 85%),
-        linear-gradient(135deg, rgba(0, 255, 64, 0.25), rgba(30, 30, 63, 0.4), rgba(15, 15, 35, 0.3));
-}
-
-.orbital-item[data-position="9"]:hover {
-    border-color: #00ff40;
-    color: #00ff40;
-    background: 
-        radial-gradient(circle at 30% 30%, rgba(0, 255, 64, 0.5), rgba(0, 255, 64, 0.25) 50%, rgba(15, 15, 35, 0.3) 70%, transparent 85%),
-        linear-gradient(135deg, rgba(0, 255, 64, 0.4), rgba(30, 30, 63, 0.5), rgba(15, 15, 35, 0.4));
-    box-shadow: 
-        0 20px 45px rgba(15, 15, 35, 0.7),
-        0 10px 25px rgba(0, 255, 64, 0.4),
-        inset 0 3px 6px rgba(0, 255, 64, 0.6),
-        inset 0 -3px 6px rgba(15, 15, 35, 0.6),
-        0 0 30px rgba(0, 255, 64, 0.8);
-}
-
-/* ASEGURAR QUE EL TEXTO SIEMPRE SEA BLANCO */
-.orbital-item .item-text,
-.orbital-item:hover .item-text {
-    color: var(--white) !important;
-    text-shadow: 
-        0 0 8px rgba(15, 15, 35, 0.8),
-        0 1px 3px rgba(15, 15, 35, 0.9);
-}
-
-/* ===== TOOLTIP EFFECTS ===== */
-.orbital-item {
-    position: relative;
-}
-
-.orbital-item::before {
-    content: attr(data-tooltip);
-    position: absolute;
-    bottom: -35px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.9);
-    color: var(--white);
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 0.7rem;
-    white-space: nowrap;
-    opacity: 0;
-    visibility: hidden;
-    transition: var(--transition-normal);
-    z-index: 1002;
-}
-
-.orbital-item:hover::before {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) translateY(-5px);
-}
-
-/* ===== GLOW EFFECTS ===== */
-.orbital-activator {
-    position: relative;
-    overflow: visible;
-}
-
-.orbital-activator:hover {
-    animation: orbitalGlow 2s ease-in-out infinite alternate;
-}
-
-@keyframes orbitalGlow {
-    0% {
-        box-shadow: 
-            0 8px 25px rgba(189, 147, 249, 0.3),
-            0 0 0 3px rgba(189, 147, 249, 0.2);
-    }
-    100% {
-        box-shadow: 
-            0 12px 35px rgba(189, 147, 249, 0.5),
-            0 0 0 4px rgba(189, 147, 249, 0.4),
-            0 0 40px rgba(189, 147, 249, 0.6);
-    }
-}
-
-/* ===== MICRO-INTERACTIONS ===== */
-.orbital-item {
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.orbital-item:active {
-    transform: scale(0.95);
-}
-
-/* ===== ELIMINAR TODOS LOS EFECTOS DE SCROLL ===== */
-/* YA NO HAY EFECTOS EN SCROLL - TAMAÑO FIJO SIEMPRE */
-
 /* ===== SMART POSITIONING ===== */
 .menu-orbital {
     margin-left: auto;
     margin-right: var(--spacing-lg);
 }
 
-/* ===== CLOSING ANIMATION ===== */
+/* ===== CLOSING ANIMATION CREATIVA ===== */
 .menu-orbital[aria-expanded="false"] .orbital-item {
-    animation: orbitalClose 0.4s ease-in forwards;
+    animation: orbitalCloseSpiral 0.5s ease-in forwards;
+}
+
+@keyframes orbitalCloseSpiral {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+        filter: blur(0px);
+    }
+    40% {
+        opacity: 0.7;
+        transform: translate(-50%, -50%) scale(1.1) rotate(90deg);
+        filter: blur(2px) hue-rotate(45deg);
+    }
+    70% {
+        opacity: 0.3;
+        transform: translate(-50%, -50%) scale(0.4) rotate(180deg);
+        filter: blur(5px) hue-rotate(90deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0) rotate(270deg);
+        filter: blur(10px) hue-rotate(180deg);
+    }
 }
 
 @keyframes orbitalClose {
     0% {
         opacity: 1;
-        transform: scale(1);
+        transform: translate(-50%, -50%) scale(1);
     }
     100% {
         opacity: 0;
-        transform: scale(0.3);
+        transform: translate(-50%, -50%) scale(0.3);
     }
 }
