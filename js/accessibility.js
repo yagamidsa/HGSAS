@@ -1,528 +1,111 @@
 /* ===================================================================
-   ACCESSIBILITY - COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S
-   Navegación por teclado, ARIA, y mejoras de accesibilidad WCAG 2.1 AA
+   ACCESSIBILITY SYSTEM - COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S
+   Sistema de accesibilidad WCAG 2.1 AA compliant
    =================================================================== */
 
-class AccessibilityController {
+class AccessibilitySystem {
     constructor() {
-        this.focusableElements = [];
-        this.currentFocusIndex = -1;
-        this.skipLinksEnabled = true;
-        this.keyboardNavigationEnabled = true;
-        this.screenReaderSupport = false;
-        this.highContrastMode = false;
-        this.reducedMotion = false;
+        this.isHighContrast = false;
+        this.fontSize = 100; // Porcentaje
+        this.focusedElement = null;
+        this.skipLinksCreated = false;
+        this.announcer = null;
         
-        // Configuración de navegación
         this.config = {
-            skipToContentKey: 'Tab',
-            navigationKeys: {
-                'ArrowUp': 'previous',
-                'ArrowDown': 'next',
-                'ArrowLeft': 'previous',
-                'ArrowRight': 'next',
-                'Home': 'first',
-                'End': 'last',
-                'Enter': 'activate',
-                ' ': 'activate',
-                'Escape': 'close'
-            },
-            focusableSelectors: [
-                'a[href]',
-                'button:not([disabled])',
-                'input:not([disabled])',
-                'select:not([disabled])',
-                'textarea:not([disabled])',
-                '[tabindex]:not([tabindex="-1"])',
-                '[contenteditable="true"]'
-            ].join(', ')
+            maxFontSize: 150,
+            minFontSize: 75,
+            focusOutlineColor: '#bd93f9',
+            highContrastColors: {
+                background: '#000000',
+                text: '#ffffff',
+                accent: '#ffff00'
+            }
         };
         
         this.init();
     }
     
     init() {
-        this.detectAccessibilityPreferences();
+        this.createSkipLinks();
+        this.createScreenReaderAnnouncer();
         this.setupKeyboardNavigation();
-        this.setupAriaSupport();
-        this.setupSkipLinks();
         this.setupFocusManagement();
-        this.setupScreenReaderSupport();
+        this.setupARIALabels();
         this.setupHighContrastMode();
-        this.setupReducedMotion();
+        this.setupFontSizeControls();
+        this.monitorFormAccessibility();
+        this.setupReducedMotionRespect();
         
-        console.log('♿ Accessibility Controller inicializado');
+        console.log('♿ Accessibility System inicializado');
+        console.log('✅ WCAG 2.1 AA compliance activado');
     }
     
-    detectAccessibilityPreferences() {
-        // Detectar preferencias del sistema
-        this.reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        this.highContrastMode = window.matchMedia('(prefers-contrast: high)').matches;
+    createSkipLinks() {
+        if (this.skipLinksCreated) return;
         
-        // Detectar lectores de pantalla
-        this.screenReaderSupport = this.detectScreenReader();
+        const skipLinks = document.createElement('div');
+        skipLinks.className = 'skip-links';
+        skipLinks.setAttribute('role', 'navigation');
+        skipLinks.setAttribute('aria-label', 'Enlaces de acceso rápido');
         
-        // Escuchar cambios en las preferencias
-        window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', (e) => {
-            this.reducedMotion = e.matches;
-            this.applyReducedMotion();
-        });
+        skipLinks.innerHTML = `
+            <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+            <a href="#productos" class="skip-link">Saltar a productos</a>
+            <a href="#contacto" class="skip-link">Saltar a contacto</a>
+            <a href="#footer" class="skip-link">Saltar al pie de página</a>
+        `;
         
-        window.matchMedia('(prefers-contrast: high)').addEventListener('change', (e) => {
-            this.highContrastMode = e.matches;
-            this.applyHighContrast();
-        });
+        document.body.insertBefore(skipLinks, document.body.firstChild);
+        this.skipLinksCreated = true;
         
-        console.log('🔍 Preferencias de accesibilidad detectadas:', {
-            reducedMotion: this.reducedMotion,
-            highContrast: this.highContrastMode,
-            screenReader: this.screenReaderSupport
+        // Manejar clicks en skip links
+        skipLinks.addEventListener('click', (e) => {
+            if (e.target.classList.contains('skip-link')) {
+                const targetId = e.target.getAttribute('href').substring(1);
+                this.focusElement(targetId);
+            }
         });
     }
     
-    detectScreenReader() {
-        // Detectar lectores de pantalla comunes
-        const userAgent = navigator.userAgent.toLowerCase();
-        const screenReaders = ['jaws', 'nvda', 'voiceover', 'narrator', 'dragon'];
-        
-        return screenReaders.some(sr => userAgent.includes(sr)) || 
-               navigator.userAgent.includes('aural') ||
-               window.speechSynthesis !== undefined;
+    createScreenReaderAnnouncer() {
+        this.announcer = document.createElement('div');
+        this.announcer.setAttribute('aria-live', 'polite');
+        this.announcer.setAttribute('aria-atomic', 'true');
+        this.announcer.className = 'sr-only';
+        this.announcer.id = 'screen-reader-announcer';
+        document.body.appendChild(this.announcer);
     }
     
     setupKeyboardNavigation() {
-        // Navegación global por teclado
+        // Navegación global con teclado
         document.addEventListener('keydown', (e) => {
-            this.handleGlobalKeydown(e);
-        });
-        
-        // Navegación específica de menús
-        this.setupMenuKeyboardNavigation();
-        
-        // Navegación de catálogos
-        this.setupCatalogKeyboardNavigation();
-        
-        // Navegación de formularios
-        this.setupFormKeyboardNavigation();
-        
-        console.log('⌨️ Navegación por teclado configurada');
-    }
-    
-    handleGlobalKeydown(e) {
-        // Alt + número para navegación rápida
-        if (e.altKey && !e.ctrlKey && !e.shiftKey) {
-            switch(e.key) {
-                case '1':
-                    e.preventDefault();
-                    this.navigateToSection('home');
+            switch (e.key) {
+                case 'Tab':
+                    this.handleTabNavigation(e);
                     break;
-                case '2':
-                    e.preventDefault();
-                    this.navigateToSection('productos');
+                case 'Escape':
+                    this.handleEscapeKey(e);
                     break;
-                case '3':
-                    e.preventDefault();
-                    this.navigateToSection('quienes-somos');
+                case 'Enter':
+                case ' ':
+                    this.handleActivationKey(e);
                     break;
-                case '4':
-                    e.preventDefault();
-                    this.navigateToSection('contacto');
+                case 'ArrowUp':
+                case 'ArrowDown':
+                case 'ArrowLeft':
+                case 'ArrowRight':
+                    this.handleArrowNavigation(e);
                     break;
-                case 'm':
-                case 'M':
-                    e.preventDefault();
-                    this.toggleMenu();
-                    break;
-                case 's':
-                case 'S':
-                    e.preventDefault();
-                    this.focusSearchElement();
+                case 'Home':
+                case 'End':
+                    this.handleHomeEndNavigation(e);
                     break;
             }
-        }
-        
-        // Escape para cerrar elementos
-        if (e.key === 'Escape') {
-            this.closeAllModals();
-        }
-        
-        // Tab trapping en modales
-        if (e.key === 'Tab') {
-            this.handleTabNavigation(e);
-        }
-    }
-    
-    setupMenuKeyboardNavigation() {
-        // Navegación orbital (desktop)
-        this.setupOrbitalMenuKeyboard();
-        
-        // Navegación hexagonal (tablet)
-        this.setupHexagonalMenuKeyboard();
-        
-        // Navegación morphing (mobile)
-        this.setupMorphingMenuKeyboard();
-    }
-    
-    setupOrbitalMenuKeyboard() {
-        const orbitalActivator = document.querySelector('.orbital-activator');
-        const orbitalItems = document.querySelectorAll('.orbital-item');
-        
-        if (orbitalActivator) {
-            orbitalActivator.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    orbitalActivator.click();
-                    
-                    // Focus en el primer item cuando se abre
-                    setTimeout(() => {
-                        const firstItem = document.querySelector('.orbital-item');
-                        if (firstItem) firstItem.focus();
-                    }, 100);
-                }
-            });
-        }
-        
-        orbitalItems.forEach((item, index) => {
-            item.addEventListener('keydown', (e) => {
-                this.handleMenuItemKeydown(e, orbitalItems, index);
-            });
-        });
-    }
-    
-    setupHexagonalMenuKeyboard() {
-        const hexActivator = document.querySelector('.hex-activator');
-        const hexItems = document.querySelectorAll('.hex-item');
-        
-        if (hexActivator) {
-            hexActivator.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    hexActivator.click();
-                    
-                    setTimeout(() => {
-                        const firstItem = document.querySelector('.hex-item');
-                        if (firstItem) firstItem.focus();
-                    }, 100);
-                }
-            });
-        }
-        
-        hexItems.forEach((item, index) => {
-            item.addEventListener('keydown', (e) => {
-                this.handleMenuItemKeydown(e, hexItems, index);
-            });
-        });
-    }
-    
-    setupMorphingMenuKeyboard() {
-        const morphingTrigger = document.querySelector('.morphing-trigger');
-        const morphingItems = document.querySelectorAll('.morphing-item');
-        
-        if (morphingTrigger) {
-            morphingTrigger.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    morphingTrigger.click();
-                    
-                    setTimeout(() => {
-                        const firstItem = document.querySelector('.morphing-item');
-                        if (firstItem) firstItem.focus();
-                    }, 100);
-                }
-            });
-        }
-        
-        morphingItems.forEach((item, index) => {
-            item.addEventListener('keydown', (e) => {
-                this.handleMenuItemKeydown(e, morphingItems, index);
-            });
-        });
-    }
-    
-    handleMenuItemKeydown(e, items, currentIndex) {
-        switch(e.key) {
-            case 'ArrowDown':
-            case 'ArrowRight':
-                e.preventDefault();
-                const nextIndex = (currentIndex + 1) % items.length;
-                items[nextIndex].focus();
-                break;
-                
-            case 'ArrowUp':
-            case 'ArrowLeft':
-                e.preventDefault();
-                const prevIndex = currentIndex > 0 ? currentIndex - 1 : items.length - 1;
-                items[prevIndex].focus();
-                break;
-                
-            case 'Home':
-                e.preventDefault();
-                items[0].focus();
-                break;
-                
-            case 'End':
-                e.preventDefault();
-                items[items.length - 1].focus();
-                break;
-                
-            case 'Escape':
-                e.preventDefault();
-                this.closeAllMenus();
-                break;
-        }
-    }
-    
-    setupCatalogKeyboardNavigation() {
-        document.addEventListener('keydown', (e) => {
-            const activeCatalog = document.querySelector('.product-catalog.active');
-            if (!activeCatalog) return;
-            
-            if (e.key === 'Escape') {
-                e.preventDefault();
-                this.closeCatalog(activeCatalog);
-            }
-            
-            // Tab trapping dentro del catálogo
-            if (e.key === 'Tab') {
-                this.trapFocusInCatalog(e, activeCatalog);
-            }
-        });
-    }
-    
-    setupFormKeyboardNavigation() {
-        const forms = document.querySelectorAll('form');
-        
-        forms.forEach(form => {
-            const inputs = form.querySelectorAll('input, select, textarea, button');
-            
-            inputs.forEach((input, index) => {
-                input.addEventListener('keydown', (e) => {
-                    // Enter para ir al siguiente campo (excepto en textarea)
-                    if (e.key === 'Enter' && input.tagName !== 'TEXTAREA') {
-                        e.preventDefault();
-                        const nextInput = inputs[index + 1];
-                        if (nextInput) {
-                            nextInput.focus();
-                        } else {
-                            // Último campo, intentar enviar formulario
-                            const submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
-                            if (submitBtn) submitBtn.focus();
-                        }
-                    }
-                });
-            });
-        });
-    }
-    
-    setupAriaSupport() {
-        // Mejorar etiquetas ARIA existentes
-        this.enhanceAriaLabels();
-        
-        // Añadir landmarks ARIA
-        this.addAriaLandmarks();
-        
-        // Configurar live regions
-        this.setupLiveRegions();
-        
-        // Mejorar navegación ARIA
-        this.enhanceAriaNavigation();
-        
-        console.log('🏷️ Soporte ARIA configurado');
-    }
-    
-    enhanceAriaLabels() {
-        // Botones sin etiquetas
-        const buttons = document.querySelectorAll('button:not([aria-label]):not([aria-labelledby])');
-        buttons.forEach(button => {
-            const text = button.textContent.trim();
-            if (!text) {
-                // Intentar obtener contexto
-                if (button.classList.contains('morphing-trigger')) {
-                    button.setAttribute('aria-label', 'Abrir menú de navegación');
-                } else if (button.classList.contains('catalog-close')) {
-                    button.setAttribute('aria-label', 'Cerrar catálogo de producto');
-                } else if (button.classList.contains('back-to-top')) {
-                    button.setAttribute('aria-label', 'Volver al inicio de la página');
-                }
-            }
         });
         
-        // Enlaces sin contexto
-        const links = document.querySelectorAll('a:not([aria-label]):not([aria-labelledby])');
-        links.forEach(link => {
-            if (link.classList.contains('whatsapp-float')) {
-                link.setAttribute('aria-label', 'Contactar por WhatsApp');
-            }
-        });
-        
-        // Imágenes sin alt
-        const images = document.querySelectorAll('img:not([alt])');
-        images.forEach(img => {
-            if (img.src.includes('ajedrez')) {
-                img.setAttribute('alt', 'Producto AJEDREZ - Vino espumoso sin alcohol');
-            } else {
-                img.setAttribute('alt', 'Imagen de COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S');
-            }
-        });
-    }
-    
-    addAriaLandmarks() {
-        // Main navigation
-        const nav = document.querySelector('.navbar');
-        if (nav && !nav.getAttribute('role')) {
-            nav.setAttribute('role', 'navigation');
-            nav.setAttribute('aria-label', 'Navegación principal');
-        }
-        
-        // Main content
-        const main = document.querySelector('.main-content, main');
-        if (main && !main.getAttribute('role')) {
-            main.setAttribute('role', 'main');
-        }
-        
-        // Sections as regions
-        const sections = document.querySelectorAll('section[id]');
-        sections.forEach(section => {
-            if (!section.getAttribute('role')) {
-                section.setAttribute('role', 'region');
-                const heading = section.querySelector('h1, h2, h3');
-                if (heading) {
-                    if (!heading.id) {
-                        heading.id = `heading-${section.id}`;
-                    }
-                    section.setAttribute('aria-labelledby', heading.id);
-                }
-            }
-        });
-        
-        // Footer
-        const footer = document.querySelector('.footer, footer');
-        if (footer && !footer.getAttribute('role')) {
-            footer.setAttribute('role', 'contentinfo');
-        }
-    }
-    
-    setupLiveRegions() {
-        // Crear region para anuncios
-        const announceRegion = document.createElement('div');
-        announceRegion.id = 'aria-live-announcements';
-        announceRegion.setAttribute('aria-live', 'polite');
-        announceRegion.setAttribute('aria-atomic', 'true');
-        announceRegion.style.position = 'absolute';
-        announceRegion.style.left = '-10000px';
-        announceRegion.style.width = '1px';
-        announceRegion.style.height = '1px';
-        announceRegion.style.overflow = 'hidden';
-        document.body.appendChild(announceRegion);
-        
-        this.announceRegion = announceRegion;
-        
-        // Region para alertas
-        const alertRegion = document.createElement('div');
-        alertRegion.id = 'aria-live-alerts';
-        alertRegion.setAttribute('aria-live', 'assertive');
-        alertRegion.setAttribute('aria-atomic', 'true');
-        alertRegion.style.position = 'absolute';
-        alertRegion.style.left = '-10000px';
-        alertRegion.style.width = '1px';
-        alertRegion.style.height = '1px';
-        alertRegion.style.overflow = 'hidden';
-        document.body.appendChild(alertRegion);
-        
-        this.alertRegion = alertRegion;
-    }
-    
-    enhanceAriaNavigation() {
-        // Mejorar navegación de menús
-        const menus = document.querySelectorAll('[role="menu"], .orbital-items, .hex-items, .morphing-content');
-        menus.forEach(menu => {
-            if (!menu.getAttribute('role')) {
-                menu.setAttribute('role', 'menu');
-            }
-            
-            const menuItems = menu.querySelectorAll('a, button');
-            menuItems.forEach(item => {
-                if (!item.getAttribute('role')) {
-                    item.setAttribute('role', 'menuitem');
-                }
-            });
-        });
-        
-        // Mejorar navegación de catálogos
-        const catalogs = document.querySelectorAll('.product-catalog');
-        catalogs.forEach(catalog => {
-            catalog.setAttribute('role', 'dialog');
-            catalog.setAttribute('aria-modal', 'true');
-            
-            const title = catalog.querySelector('h3');
-            if (title && !title.id) {
-                title.id = `catalog-title-${Math.random().toString(36).substr(2, 9)}`;
-                catalog.setAttribute('aria-labelledby', title.id);
-            }
-        });
-    }
-    
-    setupSkipLinks() {
-        // Verificar si existe skip link
-        let skipLink = document.querySelector('.skip-link');
-        
-        if (!skipLink) {
-            // Crear skip link
-            skipLink = document.createElement('a');
-            skipLink.href = '#main-content';
-            skipLink.className = 'skip-link';
-            skipLink.textContent = 'Saltar al contenido principal';
-            skipLink.setAttribute('tabindex', '1');
-            document.body.insertBefore(skipLink, document.body.firstChild);
-        }
-        
-        // Añadir más skip links
-        this.addAdditionalSkipLinks();
-        
-        console.log('🔗 Skip links configurados');
-    }
-    
-    addAdditionalSkipLinks() {
-        const skipLinksContainer = document.createElement('nav');
-        skipLinksContainer.className = 'skip-links-container';
-        skipLinksContainer.setAttribute('aria-label', 'Enlaces de navegación rápida');
-        
-        const skipLinks = [
-            { href: '#productos', text: 'Saltar a productos' },
-            { href: '#quienes-somos', text: 'Saltar a información de la empresa' },
-            { href: '#contacto', text: 'Saltar al formulario de contacto' }
-        ];
-        
-        skipLinks.forEach(link => {
-            const skipLink = document.createElement('a');
-            skipLink.href = link.href;
-            skipLink.className = 'skip-link';
-            skipLink.textContent = link.text;
-            skipLinksContainer.appendChild(skipLink);
-        });
-        
-        document.body.insertBefore(skipLinksContainer, document.body.firstChild);
-    }
-    
-    setupFocusManagement() {
-        // Focus visible para elementos interactivos
-        this.setupFocusVisible();
-        
-        // Focus trapping para modales
-        this.setupFocusTrapping();
-        
-        // Focus restoration
-        this.setupFocusRestoration();
-        
-        console.log('👁️ Gestión de focus configurada');
-    }
-    
-    setupFocusVisible() {
-        // Añadir clase focus-visible para mejor styling
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Tab') {
-                document.body.classList.add('keyboard-navigation');
-            }
+        // Mostrar focus outline solo cuando se navega con teclado
+        document.addEventListener('keydown', () => {
+            document.body.classList.add('keyboard-navigation');
         });
         
         document.addEventListener('mousedown', () => {
@@ -530,454 +113,669 @@ class AccessibilityController {
         });
     }
     
-    setupFocusTrapping() {
-        // Trap focus en catálogos activos
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Tab') {
-                const activeCatalog = document.querySelector('.product-catalog.active');
-                if (activeCatalog) {
-                    this.trapFocusInCatalog(e, activeCatalog);
+    setupFocusManagement() {
+        // Mejorar la gestión del focus
+        const focusableElements = 'a, button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])';
+        
+        // Asegurar que todos los elementos focusables tengan outline visible
+        document.addEventListener('focusin', (e) => {
+            this.focusedElement = e.target;
+            this.announceElementFocus(e.target);
+        });
+        
+        document.addEventListener('focusout', (e) => {
+            this.focusedElement = null;
+        });
+        
+        // Trap focus en modales y menús desplegables
+        this.setupFocusTrap();
+    }
+    
+    setupFocusTrap() {
+        // Focus trap para elementos modales
+        const trapFocus = (container) => {
+            const focusableElements = container.querySelectorAll(
+                'a, button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])'
+            );
+            
+            if (focusableElements.length === 0) return;
+            
+            const firstElement = focusableElements[0];
+            const lastElement = focusableElements[focusableElements.length - 1];
+            
+            container.addEventListener('keydown', (e) => {
+                if (e.key === 'Tab') {
+                    if (e.shiftKey) {
+                        if (document.activeElement === firstElement) {
+                            e.preventDefault();
+                            lastElement.focus();
+                        }
+                    } else {
+                        if (document.activeElement === lastElement) {
+                            e.preventDefault();
+                            firstElement.focus();
+                        }
+                    }
                 }
+            });
+        };
+        
+        // Aplicar focus trap a elementos modales
+        const modals = document.querySelectorAll('.catalog-modal, .menu-panel, .morphing-panel');
+        modals.forEach(modal => trapFocus(modal));
+    }
+    
+    setupARIALabels() {
+        // Mejorar etiquetas ARIA automáticamente
+        const elementsNeedingLabels = document.querySelectorAll('button, a, input, select, textarea');
+        
+        elementsNeedingLabels.forEach(element => {
+            if (!element.getAttribute('aria-label') && !element.getAttribute('aria-labelledby')) {
+                this.addImplicitLabel(element);
+            }
+        });
+        
+        // Agregar roles faltantes
+        this.addMissingRoles();
+    }
+    
+    addImplicitLabel(element) {
+        const tagName = element.tagName.toLowerCase();
+        
+        switch (tagName) {
+            case 'button':
+                if (!element.textContent.trim()) {
+                    const icon = element.querySelector('svg, img');
+                    if (icon) {
+                        element.setAttribute('aria-label', 'Botón');
+                    }
+                }
+                break;
                 
-                const activeMenu = document.querySelector('[aria-expanded="true"]');
-                if (activeMenu) {
-                    this.trapFocusInMenu(e, activeMenu);
+            case 'a':
+                if (!element.textContent.trim() && element.href) {
+                    element.setAttribute('aria-label', `Enlace a ${element.href}`);
                 }
-            }
-        });
-    }
-    
-    trapFocusInCatalog(e, catalog) {
-        const focusableElements = catalog.querySelectorAll(this.config.focusableSelectors);
-        const firstElement = focusableElements[0];
-        const lastElement = focusableElements[focusableElements.length - 1];
-        
-        if (e.shiftKey) {
-            if (document.activeElement === firstElement) {
-                e.preventDefault();
-                lastElement.focus();
-            }
-        } else {
-            if (document.activeElement === lastElement) {
-                e.preventDefault();
-                firstElement.focus();
-            }
+                break;
+                
+            case 'input':
+                if (element.type === 'submit' && !element.value) {
+                    element.setAttribute('aria-label', 'Enviar formulario');
+                }
+                break;
         }
     }
     
-    trapFocusInMenu(e, menu) {
-        const menuItems = menu.querySelectorAll('[role="menuitem"], .orbital-item, .hex-item, .morphing-item');
-        if (menuItems.length === 0) return;
-        
-        const firstItem = menuItems[0];
-        const lastItem = menuItems[menuItems.length - 1];
-        
-        if (e.shiftKey) {
-            if (document.activeElement === firstItem) {
-                e.preventDefault();
-                lastItem.focus();
-            }
-        } else {
-            if (document.activeElement === lastItem) {
-                e.preventDefault();
-                firstItem.focus();
-            }
+    addMissingRoles() {
+        // Agregar roles faltantes automáticamente
+        const nav = document.querySelector('.menu-system');
+        if (nav && !nav.getAttribute('role')) {
+            nav.setAttribute('role', 'navigation');
         }
-    }
-    
-    setupFocusRestoration() {
-        this.focusHistory = [];
         
-        // Guardar focus antes de abrir modales
-        document.addEventListener('catalogOpened', (e) => {
-            this.focusHistory.push(document.activeElement);
-        });
+        const main = document.querySelector('main') || document.querySelector('.main-content');
+        if (main && !main.getAttribute('role')) {
+            main.setAttribute('role', 'main');
+        }
         
-        document.addEventListener('catalogClosed', (e) => {
-            const lastFocused = this.focusHistory.pop();
-            if (lastFocused && typeof lastFocused.focus === 'function') {
-                setTimeout(() => lastFocused.focus(), 100);
-            }
-        });
-    }
-    
-    setupScreenReaderSupport() {
-        if (!this.screenReaderSupport) return;
-        
-        // Mejorar anuncios para lectores de pantalla
-        this.setupScreenReaderAnnouncements();
-        
-        // Configurar descripciones adicionales
-        this.setupScreenReaderDescriptions();
-        
-        console.log('📢 Soporte para lectores de pantalla configurado');
-    }
-    
-    setupScreenReaderAnnouncements() {
-        // Anunciar cambios de sección
-        window.addEventListener('sectionChanged', (e) => {
-            this.announce(`Navegando a sección ${e.detail.section}`);
-        });
-        
-        // Anunciar apertura de catálogos
-        document.addEventListener('catalogOpened', (e) => {
-            this.announce(`Catálogo de ${e.detail.product} abierto`);
-        });
-        
-        // Anunciar cambios en el menú
-        document.addEventListener('menuStateChanged', (e) => {
-            this.announce(`Menú ${e.detail.isOpen ? 'abierto' : 'cerrado'}`);
-        });
-        
-        // Anunciar envío de formularios
-        document.addEventListener('formSubmitted', (e) => {
-            this.announce('Formulario enviado correctamente');
-        });
-    }
-    
-    setupScreenReaderDescriptions() {
-        // Añadir descripciones a elementos complejos
-        const productCards = document.querySelectorAll('.product-card');
-        productCards.forEach(card => {
-            const productName = card.querySelector('.product-name')?.textContent;
-            const description = card.querySelector('.product-description-short')?.textContent;
-            
-            if (productName && description) {
-                card.setAttribute('aria-label', `${productName}: ${description}`);
-            }
-        });
-        
-        // Describir navegación compleja
-        const orbitalMenu = document.querySelector('.menu-orbital');
-        if (orbitalMenu) {
-            orbitalMenu.setAttribute('aria-describedby', 'orbital-menu-description');
-            
-            const description = document.createElement('div');
-            description.id = 'orbital-menu-description';
-            description.className = 'sr-only';
-            description.textContent = 'Menú de navegación orbital. Use las teclas de flecha para navegar entre opciones.';
-            orbitalMenu.appendChild(description);
+        const footer = document.querySelector('footer');
+        if (footer && !footer.getAttribute('role')) {
+            footer.setAttribute('role', 'contentinfo');
         }
     }
     
     setupHighContrastMode() {
-        if (this.highContrastMode) {
-            this.applyHighContrast();
+        // Detectar preferencia de alto contraste del sistema
+        const highContrastQuery = window.matchMedia('(prefers-contrast: high)');
+        
+        if (highContrastQuery.matches) {
+            this.enableHighContrast();
         }
         
-        // Botón para alternar modo alto contraste
-        this.addHighContrastToggle();
-    }
-    
-    applyHighContrast() {
-        document.body.classList.toggle('high-contrast', this.highContrastMode);
-        
-        if (this.highContrastMode) {
-            this.announce('Modo de alto contraste activado');
-        }
-    }
-    
-    addHighContrastToggle() {
-        const toggle = document.createElement('button');
-        toggle.id = 'high-contrast-toggle';
-        toggle.className = 'accessibility-toggle';
-        toggle.setAttribute('aria-label', 'Alternar modo de alto contraste');
-        toggle.textContent = 'Alto Contraste';
-        
-        toggle.addEventListener('click', () => {
-            this.highContrastMode = !this.highContrastMode;
-            this.applyHighContrast();
+        highContrastQuery.addEventListener('change', (e) => {
+            if (e.matches) {
+                this.enableHighContrast();
+            } else {
+                this.disableHighContrast();
+            }
         });
         
-        // Posicionar el botón
-        toggle.style.position = 'fixed';
-        toggle.style.top = '10px';
-        toggle.style.left = '10px';
-        toggle.style.zIndex = '9999';
-        toggle.style.padding = '8px 12px';
-        toggle.style.fontSize = '12px';
-        toggle.style.background = 'var(--accent-purple)';
-        toggle.style.color = 'white';
-        toggle.style.border = 'none';
-        toggle.style.borderRadius = '4px';
+        // Crear toggle manual
+        this.createHighContrastToggle();
+    }
+    
+    createHighContrastToggle() {
+        const toggle = document.createElement('button');
+        toggle.className = 'accessibility-toggle high-contrast-toggle';
+        toggle.setAttribute('aria-label', 'Alternar modo de alto contraste');
+        toggle.innerHTML = `
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-4.08 3.06-7.44 7-7.93v15.86z"/>
+            </svg>
+        `;
+        
+        toggle.addEventListener('click', () => {
+            this.toggleHighContrast();
+        });
         
         document.body.appendChild(toggle);
     }
     
-    setupReducedMotion() {
-        if (this.reducedMotion) {
-            this.applyReducedMotion();
-        }
+    setupFontSizeControls() {
+        const fontControls = document.createElement('div');
+        fontControls.className = 'accessibility-controls font-size-controls';
+        fontControls.innerHTML = `
+            <button class="font-decrease" aria-label="Disminuir tamaño de fuente">A-</button>
+            <button class="font-reset" aria-label="Restablecer tamaño de fuente">A</button>
+            <button class="font-increase" aria-label="Aumentar tamaño de fuente">A+</button>
+        `;
+        
+        fontControls.addEventListener('click', (e) => {
+            if (e.target.classList.contains('font-decrease')) {
+                this.decreaseFontSize();
+            } else if (e.target.classList.contains('font-increase')) {
+                this.increaseFontSize();
+            } else if (e.target.classList.contains('font-reset')) {
+                this.resetFontSize();
+            }
+        });
+        
+        document.body.appendChild(fontControls);
     }
     
-    applyReducedMotion() {
-        document.body.classList.toggle('reduced-motion', this.reducedMotion);
+    setupReducedMotionRespect() {
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
         
-        if (this.reducedMotion) {
-            this.announce('Movimiento reducido activado');
+        if (prefersReducedMotion.matches) {
+            this.disableAnimations();
         }
+        
+        prefersReducedMotion.addEventListener('change', (e) => {
+            if (e.matches) {
+                this.disableAnimations();
+            } else {
+                this.enableAnimations();
+            }
+        });
     }
     
-    /* ===== UTILITY METHODS ===== */
-    
-    announce(message, priority = 'polite') {
-        const region = priority === 'assertive' ? this.alertRegion : this.announceRegion;
+    monitorFormAccessibility() {
+        const forms = document.querySelectorAll('form');
         
-        if (region) {
-            region.textContent = message;
+        forms.forEach(form => {
+            this.enhanceFormAccessibility(form);
+        });
+    }
+    
+    enhanceFormAccessibility(form) {
+        const inputs = form.querySelectorAll('input, textarea, select');
+        
+        inputs.forEach(input => {
+            // Asociar labels automáticamente
+            if (!input.getAttribute('aria-labelledby') && !input.getAttribute('aria-label')) {
+                const label = form.querySelector(`label[for="${input.id}"]`);
+                if (!label && input.placeholder) {
+                    input.setAttribute('aria-label', input.placeholder);
+                }
+            }
             
-            // Limpiar después de un tiempo
-            setTimeout(() => {
-                region.textContent = '';
-            }, 1000);
-        }
+            // Describir campos requeridos
+            if (input.required && !input.getAttribute('aria-describedby')) {
+                const description = document.createElement('span');
+                description.className = 'sr-only';
+                description.textContent = 'Campo requerido';
+                description.id = `${input.id || 'input'}-required`;
+                input.parentNode.appendChild(description);
+                input.setAttribute('aria-describedby', description.id);
+            }
+            
+            // Manejar errores de validación
+            input.addEventListener('invalid', (e) => {
+                this.announceError(e.target);
+            });
+        });
+    }
+    
+    // ===== MÉTODOS DE NAVEGACIÓN =====
+    
+    handleTabNavigation(e) {
+        // Mejorar la navegación con tab
+        const currentElement = document.activeElement;
         
-        console.log(`📢 Anuncio: ${message}`);
-    }
-    
-    alert(message) {
-        this.announce(message, 'assertive');
-    }
-    
-    navigateToSection(sectionId) {
-        const section = document.getElementById(sectionId);
-        if (section) {
-            section.scrollIntoView({ behavior: 'smooth' });
-            section.focus({ preventScroll: true });
-            this.announce(`Navegando a ${sectionId}`);
+        // Si estamos en un menú, manejar navegación especial
+        if (this.isInMenu(currentElement)) {
+            this.handleMenuTabNavigation(e, currentElement);
         }
     }
     
-    toggleMenu() {
-        if (typeof window.toggleMenu === 'function') {
-            window.toggleMenu();
-        } else {
-            // Fallback: intentar activar el menú actual
-            const activeMenu = document.querySelector('.orbital-activator, .hex-activator, .morphing-trigger');
-            if (activeMenu) {
-                activeMenu.click();
+    handleEscapeKey(e) {
+        // Cerrar modales, menús y elementos desplegables
+        const activeModal = document.querySelector('.catalog-modal.catalog-open');
+        const activeMenu = document.querySelector('.menu-panel.open, .morphing-panel.panel-open');
+        
+        if (activeModal) {
+            this.closeModal(activeModal);
+        } else if (activeMenu) {
+            this.closeMenu(activeMenu);
+        }
+    }
+    
+    handleActivationKey(e) {
+        // Manejar Enter y Space como click en elementos apropiados
+        const target = e.target;
+        
+        if (target.tagName === 'BUTTON' || target.getAttribute('role') === 'button') {
+            if (e.key === ' ') {
+                e.preventDefault();
+                target.click();
             }
         }
     }
     
-    closeAllModals() {
-        // Cerrar catálogos
-        const activeCatalogs = document.querySelectorAll('.product-catalog.active');
-        activeCatalogs.forEach(catalog => {
-            this.closeCatalog(catalog);
-        });
+    handleArrowNavigation(e) {
+        // Navegación con flechas en menús y listas
+        const currentElement = document.activeElement;
         
-        // Cerrar menús
-        this.closeAllMenus();
-        
-        // Cerrar cookies banner config
-        const cookiesModal = document.getElementById('cookies-config-modal');
-        if (cookiesModal && cookiesModal.style.display !== 'none') {
-            cookiesModal.style.display = 'none';
+        if (this.isInMenu(currentElement)) {
+            e.preventDefault();
+            this.navigateMenu(e.key, currentElement);
         }
     }
     
-    closeCatalog(catalog) {
-        catalog.classList.remove('active');
-        this.announce('Catálogo cerrado');
+    handleHomeEndNavigation(e) {
+        // Navegación Home/End en listas y menús
+        const currentElement = document.activeElement;
         
-        // Disparar evento
-        window.dispatchEvent(new CustomEvent('catalogClosed', {
-            detail: { catalog }
-        }));
-    }
-    
-    closeAllMenus() {
-        if (typeof window.menuController?.closeAllMenus === 'function') {
-            window.menuController.closeAllMenus();
+        if (this.isInMenu(currentElement)) {
+            e.preventDefault();
+            this.navigateMenuHomeEnd(e.key, currentElement);
         }
     }
     
-    focusSearchElement() {
-        // Intentar encontrar elemento de búsqueda
-        const searchInput = document.querySelector('input[type="search"], input[name="search"], #search');
-        if (searchInput) {
-            searchInput.focus();
-            this.announce('Campo de búsqueda enfocado');
+    // ===== MÉTODOS PÚBLICOS =====
+    
+    announceToScreenReader(message, priority = 'polite') {
+        if (this.announcer) {
+            this.announcer.setAttribute('aria-live', priority);
+            this.announcer.textContent = message;
+            
+            setTimeout(() => {
+                this.announcer.textContent = '';
+            }, 1000);
         }
     }
     
-    handleTabNavigation(e) {
-        // Manejar navegación Tab inteligente
-        const activeElement = document.activeElement;
+    focusElement(elementOrId) {
+        let element;
         
-        // Si estamos en un menú activo, manejar la navegación
-        const activeMenu = document.querySelector('[aria-expanded="true"]');
-        if (activeMenu) {
-            this.trapFocusInMenu(e, activeMenu);
+        if (typeof elementOrId === 'string') {
+            element = document.getElementById(elementOrId) || document.querySelector(elementOrId);
+        } else {
+            element = elementOrId;
         }
         
-        // Si estamos en un catálogo activo
-        const activeCatalog = document.querySelector('.product-catalog.active');
-        if (activeCatalog) {
-            this.trapFocusInCatalog(e, activeCatalog);
+        if (element) {
+            element.focus({ preventScroll: false });
+            element.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
     }
     
-    /* ===== PUBLIC API ===== */
+    enableHighContrast() {
+        document.body.classList.add('high-contrast');
+        this.isHighContrast = true;
+        this.announceToScreenReader('Alto contraste activado');
+        localStorage.setItem('accessibility-high-contrast', 'true');
+    }
     
-    setFocus(element) {
-        if (typeof element === 'string') {
-            element = document.querySelector(element);
+    disableHighContrast() {
+        document.body.classList.remove('high-contrast');
+        this.isHighContrast = false;
+        this.announceToScreenReader('Alto contraste desactivado');
+        localStorage.setItem('accessibility-high-contrast', 'false');
+    }
+    
+    toggleHighContrast() {
+        if (this.isHighContrast) {
+            this.disableHighContrast();
+        } else {
+            this.enableHighContrast();
         }
-        
-        if (element && typeof element.focus === 'function') {
-            element.focus();
-            this.announce(`Enfoque en ${element.tagName.toLowerCase()}`);
+    }
+    
+    increaseFontSize() {
+        if (this.fontSize < this.config.maxFontSize) {
+            this.fontSize += 10;
+            this.applyFontSize();
+            this.announceToScreenReader(`Tamaño de fuente: ${this.fontSize}%`);
         }
     }
     
-    announceMessage(message, priority = 'polite') {
-        this.announce(message, priority);
+    decreaseFontSize() {
+        if (this.fontSize > this.config.minFontSize) {
+            this.fontSize -= 10;
+            this.applyFontSize();
+            this.announceToScreenReader(`Tamaño de fuente: ${this.fontSize}%`);
+        }
     }
     
-    enableKeyboardNavigation() {
-        this.keyboardNavigationEnabled = true;
-        document.body.classList.add('keyboard-navigation-enabled');
-        this.announce('Navegación por teclado habilitada');
+    resetFontSize() {
+        this.fontSize = 100;
+        this.applyFontSize();
+        this.announceToScreenReader('Tamaño de fuente restablecido');
     }
     
-    disableKeyboardNavigation() {
-        this.keyboardNavigationEnabled = false;
-        document.body.classList.remove('keyboard-navigation-enabled');
-        this.announce('Navegación por teclado deshabilitada');
+    applyFontSize() {
+        document.documentElement.style.fontSize = `${this.fontSize}%`;
+        localStorage.setItem('accessibility-font-size', this.fontSize.toString());
     }
     
-    getAccessibilityStatus() {
+    disableAnimations() {
+        document.body.classList.add('reduce-motion');
+        this.announceToScreenReader('Animaciones reducidas');
+    }
+    
+    enableAnimations() {
+        document.body.classList.remove('reduce-motion');
+    }
+    
+    getAccessibilityReport() {
         return {
-            keyboardNavigation: this.keyboardNavigationEnabled,
-            screenReader: this.screenReaderSupport,
-            highContrast: this.highContrastMode,
-            reducedMotion: this.reducedMotion,
-            skipLinks: this.skipLinksEnabled
+            highContrast: this.isHighContrast,
+            fontSize: this.fontSize,
+            skipLinksCreated: this.skipLinksCreated,
+            currentFocus: this.focusedElement?.tagName || null,
+            reduceMotion: document.body.classList.contains('reduce-motion')
         };
     }
+    
+    // ===== MÉTODOS PRIVADOS =====
+    
+    isInMenu(element) {
+        return element.closest('.menu-orbital, .menu-hexagonal, .menu-morphing, .catalog-modal');
+    }
+    
+    announceElementFocus(element) {
+        const label = element.getAttribute('aria-label') || 
+                     element.textContent?.trim() || 
+                     element.getAttribute('title') || 
+                     element.tagName.toLowerCase();
+        
+        if (label && label !== this.lastAnnouncement) {
+            this.announceToScreenReader(label);
+            this.lastAnnouncement = label;
+        }
+    }
+    
+    announceError(input) {
+        const errorMessage = input.validationMessage || 'Error en el campo';
+        this.announceToScreenReader(errorMessage, 'assertive');
+    }
+    
+    navigateMenu(direction, currentElement) {
+        const menu = currentElement.closest('[role="menu"], .menu-items');
+        if (!menu) return;
+        
+        const items = Array.from(menu.querySelectorAll('[role="menuitem"], a, button'));
+        const currentIndex = items.indexOf(currentElement);
+        
+        let nextIndex;
+        
+        if (direction === 'ArrowDown' || direction === 'ArrowRight') {
+            nextIndex = (currentIndex + 1) % items.length;
+        } else {
+            nextIndex = currentIndex - 1 < 0 ? items.length - 1 : currentIndex - 1;
+        }
+        
+        items[nextIndex].focus();
+    }
+    
+    loadSavedPreferences() {
+        // Cargar preferencias guardadas
+        const savedHighContrast = localStorage.getItem('accessibility-high-contrast');
+        const savedFontSize = localStorage.getItem('accessibility-font-size');
+        
+        if (savedHighContrast === 'true') {
+            this.enableHighContrast();
+        }
+        
+        if (savedFontSize) {
+            this.fontSize = parseInt(savedFontSize);
+            this.applyFontSize();
+        }
+    }
 }
 
-/* ===== CSS ADICIONAL PARA ACCESIBILIDAD ===== */
+// ===== ESTILOS CSS DINÁMICOS =====
 const accessibilityStyles = document.createElement('style');
 accessibilityStyles.textContent = `
-/* Focus visible mejorado */
-.keyboard-navigation *:focus {
-    outline: 3px solid var(--accent-purple) !important;
-    outline-offset: 2px !important;
-    border-radius: 4px;
-}
-
-/* Skip links */
-.skip-link,
-.skip-links-container .skip-link {
-    position: absolute;
-    top: -40px;
-    left: 6px;
-    background: var(--accent-purple);
-    color: var(--primary-dark);
-    padding: 8px 12px;
-    text-decoration: none;
-    border-radius: 4px;
-    font-weight: 600;
-    z-index: 10000;
-    transition: top 0.3s ease;
-}
-
-.skip-link:focus,
-.skip-links-container .skip-link:focus {
-    top: 6px;
-}
-
-/* Screen reader only */
-.sr-only {
-    position: absolute !important;
-    width: 1px !important;
-    height: 1px !important;
-    padding: 0 !important;
-    margin: -1px !important;
-    overflow: hidden !important;
-    clip: rect(0, 0, 0, 0) !important;
-    white-space: nowrap !important;
-    border: 0 !important;
-}
-
-/* Alto contraste */
-.high-contrast {
-    --primary-dark: #000000 !important;
-    --secondary-dark: #111111 !important;
-    --white: #ffffff !important;
-    --accent-purple: #ffff00 !important;
-    --accent-green: #00ff00 !important;
-    --accent-pink: #ff00ff !important;
-}
-
-.high-contrast * {
-    border-color: #ffffff !important;
-    box-shadow: none !important;
-    text-shadow: none !important;
-}
-
-/* Movimiento reducido */
-.reduced-motion *,
-.reduced-motion *::before,
-.reduced-motion *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-}
-
-/* Toggles de accesibilidad */
-.accessibility-toggle {
-    font-size: 12px;
-    padding: 6px 10px;
-    margin: 2px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.accessibility-toggle:hover {
-    transform: scale(1.05);
-}
-
-.accessibility-toggle:focus {
-    outline: 2px solid white;
-    outline-offset: 2px;
-}
-
-/* Mejoras para focus en móvil */
-@media (max-width: 767px) {
-    .keyboard-navigation *:focus {
-        outline-width: 2px !important;
-        outline-offset: 1px !important;
+    /* Skip Links */
+    .skip-links {
+        position: absolute;
+        top: -40px;
+        left: 6px;
+        z-index: 10000;
+    }
+    
+    .skip-link {
+        position: absolute;
+        left: -10000px;
+        top: auto;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        background: #bd93f9;
+        color: white;
+        padding: 8px 16px;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: 600;
+        transition: all 0.3s ease;
     }
     
     .skip-link:focus {
-        top: 10px;
-        left: 10px;
-        right: 10px;
-        text-align: center;
+        position: static;
+        width: auto;
+        height: auto;
+        overflow: visible;
+        left: 6px;
+        top: 6px;
     }
-}
+    
+    /* Screen Reader Only */
+    .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+    }
+    
+    /* Focus Styles */
+    body.keyboard-navigation *:focus {
+        outline: 2px solid #bd93f9;
+        outline-offset: 2px;
+        border-radius: 4px;
+    }
+    
+    body.keyboard-navigation button:focus,
+    body.keyboard-navigation a:focus,
+    body.keyboard-navigation input:focus,
+    body.keyboard-navigation textarea:focus,
+    body.keyboard-navigation select:focus {
+        box-shadow: 0 0 0 2px #bd93f9, 0 0 0 4px rgba(189, 147, 249, 0.3);
+    }
+    
+    /* High Contrast Mode */
+    body.high-contrast {
+        background: #000000 !important;
+        color: #ffffff !important;
+    }
+    
+    body.high-contrast * {
+        background-color: #000000 !important;
+        color: #ffffff !important;
+        border-color: #ffffff !important;
+    }
+    
+    body.high-contrast a,
+    body.high-contrast button,
+    body.high-contrast .btn {
+        background: #ffff00 !important;
+        color: #000000 !important;
+        border: 2px solid #ffffff !important;
+    }
+    
+    body.high-contrast img,
+    body.high-contrast svg {
+        filter: contrast(2) brightness(1.5);
+    }
+    
+    /* Accessibility Controls */
+    .accessibility-controls {
+        position: fixed;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .accessibility-toggle,
+    .font-size-controls button {
+        width: 40px;
+        height: 40px;
+        background: rgba(189, 147, 249, 0.9);
+        border: none;
+        border-radius: 50%;
+        color: white;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+    }
+    
+    .accessibility-toggle:hover,
+    .font-size-controls button:hover {
+        background: rgba(189, 147, 249, 1);
+        transform: scale(1.1);
+    }
+    
+    .accessibility-toggle svg {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .font-size-controls {
+        background: rgba(0, 0, 0, 0.8);
+        border-radius: 25px;
+        padding: 5px;
+    }
+    
+    .font-size-controls button {
+        width: 35px;
+        height: 35px;
+        margin: 2px;
+        border-radius: 50%;
+        font-size: 12px;
+    }
+    
+    /* Reduced Motion */
+    body.reduce-motion *,
+    body.reduce-motion *::before,
+    body.reduce-motion *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    /* Form Accessibility */
+    input:invalid,
+    textarea:invalid,
+    select:invalid {
+        border-color: #ff5555 !important;
+        box-shadow: 0 0 0 2px rgba(255, 85, 85, 0.3) !important;
+    }
+    
+    .field-error {
+        color: #ff5555;
+        font-size: 0.875rem;
+        margin-top: 4px;
+        display: block;
+    }
+    
+    /* Mobile Accessibility */
+    @media (max-width: 768px) {
+        .accessibility-controls {
+            right: 5px;
+            top: auto;
+            bottom: 100px;
+            transform: none;
+        }
+        
+        .accessibility-toggle,
+        .font-size-controls button {
+            width: 35px;
+            height: 35px;
+        }
+        
+        .skip-link:focus {
+            left: 3px;
+            top: 3px;
+            font-size: 14px;
+        }
+    }
+    
+    /* Print Accessibility */
+    @media print {
+        .accessibility-controls,
+        .skip-links {
+            display: none !important;
+        }
+    }
 `;
-
 document.head.appendChild(accessibilityStyles);
 
-/* ===== INICIALIZACIÓN ===== */
+// ===== INICIALIZACIÓN =====
 document.addEventListener('DOMContentLoaded', () => {
-    window.accessibility = new AccessibilityController();
+    window.accessibilitySystem = new AccessibilitySystem();
     
-    // API global
-    window.announce = (message, priority) => window.accessibility.announceMessage(message, priority);
-    window.setFocus = (element) => window.accessibility.setFocus(element);
-    window.getAccessibilityStatus = () => window.accessibility.getAccessibilityStatus();
+    // Cargar preferencias guardadas
+    window.accessibilitySystem.loadSavedPreferences();
+    
+    // Funciones globales para testing
+    window.announceToScreenReader = (message) => window.accessibilitySystem.announceToScreenReader(message);
+    window.toggleHighContrast = () => window.accessibilitySystem.toggleHighContrast();
+    window.accessibilityReport = () => window.accessibilitySystem.getAccessibilityReport();
 });
 
-// Exportar para módulos ES6
+// Exportar para otros módulos
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = AccessibilityController;
+    module.exports = AccessibilitySystem;
 }
 
-console.log('♿ accessibility.js cargado completamente');
+/* ===== COMANDOS DE TESTING =====
+
+// Anunciar mensaje
+announceToScreenReader('Mensaje de prueba')
+
+// Toggle alto contraste
+toggleHighContrast()
+
+// Ver reporte de accesibilidad
+accessibilityReport()
+
+// Ver sistema
+accessibilitySystem
+
+===============================================*/
