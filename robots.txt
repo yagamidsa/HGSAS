@@ -1,0 +1,211 @@
+# robots.txt para COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S
+# Sitio web oficial de distribución de productos AJEDREZ
+
+# Permitir acceso a todos los bots de búsqueda
+User-agent: *
+Allow: /
+
+# Permitir específicamente a bots importantes
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+# Archivos y directorios restringidos
+Disallow: /admin/
+Disallow: /private/
+Disallow: /temp/
+Disallow: /backup/
+Disallow: /logs/
+Disallow: /config/
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /.env
+Disallow: /vendor/
+
+# Archivos de configuración sensibles
+Disallow: /.htaccess
+Disallow: /composer.json
+Disallow: /composer.lock
+Disallow: /package.json
+Disallow: /package-lock.json
+Disallow: /webpack.config.js
+Disallow: /gulpfile.js
+
+# Archivos temporales y de desarrollo
+Disallow: *.tmp
+Disallow: *.bak
+Disallow: *.log
+Disallow: *.sql
+Disallow: *.zip
+Disallow: *.tar.gz
+
+# Permitir archivos importantes para SEO
+Allow: /sitemap.xml
+Allow: /robots.txt
+Allow: /manifest.json
+Allow: /favicon.ico
+Allow: /assets/
+Allow: /css/
+Allow: /js/
+Allow: /images/
+
+# Permitir acceso a archivos de medios
+Allow: *.css
+Allow: *.js
+Allow: *.png
+Allow: *.jpg
+Allow: *.jpeg
+Allow: *.gif
+Allow: *.webp
+Allow: *.svg
+Allow: *.ico
+Allow: *.pdf
+Allow: *.woff
+Allow: *.woff2
+Allow: *.ttf
+Allow: *.eot
+
+# Parámetros de URL que deben ser ignorados
+Disallow: /*?utm_source=*
+Disallow: /*?utm_medium=*
+Disallow: /*?utm_campaign=*
+Disallow: /*?utm_term=*
+Disallow: /*?utm_content=*
+Disallow: /*?fbclid=*
+Disallow: /*?gclid=*
+Disallow: /*?ref=*
+Disallow: /*?source=*
+Disallow: /*?debug=*
+Disallow: /*?test=*
+
+# URLs de búsqueda interna
+Disallow: /search*
+Disallow: /*?q=*
+Disallow: /*?search=*
+Disallow: /*?query=*
+
+# Versiones de impresión y móvil duplicadas
+Disallow: /*?print=*
+Disallow: /print/
+Disallow: /mobile/
+
+# Páginas de error y utilidades
+Disallow: /404.html
+Disallow: /403.html
+Disallow: /500.html
+Disallow: /error/
+Disallow: /maintenance.html
+
+# Archivos de configuración específicos
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: /wp-content/plugins/
+Disallow: /wp-content/cache/
+Disallow: /cgi-bin/
+
+# Crawl delay para ser considerado con el servidor
+Crawl-delay: 1
+
+# Sitemap XML location
+Sitemap: https://www.discomerhgsas.com.co/sitemap.xml
+
+# Información adicional
+# Sitio web: COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S
+# Productos: AJEDREZ - Vinos Espumosos Sin Alcohol
+# Contacto: info@discomerhgsas.com.co
+# NIT: 901.000.572-1
+# Ubicación: Cundinamarca, Colombia
+
+# Bots específicos para redes sociales
+User-agent: facebookexternalhit/1.1
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+User-agent: TelegramBot
+Allow: /
+
+# Bots de verificación SSL y seguridad
+User-agent: SSL Labs
+Allow: /
+
+User-agent: Pingdom
+Allow: /
+
+User-agent: GTmetrix
+Allow: /
+
+User-agent: PageSpeed
+Allow: /
+
+# Bots de archivo web
+User-agent: ia_archiver
+Allow: /
+
+User-agent: Wayback
+Allow: /
+
+# Restricciones para bots agresivos o de scraping
+User-agent: SemrushBot
+Crawl-delay: 5
+
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Crawl-delay: 10
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: SiteAuditBot
+Disallow: /
+
+User-agent: serpstatbot
+Disallow: /
+
+# Bots maliciosos conocidos
+User-agent: BadBot
+Disallow: /
+
+User-agent: ScrapyBot
+Disallow: /
+
+User-agent: spbot
+Disallow: /
+
+User-agent: MegaIndex
+Disallow: /
