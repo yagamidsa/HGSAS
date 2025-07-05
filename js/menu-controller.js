@@ -1,6 +1,6 @@
 /* ===================================================================
-   MENU CONTROLLER - COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S
-   Sistema de control unificado para los 3 tipos de menú - ARREGLADO
+   MENU CONTROLLER COMPLETO - COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S
+   Sistema de control unificado para los 3 tipos de menú - FUNCIONAL
    =================================================================== */
 
 class MenuController {
@@ -98,7 +98,7 @@ class MenuController {
     }
     
     setupEventListeners() {
-        // Usar delegación de eventos para mejor rendimiento
+        // UN SOLO event listener unificado para evitar conflictos
         document.addEventListener('click', (e) => {
             this.handleDocumentClick(e);
         });
@@ -112,7 +112,9 @@ class MenuController {
     }
     
     handleDocumentClick(e) {
-        // Click en activadores de menú
+        console.log('🔍 Click detectado en:', e.target);
+        
+        // PRIORIDAD 1: Click en activadores de menú
         if (e.target.closest('.orbital-activator')) {
             e.stopPropagation();
             this.toggleMenu('orbital');
@@ -131,17 +133,193 @@ class MenuController {
             return;
         }
         
-        // Click en items del menú
+        // PRIORIDAD 2: Click en items del menú (navegación)
         const menuItem = e.target.closest('.orbital-item, .hex-item, .morphing-item');
         if (menuItem) {
-            this.handleMenuItemClick(e, menuItem);
+            console.log('📍 Click en item del menú:', menuItem.textContent);
+            e.stopPropagation();
+            
+            // CERRAR MENÚ INMEDIATAMENTE
+            console.log('🔴 Cerrando menú por navegación...');
+            this.closeAllMenus();
+            
+            // Manejar la navegación después de un pequeño delay
+            setTimeout(() => {
+                this.handleNavigation(menuItem);
+            }, 200);
             return;
         }
         
-        // Click fuera del menú - cerrar
-        if (!e.target.closest('.menu-system')) {
-            this.closeAllMenus();
+        // PRIORIDAD 3: Click dentro del área del menú (no cerrar)
+        if (e.target.closest('.menu-system, .menu-orbital, .menu-hexagonal, .menu-morphing, .orbital-items, .hex-items, .morphing-panel')) {
+            return;
         }
+        
+        // PRIORIDAD 4: Click fuera del menú (cerrar)
+        if (this.isOpen) {
+            this.closeAllMenus();
+            console.log('🔴 Menú cerrado por click fuera');
+        }
+    }
+    
+    handleNavigation(menuItem) {
+        const href = menuItem.getAttribute('href');
+        const menuText = menuItem.textContent.trim().toLowerCase();
+        
+        console.log(`🔗 Navegando a: ${href} (${menuText})`);
+        
+        // Manejar navegación según el tipo de link
+        if (href && href.startsWith('#')) {
+            // Link interno directo
+            this.smoothScrollToSection(href);
+        } else if (href && (href.startsWith('http') || href.startsWith('mailto') || href.startsWith('tel'))) {
+            // Link externo
+            if (menuItem.hasAttribute('target') && menuItem.getAttribute('target') === '_blank') {
+                window.open(href, '_blank', 'noopener,noreferrer');
+            } else {
+                window.location.href = href;
+            }
+        } else {
+            // Navegación por texto del menú
+            this.navigateByMenuText(menuText);
+        }
+    }
+    
+    navigateByMenuText(menuText) {
+        let targetSection = null;
+        
+        // Mapear texto del menú a secciones
+        if (menuText.includes('inicio') || menuText.includes('home')) {
+            targetSection = '#home';
+        } else if (menuText.includes('productos') || menuText.includes('ajedrez')) {
+            targetSection = '#productos';
+        } else if (menuText.includes('empresa') || menuText.includes('quienes') || menuText.includes('somos')) {
+            targetSection = '#quienes-somos';
+        } else if (menuText.includes('contacto') || menuText.includes('consulta')) {
+            targetSection = '#contacto';
+        } else if (menuText.includes('whatsapp')) {
+            this.openWhatsApp();
+            return;
+        }
+        
+        // Navegar a la sección encontrada
+        if (targetSection) {
+            console.log(`📍 Navegando por texto a: ${targetSection}`);
+            this.smoothScrollToSection(targetSection);
+        } else {
+            console.warn(`⚠️ No se encontró sección para: ${menuText}`);
+            // Fallback: ir al inicio
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    }
+    
+    openWhatsApp() {
+        // Usar el controlador de WhatsApp si existe
+        if (window.whatsappController) {
+            window.whatsappController.handleFloatingButtonClick();
+        } else {
+            // Fallback directo
+            const message = 'Hola, me interesa conocer más sobre los productos AJEDREZ';
+            const phone = '573XXXXXXXXX'; // Reemplaza con tu número real
+            const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank', 'noopener,noreferrer');
+        }
+        console.log('📱 Abriendo WhatsApp');
+    }
+    
+    smoothScrollToSection(href) {
+        // Primero intentar con el href directo
+        let targetSection = document.querySelector(href);
+        
+        // Si no existe, intentar encontrar por selectores alternativos
+        if (!targetSection) {
+            const sectionId = href.replace('#', '');
+            const alternativeSelectors = [
+                `#${sectionId}`,
+                `[data-section="${sectionId}"]`,
+                `.${sectionId}-section`,
+                `section[id*="${sectionId}"]`,
+                `section[class*="${sectionId}"]`
+            ];
+            
+            for (const selector of alternativeSelectors) {
+                targetSection = document.querySelector(selector);
+                if (targetSection) {
+                    console.log(`✅ Sección encontrada con: ${selector}`);
+                    break;
+                }
+            }
+        }
+        
+        // Si aún no existe, buscar por posición aproximada
+        if (!targetSection) {
+            if (href === '#home' || href === '#inicio') {
+                targetSection = document.querySelector('.hero-section, .main-content, body');
+            } else if (href === '#productos') {
+                targetSection = document.querySelector('.products-section, [class*="product"]');
+            } else if (href === '#quienes-somos') {
+                targetSection = document.querySelector('.about-section, [class*="about"]');
+            } else if (href === '#contacto') {
+                targetSection = document.querySelector('.contact-section, [class*="contact"]');
+            }
+        }
+        
+        if (!targetSection) {
+            console.warn(`❌ Sección ${href} no encontrada. Navegando al inicio.`);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            return;
+        }
+        
+        const header = document.querySelector('.header');
+        const headerHeight = header ? header.offsetHeight : 80;
+        const extraMargin = 30;
+        const totalOffset = headerHeight + extraMargin;
+        
+        const elementPosition = targetSection.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = Math.max(0, elementPosition - totalOffset);
+        
+        // Scroll suave
+        this.animatedScrollTo(offsetPosition, 800);
+        
+        // Actualizar URL
+        if (history.pushState) {
+            history.pushState(null, null, href);
+        }
+        
+        // Focus para accesibilidad
+        setTimeout(() => {
+            if (targetSection.setAttribute) {
+                targetSection.setAttribute('tabindex', '-1');
+                targetSection.focus({ preventScroll: true });
+            }
+        }, 900);
+        
+        console.log(`🎯 Navegación exitosa a ${href}`);
+    }
+    
+    animatedScrollTo(targetPosition, duration) {
+        const startPosition = window.pageYOffset;
+        const distance = targetPosition - startPosition;
+        let startTime = null;
+        
+        const easeInOutCubic = (t) => {
+            return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+        };
+        
+        const animation = (currentTime) => {
+            if (startTime === null) startTime = currentTime;
+            const timeElapsed = currentTime - startTime;
+            const progress = Math.min(timeElapsed / duration, 1);
+            
+            const ease = easeInOutCubic(progress);
+            window.scrollTo(0, startPosition + distance * ease);
+            
+            if (progress < 1) {
+                requestAnimationFrame(animation);
+            }
+        };
+        
+        requestAnimationFrame(animation);
     }
     
     toggleMenu(type) {
@@ -179,8 +357,6 @@ class MenuController {
                     this.morphingMenu.setAttribute('aria-expanded', 'true');
                     const trigger = this.morphingMenu.querySelector('.morphing-trigger');
                     if (trigger) trigger.setAttribute('aria-expanded', 'true');
-                    
-                    // Prevenir scroll del body cuando el menú móvil está abierto
                     document.body.style.overflow = 'hidden';
                 }
                 break;
@@ -216,8 +392,6 @@ class MenuController {
                     this.morphingMenu.setAttribute('aria-expanded', 'false');
                     const trigger = this.morphingMenu.querySelector('.morphing-trigger');
                     if (trigger) trigger.setAttribute('aria-expanded', 'false');
-                    
-                    // Restaurar scroll del body
                     document.body.style.overflow = 'auto';
                 }
                 break;
@@ -227,82 +401,38 @@ class MenuController {
     }
     
     closeAllMenus() {
-        if (this.orbitalMenu) this.closeMenu('orbital');
-        if (this.hexMenu) this.closeMenu('hexagonal');
-        if (this.morphingMenu) this.closeMenu('morphing');
+        console.log('🔴 closeAllMenus ejecutado');
+        
+        // Cambiar el estado interno PRIMERO
+        this.isOpen = false;
+        
+        // Cerrar todos los menús específicos
+        if (this.orbitalMenu) {
+            this.orbitalMenu.setAttribute('aria-expanded', 'false');
+            const activator = this.orbitalMenu.querySelector('.orbital-activator');
+            if (activator) activator.setAttribute('aria-expanded', 'false');
+        }
+        
+        if (this.hexMenu) {
+            this.hexMenu.setAttribute('aria-expanded', 'false');
+            const activator = this.hexMenu.querySelector('.hex-activator');
+            if (activator) activator.setAttribute('aria-expanded', 'false');
+        }
+        
+        if (this.morphingMenu) {
+            this.morphingMenu.setAttribute('aria-expanded', 'false');
+            const trigger = this.morphingMenu.querySelector('.morphing-trigger');
+            if (trigger) trigger.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = 'auto';
+        }
+        
+        console.log('✅ Todos los menús cerrados');
     }
     
     handleMenuItemClick(e, menuItem) {
-        const href = menuItem.getAttribute('href');
-        
-        if (href && href.startsWith('#')) {
-            e.preventDefault();
-            
-            // Cerrar menú inmediatamente
-            this.closeAllMenus();
-            
-            // Scroll suave a la sección con offset correcto
-            setTimeout(() => {
-                this.smoothScrollToSection(href);
-            }, 200);
-        }
-    }
-    
-    smoothScrollToSection(href) {
-        const targetSection = document.querySelector(href);
-        if (!targetSection) {
-            console.warn(`Sección ${href} no encontrada`);
-            return;
-        }
-        
-        // Calcular offset del header + margen extra
-        const header = document.querySelector('.header');
-        const headerHeight = header ? header.offsetHeight : 80;
-        const extraMargin = 30; // Margen extra para que se vea bien el título
-        const totalOffset = headerHeight + extraMargin;
-        
-        // Posición del elemento menos el offset
-        const elementPosition = targetSection.getBoundingClientRect().top + window.pageYOffset;
-        const offsetPosition = elementPosition - totalOffset;
-        
-        // Scroll suave con mejor animación
-        this.animatedScrollTo(offsetPosition, 800);
-        
-        // Actualizar URL sin recargar página
-        history.pushState(null, null, href);
-        
-        // Focus en la sección para accesibilidad
-        setTimeout(() => {
-            targetSection.focus({ preventScroll: true });
-        }, 900);
-        
-        console.log(`🎯 Navegando a ${href}`);
-    }
-    
-    animatedScrollTo(targetPosition, duration) {
-        const startPosition = window.pageYOffset;
-        const distance = targetPosition - startPosition;
-        let startTime = null;
-        
-        // Función de easing más suave
-        const easeInOutCubic = (t) => {
-            return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
-        };
-        
-        const animation = (currentTime) => {
-            if (startTime === null) startTime = currentTime;
-            const timeElapsed = currentTime - startTime;
-            const progress = Math.min(timeElapsed / duration, 1);
-            
-            const ease = easeInOutCubic(progress);
-            window.scrollTo(0, startPosition + distance * ease);
-            
-            if (progress < 1) {
-                requestAnimationFrame(animation);
-            }
-        };
-        
-        requestAnimationFrame(animation);
+        // Esta función existe para compatibilidad
+        // La navegación real se maneja en handleNavigation()
+        this.handleNavigation(menuItem);
     }
     
     setupScrollBehavior() {
@@ -424,7 +554,7 @@ class MenuController {
                     
                     // Swipe hacia la derecha para cerrar
                     if (deltaX > 100 && Math.abs(deltaY) < 50) {
-                        this.closeMenu('morphing');
+                        this.closeAllMenus();
                     }
                 });
             }
@@ -486,7 +616,37 @@ document.addEventListener('DOMContentLoaded', () => {
         window.toggleMenu = () => window.menuController.toggle();
         window.getMenuState = () => window.menuController.getState();
         window.updateMenus = () => window.menuController.forceUpdate();
+        window.closeMenus = () => window.menuController.closeAllMenus();
+        
+        console.log('🎯 Menu Controller listo y funcional');
     }, 100);
+});
+
+// ===== BACKUP SYSTEM - Por si algo falla =====
+document.addEventListener('click', function(e) {
+    const menuItem = e.target.closest('.orbital-item, .hex-item, .morphing-item');
+    
+    if (menuItem && window.menuController && window.menuController.isOpen) {
+        console.log('🚨 BACKUP: Detectado click en menú, forzando cierre');
+        
+        // Forzar cierre inmediato
+        window.menuController.isOpen = false;
+        
+        // Quitar aria-expanded de todos los menús
+        document.querySelectorAll('.menu-orbital, .menu-hexagonal, .menu-morphing').forEach(menu => {
+            menu.setAttribute('aria-expanded', 'false');
+        });
+        
+        // Quitar aria-expanded de todos los activadores
+        document.querySelectorAll('.orbital-activator, .hex-activator, .morphing-trigger').forEach(activator => {
+            activator.setAttribute('aria-expanded', 'false');
+        });
+        
+        // Restaurar body overflow
+        document.body.style.overflow = 'auto';
+        
+        console.log('🚨 BACKUP: Menú forzadamente cerrado');
+    }
 });
 
 // Exportar para otros módulos
@@ -494,18 +654,4 @@ if (typeof module !== 'undefined' && module.exports) {
     module.exports = MenuController;
 }
 
-/* ===== COMANDOS DE TESTING =====
-
-// Estado del menú
-getMenuState()
-
-// Alternar menú actual
-toggleMenu()
-
-// Forzar actualización
-updateMenus()
-
-// Ver controlador
-menuController
-
-=======================================================*/
+console.log('🔧 Menu Controller COMPLETO cargado - Navegación + cierre automático funcionan');

@@ -2619,3 +2619,363 @@ body.light-mode .theme-icon-light {
         margin-bottom: 15px;
     }
 }
+
+/* ===== ARREGLO CRÍTICO - AGREGAR AL FINAL DE TU styles.css ===== */
+
+/* 1. FIX Z-INDEX - Los menús deben estar ARRIBA del header */
+.menu-orbital,
+.menu-hexagonal, 
+.menu-morphing {
+    z-index: 1050 !important;
+}
+
+.orbital-items,
+.hex-items,
+.morphing-panel {
+    z-index: 1051 !important;
+}
+
+/* 2. FIX POSITIONING HEXAGONAL - El contenedor debe ser relative */
+.menu-hexagonal {
+    position: relative !important;
+}
+
+.hex-items {
+    position: absolute !important;
+    top: 100% !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 300px !important;
+    height: 300px !important;
+    margin-top: 10px !important;
+}
+
+/* 3. FIX POSITIONING ORBITAL */
+.orbital-items {
+    position: absolute !important;
+    top: 100% !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 120px !important;
+    height: 400px !important;
+    margin-top: 10px !important;
+}
+
+/* 4. FIX POSITIONING MORPHING PANEL */
+.morphing-panel {
+    top: 0 !important;
+    right: -100% !important;
+    position: fixed !important;
+    z-index: 1052 !important;
+}
+
+/* 5. ASEGURAR QUE SE VEN LOS ELEMENTOS AL EXPANDIR */
+.menu-orbital[aria-expanded="true"] .orbital-items {
+    pointer-events: auto !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.menu-hexagonal[aria-expanded="true"] .hex-items {
+    pointer-events: auto !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.menu-morphing[aria-expanded="true"] .morphing-panel {
+    right: 0 !important;
+}
+
+/* 6. DEBUG - TEMPORAL PARA VER SI APARECEN (REMOVER DESPUÉS) */
+.hex-items {
+    border: 2px solid red !important;
+    background: rgba(255, 0, 0, 0.2) !important;
+}
+
+.orbital-items {
+    border: 2px solid blue !important;
+    background: rgba(0, 0, 255, 0.2) !important;
+}
+
+/* 7. FIX ESTRUCTURA FALTANTE EN HEX-SHAPE */
+.hex-shape::before {
+    content: 'HG' !important;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+}
+
+/* ===== MENÚ HEXAGONAL PROFESIONAL - SIN CÍRCULOS FEOS ===== */
+
+/* REMOVER TODOS LOS ESTILOS ANTERIORES Y USAR SOLO ESTO */
+
+/* 1. Z-INDEX CORRECTO */
+.menu-hexagonal {
+    position: relative !important;
+    z-index: 1050 !important;
+}
+
+.hex-items {
+    z-index: 1051 !important;
+}
+
+/* 2. CONTENEDOR DE ITEMS - SIN FONDO FEO */
+.hex-items {
+    position: absolute !important;
+    top: 100% !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 280px !important;
+    height: 280px !important;
+    margin-top: 20px !important;
+    
+    /* SIN FONDOS RAROS - TRANSPARENTE */
+    background: none !important;
+    border: none !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    
+    /* Estados iniciales */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+/* 3. ESTADO EXPANDIDO */
+.menu-hexagonal[aria-expanded="true"] .hex-items {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+}
+
+/* 4. ITEMS INDIVIDUALES - DISEÑO LIMPIO */
+.hex-item {
+    position: absolute !important;
+    width: 80px !important;
+    height: 40px !important;
+    
+    /* Diseño moderno y limpio */
+    background: rgba(15, 15, 35, 0.95) !important;
+    backdrop-filter: blur(20px) !important;
+    border: 2px solid rgba(189, 147, 249, 0.6) !important;
+    border-radius: 20px !important;
+    
+    /* Hexágono OFF - Rectángulo redondeado ON */
+    clip-path: none !important;
+    
+    /* Texto centrado */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    
+    color: var(--white) !important;
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    
+    /* Sombra sutil */
+    box-shadow: 
+        0 8px 25px rgba(0, 0, 0, 0.3),
+        0 4px 12px rgba(189, 147, 249, 0.2) !important;
+    
+    /* Transición suave */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    
+    /* Estados iniciales */
+    opacity: 0;
+    transform: scale(0.3) translateY(-10px);
+}
+
+/* 5. POSICIONES LIMPIAS - SIN MATEMÁTICAS COMPLEJAS */
+.hex-item[data-vertex="1"] {
+    top: 0;
+    left: 50%;
+    margin-left: -40px;
+    transition-delay: 0.1s;
+}
+
+.hex-item[data-vertex="2"] {
+    top: 60px;
+    right: 20px;
+    transition-delay: 0.15s;
+}
+
+.hex-item[data-vertex="3"] {
+    bottom: 60px;
+    right: 20px;
+    transition-delay: 0.2s;
+}
+
+.hex-item[data-vertex="4"] {
+    bottom: 0;
+    left: 50%;
+    margin-left: -40px;
+    transition-delay: 0.25s;
+}
+
+.hex-item[data-vertex="5"] {
+    bottom: 60px;
+    left: 20px;
+    transition-delay: 0.3s;
+}
+
+.hex-item[data-vertex="6"] {
+    top: 60px;
+    left: 20px;
+    transition-delay: 0.35s;
+}
+
+/* 6. ESTADO VISIBLE */
+.menu-hexagonal[aria-expanded="true"] .hex-item {
+    opacity: 1 !important;
+    transform: scale(1) translateY(0) !important;
+}
+
+/* 7. HOVER ELEGANTE */
+.hex-item:hover {
+    background: rgba(189, 147, 249, 0.9) !important;
+    border-color: var(--accent-purple) !important;
+    color: var(--primary-dark) !important;
+    
+    transform: scale(1.05) translateY(-3px) !important;
+    
+    box-shadow: 
+        0 12px 30px rgba(0, 0, 0, 0.4),
+        0 6px 15px rgba(189, 147, 249, 0.4),
+        0 0 20px rgba(189, 147, 249, 0.3) !important;
+}
+
+/* 8. ACTIVADOR MEJORADO */
+.hex-activator {
+    width: 55px !important;
+    height: 55px !important;
+    
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink)) !important;
+    border: none !important;
+    border-radius: 50% !important;
+    cursor: pointer !important;
+    
+    box-shadow: 
+        0 8px 20px rgba(189, 147, 249, 0.3),
+        0 4px 10px rgba(0, 0, 0, 0.2) !important;
+    
+    transition: all 0.3s ease !important;
+}
+
+.hex-activator:hover {
+    transform: scale(1.1) !important;
+    box-shadow: 
+        0 10px 25px rgba(189, 147, 249, 0.4),
+        0 5px 15px rgba(0, 0, 0, 0.3) !important;
+}
+
+.hex-shape {
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 50% !important;
+    clip-path: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.hex-shape::before {
+    content: 'HG' !important;
+    font-size: 1rem !important;
+    font-weight: 700 !important;
+    color: var(--primary-dark) !important;
+    text-shadow: none !important;
+}
+
+/* 9. RESPONSIVE */
+@media (max-width: 900px) {
+    .hex-items {
+        width: 240px !important;
+        height: 240px !important;
+    }
+    
+    .hex-item {
+        width: 70px !important;
+        height: 35px !important;
+        font-size: 0.7rem !important;
+    }
+    
+    .hex-item[data-vertex="1"],
+    .hex-item[data-vertex="4"] {
+        margin-left: -35px;
+    }
+}
+
+/* 10. REMOVER EFECTOS RAROS */
+.hex-items::before {
+    display: none !important;
+}
+
+.hex-item::before {
+    display: none !important;
+}
+
+/* 11. ASEGURAR QUE NO HAY CONFLICTOS */
+.menu-hexagonal * {
+    box-sizing: border-box !important;
+}
+
+/* 12. ESTADOS DE ENFOQUE */
+.hex-item:focus {
+    outline: 2px solid var(--accent-purple) !important;
+    outline-offset: 2px !important;
+    background: rgba(189, 147, 249, 0.8) !important;
+    color: var(--primary-dark) !important;
+}   
+
+/* ===== FIX 1: ELIMINAR HG DUPLICADO ===== */
+
+/* Ocultar el HG del CSS que está duplicado */
+.hex-shape::before {
+    display: none !important;
+}
+
+/* Solo mostrar el HG del HTML */
+.hex-center {
+    font-size: 1rem !important;
+    font-weight: 700 !important;
+    color: var(--primary-dark) !important;
+    display: block !important;
+}
+
+/* ===== FIX 2: MEJORAR ACTIVADOR ===== */
+.hex-activator {
+    width: 55px !important;
+    height: 55px !important;
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink)) !important;
+    border: none !important;
+    border-radius: 50% !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    
+    box-shadow: 
+        0 8px 20px rgba(189, 147, 249, 0.3),
+        0 4px 10px rgba(0, 0, 0, 0.2) !important;
+    
+    transition: all 0.3s ease !important;
+}
+
+.hex-shape {
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 50% !important;
+    clip-path: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: transparent !important;
+}

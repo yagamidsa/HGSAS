@@ -1,667 +1,545 @@
 /* ===================================================================
-   MENU HEXAGONAL TABLET - COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S
-   Sistema de navegación hexagonal para tablets (768px - 1023px)
-   Efecto: Expansión en 6 direcciones con geometría perfecta
+   MENU HEXAGONAL TABLET FIXED - COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S
+   Sistema de navegación hexagonal OPTIMIZADO para tablets (768px - 1023px)
+   PROBLEMAS SOLUCIONADOS:
+   - Positioning mejorado
+   - Transitions más suaves
+   - Responsive fixes
+   - Performance optimizado
+   - Z-index hierarchy fixed
    =================================================================== */
 
-/* ===== HEXAGONAL MENU CONTAINER ===== */
+/* ===== SOLO MOSTRAR EN TABLET ===== */
 .menu-hexagonal {
+    display: none;
     position: relative;
-    display: flex;
     align-items: center;
     justify-content: center;
     z-index: 1001;
 }
 
-/* ===== HEXAGON ACTIVATOR ===== */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .menu-hexagonal {
+        display: flex;
+    }
+}
+
+/* ===== HEXAGON ACTIVATOR SIMPLIFICADO ===== */
 .hex-activator {
     position: relative;
-    width: 70px;
-    height: 70px;
+    width: 65px;
+    height: 65px;
     background: transparent;
     border: none;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    overflow: visible;
-    user-select: none;
+    transition: all 0.3s ease;
+    outline: none;
+    z-index: 1002;
 }
 
-/* ===== HEXAGON SHAPE ===== */
+/* ===== HEXAGON SHAPE MEJORADO ===== */
 .hex-shape {
     position: relative;
-    width: 60px;
-    height: 60px;
-    background: var(--gradient-accent);
+    width: 55px;
+    height: 55px;
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     display: flex;
     align-items: center;
     justify-content: center;
-    animation: hexFloating 4s ease-in-out infinite;
+    box-shadow: 
+        0 8px 20px rgba(189, 147, 249, 0.3),
+        0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* ===== FLOATING ANIMATION ===== */
-@keyframes hexFloating {
-    0%, 100% {
-        transform: translateY(0px) rotate(0deg);
-        filter: hue-rotate(0deg);
-    }
-    25% {
-        transform: translateY(-3px) rotate(90deg);
-        filter: hue-rotate(30deg);
-    }
-    50% {
-        transform: translateY(0px) rotate(180deg);
-        filter: hue-rotate(60deg);
-    }
-    75% {
-        transform: translateY(-2px) rotate(270deg);
-        filter: hue-rotate(30deg);
-    }
-}
-
-/* ===== HEXAGON CENTER TEXT ===== */
-.hex-shape::before {
-    content: 'HG';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: var(--font-heading);
-    font-size: 1rem;
+/* ===== CENTRO DEL HEXÁGONO ===== */
+.hex-center {
+    font-family: var(--font-heading, 'Arial', sans-serif);
+    font-size: 0.9rem;
     font-weight: 700;
     color: var(--primary-dark);
     letter-spacing: 1px;
-    z-index: 2;
-    transition: all 0.4s ease;
+    user-select: none;
+    transition: all 0.3s ease;
 }
 
-/* ===== HEXAGON BORDER GLOW ===== */
-.hex-shape::after {
-    content: '';
-    position: absolute;
-    top: -3px;
-    left: -3px;
-    right: -3px;
-    bottom: -3px;
-    background: conic-gradient(
-        from 60deg,
-        var(--accent-purple),
-        var(--accent-pink),
-        var(--accent-green),
-        var(--accent-purple)
-    );
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    z-index: -1;
-    opacity: 0;
-    animation: hexBorderRotate 6s linear infinite;
-}
-
-@keyframes hexBorderRotate {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* ===== HOVER STATES ===== */
+/* ===== HOVER STATE ACTIVATOR ===== */
 .hex-activator:hover .hex-shape {
-    transform: scale(1.15) rotate(30deg);
+    transform: scale(1.1) rotate(15deg);
     box-shadow: 
-        0 15px 40px rgba(189, 147, 249, 0.4),
-        0 0 30px rgba(80, 250, 123, 0.3);
-    animation-play-state: paused;
+        0 12px 30px rgba(189, 147, 249, 0.4),
+        0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
-.hex-activator:hover .hex-shape::after {
-    opacity: 0.8;
-}
-
-.hex-activator:hover .hex-shape::before {
+.hex-activator:hover .hex-center {
     color: var(--white);
-    text-shadow: 0 0 10px rgba(189, 147, 249, 0.8);
+    text-shadow: 0 0 8px rgba(189, 147, 249, 0.8);
 }
 
-/* ===== ACTIVE STATE ===== */
+/* ===== ACTIVE STATE ACTIVATOR ===== */
 .hex-activator[aria-expanded="true"] .hex-shape {
-    transform: scale(0.85) rotate(180deg);
-    background: var(--gradient-primary);
+    transform: scale(0.9) rotate(180deg);
+    background: linear-gradient(135deg, var(--accent-green), var(--accent-purple));
     box-shadow: 
-        0 0 0 3px var(--accent-purple),
-        inset 0 0 20px rgba(189, 147, 249, 0.3);
-    animation-play-state: paused;
+        0 0 0 2px var(--accent-purple),
+        inset 0 0 15px rgba(189, 147, 249, 0.2);
 }
 
-.hex-activator[aria-expanded="true"] .hex-shape::before {
-    color: var(--accent-purple);
-    transform: translate(-50%, -50%) scale(0.9) rotate(-180deg);
+.hex-activator[aria-expanded="true"] .hex-center {
+    color: var(--white);
+    transform: rotate(-180deg);
 }
 
-.hex-activator[aria-expanded="true"] .hex-shape::after {
-    opacity: 1;
-    animation-direction: reverse;
-}
-
-/* ===== HEXAGONAL ITEMS CONTAINER ===== */
+/* ===== HEXAGONAL ITEMS CONTAINER FIXED ===== */
 .hex-items {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    width: 320px;
-    height: 320px;
+    width: 300px;
+    height: 300px;
+    margin: -150px 0 0 -150px;
     pointer-events: none;
     z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
 }
 
 .menu-hexagonal[aria-expanded="true"] .hex-items {
     pointer-events: auto;
+    opacity: 1;
+    visibility: visible;
 }
 
-/* ===== INDIVIDUAL HEXAGONAL ITEMS ===== */
+/* ===== INDIVIDUAL HEXAGONAL ITEMS SIMPLIFICADOS ===== */
 .hex-item {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 70px;
-    height: 70px;
-    margin: -35px 0 0 -35px;
-    background: 
-        radial-gradient(circle at 30% 30%, rgba(189, 147, 249, 0.2), rgba(80, 250, 123, 0.15) 50%, rgba(255, 121, 198, 0.1) 70%, transparent 85%),
-        linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05), rgba(15, 15, 35, 0.3));
-    backdrop-filter: blur(15px);
+    width: 65px;
+    height: 65px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
     color: var(--white);
-    font-size: 0.75rem;
-    font-weight: 700;
+    font-size: 0.7rem;
+    font-weight: 600;
     text-align: center;
     line-height: 1.1;
-    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 2px solid rgba(189, 147, 249, 0.4);
+    box-shadow: 
+        0 8px 20px rgba(15, 15, 35, 0.3),
+        0 4px 10px rgba(189, 147, 249, 0.2);
+    
+    /* Estados iniciales */
     opacity: 0;
     visibility: hidden;
-    transform: translate(-50%, -50%) scale(0.2) rotate(-120deg);
-    border: 2px solid rgba(189, 147, 249, 0.4);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    padding: 8px;
-    box-shadow: 
-        0 10px 25px rgba(15, 15, 35, 0.4),
-        0 5px 15px rgba(189, 147, 249, 0.2),
-        inset 0 2px 5px rgba(255, 255, 255, 0.1);
+    transform: scale(0.3) rotate(-90deg);
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* ===== ITEM STATES ===== */
+/* ===== ESTADOS ACTIVOS DE ITEMS ===== */
 .menu-hexagonal[aria-expanded="true"] .hex-item {
     opacity: 1;
     visibility: visible;
-    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    transform: scale(1) rotate(0deg);
 }
 
+/* ===== HOVER EFFECTS ITEMS ===== */
 .hex-item:hover {
-    background: 
-        radial-gradient(circle at 30% 30%, rgba(189, 147, 249, 0.4), rgba(80, 250, 123, 0.25) 50%, rgba(255, 121, 198, 0.15) 70%, transparent 85%),
-        linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1), rgba(15, 15, 35, 0.4));
-    transform: translate(-50%, -50%) scale(1.2) rotate(15deg);
+    background: rgba(189, 147, 249, 0.3);
+    transform: scale(1.15) rotate(10deg);
     border-color: var(--accent-purple);
     box-shadow: 
-        0 15px 35px rgba(15, 15, 35, 0.6),
-        0 8px 20px rgba(189, 147, 249, 0.4),
-        inset 0 3px 8px rgba(255, 255, 255, 0.2),
-        0 0 30px currentColor;
+        0 12px 30px rgba(15, 15, 35, 0.5),
+        0 6px 15px rgba(189, 147, 249, 0.4),
+        0 0 20px var(--accent-purple);
     z-index: 10;
 }
 
-/* ===== HEXAGONAL VERTEX POSITIONS ===== */
+/* ===== POSICIONES HEXAGONALES FIJAS ===== */
 
-/* Vértice 1 - Superior (12 en punto) */
+/* Vértice 1 - Superior (12:00) */
 .hex-item[data-vertex="1"] {
-    transform: translate(-50%, -50%) translateY(-130px) scale(0.2) rotate(-120deg);
+    top: 0;
+    left: 50%;
+    margin-left: -32.5px;
     transition-delay: 0.1s;
-    background: linear-gradient(135deg, var(--accent-purple), rgba(189, 147, 249, 0.3));
 }
 
-.menu-hexagonal[aria-expanded="true"] .hex-item[data-vertex="1"] {
-    transform: translateY(-130px);
-}
-
-/* Vértice 2 - Superior Derecho (2 en punto) */
+/* Vértice 2 - Superior Derecho (2:00) */
 .hex-item[data-vertex="2"] {
-    transform: translate(-50%, -50%) translate(115px, -65px) scale(0.2) rotate(-120deg);
+    top: 25%;
+    right: 0;
+    margin-top: -32.5px;
     transition-delay: 0.15s;
-    background: linear-gradient(135deg, var(--accent-green), rgba(80, 250, 123, 0.3));
 }
 
-.menu-hexagonal[aria-expanded="true"] .hex-item[data-vertex="2"] {
-    transform: translate(115px, -65px);
-}
-
-/* Vértice 3 - Inferior Derecho (4 en punto) */
+/* Vértice 3 - Inferior Derecho (4:00) */
 .hex-item[data-vertex="3"] {
-    transform: translate(-50%, -50%) translate(115px, 65px) scale(0.2) rotate(-120deg);
+    bottom: 25%;
+    right: 0;
+    margin-bottom: -32.5px;
     transition-delay: 0.2s;
-    background: linear-gradient(135deg, var(--accent-pink), rgba(255, 121, 198, 0.3));
 }
 
-.menu-hexagonal[aria-expanded="true"] .hex-item[data-vertex="3"] {
-    transform: translate(115px, 65px);
-}
-
-/* Vértice 4 - Inferior (6 en punto) */
+/* Vértice 4 - Inferior (6:00) */
 .hex-item[data-vertex="4"] {
-    transform: translate(-50%, -50%) translateY(130px) scale(0.2) rotate(-120deg);
+    bottom: 0;
+    left: 50%;
+    margin-left: -32.5px;
     transition-delay: 0.25s;
-    background: linear-gradient(135deg, var(--whatsapp-green), rgba(29, 185, 84, 0.3));
 }
 
-.menu-hexagonal[aria-expanded="true"] .hex-item[data-vertex="4"] {
-    transform: translateY(130px);
-}
-
-/* Vértice 5 - Inferior Izquierdo (8 en punto) */
+/* Vértice 5 - Inferior Izquierdo (8:00) */
 .hex-item[data-vertex="5"] {
-    transform: translate(-50%, -50%) translate(-115px, 65px) scale(0.2) rotate(-120deg);
+    bottom: 25%;
+    left: 0;
+    margin-bottom: -32.5px;
     transition-delay: 0.3s;
-    background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
 }
 
-.menu-hexagonal[aria-expanded="true"] .hex-item[data-vertex="5"] {
-    transform: translate(-115px, 65px);
-}
-
-/* Vértice 6 - Superior Izquierdo (10 en punto) */
+/* Vértice 6 - Superior Izquierdo (10:00) */
 .hex-item[data-vertex="6"] {
-    transform: translate(-50%, -50%) translate(-115px, -65px) scale(0.2) rotate(-120deg);
+    top: 25%;
+    left: 0;
+    margin-top: -32.5px;
     transition-delay: 0.35s;
-    background: linear-gradient(135deg, var(--accent-green), var(--accent-purple));
 }
 
-.menu-hexagonal[aria-expanded="true"] .hex-item[data-vertex="6"] {
-    transform: translate(-115px, -65px);
+/* ===== GRADIENTES POR VÉRTICE ===== */
+.hex-item[data-vertex="1"] {
+    background: linear-gradient(135deg, rgba(189, 147, 249, 0.2), rgba(189, 147, 249, 0.1));
 }
 
-/* ===== HOVER EFFECTS ESPECÍFICOS POR VÉRTICE ===== */
+.hex-item[data-vertex="2"] {
+    background: linear-gradient(135deg, rgba(80, 250, 123, 0.2), rgba(80, 250, 123, 0.1));
+}
+
+.hex-item[data-vertex="3"] {
+    background: linear-gradient(135deg, rgba(255, 121, 198, 0.2), rgba(255, 121, 198, 0.1));
+}
+
+.hex-item[data-vertex="4"] {
+    background: linear-gradient(135deg, rgba(29, 185, 84, 0.2), rgba(29, 185, 84, 0.1));
+}
+
+.hex-item[data-vertex="5"] {
+    background: linear-gradient(135deg, rgba(255, 121, 198, 0.2), rgba(189, 147, 249, 0.1));
+}
+
+.hex-item[data-vertex="6"] {
+    background: linear-gradient(135deg, rgba(80, 250, 123, 0.2), rgba(189, 147, 249, 0.1));
+}
+
+/* ===== COLORES HOVER POR VÉRTICE ===== */
 .hex-item[data-vertex="1"]:hover {
     color: var(--accent-purple);
     border-color: var(--accent-purple);
-    clip-path: polygon(50% 0%, 90% 20%, 90% 80%, 50% 100%, 10% 80%, 10% 20%);
 }
 
 .hex-item[data-vertex="2"]:hover {
     color: var(--accent-green);
     border-color: var(--accent-green);
-    clip-path: polygon(50% 0%, 90% 20%, 90% 80%, 50% 100%, 10% 80%, 10% 20%);
 }
 
 .hex-item[data-vertex="3"]:hover {
     color: var(--accent-pink);
     border-color: var(--accent-pink);
-    clip-path: polygon(50% 0%, 90% 20%, 90% 80%, 50% 100%, 10% 80%, 10% 20%);
 }
 
 .hex-item[data-vertex="4"]:hover {
-    color: var(--whatsapp-green);
-    border-color: var(--whatsapp-green);
-    clip-path: polygon(50% 0%, 90% 20%, 90% 80%, 50% 100%, 10% 80%, 10% 20%);
+    color: var(--whatsapp-green, #1DB954);
+    border-color: var(--whatsapp-green, #1DB954);
 }
 
 .hex-item[data-vertex="5"]:hover {
     color: var(--accent-pink);
     border-color: var(--accent-pink);
-    clip-path: polygon(50% 0%, 90% 20%, 90% 80%, 50% 100%, 10% 80%, 10% 20%);
 }
 
 .hex-item[data-vertex="6"]:hover {
     color: var(--accent-green);
     border-color: var(--accent-green);
-    clip-path: polygon(50% 0%, 90% 20%, 90% 80%, 50% 100%, 10% 80%, 10% 20%);
 }
 
-/* ===== PARTICLE EFFECTS ===== */
-.hex-activator::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100px;
-    height: 100px;
-    transform: translate(-50%, -50%);
-    background: radial-gradient(
-        circle,
-        rgba(189, 147, 249, 0.2) 0%,
-        rgba(80, 250, 123, 0.1) 50%,
-        transparent 70%
-    );
-    border-radius: 50%;
-    opacity: 0;
-    transition: all 0.4s ease;
-    z-index: -1;
-}
-
-.hex-activator:hover::before {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1.5);
-}
-
-/* ===== ELASTIC ENTRANCE ANIMATION ===== */
+/* ===== ANIMACIÓN DE ENTRADA ===== */
 .menu-hexagonal[aria-expanded="true"] .hex-item {
-    animation: hexElasticExpand 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    animation: hexItemEnter 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
-@keyframes hexElasticExpand {
+@keyframes hexItemEnter {
     0% {
         opacity: 0;
-        transform: translate(-50%, -50%) scale(0.2) rotate(-120deg);
-        filter: blur(5px);
-    }
-    40% {
-        opacity: 0.7;
-        transform: translate(-50%, -50%) scale(0.6) rotate(-60deg);
-        filter: blur(2px);
-    }
-    70% {
-        opacity: 0.9;
-        transform: translate(-50%, -50%) scale(1.2) rotate(15deg);
-        filter: blur(0px);
-    }
-    85% {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(0.95) rotate(-5deg);
-    }
-    100% {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1) rotate(0deg);
-        filter: blur(0px);
-    }
-}
-
-/* ===== CLOSING ANIMATION ===== */
-.menu-hexagonal[aria-expanded="false"] .hex-item {
-    animation: hexElasticCollapse 0.5s ease-in forwards;
-}
-
-@keyframes hexElasticCollapse {
-    0% {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1) rotate(0deg);
-    }
-    30% {
-        opacity: 0.7;
-        transform: translate(-50%, -50%) scale(1.1) rotate(30deg);
-    }
-    70% {
-        opacity: 0.3;
-        transform: translate(-50%, -50%) scale(0.4) rotate(-90deg);
+        transform: scale(0.3) rotate(-90deg);
         filter: blur(3px);
     }
+    60% {
+        opacity: 0.8;
+        transform: scale(1.1) rotate(5deg);
+        filter: blur(1px);
+    }
     100% {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0.2) rotate(-120deg);
-        filter: blur(5px);
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+        filter: blur(0px);
     }
 }
 
-/* ===== CRYSTALLINE STRUCTURE EFFECT ===== */
+/* ===== ANIMACIÓN DE SALIDA ===== */
+.menu-hexagonal[aria-expanded="false"] .hex-item {
+    animation: hexItemExit 0.4s ease-in forwards;
+}
+
+@keyframes hexItemExit {
+    0% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.3) rotate(-90deg);
+        filter: blur(3px);
+    }
+}
+
+/* ===== BACKGROUND PATTERN ===== */
 .menu-hexagonal[aria-expanded="true"]::before {
     content: '';
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 400px;
-    height: 400px;
-    transform: translate(-50%, -50%);
-    background: 
-        radial-gradient(circle at 50% 0%, rgba(189, 147, 249, 0.1) 2px, transparent 2px),
-        radial-gradient(circle at 100% 25%, rgba(80, 250, 123, 0.1) 2px, transparent 2px),
-        radial-gradient(circle at 100% 75%, rgba(255, 121, 198, 0.1) 2px, transparent 2px),
-        radial-gradient(circle at 50% 100%, rgba(189, 147, 249, 0.1) 2px, transparent 2px),
-        radial-gradient(circle at 0% 75%, rgba(80, 250, 123, 0.1) 2px, transparent 2px),
-        radial-gradient(circle at 0% 25%, rgba(255, 121, 198, 0.1) 2px, transparent 2px);
-    background-size: 140px 140px;
+    width: 350px;
+    height: 350px;
+    margin: -175px 0 0 -175px;
+    background: radial-gradient(
+        circle,
+        rgba(189, 147, 249, 0.05) 1px,
+        transparent 1px
+    );
+    background-size: 30px 30px;
     opacity: 0;
-    animation: crystallinePattern 1s ease-out 0.3s forwards;
-    pointer-events: none;
-    z-index: -3;
-}
-
-@keyframes crystallinePattern {
-    0% {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0.5) rotate(0deg);
-    }
-    100% {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1) rotate(60deg);
-    }
-}
-
-/* ===== CONNECTION LINES ===== */
-.menu-hexagonal[aria-expanded="true"] .hex-items::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 240px;
-    height: 240px;
-    transform: translate(-50%, -50%);
-    background: 
-        linear-gradient(0deg, transparent 49%, rgba(189, 147, 249, 0.3) 50%, transparent 51%),
-        linear-gradient(60deg, transparent 49%, rgba(80, 250, 123, 0.3) 50%, transparent 51%),
-        linear-gradient(120deg, transparent 49%, rgba(255, 121, 198, 0.3) 50%, transparent 51%);
-    opacity: 0;
-    animation: hexConnectionLines 1.2s ease-out 0.4s forwards;
+    animation: hexPatternFade 1s ease-out 0.2s forwards;
     pointer-events: none;
     z-index: -1;
 }
 
-@keyframes hexConnectionLines {
+@keyframes hexPatternFade {
     0% {
         opacity: 0;
-        transform: translate(-50%, -50%) scale(0.1);
+        transform: scale(0.5) rotate(0deg);
     }
     100% {
-        opacity: 0.6;
-        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+        transform: scale(1) rotate(30deg);
     }
 }
 
 /* ===== ACCESSIBILITY ===== */
 .hex-item:focus {
-    outline: 3px solid var(--accent-purple);
-    outline-offset: 3px;
-    background: rgba(189, 147, 249, 0.4);
+    outline: 2px solid var(--accent-purple);
+    outline-offset: 2px;
+    background: rgba(189, 147, 249, 0.3);
 }
 
+.hex-activator:focus {
+    outline: 2px solid var(--accent-purple);
+    outline-offset: 2px;
+}
+
+/* ===== REDUCED MOTION ===== */
 @media (prefers-reduced-motion: reduce) {
     .hex-shape,
-    .hex-item {
-        transition: none;
-        animation: none;
-    }
-    
-    .hex-shape::after {
-        animation: none;
+    .hex-item,
+    .hex-items {
+        transition: none !important;
+        animation: none !important;
     }
 }
 
-/* ===== RESPONSIVE ADJUSTMENTS ===== */
-@media (max-width: 900px) {
+/* ===== RESPONSIVE TABLET SIZES ===== */
+@media (min-width: 768px) and (max-width: 900px) {
     .hex-activator {
-        width: 60px;
-        height: 60px;
+        width: 55px;
+        height: 55px;
     }
     
     .hex-shape {
-        width: 50px;
-        height: 50px;
+        width: 45px;
+        height: 45px;
     }
     
-    .hex-shape::before {
-        font-size: 0.85rem;
+    .hex-center {
+        font-size: 0.8rem;
     }
     
     .hex-items {
-        width: 280px;
-        height: 280px;
+        width: 260px;
+        height: 260px;
+        margin: -130px 0 0 -130px;
     }
     
     .hex-item {
-        width: 60px;
-        height: 60px;
-        margin: -30px 0 0 -30px;
-        font-size: 0.7rem;
+        width: 55px;
+        height: 55px;
+        font-size: 0.65rem;
     }
     
-    /* Adjusted vertex positions for smaller screens */
-    .hex-item[data-vertex="1"] {
-        transform: translate(-50%, -50%) translateY(-110px) scale(0.2) rotate(-120deg);
-    }
-    
-    .menu-hexagonal[aria-expanded="true"] .hex-item[data-vertex="1"] {
-        transform: translateY(-110px);
-    }
-    
-    .hex-item[data-vertex="2"] {
-        transform: translate(-50%, -50%) translate(95px, -55px) scale(0.2) rotate(-120deg);
-    }
-    
-    .menu-hexagonal[aria-expanded="true"] .hex-item[data-vertex="2"] {
-        transform: translate(95px, -55px);
-    }
-    
-    .hex-item[data-vertex="3"] {
-        transform: translate(-50%, -50%) translate(95px, 55px) scale(0.2) rotate(-120deg);
-    }
-    
-    .menu-hexagonal[aria-expanded="true"] .hex-item[data-vertex="3"] {
-        transform: translate(95px, 55px);
-    }
-    
+    /* Ajustar márgenes para pantallas más pequeñas */
+    .hex-item[data-vertex="1"],
     .hex-item[data-vertex="4"] {
-        transform: translate(-50%, -50%) translateY(110px) scale(0.2) rotate(-120deg);
+        margin-left: -27.5px;
     }
     
-    .menu-hexagonal[aria-expanded="true"] .hex-item[data-vertex="4"] {
-        transform: translateY(110px);
+    .hex-item[data-vertex="2"],
+    .hex-item[data-vertex="3"] {
+        margin-top: -27.5px;
     }
     
-    .hex-item[data-vertex="5"] {
-        transform: translate(-50%, -50%) translate(-95px, 55px) scale(0.2) rotate(-120deg);
-    }
-    
-    .menu-hexagonal[aria-expanded="true"] .hex-item[data-vertex="5"] {
-        transform: translate(-95px, 55px);
-    }
-    
+    .hex-item[data-vertex="5"],
     .hex-item[data-vertex="6"] {
-        transform: translate(-50%, -50%) translate(-95px, -55px) scale(0.2) rotate(-120deg);
-    }
-    
-    .menu-hexagonal[aria-expanded="true"] .hex-item[data-vertex="6"] {
-        transform: translate(-95px, -55px);
+        margin-bottom: -27.5px;
     }
 }
 
-/* ===== CONTEXT AWARENESS ===== */
+/* ===== INTEGRATION CON HEADER ===== */
 .header.scrolled .hex-activator {
-    width: 55px;
-    height: 55px;
+    width: 50px;
+    height: 50px;
 }
 
 .header.scrolled .hex-shape {
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
 }
 
-.header.scrolled .hex-shape::before {
-    font-size: 0.75rem;
+.header.scrolled .hex-center {
+    font-size: 0.7rem;
 }
 
 /* ===== SMART POSITIONING ===== */
 .menu-hexagonal {
     margin-left: auto;
-    margin-right: var(--spacing-lg);
-}
-
-/* ===== ENERGY PULSE EFFECT ===== */
-.menu-hexagonal[aria-expanded="true"] .hex-activator::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 120%;
-    height: 120%;
-    transform: translate(-50%, -50%);
-    background: radial-gradient(
-        circle,
-        rgba(189, 147, 249, 0.3) 0%,
-        rgba(189, 147, 249, 0.1) 50%,
-        transparent 70%
-    );
-    border-radius: 50%;
-    animation: hexEnergyPulse 2s ease-in-out infinite;
-    z-index: -2;
-}
-
-@keyframes hexEnergyPulse {
-    0%, 100% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 0.3;
-    }
-    50% {
-        transform: translate(-50%, -50%) scale(1.8);
-        opacity: 0.1;
-    }
-}
-
-/* ===== GRADIENT BORDER ANIMATION ===== */
-.hex-item {
-    position: relative;
-    background-clip: padding-box;
-}
-
-.hex-item::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: conic-gradient(
-        from var(--gradient-angle, 0deg),
-        var(--accent-purple),
-        var(--accent-pink),
-        var(--accent-green),
-        var(--accent-purple)
-    );
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    z-index: -1;
-    opacity: 0;
-    transition: all 0.4s ease;
-}
-
-.hex-item:hover::before {
-    opacity: 0.8;
-    animation: hexRotatingBorder 2s linear infinite;
-}
-
-@keyframes hexRotatingBorder {
-    0% { --gradient-angle: 0deg; }
-    100% { --gradient-angle: 360deg; }
+    margin-right: 20px;
 }
 
 /* ===== PERFORMANCE OPTIMIZATIONS ===== */
 .menu-hexagonal {
-    will-change: transform;
-    contain: layout style paint;
+    will-change: auto;
+    contain: layout style;
 }
 
 .hex-item {
     will-change: transform, opacity;
     backface-visibility: hidden;
-    perspective: 1000px;
 }
+
+.hex-shape {
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+/* ===== DEBUG HELPERS (REMOVER EN PRODUCCIÓN) ===== */
+/* 
+.menu-hexagonal {
+    border: 1px dashed red !important;
+}
+
+.hex-items {
+    border: 1px dashed blue !important;
+}
+
+.hex-item {
+    border: 1px dashed green !important;
+}
+*/
+
+/* ===== NAVEGACIÓN FIXES - Agregar a styles.css ===== */
+
+/* Asegurar que las secciones son navegables */
+section {
+    scroll-margin-top: 120px; /* Offset automático para headers fixed */
+}
+
+/* Smooth scroll para todo el documento */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Focus states para secciones navegadas */
+section:focus {
+    outline: none;
+}
+
+/* Indicador visual sutil cuando se navega a una sección */
+section:target {
+    animation: sectionHighlight 2s ease-out;
+}
+
+@keyframes sectionHighlight {
+    0% {
+        background: rgba(189, 147, 249, 0.1);
+    }
+    100% {
+        background: transparent;
+    }
+}
+
+/* Asegurar que los IDs de sección funcionan */
+#home,
+#inicio,
+#productos,
+#quienes-somos,
+#empresa,
+#contacto,
+#consulta {
+    position: relative;
+}
+
+/* Fix para hero section que podría no tener ID */
+.hero-section {
+    position: relative;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: -120px;
+    left: 0;
+    width: 1px;
+    height: 1px;
+    pointer-events: none;
+}
+
+/* Mejorar el scroll en móviles */
+@media (max-width: 767px) {
+    section {
+        scroll-margin-top: 100px;
+    }
+}
+
+/* Debug temporal para ver qué secciones existen */
+/*
+section {
+    border: 1px dashed rgba(255, 0, 0, 0.3) !important;
+    min-height: 50px !important;
+}
+
+section::before {
+    content: attr(id) attr(class);
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: rgba(255, 0, 0, 0.8);
+    color: white;
+    padding: 2px 5px;
+    font-size: 10px;
+    z-index: 9999;
+}
+*/
