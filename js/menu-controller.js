@@ -10,15 +10,15 @@ class MenuController {
         this.isOpen = false;
         this.touchStartX = 0;
         this.touchStartY = 0;
-        
+
         // Referencias a los elementos del DOM
         this.orbitalMenu = null;
         this.hexMenu = null;
         this.morphingMenu = null;
-        
+
         this.init();
     }
-    
+
     init() {
         // Esperar a que el DOM esté completamente cargado
         this.findMenuElements();
@@ -27,23 +27,23 @@ class MenuController {
         this.setupScrollBehavior();
         this.setupKeyboardNavigation();
         this.setupTouchGestures();
-        
+
         // Detectar cambios de orientación y redimensionamiento
         window.addEventListener('resize', this.handleResize.bind(this));
         window.addEventListener('orientationchange', () => {
             setTimeout(() => this.handleResize(), 100);
         });
-        
+
         console.log('🎯 Menu Controller inicializado correctamente');
         console.log(`📱 Breakpoint actual: ${this.currentBreakpoint}`);
     }
-    
+
     findMenuElements() {
         // Buscar elementos del menú con reintentos
         this.orbitalMenu = document.querySelector('.menu-orbital');
         this.hexMenu = document.querySelector('.menu-hexagonal');
         this.morphingMenu = document.querySelector('.menu-morphing');
-        
+
         // Debug
         console.log('🔍 Menús encontrados:', {
             orbital: !!this.orbitalMenu,
@@ -51,29 +51,29 @@ class MenuController {
             morphing: !!this.morphingMenu
         });
     }
-    
+
     getBreakpoint() {
         const width = window.innerWidth;
         if (width >= 1024) return 'desktop';
         if (width >= 768) return 'tablet';
         return 'mobile';
     }
-    
+
     updateActiveMenu() {
         const newBreakpoint = this.getBreakpoint();
-        
+
         if (newBreakpoint !== this.currentBreakpoint) {
             this.closeAllMenus();
             this.currentBreakpoint = newBreakpoint;
         }
-        
-        // Ocultar todos los menús primero
+
+        // FORZAR OCULTAR TODOS PRIMERO
         [this.orbitalMenu, this.hexMenu, this.morphingMenu].forEach(menu => {
             if (menu) menu.style.display = 'none';
         });
-        
-        // Mostrar el menú correcto
-        switch(this.currentBreakpoint) {
+
+        // MOSTRAR SOLO EL CORRECTO
+        switch (this.currentBreakpoint) {
             case 'desktop':
                 if (this.orbitalMenu) {
                     this.orbitalMenu.style.display = 'flex';
@@ -93,16 +93,14 @@ class MenuController {
                 }
                 break;
         }
-        
-        console.log(`📱 Menú activo: ${this.currentBreakpoint}`, this.activeMenu);
     }
-    
+
     setupEventListeners() {
         // UN SOLO event listener unificado para evitar conflictos
         document.addEventListener('click', (e) => {
             this.handleDocumentClick(e);
         });
-        
+
         // Escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && this.isOpen) {
@@ -110,64 +108,64 @@ class MenuController {
             }
         });
     }
-    
+
     handleDocumentClick(e) {
         console.log('🔍 Click detectado en:', e.target);
-        
+
         // PRIORIDAD 1: Click en activadores de menú
         if (e.target.closest('.orbital-activator')) {
             e.stopPropagation();
             this.toggleMenu('orbital');
             return;
         }
-        
+
         if (e.target.closest('.hex-activator')) {
             e.stopPropagation();
             this.toggleMenu('hexagonal');
             return;
         }
-        
+
         if (e.target.closest('.morphing-trigger')) {
             e.stopPropagation();
             this.toggleMenu('morphing');
             return;
         }
-        
+
         // PRIORIDAD 2: Click en items del menú (navegación)
         const menuItem = e.target.closest('.orbital-item, .hex-item, .morphing-item');
         if (menuItem) {
             console.log('📍 Click en item del menú:', menuItem.textContent);
             e.stopPropagation();
-            
+
             // CERRAR MENÚ INMEDIATAMENTE
             console.log('🔴 Cerrando menú por navegación...');
             this.closeAllMenus();
-            
+
             // Manejar la navegación después de un pequeño delay
             setTimeout(() => {
                 this.handleNavigation(menuItem);
             }, 200);
             return;
         }
-        
+
         // PRIORIDAD 3: Click dentro del área del menú (no cerrar)
         if (e.target.closest('.menu-system, .menu-orbital, .menu-hexagonal, .menu-morphing, .orbital-items, .hex-items, .morphing-panel')) {
             return;
         }
-        
+
         // PRIORIDAD 4: Click fuera del menú (cerrar)
         if (this.isOpen) {
             this.closeAllMenus();
             console.log('🔴 Menú cerrado por click fuera');
         }
     }
-    
+
     handleNavigation(menuItem) {
         const href = menuItem.getAttribute('href');
         const menuText = menuItem.textContent.trim().toLowerCase();
-        
+
         console.log(`🔗 Navegando a: ${href} (${menuText})`);
-        
+
         // Manejar navegación según el tipo de link
         if (href && href.startsWith('#')) {
             // Link interno directo
@@ -184,10 +182,10 @@ class MenuController {
             this.navigateByMenuText(menuText);
         }
     }
-    
+
     navigateByMenuText(menuText) {
         let targetSection = null;
-        
+
         // Mapear texto del menú a secciones
         if (menuText.includes('inicio') || menuText.includes('home')) {
             targetSection = '#home';
@@ -201,7 +199,7 @@ class MenuController {
             this.openWhatsApp();
             return;
         }
-        
+
         // Navegar a la sección encontrada
         if (targetSection) {
             console.log(`📍 Navegando por texto a: ${targetSection}`);
@@ -212,7 +210,7 @@ class MenuController {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     }
-    
+
     openWhatsApp() {
         // Usar el controlador de WhatsApp si existe
         if (window.whatsappController) {
@@ -226,11 +224,11 @@ class MenuController {
         }
         console.log('📱 Abriendo WhatsApp');
     }
-    
+
     smoothScrollToSection(href) {
         // Primero intentar con el href directo
         let targetSection = document.querySelector(href);
-        
+
         // Si no existe, intentar encontrar por selectores alternativos
         if (!targetSection) {
             const sectionId = href.replace('#', '');
@@ -241,7 +239,7 @@ class MenuController {
                 `section[id*="${sectionId}"]`,
                 `section[class*="${sectionId}"]`
             ];
-            
+
             for (const selector of alternativeSelectors) {
                 targetSection = document.querySelector(selector);
                 if (targetSection) {
@@ -250,7 +248,7 @@ class MenuController {
                 }
             }
         }
-        
+
         // Si aún no existe, buscar por posición aproximada
         if (!targetSection) {
             if (href === '#home' || href === '#inicio') {
@@ -263,29 +261,29 @@ class MenuController {
                 targetSection = document.querySelector('.contact-section, [class*="contact"]');
             }
         }
-        
+
         if (!targetSection) {
             console.warn(`❌ Sección ${href} no encontrada. Navegando al inicio.`);
             window.scrollTo({ top: 0, behavior: 'smooth' });
             return;
         }
-        
+
         const header = document.querySelector('.header');
         const headerHeight = header ? header.offsetHeight : 80;
         const extraMargin = 30;
         const totalOffset = headerHeight + extraMargin;
-        
+
         const elementPosition = targetSection.getBoundingClientRect().top + window.pageYOffset;
         const offsetPosition = Math.max(0, elementPosition - totalOffset);
-        
+
         // Scroll suave
         this.animatedScrollTo(offsetPosition, 800);
-        
+
         // Actualizar URL
         if (history.pushState) {
             history.pushState(null, null, href);
         }
-        
+
         // Focus para accesibilidad
         setTimeout(() => {
             if (targetSection.setAttribute) {
@@ -293,35 +291,35 @@ class MenuController {
                 targetSection.focus({ preventScroll: true });
             }
         }, 900);
-        
+
         console.log(`🎯 Navegación exitosa a ${href}`);
     }
-    
+
     animatedScrollTo(targetPosition, duration) {
         const startPosition = window.pageYOffset;
         const distance = targetPosition - startPosition;
         let startTime = null;
-        
+
         const easeInOutCubic = (t) => {
             return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
         };
-        
+
         const animation = (currentTime) => {
             if (startTime === null) startTime = currentTime;
             const timeElapsed = currentTime - startTime;
             const progress = Math.min(timeElapsed / duration, 1);
-            
+
             const ease = easeInOutCubic(progress);
             window.scrollTo(0, startPosition + distance * ease);
-            
+
             if (progress < 1) {
                 requestAnimationFrame(animation);
             }
         };
-        
+
         requestAnimationFrame(animation);
     }
-    
+
     toggleMenu(type) {
         if (this.isOpen) {
             this.closeMenu(type);
@@ -329,13 +327,13 @@ class MenuController {
             this.openMenu(type);
         }
     }
-    
+
     openMenu(type) {
         if (this.isOpen) return;
-        
+
         this.isOpen = true;
-        
-        switch(type) {
+
+        switch (type) {
             case 'orbital':
                 if (this.orbitalMenu) {
                     this.orbitalMenu.setAttribute('aria-expanded', 'true');
@@ -343,7 +341,7 @@ class MenuController {
                     if (activator) activator.setAttribute('aria-expanded', 'true');
                 }
                 break;
-                
+
             case 'hexagonal':
                 if (this.hexMenu) {
                     this.hexMenu.setAttribute('aria-expanded', 'true');
@@ -351,7 +349,7 @@ class MenuController {
                     if (activator) activator.setAttribute('aria-expanded', 'true');
                 }
                 break;
-                
+
             case 'morphing':
                 if (this.morphingMenu) {
                     this.morphingMenu.setAttribute('aria-expanded', 'true');
@@ -361,16 +359,16 @@ class MenuController {
                 }
                 break;
         }
-        
+
         console.log(`🎯 Menú ${type} abierto`);
     }
-    
+
     closeMenu(type) {
         if (!this.isOpen) return;
-        
+
         this.isOpen = false;
-        
-        switch(type) {
+
+        switch (type) {
             case 'orbital':
                 if (this.orbitalMenu) {
                     this.orbitalMenu.setAttribute('aria-expanded', 'false');
@@ -378,7 +376,7 @@ class MenuController {
                     if (activator) activator.setAttribute('aria-expanded', 'false');
                 }
                 break;
-                
+
             case 'hexagonal':
                 if (this.hexMenu) {
                     this.hexMenu.setAttribute('aria-expanded', 'false');
@@ -386,7 +384,7 @@ class MenuController {
                     if (activator) activator.setAttribute('aria-expanded', 'false');
                 }
                 break;
-                
+
             case 'morphing':
                 if (this.morphingMenu) {
                     this.morphingMenu.setAttribute('aria-expanded', 'false');
@@ -396,60 +394,60 @@ class MenuController {
                 }
                 break;
         }
-        
+
         console.log(`🎯 Menú ${type} cerrado`);
     }
-    
+
     closeAllMenus() {
         console.log('🔴 closeAllMenus ejecutado');
-        
+
         // Cambiar el estado interno PRIMERO
         this.isOpen = false;
-        
+
         // Cerrar todos los menús específicos
         if (this.orbitalMenu) {
             this.orbitalMenu.setAttribute('aria-expanded', 'false');
             const activator = this.orbitalMenu.querySelector('.orbital-activator');
             if (activator) activator.setAttribute('aria-expanded', 'false');
         }
-        
+
         if (this.hexMenu) {
             this.hexMenu.setAttribute('aria-expanded', 'false');
             const activator = this.hexMenu.querySelector('.hex-activator');
             if (activator) activator.setAttribute('aria-expanded', 'false');
         }
-        
+
         if (this.morphingMenu) {
             this.morphingMenu.setAttribute('aria-expanded', 'false');
             const trigger = this.morphingMenu.querySelector('.morphing-trigger');
             if (trigger) trigger.setAttribute('aria-expanded', 'false');
             document.body.style.overflow = 'auto';
         }
-        
+
         console.log('✅ Todos los menús cerrados');
     }
-    
+
     handleMenuItemClick(e, menuItem) {
         // Esta función existe para compatibilidad
         // La navegación real se maneja en handleNavigation()
         this.handleNavigation(menuItem);
     }
-    
+
     setupScrollBehavior() {
         let lastScrollY = window.scrollY;
         let ticking = false;
-        
+
         const updateOnScroll = () => {
             const currentScrollY = window.scrollY;
             const header = document.querySelector('.header');
-            
+
             // Actualizar estado del header
             if (currentScrollY > 100) {
                 header?.classList.add('scrolled');
             } else {
                 header?.classList.remove('scrolled');
             }
-            
+
             // Auto-hide en móvil solo si el menú no está abierto
             if (this.currentBreakpoint === 'mobile' && !this.isOpen) {
                 if (currentScrollY > lastScrollY && currentScrollY > 200) {
@@ -458,11 +456,11 @@ class MenuController {
                     this.showMenuOnScroll();
                 }
             }
-            
+
             lastScrollY = currentScrollY;
             ticking = false;
         };
-        
+
         window.addEventListener('scroll', () => {
             if (!ticking) {
                 requestAnimationFrame(updateOnScroll);
@@ -470,54 +468,54 @@ class MenuController {
             }
         });
     }
-    
+
     hideMenuOnScroll() {
         const header = document.querySelector('.header');
         if (header && !this.isOpen) {
             header.style.transform = 'translateY(-100%)';
         }
     }
-    
+
     showMenuOnScroll() {
         const header = document.querySelector('.header');
         if (header) {
             header.style.transform = 'translateY(0)';
         }
     }
-    
+
     setupKeyboardNavigation() {
         document.addEventListener('keydown', (e) => {
             if (!this.isOpen || !this.activeMenu) return;
-            
+
             const menuItems = this.activeMenu.querySelectorAll('[role="menuitem"], .orbital-item, .hex-item, .morphing-item');
             const currentFocus = document.activeElement;
             const currentIndex = Array.from(menuItems).indexOf(currentFocus);
-            
+
             let nextIndex = currentIndex;
-            
-            switch(e.key) {
+
+            switch (e.key) {
                 case 'ArrowDown':
                 case 'ArrowRight':
                     e.preventDefault();
                     nextIndex = (currentIndex + 1) % menuItems.length;
                     break;
-                    
+
                 case 'ArrowUp':
                 case 'ArrowLeft':
                     e.preventDefault();
                     nextIndex = currentIndex > 0 ? currentIndex - 1 : menuItems.length - 1;
                     break;
-                    
+
                 case 'Home':
                     e.preventDefault();
                     nextIndex = 0;
                     break;
-                    
+
                 case 'End':
                     e.preventDefault();
                     nextIndex = menuItems.length - 1;
                     break;
-                    
+
                 case 'Enter':
                 case ' ':
                     e.preventDefault();
@@ -526,32 +524,32 @@ class MenuController {
                     }
                     return;
             }
-            
+
             if (menuItems[nextIndex]) {
                 menuItems[nextIndex].focus();
             }
         });
     }
-    
+
     setupTouchGestures() {
         // Gestos táctiles para cerrar el menú morphing
         if (this.morphingMenu) {
             const panel = this.morphingMenu.querySelector('.morphing-panel');
-            
+
             if (panel) {
                 panel.addEventListener('touchstart', (e) => {
                     this.touchStartX = e.touches[0].clientX;
                     this.touchStartY = e.touches[0].clientY;
                 });
-                
+
                 panel.addEventListener('touchend', (e) => {
                     if (!this.isOpen || this.currentBreakpoint !== 'mobile') return;
-                    
+
                     const touchX = e.changedTouches[0].clientX;
                     const touchY = e.changedTouches[0].clientY;
                     const deltaX = touchX - this.touchStartX;
                     const deltaY = touchY - this.touchStartY;
-                    
+
                     // Swipe hacia la derecha para cerrar
                     if (deltaX > 100 && Math.abs(deltaY) < 50) {
                         this.closeAllMenus();
@@ -560,10 +558,10 @@ class MenuController {
             }
         }
     }
-    
+
     handleResize() {
         const newBreakpoint = this.getBreakpoint();
-        
+
         if (newBreakpoint !== this.currentBreakpoint) {
             console.log(`📱 Cambio de breakpoint: ${this.currentBreakpoint} → ${newBreakpoint}`);
             this.closeAllMenus();
@@ -571,21 +569,21 @@ class MenuController {
             this.updateActiveMenu();
         }
     }
-    
+
     // ===== MÉTODOS PÚBLICOS =====
-    
+
     toggle() {
         const currentType = {
             'desktop': 'orbital',
             'tablet': 'hexagonal',
             'mobile': 'morphing'
         }[this.currentBreakpoint];
-        
+
         if (currentType) {
             this.toggleMenu(currentType);
         }
     }
-    
+
     getState() {
         return {
             isOpen: this.isOpen,
@@ -598,7 +596,7 @@ class MenuController {
             }
         };
     }
-    
+
     forceUpdate() {
         this.findMenuElements();
         this.updateActiveMenu();
@@ -611,40 +609,40 @@ document.addEventListener('DOMContentLoaded', () => {
     // Pequeño delay para asegurar que todos los elementos estén listos
     setTimeout(() => {
         window.menuController = new MenuController();
-        
+
         // Funciones globales para testing y uso
         window.toggleMenu = () => window.menuController.toggle();
         window.getMenuState = () => window.menuController.getState();
         window.updateMenus = () => window.menuController.forceUpdate();
         window.closeMenus = () => window.menuController.closeAllMenus();
-        
+
         console.log('🎯 Menu Controller listo y funcional');
     }, 100);
 });
 
 // ===== BACKUP SYSTEM - Por si algo falla =====
-document.addEventListener('click', function(e) {
+document.addEventListener('click', function (e) {
     const menuItem = e.target.closest('.orbital-item, .hex-item, .morphing-item');
-    
+
     if (menuItem && window.menuController && window.menuController.isOpen) {
         console.log('🚨 BACKUP: Detectado click en menú, forzando cierre');
-        
+
         // Forzar cierre inmediato
         window.menuController.isOpen = false;
-        
+
         // Quitar aria-expanded de todos los menús
         document.querySelectorAll('.menu-orbital, .menu-hexagonal, .menu-morphing').forEach(menu => {
             menu.setAttribute('aria-expanded', 'false');
         });
-        
+
         // Quitar aria-expanded de todos los activadores
         document.querySelectorAll('.orbital-activator, .hex-activator, .morphing-trigger').forEach(activator => {
             activator.setAttribute('aria-expanded', 'false');
         });
-        
+
         // Restaurar body overflow
         document.body.style.overflow = 'auto';
-        
+
         console.log('🚨 BACKUP: Menú forzadamente cerrado');
     }
 });

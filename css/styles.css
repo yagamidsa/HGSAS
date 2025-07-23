@@ -2979,3 +2979,54 @@ body.light-mode .theme-icon-light {
     justify-content: center !important;
     background: transparent !important;
 }
+
+/* FIX Z-INDEX JERARQUÍA */
+.menu-orbital,
+.menu-hexagonal, 
+.menu-morphing {
+    z-index: 1050 !important;
+}
+
+.orbital-items,
+.hex-items,
+.morphing-panel {
+    z-index: 1051 !important;
+}
+
+/* ASEGURAR VISIBILIDAD AL EXPANDIR */
+.menu-orbital[aria-expanded="true"] .orbital-items {
+    pointer-events: auto !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.menu-hexagonal[aria-expanded="true"] .hex-items {
+    pointer-events: auto !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.menu-morphing[aria-expanded="true"] .morphing-panel {
+    right: 0 !important;
+}
+
+/* AÑADIR a css/styles.css - SOLO para refinamiento */
+.orbital-item:active {
+    transform: translate(-50%, -50%) scale(0.95);
+}
+
+.hex-shape:active {
+    transform: scale(0.95) rotate(15deg);
+}
+
+/* AÑADIR para 60fps garantizado */
+.orbital-item,
+.hex-shape,
+.morphing-dots {
+    will-change: transform;
+}
+
+.menu-orbital[aria-expanded="false"] .orbital-item,
+.menu-hexagonal[aria-expanded="false"] .hex-item {
+    will-change: auto;
+}

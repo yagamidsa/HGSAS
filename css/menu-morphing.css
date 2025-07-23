@@ -1,220 +1,52 @@
 /* ===================================================================
-   MENU MORPHING MOBILE - COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S
-   Sistema de navegación morphing para móviles (320px - 767px)
+   MENU MORPHING MOBILE PROFESIONAL - COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S
+   EFECTO: Glass Morphism + Liquid Animation + Neural Network
+   Diseño Apple-style 2025 desde CERO
    =================================================================== */
 
-/* ===== MORPHING MENU CONTAINER ===== */
+/* ===== SOLO MOBILE ===== */
 .menu-morphing {
+    display: none;
     position: relative;
-    display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1001;
+    z-index: 1050;
 }
 
-/* ===== MORPHING TRIGGER ===== */
+@media (max-width: 767px) {
+    .menu-morphing {
+        display: flex;
+    }
+}
+
+/* ===== ACTIVADOR NEURAL - Efecto Innovador ===== */
 .morphing-trigger {
     position: relative;
-    width: 50px;
-    height: 50px;
-    background: transparent;
-    border: none;
+    width: 42px;
+    height: 42px;
+    background: 
+        linear-gradient(135deg, 
+            rgba(189, 147, 249, 0.15) 0%,
+            rgba(80, 250, 123, 0.15) 50%,
+            rgba(255, 121, 198, 0.15) 100%);
+    backdrop-filter: blur(15px) saturate(1.8);
+    border: 1.5px solid rgba(189, 147, 249, 0.3);
+    border-radius: 12px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
-    transition: all var(--transition-bounce);
-    overflow: visible;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
     user-select: none;
+    box-shadow: 
+        0 8px 32px rgba(15, 15, 35, 0.4),
+        0 4px 16px rgba(189, 147, 249, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-.morphing-trigger:hover {
-    background: rgba(189, 147, 249, 0.1);
-    transform: scale(1.1);
-}
-
-.morphing-trigger[aria-expanded="true"] {
-    background: rgba(189, 147, 249, 0.2);
-    transform: scale(0.9);
-}
-
-/* ===== MORPHING DOTS ===== */
-.morphing-dots {
-    position: relative;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
-}
-
-.dot {
-    width: 6px;
-    height: 6px;
-    background: var(--accent-purple);
-    border-radius: 50%;
-    transition: all var(--transition-bounce);
-    box-shadow: 0 0 8px rgba(189, 147, 249, 0.5);
-}
-
-/* Estados normales de los dots */
-.dot-1 {
-    transform: translateY(0);
-}
-
-.dot-2 {
-    transform: translateY(0);
-}
-
-.dot-3 {
-    transform: translateY(0);
-}
-
-/* Estado hover - Formación triangular */
-.morphing-trigger:hover .dot-1 {
-    transform: translate(-4px, -2px) scale(1.2);
-    background: var(--accent-pink);
-}
-
-.morphing-trigger:hover .dot-2 {
-    transform: translate(4px, -2px) scale(1.2);
-    background: var(--accent-green);
-}
-
-.morphing-trigger:hover .dot-3 {
-    transform: translateY(4px) scale(1.2);
-    background: var(--accent-purple);
-}
-
-/* Estado activo - Formación circular pulsante */
-.morphing-trigger[aria-expanded="true"] .dot-1 {
-    transform: translate(-8px, 0) scale(0.8);
-    background: var(--accent-green);
-    animation: pulseDot 1.5s ease-in-out infinite;
-    animation-delay: 0s;
-}
-
-.morphing-trigger[aria-expanded="true"] .dot-2 {
-    transform: translate(0, -8px) scale(0.8);
-    background: var(--accent-pink);
-    animation: pulseDot 1.5s ease-in-out infinite;
-    animation-delay: 0.5s;
-}
-
-.morphing-trigger[aria-expanded="true"] .dot-3 {
-    transform: translate(8px, 0) scale(0.8);
-    background: var(--accent-purple);
-    animation: pulseDot 1.5s ease-in-out infinite;
-    animation-delay: 1s;
-}
-
-@keyframes pulseDot {
-    0%, 100% {
-        transform: scale(0.8);
-        opacity: 0.7;
-    }
-    50% {
-        transform: scale(1.3);
-        opacity: 1;
-    }
-}
-
-/* ===== MORPHING PANEL ===== */
-.morphing-panel {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 100%;
-    max-width: 320px;
-    height: 100vh;
-    background: var(--gradient-primary);
-    backdrop-filter: blur(20px);
-    border-left: 1px solid rgba(189, 147, 249, 0.3);
-    z-index: 2000;
-    transition: all var(--transition-slow);
-    overflow: hidden;
-}
-
-.menu-morphing[aria-expanded="true"] .morphing-panel {
-    right: 0;
-}
-
-/* ===== MORPHING CONTENT ===== */
-.morphing-content {
-    position: relative;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: var(--spacing-2xl);
-    gap: var(--spacing-xl);
-}
-
-.morphing-content::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(
-        circle at 70% 30%,
-        rgba(189, 147, 249, 0.1) 0%,
-        transparent 50%
-    );
-    z-index: -1;
-}
-
-/* ===== MORPHING ITEMS ===== */
-.morphing-item {
-    position: relative;
-    width: 100%;
-    padding: var(--spacing-lg) var(--spacing-xl);
-    background: rgba(255, 255, 255, 0.05);
-    border: 2px solid rgba(189, 147, 249, 0.2);
-    border-radius: var(--border-radius-lg);
-    color: var(--white);
-    text-decoration: none;
-    font-family: var(--font-heading);
-    font-size: 1.1rem;
-    font-weight: 600;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: all var(--transition-bounce);
-    opacity: 0;
-    transform: translateX(50px);
-    backdrop-filter: blur(10px);
-    overflow: hidden;
-}
-
-.menu-morphing[aria-expanded="true"] .morphing-item {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.morphing-item:nth-child(1) {
-    transition-delay: 0.1s;
-}
-
-.morphing-item:nth-child(2) {
-    transition-delay: 0.2s;
-}
-
-.morphing-item:nth-child(3) {
-    transition-delay: 0.3s;
-}
-
-.morphing-item:nth-child(4) {
-    transition-delay: 0.4s;
-}
-
-/* ===== LIQUID EFFECT ===== */
-.morphing-item::before {
+/* Glass reflection effect */
+.morphing-trigger::before {
     content: '';
     position: absolute;
     top: 0;
@@ -224,112 +56,157 @@
     background: linear-gradient(
         90deg,
         transparent,
-        rgba(189, 147, 249, 0.2),
+        rgba(255, 255, 255, 0.2),
         transparent
     );
-    transition: var(--transition-slow);
+    transition: left 0.6s ease;
 }
 
-.morphing-item:hover::before {
+.morphing-trigger:hover::before {
     left: 100%;
 }
 
-/* ===== HOVER STATES ===== */
-.morphing-item:hover {
-    background: rgba(189, 147, 249, 0.1);
-    border-color: var(--accent-purple);
-    transform: translateX(-5px) scale(1.02);
+.morphing-trigger:hover {
+    transform: translateY(-1px) scale(1.05);
+    border-color: rgba(189, 147, 249, 0.5);
     box-shadow: 
-        0 10px 30px rgba(189, 147, 249, 0.3),
-        inset 0 0 20px rgba(189, 147, 249, 0.1);
-    color: var(--accent-purple);
+        0 12px 40px rgba(15, 15, 35, 0.5),
+        0 6px 20px rgba(189, 147, 249, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
-.morphing-item:active {
-    transform: translateX(-5px) scale(0.98);
+.morphing-trigger[aria-expanded="true"] {
+    transform: scale(0.95);
+    background: 
+        linear-gradient(135deg, 
+            rgba(255, 121, 198, 0.2) 0%,
+            rgba(189, 147, 249, 0.2) 50%,
+            rgba(80, 250, 123, 0.2) 100%);
+    border-color: rgba(255, 121, 198, 0.6);
 }
 
-/* ===== SPECIFIC ITEM COLORS ===== */
-.morphing-item:nth-child(1):hover {
-    border-color: var(--accent-purple);
-    box-shadow: 0 10px 30px rgba(189, 147, 249, 0.4);
-    color: var(--accent-purple);
-}
-
-.morphing-item:nth-child(2):hover {
-    border-color: var(--accent-green);
-    box-shadow: 0 10px 30px rgba(80, 250, 123, 0.4);
-    color: var(--accent-green);
-}
-
-.morphing-item:nth-child(3):hover {
-    border-color: var(--accent-pink);
-    box-shadow: 0 10px 30px rgba(255, 121, 198, 0.4);
-    color: var(--accent-pink);
-}
-
-.morphing-item:nth-child(4):hover {
-    border-color: var(--whatsapp-green);
-    box-shadow: 0 10px 30px rgba(29, 185, 84, 0.4);
-    color: var(--whatsapp-green);
-}
-
-/* ===== FLOATING PARTICLES ===== */
-.morphing-content::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: 
-        radial-gradient(circle at 20% 20%, rgba(189, 147, 249, 0.1) 2px, transparent 2px),
-        radial-gradient(circle at 80% 40%, rgba(80, 250, 123, 0.1) 1px, transparent 1px),
-        radial-gradient(circle at 40% 80%, rgba(255, 121, 198, 0.1) 1.5px, transparent 1.5px);
-    background-size: 50px 50px, 30px 30px, 40px 40px;
-    animation: floatParticles 20s linear infinite;
-    pointer-events: none;
-    z-index: -1;
-}
-
-@keyframes floatParticles {
-    0% {
-        transform: translate(0, 0);
-    }
-    100% {
-        transform: translate(-20px, -20px);
-    }
-}
-
-/* ===== TYPEWRITER EFFECT ===== */
-.morphing-item {
+/* ===== DOTS NEURAL NETWORK ===== */
+.morphing-dots {
     position: relative;
-    overflow: hidden;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.morphing-item::after {
-    content: '';
+.dot {
     position: absolute;
-    top: 0;
-    right: 0;
-    width: 2px;
-    height: 100%;
+    width: 3px;
+    height: 3px;
     background: var(--accent-purple);
-    opacity: 0;
-    animation: none;
+    border-radius: 50%;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 
+        0 0 6px currentColor,
+        0 0 12px currentColor;
 }
 
-.menu-morphing[aria-expanded="true"] .morphing-item::after {
-    animation: typewriterCursor 1s ease-in-out infinite;
-    animation-delay: calc(var(--item-index, 0) * 0.1s + 0.5s);
+/* Posición inicial - vertical stack */
+.dot-1 {
+    top: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent-purple);
 }
 
-@keyframes typewriterCursor {
-    0%, 50% { opacity: 1; }
-    51%, 100% { opacity: 0; }
+.dot-2 {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--accent-pink);
 }
 
-/* ===== BACKDROP BLUR ===== */
+.dot-3 {
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent-green);
+}
+
+/* Hover state - Neural connection */
+.morphing-trigger:hover .dot-1 {
+    transform: translate(-50%, -50%) translate(-6px, -6px) scale(1.3);
+    background: var(--accent-pink);
+}
+
+.morphing-trigger:hover .dot-2 {
+    transform: translate(-50%, -50%) scale(1.5);
+    background: var(--accent-green);
+}
+
+.morphing-trigger:hover .dot-3 {
+    transform: translate(-50%, -50%) translate(6px, 6px) scale(1.3);
+    background: var(--accent-purple);
+}
+
+/* Active state - Dispersed energy */
+.morphing-trigger[aria-expanded="true"] .dot-1 {
+    transform: translate(-50%, -50%) translate(-8px, 0) scale(0.8);
+    background: var(--accent-green);
+    animation: neuralPulse 2s ease-in-out infinite;
+    animation-delay: 0s;
+}
+
+.morphing-trigger[aria-expanded="true"] .dot-2 {
+    transform: translate(-50%, -50%) translate(0, -8px) scale(0.8);
+    background: var(--accent-pink);
+    animation: neuralPulse 2s ease-in-out infinite;
+    animation-delay: 0.66s;
+}
+
+.morphing-trigger[aria-expanded="true"] .dot-3 {
+    transform: translate(-50%, -50%) translate(8px, 0) scale(0.8);
+    background: var(--accent-purple);
+    animation: neuralPulse 2s ease-in-out infinite;
+    animation-delay: 1.33s;
+}
+
+@keyframes neuralPulse {
+    0%, 100% {
+        opacity: 0.6;
+        box-shadow: 
+            0 0 6px currentColor,
+            0 0 12px currentColor;
+    }
+    50% {
+        opacity: 1;
+        box-shadow: 
+            0 0 12px currentColor,
+            0 0 24px currentColor,
+            0 0 36px currentColor;
+    }
+}
+
+/* ===== PANEL GLASS MORPHISM ===== */
+.morphing-panel {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 85%;
+    max-width: 280px;
+    height: 100vh;
+    background: 
+        linear-gradient(135deg,
+            rgba(15, 15, 35, 0.95) 0%,
+            rgba(30, 30, 63, 0.90) 50%,
+            rgba(15, 15, 35, 0.95) 100%);
+    backdrop-filter: blur(25px) saturate(1.2);
+    border-left: 1px solid rgba(189, 147, 249, 0.3);
+    z-index: 1052;
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    overflow: hidden;
+    box-shadow: 
+        -20px 0 60px rgba(15, 15, 35, 0.8),
+        -10px 0 30px rgba(189, 147, 249, 0.1);
+}
+
+/* Panel background patterns */
 .morphing-panel::before {
     content: '';
     position: absolute;
@@ -337,69 +214,203 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(15, 15, 35, 0.8);
-    backdrop-filter: blur(20px);
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(189, 147, 249, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(80, 250, 123, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(255, 121, 198, 0.06) 0%, transparent 50%);
+    opacity: 0.8;
     z-index: -1;
 }
 
-/* ===== CLOSE GESTURE AREA ===== */
 .morphing-panel::after {
-    content: '×';
-    position: absolute;
-    top: var(--spacing-lg);
-    right: var(--spacing-lg);
-    width: 40px;
-    height: 40px;
-    background: rgba(255, 121, 198, 0.2);
-    color: var(--accent-pink);
-    border: 2px solid rgba(255, 121, 198, 0.4);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    font-weight: 300;
-    cursor: pointer;
-    transition: var(--transition-normal);
-    z-index: 10;
-}
-
-.morphing-panel::after:hover {
-    background: var(--accent-pink);
-    color: var(--primary-dark);
-    transform: scale(1.1);
-}
-
-/* ===== SWIPE GESTURE INDICATOR ===== */
-.morphing-content::before {
     content: '';
     position: absolute;
-    bottom: var(--spacing-xl);
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(189, 147, 249, 0.5) 20%,
+        rgba(80, 250, 123, 0.5) 50%,
+        rgba(255, 121, 198, 0.5) 80%,
+        transparent 100%
+    );
+    animation: borderFlow 3s ease-in-out infinite;
+}
+
+@keyframes borderFlow {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+.menu-morphing[aria-expanded="true"] .morphing-panel {
+    right: 0;
+}
+
+/* ===== CONTENT AREA ===== */
+.morphing-content {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    padding: 60px 25px 40px;
+    gap: 8px;
+    z-index: 1;
+}
+
+/* ===== MENU ITEMS LIQUID DESIGN ===== */
+.morphing-item {
+    position: relative;
+    width: 100%;
+    padding: 16px 20px;
+    background: 
+        linear-gradient(135deg,
+            rgba(189, 147, 249, 0.1) 0%,
+            rgba(255, 255, 255, 0.05) 50%,
+            rgba(80, 250, 123, 0.1) 100%);
+    border: 1px solid rgba(189, 147, 249, 0.2);
+    border-radius: 16px;
+    color: var(--white);
+    text-decoration: none;
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    transform: translateX(50px);
+    opacity: 0;
+    box-shadow: 
+        0 4px 16px rgba(15, 15, 35, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Liquid ripple effect */
+.morphing-item::before {
+    content: '';
+    position: absolute;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 4px;
-    background: rgba(189, 147, 249, 0.4);
-    border-radius: 2px;
-    animation: swipeIndicator 2s ease-in-out infinite;
+    width: 0;
+    height: 0;
+    background: radial-gradient(
+        circle,
+        rgba(189, 147, 249, 0.3) 0%,
+        rgba(80, 250, 123, 0.2) 50%,
+        transparent 70%
+    );
+    border-radius: 50%;
+    transition: all 0.6s ease;
+    transform: translate(-50%, -50%);
+    z-index: -1;
 }
 
-@keyframes swipeIndicator {
-    0%, 100% {
-        opacity: 0.4;
-        transform: translateX(-50%) scale(1);
+.morphing-item:hover::before {
+    width: 200px;
+    height: 200px;
+}
+
+.morphing-item:hover {
+    transform: translateX(4px) scale(1.02);
+    border-color: rgba(189, 147, 249, 0.4);
+    background: 
+        linear-gradient(135deg,
+            rgba(189, 147, 249, 0.2) 0%,
+            rgba(255, 255, 255, 0.1) 50%,
+            rgba(80, 250, 123, 0.2) 100%);
+    box-shadow: 
+        0 8px 24px rgba(15, 15, 35, 0.4),
+        0 4px 12px rgba(189, 147, 249, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    color: var(--accent-purple);
+}
+
+.morphing-item:active {
+    transform: translateX(4px) scale(0.98);
+}
+
+/* ===== ENTRADA ANIMADA DE ITEMS ===== */
+.menu-morphing[aria-expanded="true"] .morphing-item {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.menu-morphing[aria-expanded="true"] .morphing-item:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+.menu-morphing[aria-expanded="true"] .morphing-item:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+.menu-morphing[aria-expanded="true"] .morphing-item:nth-child(3) {
+    transition-delay: 0.3s;
+}
+
+.menu-morphing[aria-expanded="true"] .morphing-item:nth-child(4) {
+    transition-delay: 0.4s;
+}
+
+/* ===== OVERLAY PARA CERRAR ===== */
+.morphing-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 15, 35, 0.6);
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1051;
+    transition: all 0.3s ease;
+}
+
+.menu-morphing[aria-expanded="true"] .morphing-overlay {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ===== RESPONSIVE FINE-TUNING ===== */
+@media (max-width: 360px) {
+    .morphing-panel {
+        width: 90%;
+        max-width: 260px;
     }
-    50% {
-        opacity: 1;
-        transform: translateX(-50%) scale(1.2);
+    
+    .morphing-content {
+        padding: 50px 20px 30px;
+        gap: 6px;
+    }
+    
+    .morphing-item {
+        padding: 14px 18px;
+        font-size: 0.9rem;
     }
 }
 
-/* ===== ACCESSIBILITY ===== */
+@media (max-height: 600px) {
+    .morphing-content {
+        gap: 4px;
+        padding: 40px 25px 30px;
+    }
+    
+    .morphing-item {
+        padding: 12px 20px;
+    }
+}
+
+/* ===== ACCESIBILIDAD ===== */
 .morphing-item:focus {
-    outline: 3px solid var(--accent-purple);
-    outline-offset: 3px;
-    background: rgba(189, 147, 249, 0.2);
+    outline: 2px solid var(--accent-purple);
+    outline-offset: 2px;
+    border-color: var(--accent-purple);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -407,122 +418,29 @@
     .morphing-panel,
     .morphing-item,
     .dot {
-        transition: none;
-    }
-    
-    .morphing-content::after,
-    .morphing-item::after {
-        animation: none;
+        transition: none !important;
+        animation: none !important;
     }
 }
 
-/* ===== LANDSCAPE ORIENTATION ===== */
-@media (orientation: landscape) and (max-height: 500px) {
-    .morphing-content {
-        flex-direction: row;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
-        gap: var(--spacing-md);
-        padding: var(--spacing-lg);
-    }
-    
-    .morphing-item {
-        width: calc(50% - var(--spacing-sm));
-        padding: var(--spacing-md);
-        font-size: 0.9rem;
-    }
+/* ===== STATES DE DEBUG (REMOVER EN PRODUCCIÓN) ===== */
+.debug .morphing-panel {
+    border: 2px solid lime !important;
 }
 
-/* ===== VERY SMALL SCREENS ===== */
-@media (max-width: 374px) {
-    .morphing-panel {
-        max-width: 280px;
-    }
-    
-    .morphing-content {
-        padding: var(--spacing-lg);
-        gap: var(--spacing-lg);
-    }
-    
-    .morphing-item {
-        padding: var(--spacing-md) var(--spacing-lg);
-        font-size: 1rem;
-    }
+.debug .morphing-item {
+    border: 1px solid cyan !important;
 }
 
-/* ===== CONTEXT AWARENESS ===== */
-.header.scrolled .morphing-trigger {
-    width: 45px;
-    height: 45px;
+/* ===== OPTIMIZACIÓN DE PERFORMANCE ===== */
+.morphing-trigger,
+.morphing-panel,
+.morphing-item {
+    will-change: transform;
 }
 
-.header.scrolled .morphing-dots {
-    width: 25px;
-    height: 25px;
-}
-
-.header.scrolled .dot {
-    width: 5px;
-    height: 5px;
-}
-
-/* ===== SMART POSITIONING ===== */
-.menu-morphing {
-    margin-left: auto;
-    margin-right: var(--spacing-md);
-}
-
-/* ===== ENTRANCE ANIMATIONS ===== */
-.menu-morphing[aria-expanded="true"] .morphing-item {
-    animation: morphingEntrance 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-}
-
-@keyframes morphingEntrance {
-    0% {
-        opacity: 0;
-        transform: translateX(50px) scale(0.8);
-    }
-    60% {
-        opacity: 0.8;
-        transform: translateX(-5px) scale(1.05);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0) scale(1);
-    }
-}
-
-/* ===== EXIT ANIMATIONS ===== */
+.menu-morphing[aria-expanded="false"] .morphing-trigger,
+.menu-morphing[aria-expanded="false"] .morphing-panel,
 .menu-morphing[aria-expanded="false"] .morphing-item {
-    animation: morphingExit 0.4s ease-in forwards;
-}
-
-@keyframes morphingExit {
-    0% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-    100% {
-        opacity: 0;
-        transform: translateX(50px);
-    }
-}
-
-/* ===== TOUCH FEEDBACK ===== */
-.morphing-trigger:active {
-    transform: scale(0.95);
-}
-
-.morphing-item:active {
-    transform: translateX(-5px) scale(0.95);
-    background: rgba(189, 147, 249, 0.2);
-}
-
-/* ===== DYNAMIC BACKGROUND ===== */
-.morphing-panel {
-    background: 
-        linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 50%, var(--tertiary-dark) 100%),
-        radial-gradient(circle at 30% 70%, rgba(189, 147, 249, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 70% 30%, rgba(80, 250, 123, 0.05) 0%, transparent 50%);
+    will-change: auto;
 }

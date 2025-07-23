@@ -1,0 +1,9 @@
+catalogo-replica-exacta/
+output/
+output-final/
+node_modules/
+export-advanced.js
+export-catalog.py
+export-effects.js
+package-lock.json
+package.json

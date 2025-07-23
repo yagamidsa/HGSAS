@@ -1,0 +1,4062 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo AJEDREZ - COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1e1e3f 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        .catalog-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .nav-dot {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .nav-dot.active {
+            background: transparent;
+            border: 2px solid #50fa7b;
+            transform: scale(1.2);
+            box-shadow: 0 0 15px rgba(80, 250, 123, 0.4);
+        }
+
+        .nav-dot:hover {
+            background: rgba(255, 255, 255, 0.5);
+            transform: scale(1.1);
+        }
+
+        .nav-dot.active:hover {
+            background: rgba(80, 250, 123, 0.1);
+            border-color: #50fa7b;
+        }
+
+        .page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+            page-break-after: always;
+        }
+
+        /* ===== PORTADA ===== */
+        .cover-page {
+            background: linear-gradient(135deg,
+                    #0f0f23 0%,
+                    #1e1e3f 25%,
+                    #bd93f9 50%,
+                    #ff79c6 75%,
+                    #50fa7b 100%);
+            text-align: center;
+            position: relative;
+        }
+
+        .cover-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 15, 35, 0.8);
+            backdrop-filter: blur(1px);
+        }
+
+        .cover-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo-container {
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .company-logo {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 2rem;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(189, 147, 249, 0.4);
+            animation: logoFloat 3s ease-in-out infinite;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        .company-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 30px;
+        }
+
+        .company-logo.placeholder {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        @keyframes logoFloat {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .company-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            letter-spacing: 1px;
+        }
+
+        .company-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            color: #bd93f9;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .company-nit {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            color: #ffffff;
+            margin-bottom: 3rem;
+            font-weight: 400;
+        }
+
+        .catalog-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #bd93f9, #ff79c6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+        }
+
+        .catalog-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.5rem;
+            color: #50fa7b;
+            margin-bottom: 2rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .year {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            color: #666;
+            font-weight: 300;
+        }
+
+        /* ===== PÁGINAS DE PRODUCTOS ===== */
+        .product-page {
+            background: linear-gradient(135deg, #0f0f23 0%, #1e1e3f 100%);
+            padding: 3rem 2rem;
+            align-items: flex-start;
+        }
+
+        .product-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .product-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            letter-spacing: 1px;
+        }
+
+        .product-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            color: #bd93f9;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        /* ===== LAYOUT PRINCIPAL - IMAGEN + PRIMERAS 2 SECCIONES ===== */
+        .product-content {
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 3rem;
+            align-items: start;
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+
+        .product-image-container {
+            position: sticky;
+            top: 2rem;
+            text-align: center;
+        }
+
+        .product-image {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+            object-fit: contain;
+            background: transparent;
+        }
+
+        .product-image.placeholder {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            padding: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 300px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .product-image:hover {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .info-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .info-section:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .info-section h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #50fa7b;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            letter-spacing: 0.3px;
+        }
+
+        /* ===== SECCIÓN DE ANCHO COMPLETO PARA RESTO DE INFORMACIÓN ===== */
+        .full-width-section {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            display: grid;
+            gap: 2rem;
+        }
+
+        .full-width-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .full-width-card:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .full-width-card h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #50fa7b;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            letter-spacing: 0.3px;
+            text-align: center;
+            justify-content: center;
+        }
+
+        /* ===== TABLAS TÉCNICAS ===== */
+        .technical-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .technical-table th,
+        .technical-table td {
+            font-family: 'Inter', sans-serif;
+            padding: 0.8rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .technical-table th {
+            background: rgba(189, 147, 249, 0.2);
+            font-weight: 600;
+            color: #bd93f9;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+
+        .technical-table td {
+            color: #ffffff;
+            font-weight: 400;
+        }
+
+        .technical-table tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* ===== TABLA DE INGREDIENTES ===== */
+        .ingredients-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .ingredients-table th {
+            font-family: 'Inter', sans-serif;
+            background: rgba(80, 250, 123, 0.2);
+            color: #50fa7b;
+            padding: 0.8rem 1rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+
+        .ingredients-table td {
+            font-family: 'Inter', sans-serif;
+            padding: 0.8rem 1rem;
+            color: #ffffff;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-weight: 400;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .ingredients-table tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* ===== CARACTERÍSTICAS ORGANOLÉPTICAS EN GRID ===== */
+        .characteristics-grid {
+            display: grid;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .characteristic-item {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 1rem;
+            align-items: center;
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border-left: 3px solid #50fa7b;
+        }
+
+        .characteristic-label {
+            font-weight: 600;
+            color: #50fa7b;
+            font-size: 0.9rem;
+        }
+
+        .characteristic-value {
+            color: #ffffff;
+            font-size: 0.9rem;
+        }
+
+        /* ===== COLORES ESPECÍFICOS POR PRODUCTO ===== */
+        .rosado .product-title {
+            background: linear-gradient(135deg, #ff79c6, #bd93f9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .rosado .technical-table th {
+            background: rgba(255, 121, 198, 0.2);
+            color: #ff79c6;
+        }
+
+        .rosado .characteristic-item {
+            border-left-color: #ff79c6;
+        }
+
+        .rosado .characteristic-label {
+            color: #ff79c6;
+        }
+
+        .uva .product-title {
+            background: linear-gradient(135deg, #bd93f9, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .uva .technical-table th {
+            background: rgba(139, 92, 246, 0.2);
+            color: #8b5cf6;
+        }
+
+        .uva .characteristic-item {
+            border-left-color: #8b5cf6;
+        }
+
+        .uva .characteristic-label {
+            color: #8b5cf6;
+        }
+
+        .espumoso .product-title {
+            background: linear-gradient(135deg, #50fa7b, #bd93f9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .espumoso .technical-table th {
+            background: rgba(80, 250, 123, 0.2);
+            color: #50fa7b;
+        }
+
+        /* ===== OCASIONES DE USO ===== */
+        .occasions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .occasion-item {
+            font-family: 'Inter', sans-serif;
+            background: transparent;
+            color: #ffffff;
+            border: 2px solid;
+            border-image: linear-gradient(135deg, #bd93f9, #ff79c6) 1;
+            padding: 0.8rem 1.2rem;
+            text-align: center;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.3px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .occasion-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #bd93f9, #ff79c6);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .occasion-item:hover::before {
+            opacity: 0.1;
+        }
+
+        .occasion-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(189, 147, 249, 0.3);
+        }
+
+        /* ===== NAVEGACIÓN ===== */
+        .page-nav {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        /* ===== ESTILOS DE IMPRESIÓN MEJORADOS ===== */
+        @media print {
+            @page {
+                size: A4;
+                margin: 15mm;
+                marks: crop cross;
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+
+            /* Ocultar elementos de navegación */
+            .page-nav {
+                display: none !important;
+            }
+
+            /* Fondo blanco para impresión */
+            body {
+                background: white !important;
+                color: black !important;
+                font-size: 12pt;
+                line-height: 1.4;
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+
+            /* Páginas para impresión */
+            .page {
+                page-break-after: always;
+                page-break-inside: avoid;
+                margin: 0;
+                padding: 20mm;
+                min-height: auto;
+                background: white !important;
+                color: black !important;
+                display: block;
+            }
+
+            .page:last-child {
+                page-break-after: auto;
+            }
+
+            /* Portada en impresión */
+            .cover-page {
+                background: white !important;
+                color: black !important;
+                text-align: center;
+            }
+
+            .cover-page::before {
+                display: none;
+            }
+
+            .company-logo {
+                background: transparent !important;
+                border: 1px solid #ddd !important;
+                box-shadow: none;
+                animation: none;
+            }
+
+            .company-logo img {
+                filter: none !important;
+            }
+
+            .company-logo.placeholder {
+                background: #f9f9f9 !important;
+                color: #666 !important;
+                border: 2px dashed #ccc !important;
+            }
+
+            .catalog-title {
+                color: #333 !important;
+                background: none !important;
+                -webkit-text-fill-color: #333 !important;
+            }
+
+            .catalog-subtitle {
+                color: #666 !important;
+            }
+
+            /* Productos en impresión */
+            .product-page {
+                background: white !important;
+            }
+
+            .product-content {
+                grid-template-columns: 150px 1fr;
+                gap: 20px;
+            }
+
+            .product-image {
+                max-width: 150px;
+                background: transparent !important;
+                border: 1px solid #ddd;
+                box-shadow: none;
+                transform: none !important;
+                min-height: 200px;
+                object-fit: contain;
+            }
+
+            .product-image.placeholder {
+                background: #f9f9f9 !important;
+                color: #666 !important;
+                border: 2px dashed #ccc !important;
+                font-size: 0.9rem;
+            }
+
+            .product-title {
+                color: #333 !important;
+                background: none !important;
+                -webkit-text-fill-color: #333 !important;
+                font-size: 24pt;
+            }
+
+            .product-subtitle {
+                color: #666 !important;
+            }
+
+            /* Secciones en impresión */
+            .info-section,
+            .full-width-card {
+                background: #f9f9f9 !important;
+                border: 1px solid #ddd !important;
+                box-shadow: none;
+                backdrop-filter: none;
+                color: black !important;
+                page-break-inside: avoid;
+                margin-bottom: 10pt;
+            }
+
+            .info-section h3,
+            .full-width-card h3 {
+                color: #333 !important;
+                font-size: 14pt;
+                border-bottom: 1px solid #ccc;
+                padding-bottom: 5pt;
+            }
+
+            /* Tablas en impresión */
+            .technical-table,
+            .ingredients-table {
+                background: white !important;
+                border: 1px solid #333;
+                page-break-inside: avoid;
+                margin-top: 10pt;
+            }
+
+            .technical-table th,
+            .ingredients-table th {
+                background: #e9e9e9 !important;
+                color: black !important;
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+                border-bottom: 2px solid #333;
+            }
+
+            .technical-table td,
+            .ingredients-table td {
+                color: black !important;
+                border-bottom: 1px solid #ccc;
+            }
+
+            .technical-table tr:hover,
+            .ingredients-table tr:hover {
+                background: transparent !important;
+            }
+
+            /* Características en impresión */
+            .characteristic-item {
+                background: #f5f5f5 !important;
+                border-left: 3px solid #333 !important;
+                color: black !important;
+                margin-bottom: 5pt;
+            }
+
+            .characteristic-label {
+                color: #333 !important;
+                font-weight: bold;
+            }
+
+            .characteristic-value {
+                color: black !important;
+            }
+
+            /* Ocasiones en impresión */
+            .occasions-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 5pt;
+            }
+
+            .occasion-item {
+                border: 1px solid #333 !important;
+                color: black !important;
+                background: white !important;
+                font-size: 10pt;
+                padding: 5pt 10pt;
+            }
+
+            .occasion-item::before {
+                display: none;
+            }
+
+            /* Texto general */
+            p,
+            li,
+            td,
+            th {
+                font-size: 11pt;
+                line-height: 1.3;
+                color: black !important;
+            }
+
+            /* Evitar cortes de página problemáticos */
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                page-break-after: avoid;
+                color: black !important;
+            }
+
+            .full-width-section {
+                max-width: 100%;
+            }
+
+            /* Sombras y efectos */
+            * {
+                box-shadow: none !important;
+                text-shadow: none !important;
+                transform: none !important;
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .product-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .product-image-container {
+                position: static;
+            }
+
+            .catalog-title {
+                font-size: 2.5rem;
+            }
+
+            .product-title {
+                font-size: 2rem;
+            }
+
+            .page {
+                padding: 1rem;
+            }
+
+            .technical-table,
+            .ingredients-table {
+                font-size: 0.9rem;
+            }
+
+            .characteristic-item {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .full-width-card {
+                padding: 1.5rem;
+            }
+
+            .occasions-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+        }
+
+        /* ===== COLORES ESPECÍFICOS PARA CEREZA ===== */
+        .cereza .product-title {
+            background: linear-gradient(135deg, #dc2626, #ef4444, #f87171, #fca5a5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cereza .product-subtitle {
+            color: #ef4444;
+        }
+
+        .cereza .technical-table th {
+            background: rgba(220, 38, 38, 0.2);
+            color: #dc2626;
+        }
+
+        .cereza .ingredients-table th {
+            background: rgba(220, 38, 38, 0.2);
+            color: #dc2626;
+        }
+
+        .cereza .characteristic-item {
+            border-left-color: #dc2626;
+        }
+
+        .cereza .characteristic-label {
+            color: #dc2626;
+        }
+
+        .cereza .info-section h3 {
+            color: #ef4444;
+        }
+
+        .cereza .full-width-card h3 {
+            color: #ef4444;
+        }
+
+        .cereza .occasion-item:hover {
+            box-shadow: 0 10px 25px rgba(220, 38, 38, 0.3);
+        }
+
+        .cereza .occasion-item::before {
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+        }
+
+        /* ===== COLORES ESPECÍFICOS PARA MANZANA ===== */
+        .manzana .product-title {
+            background: linear-gradient(135deg, #16a34a, #22c55e, #4ade80, #86efac);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .manzana .product-subtitle {
+            color: #22c55e;
+        }
+
+        .manzana .technical-table th {
+            background: rgba(22, 163, 74, 0.2);
+            color: #16a34a;
+        }
+
+        .manzana .ingredients-table th {
+            background: rgba(22, 163, 74, 0.2);
+            color: #16a34a;
+        }
+
+        .manzana .characteristic-item {
+            border-left-color: #16a34a;
+        }
+
+        .manzana .characteristic-label {
+            color: #16a34a;
+        }
+
+        .manzana .info-section h3 {
+            color: #22c55e;
+        }
+
+        .manzana .full-width-card h3 {
+            color: #22c55e;
+        }
+
+        .manzana .occasion-item:hover {
+            box-shadow: 0 10px 25px rgba(22, 163, 74, 0.3);
+        }
+
+        .manzana .occasion-item::before {
+            background: linear-gradient(135deg, #16a34a, #22c55e);
+        }
+
+        /* ===== ACTUALIZAR ROSADO PARA CONSISTENCIA ===== */
+        .rosado .product-subtitle {
+            color: #ff79c6;
+        }
+
+        .rosado .ingredients-table th {
+            background: rgba(255, 121, 198, 0.2);
+            color: #ff79c6;
+        }
+
+        .rosado .info-section h3 {
+            color: #ff79c6;
+        }
+
+        .rosado .full-width-card h3 {
+            color: #ff79c6;
+        }
+
+        /* ===== ACTUALIZAR UVA PARA CONSISTENCIA ===== */
+        .uva .product-subtitle {
+            color: #8b5cf6;
+        }
+
+        .uva .ingredients-table th {
+            background: rgba(139, 92, 246, 0.2);
+            color: #8b5cf6;
+        }
+
+        .uva .info-section h3 {
+            color: #8b5cf6;
+        }
+
+        .uva .full-width-card h3 {
+            color: #8b5cf6;
+        }
+
+        /* ===== ACTUALIZAR ESPUMOSO/BLANCO PARA CONSISTENCIA ===== */
+        .espumoso .product-subtitle {
+            color: #50fa7b;
+        }
+
+        .espumoso .ingredients-table th {
+            background: rgba(80, 250, 123, 0.2);
+            color: #50fa7b;
+        }
+
+        .espumoso .info-section h3 {
+            color: #50fa7b;
+        }
+
+        .espumoso .full-width-card h3 {
+            color: #50fa7b;
+        }
+
+        /* ===================================================================
+   CSS RESPONSIVE COMPLETO PARA MÓVILES - CATÁLOGO AJEDREZ
+   Agrega este CSS al <head> de tu HTML para arreglar todo en móviles
+   =================================================================== */
+
+        /* RESET Y BASE RESPONSIVE */
+        @media (max-width: 768px) {
+            * {
+                box-sizing: border-box;
+            }
+
+            html {
+                font-size: 14px;
+                /* Base más pequeña para móviles */
+            }
+
+            body {
+                overflow-x: hidden;
+                padding: 0;
+                margin: 0;
+                font-size: 1rem;
+                line-height: 1.4;
+            }
+        }
+
+        /* CONTAINER PRINCIPAL */
+        @media (max-width: 768px) {
+            .catalog-container {
+                max-width: 100vw;
+                padding: 0;
+                margin: 0;
+                overflow-x: hidden;
+            }
+        }
+
+        /* NAVEGACIÓN MÓVIL */
+        @media (max-width: 768px) {
+            .page-nav {
+                position: fixed;
+                top: 1rem;
+                right: 1rem;
+                z-index: 100;
+                flex-direction: row;
+                gap: 0.3rem;
+                background: rgba(15, 15, 35, 0.9);
+                padding: 0.5rem;
+                border-radius: 20px;
+                backdrop-filter: blur(10px);
+            }
+
+            .nav-dot {
+                width: 12px;
+                height: 12px;
+            }
+        }
+
+        /* PÁGINAS PRINCIPALES */
+        @media (max-width: 768px) {
+            .page {
+                min-height: 100vh;
+                padding: 1rem;
+                display: block;
+                overflow-x: hidden;
+            }
+
+            /* PORTADA MÓVIL */
+            .cover-page {
+                text-align: center;
+                padding: 2rem 1rem;
+            }
+
+            .company-logo {
+                width: 120px;
+                height: 120px;
+                margin: 0 auto 1rem;
+                font-size: 2rem;
+            }
+
+            .company-name {
+                font-size: 1.5rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .company-subtitle {
+                font-size: 1rem;
+                margin-bottom: 0.3rem;
+            }
+
+            .company-nit {
+                font-size: 0.9rem;
+                margin-bottom: 2rem;
+            }
+
+            .catalog-title {
+                font-size: 2.5rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .catalog-subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 1.5rem;
+            }
+        }
+
+        /* PÁGINAS DE PRODUCTOS MÓVIL */
+        @media (max-width: 768px) {
+            .product-page {
+                padding: 1rem;
+                align-items: flex-start;
+            }
+
+            .product-header {
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+
+            .product-title {
+                font-size: 2rem;
+                margin-bottom: 0.8rem;
+                line-height: 1.2;
+            }
+
+            .product-subtitle {
+                font-size: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            /* LAYOUT PRINCIPAL EN MÓVIL */
+            .product-content {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 1.5rem !important;
+                width: 100% !important;
+                margin-bottom: 1.5rem !important;
+            }
+
+            /* CONTENEDOR DE IMAGEN MÓVIL */
+            .product-image-container {
+                order: -1 !important;
+                position: static !important;
+                height: auto !important;
+                min-height: auto !important;
+                width: 100% !important;
+                display: flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+                padding: 1rem 0 !important;
+                text-align: center;
+            }
+
+            /* IMAGEN DE PRODUCTO MÓVIL */
+            .product-image {
+                max-width: 280px !important;
+                max-height: 350px !important;
+                width: auto !important;
+                height: auto !important;
+                object-fit: contain !important;
+                margin: 0 auto !important;
+                display: block !important;
+            }
+
+            .product-image.placeholder {
+                max-width: 280px !important;
+                min-height: 300px !important;
+                font-size: 1rem !important;
+            }
+
+            /* INFORMACIÓN DE PRODUCTO MÓVIL */
+            .product-info {
+                width: 100% !important;
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 1rem !important;
+            }
+
+            /* SECCIONES DE INFORMACIÓN MÓVIL */
+            .info-section {
+                background: rgba(255, 255, 255, 0.05) !important;
+                border-radius: 12px !important;
+                padding: 1rem !important;
+                margin-bottom: 1rem !important;
+                width: 100% !important;
+                overflow-x: auto !important;
+            }
+
+            .info-section h3 {
+                font-size: 1.1rem !important;
+                margin-bottom: 0.8rem !important;
+                text-align: left !important;
+            }
+
+            /* SECCIONES DE ANCHO COMPLETO MÓVIL */
+            .full-width-section {
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            .full-width-card {
+                background: rgba(255, 255, 255, 0.08) !important;
+                border-radius: 12px !important;
+                padding: 1rem !important;
+                margin-bottom: 1rem !important;
+                width: 100% !important;
+            }
+
+            .full-width-card h3 {
+                font-size: 1.1rem !important;
+                margin-bottom: 0.8rem !important;
+                text-align: center !important;
+            }
+
+            /* TABLAS MÓVIL */
+            .technical-table,
+            .ingredients-table {
+                width: 100% !important;
+                font-size: 0.85rem !important;
+                border-collapse: collapse !important;
+                overflow-x: auto !important;
+                display: block !important;
+                white-space: nowrap !important;
+            }
+
+            .technical-table thead,
+            .ingredients-table thead {
+                display: block !important;
+            }
+
+            .technical-table tbody,
+            .ingredients-table tbody {
+                display: block !important;
+                overflow-x: auto !important;
+                white-space: nowrap !important;
+            }
+
+            .technical-table tr,
+            .ingredients-table tr {
+                display: table !important;
+                width: 100% !important;
+                table-layout: fixed !important;
+            }
+
+            .technical-table th,
+            .technical-table td,
+            .ingredients-table th,
+            .ingredients-table td {
+                padding: 0.6rem 0.8rem !important;
+                font-size: 0.8rem !important;
+                word-wrap: break-word !important;
+                white-space: normal !important;
+            }
+
+            /* CARACTERÍSTICAS ORGANOLÉPTICAS MÓVIL */
+            .characteristics-grid {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 0.5rem !important;
+                margin-top: 1rem !important;
+            }
+
+            .characteristic-item {
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                text-align: center !important;
+                padding: 0.8rem !important;
+                background: rgba(255, 255, 255, 0.05) !important;
+                border-radius: 8px !important;
+                border-left: 3px solid #50fa7b !important;
+            }
+
+            .characteristic-label {
+                font-weight: 600 !important;
+                margin-bottom: 0.3rem !important;
+                font-size: 0.9rem !important;
+            }
+
+            .characteristic-value {
+                font-size: 0.85rem !important;
+                text-align: center !important;
+            }
+
+            /* OCASIONES MÓVIL */
+            .occasions-grid {
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 0.8rem !important;
+                margin-top: 1rem !important;
+            }
+
+            .occasion-item {
+                font-size: 0.8rem !important;
+                padding: 0.6rem 0.8rem !important;
+                text-align: center !important;
+                border: 2px solid !important;
+                border-image: linear-gradient(135deg, #bd93f9, #ff79c6) 1 !important;
+                background: transparent !important;
+                color: #ffffff !important;
+                border-radius: 0 !important;
+            }
+        }
+
+        /* MÓVILES PEQUEÑOS (480px y menos) */
+        @media (max-width: 480px) {
+            html {
+                font-size: 13px;
+            }
+
+            .page {
+                padding: 0.8rem;
+            }
+
+            .product-title {
+                font-size: 1.7rem;
+            }
+
+            .product-image {
+                max-width: 240px !important;
+                max-height: 300px !important;
+            }
+
+            .product-content {
+                gap: 1rem !important;
+            }
+
+            .info-section,
+            .full-width-card {
+                padding: 0.8rem !important;
+            }
+
+            .occasions-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            .technical-table th,
+            .technical-table td,
+            .ingredients-table th,
+            .ingredients-table td {
+                padding: 0.4rem 0.6rem !important;
+                font-size: 0.75rem !important;
+            }
+        }
+
+        /* MÓVILES MUY PEQUEÑOS (360px y menos) */
+        @media (max-width: 360px) {
+            html {
+                font-size: 12px;
+            }
+
+            .page {
+                padding: 0.5rem;
+            }
+
+            .catalog-title {
+                font-size: 2rem;
+            }
+
+            .product-title {
+                font-size: 1.5rem;
+            }
+
+            .product-image {
+                max-width: 200px !important;
+                max-height: 250px !important;
+            }
+
+            .company-logo {
+                width: 100px;
+                height: 100px;
+                font-size: 1.5rem;
+            }
+
+            .info-section,
+            .full-width-card {
+                padding: 0.6rem !important;
+                margin-bottom: 0.8rem !important;
+            }
+
+            .characteristic-item {
+                padding: 0.6rem !important;
+            }
+        }
+
+        /* LANDSCAPE MÓVIL */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .page {
+                min-height: 100vh;
+            }
+
+            .product-content {
+                flex-direction: row !important;
+                align-items: flex-start !important;
+            }
+
+            .product-image-container {
+                order: 0 !important;
+                width: 40% !important;
+                flex-shrink: 0 !important;
+            }
+
+            .product-info {
+                width: 60% !important;
+            }
+
+            .product-image {
+                max-width: 200px !important;
+                max-height: 250px !important;
+            }
+        }
+
+        /* ASEGURAR QUE NADA SE DESBORDE */
+        @media (max-width: 768px) {
+            * {
+                max-width: 100vw !important;
+            }
+
+            .page,
+            .catalog-container,
+            .product-content,
+            .product-info,
+            .info-section,
+            .full-width-section,
+            .full-width-card {
+                overflow-x: hidden !important;
+            }
+
+            /* TEXTOS RESPONSIVOS */
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                word-wrap: break-word !important;
+                hyphens: auto !important;
+            }
+
+            p,
+            li,
+            td,
+            th {
+                word-wrap: break-word !important;
+                hyphens: auto !important;
+                line-height: 1.4 !important;
+            }
+        }
+
+        /* ===================================================================
+   CSS RESPONSIVE COMPLETO PARA MÓVILES - CATÁLOGO AJEDREZ
+   Agrega este CSS al <head> de tu HTML para arreglar todo en móviles
+   =================================================================== */
+
+        /* RESET Y BASE RESPONSIVE */
+        @media (max-width: 768px) {
+            * {
+                box-sizing: border-box;
+            }
+
+            html {
+                font-size: 14px;
+                /* Base más pequeña para móviles */
+            }
+
+            body {
+                overflow-x: hidden;
+                padding: 0;
+                margin: 0;
+                font-size: 1rem;
+                line-height: 1.4;
+            }
+        }
+
+        /* CONTAINER PRINCIPAL */
+        @media (max-width: 768px) {
+            .catalog-container {
+                max-width: 100vw;
+                padding: 0;
+                margin: 0;
+                overflow-x: hidden;
+            }
+        }
+
+        /* NAVEGACIÓN MÓVIL */
+        @media (max-width: 768px) {
+            .page-nav {
+                position: fixed;
+                top: 1rem;
+                right: 1rem;
+                z-index: 100;
+                flex-direction: row;
+                gap: 0.3rem;
+                background: rgba(15, 15, 35, 0.9);
+                padding: 0.5rem;
+                border-radius: 20px;
+                backdrop-filter: blur(10px);
+            }
+
+            .nav-dot {
+                width: 12px;
+                height: 12px;
+            }
+        }
+
+        /* PÁGINAS PRINCIPALES */
+        @media (max-width: 768px) {
+            .page {
+                min-height: 100vh;
+                padding: 1rem;
+                display: block;
+                overflow-x: hidden;
+            }
+
+            /* PORTADA MÓVIL */
+            .cover-page {
+                text-align: center;
+                padding: 2rem 1rem;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: center !important;
+                align-items: center !important;
+                min-height: 100vh !important;
+            }
+
+            .cover-content {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .company-logo {
+                width: 120px;
+                height: 120px;
+                margin: 0 auto 1rem;
+                font-size: 2rem;
+            }
+
+            .company-name {
+                font-size: 1.5rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .company-subtitle {
+                font-size: 1rem;
+                margin-bottom: 0.3rem;
+            }
+
+            .company-nit {
+                font-size: 0.9rem;
+                margin-bottom: 2rem;
+            }
+
+            .catalog-title {
+                font-size: 2.5rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .catalog-subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 1.5rem;
+            }
+        }
+
+        /* PÁGINAS DE PRODUCTOS MÓVIL */
+        @media (max-width: 768px) {
+            .product-page {
+                padding: 1rem;
+                align-items: flex-start;
+            }
+
+            .product-header {
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+
+            .product-title {
+                font-size: 2rem;
+                margin-bottom: 0.8rem;
+                line-height: 1.2;
+            }
+
+            .product-subtitle {
+                font-size: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            /* LAYOUT PRINCIPAL EN MÓVIL */
+            .product-content {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 1.5rem !important;
+                width: 100% !important;
+                margin-bottom: 1.5rem !important;
+            }
+
+            /* CONTENEDOR DE IMAGEN MÓVIL */
+            .product-image-container {
+                order: -1 !important;
+                position: static !important;
+                height: auto !important;
+                min-height: auto !important;
+                width: 100% !important;
+                display: flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+                padding: 1rem 0 !important;
+                text-align: center;
+            }
+
+            /* IMAGEN DE PRODUCTO MÓVIL */
+            .product-image {
+                max-width: 280px !important;
+                max-height: 350px !important;
+                width: auto !important;
+                height: auto !important;
+                object-fit: contain !important;
+                margin: 0 auto !important;
+                display: block !important;
+            }
+
+            .product-image.placeholder {
+                max-width: 280px !important;
+                min-height: 300px !important;
+                font-size: 1rem !important;
+            }
+
+            /* INFORMACIÓN DE PRODUCTO MÓVIL */
+            .product-info {
+                width: 100% !important;
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 1rem !important;
+            }
+
+            /* SECCIONES DE INFORMACIÓN MÓVIL */
+            .info-section {
+                background: rgba(255, 255, 255, 0.05) !important;
+                border-radius: 12px !important;
+                padding: 1rem !important;
+                margin-bottom: 1rem !important;
+                width: 100% !important;
+                overflow-x: auto !important;
+            }
+
+            .info-section h3 {
+                font-size: 1.1rem !important;
+                margin-bottom: 0.8rem !important;
+                text-align: left !important;
+            }
+
+            /* SECCIONES DE ANCHO COMPLETO MÓVIL */
+            .full-width-section {
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            .full-width-card {
+                background: rgba(255, 255, 255, 0.08) !important;
+                border-radius: 12px !important;
+                padding: 1rem !important;
+                margin-bottom: 1rem !important;
+                width: 100% !important;
+            }
+
+            .full-width-card h3 {
+                font-size: 1.1rem !important;
+                margin-bottom: 0.8rem !important;
+                text-align: center !important;
+            }
+
+            /* TABLAS MÓVIL */
+            .technical-table,
+            .ingredients-table {
+                width: 100% !important;
+                font-size: 0.85rem !important;
+                border-collapse: collapse !important;
+                overflow-x: auto !important;
+                display: block !important;
+                white-space: nowrap !important;
+            }
+
+            .technical-table thead,
+            .ingredients-table thead {
+                display: block !important;
+            }
+
+            .technical-table tbody,
+            .ingredients-table tbody {
+                display: block !important;
+                overflow-x: auto !important;
+                white-space: nowrap !important;
+            }
+
+            .technical-table tr,
+            .ingredients-table tr {
+                display: table !important;
+                width: 100% !important;
+                table-layout: fixed !important;
+            }
+
+            .technical-table th,
+            .technical-table td,
+            .ingredients-table th,
+            .ingredients-table td {
+                padding: 0.6rem 0.8rem !important;
+                font-size: 0.8rem !important;
+                word-wrap: break-word !important;
+                white-space: normal !important;
+            }
+
+            /* CARACTERÍSTICAS ORGANOLÉPTICAS MÓVIL */
+            .characteristics-grid {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 0.5rem !important;
+                margin-top: 1rem !important;
+            }
+
+            .characteristic-item {
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                text-align: center !important;
+                padding: 0.8rem !important;
+                background: rgba(255, 255, 255, 0.05) !important;
+                border-radius: 8px !important;
+                border-left: 3px solid #50fa7b !important;
+            }
+
+            .characteristic-label {
+                font-weight: 600 !important;
+                margin-bottom: 0.3rem !important;
+                font-size: 0.9rem !important;
+            }
+
+            .characteristic-value {
+                font-size: 0.85rem !important;
+                text-align: center !important;
+            }
+
+            /* OCASIONES MÓVIL */
+            .occasions-grid {
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 0.8rem !important;
+                margin-top: 1rem !important;
+            }
+
+            .occasion-item {
+                font-size: 0.8rem !important;
+                padding: 0.6rem 0.8rem !important;
+                text-align: center !important;
+                border: 2px solid !important;
+                border-image: linear-gradient(135deg, #bd93f9, #ff79c6) 1 !important;
+                background: transparent !important;
+                color: #ffffff !important;
+                border-radius: 0 !important;
+            }
+        }
+
+        /* MÓVILES PEQUEÑOS (480px y menos) */
+        @media (max-width: 480px) {
+            html {
+                font-size: 13px;
+            }
+
+            .page {
+                padding: 0.8rem;
+            }
+
+            .product-title {
+                font-size: 1.7rem;
+            }
+
+            .product-image {
+                max-width: 240px !important;
+                max-height: 300px !important;
+            }
+
+            .product-content {
+                gap: 1rem !important;
+            }
+
+            .info-section,
+            .full-width-card {
+                padding: 0.8rem !important;
+            }
+
+            .occasions-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            .technical-table th,
+            .technical-table td,
+            .ingredients-table th,
+            .ingredients-table td {
+                padding: 0.4rem 0.6rem !important;
+                font-size: 0.75rem !important;
+            }
+        }
+
+        /* MÓVILES MUY PEQUEÑOS (360px y menos) */
+        @media (max-width: 360px) {
+            html {
+                font-size: 12px;
+            }
+
+            .page {
+                padding: 0.5rem;
+            }
+
+            .catalog-title {
+                font-size: 2rem;
+            }
+
+            .product-title {
+                font-size: 1.5rem;
+            }
+
+            .product-image {
+                max-width: 200px !important;
+                max-height: 250px !important;
+            }
+
+            .company-logo {
+                width: 100px;
+                height: 100px;
+                font-size: 1.5rem;
+            }
+
+            .info-section,
+            .full-width-card {
+                padding: 0.6rem !important;
+                margin-bottom: 0.8rem !important;
+            }
+
+            .characteristic-item {
+                padding: 0.6rem !important;
+            }
+        }
+
+        /* LANDSCAPE MÓVIL */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .page {
+                min-height: 100vh;
+            }
+
+            .product-content {
+                flex-direction: row !important;
+                align-items: flex-start !important;
+            }
+
+            .product-image-container {
+                order: 0 !important;
+                width: 40% !important;
+                flex-shrink: 0 !important;
+            }
+
+            .product-info {
+                width: 60% !important;
+            }
+
+            .product-image {
+                max-width: 200px !important;
+                max-height: 250px !important;
+            }
+        }
+
+        /* ASEGURAR QUE NADA SE DESBORDE */
+        @media (max-width: 768px) {
+            * {
+                max-width: 100vw !important;
+            }
+
+            .page,
+            .catalog-container,
+            .product-content,
+            .product-info,
+            .info-section,
+            .full-width-section,
+            .full-width-card {
+                overflow-x: hidden !important;
+            }
+
+            /* TEXTOS RESPONSIVOS */
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                word-wrap: break-word !important;
+                hyphens: auto !important;
+            }
+
+            p,
+            li,
+            td,
+            th {
+                word-wrap: break-word !important;
+                hyphens: auto !important;
+                line-height: 1.4 !important;
+            }
+        }
+
+
+        /* ===================================================================
+   CSS PARA "POR QUÉ ELEGIR HG S.A.S" - 8 ELEMENTOS ORGANIZADOS
+   =================================================================== */
+
+        /* Grid para "Por Qué Elegir" - 8 elementos PROPORCIONADOS SIN ESPACIOS VACÍOS */
+        .why-choose-grid {
+            display: grid !important;
+            grid-template-columns: repeat(4, 1fr) !important;
+            grid-template-rows: auto auto !important;
+            gap: 1.2rem !important;
+            margin: 2rem auto !important;
+            max-width: 1200px !important;
+            align-items: stretch !important;
+            justify-items: stretch !important;
+        }
+
+        /* Primera fila: 4 elementos */
+        .why-choose-grid .occasion-item:nth-child(1) {
+            grid-column: 1 !important;
+            grid-row: 1 !important;
+        }
+
+        .why-choose-grid .occasion-item:nth-child(2) {
+            grid-column: 2 !important;
+            grid-row: 1 !important;
+        }
+
+        .why-choose-grid .occasion-item:nth-child(3) {
+            grid-column: 3 !important;
+            grid-row: 1 !important;
+        }
+
+        .why-choose-grid .occasion-item:nth-child(4) {
+            grid-column: 4 !important;
+            grid-row: 1 !important;
+        }
+
+        /* Segunda fila: 4 elementos */
+        .why-choose-grid .occasion-item:nth-child(5) {
+            grid-column: 1 !important;
+            grid-row: 2 !important;
+        }
+
+        .why-choose-grid .occasion-item:nth-child(6) {
+            grid-column: 2 !important;
+            grid-row: 2 !important;
+        }
+
+        .why-choose-grid .occasion-item:nth-child(7) {
+            grid-column: 3 !important;
+            grid-row: 2 !important;
+        }
+
+        .why-choose-grid .occasion-item:nth-child(8) {
+            grid-column: 4 !important;
+            grid-row: 2 !important;
+        }
+
+        /* ===================================================================
+   CSS PARA OCASIONES DE PRODUCTOS - 3 ARRIBA + 2 CENTRADAS ABAJO
+   =================================================================== */
+
+        /* Grid para ocasiones - 5 elementos con 3+2 layout */
+        .occasions-grid:not(.why-choose-grid) {
+            display: grid !important;
+            grid-template-columns: repeat(6, 1fr) !important;
+            grid-template-rows: auto auto !important;
+            gap: 0.8rem !important;
+            margin-top: 1rem !important;
+            align-items: center !important;
+        }
+
+        /* Primera fila: 3 elementos */
+        .occasions-grid:not(.why-choose-grid)>*:nth-child(1) {
+            grid-column: 1 / 3 !important;
+            grid-row: 1 !important;
+        }
+
+        .occasions-grid:not(.why-choose-grid)>*:nth-child(2) {
+            grid-column: 3 / 5 !important;
+            grid-row: 1 !important;
+        }
+
+        .occasions-grid:not(.why-choose-grid)>*:nth-child(3) {
+            grid-column: 5 / 7 !important;
+            grid-row: 1 !important;
+        }
+
+        /* Segunda fila: 2 elementos centrados */
+        .occasions-grid:not(.why-choose-grid)>*:nth-child(4) {
+            grid-column: 2 / 4 !important;
+            grid-row: 2 !important;
+        }
+
+        .occasions-grid:not(.why-choose-grid)>*:nth-child(5) {
+            grid-column: 4 / 6 !important;
+            grid-row: 2 !important;
+        }
+
+        /* ===== RESPONSIVE MÓVIL - UNA COLUMNA, TODOS IGUALES ===== */
+        @media (max-width: 768px) {
+
+            /* Por Qué Elegir en móvil - UNA COLUMNA VERTICAL */
+            .why-choose-grid {
+                display: grid !important;
+                grid-template-columns: 1fr !important;
+                /* UNA SOLA COLUMNA */
+                grid-template-rows: repeat(8, 70px) !important;
+                /* 8 FILAS IGUALES */
+                gap: 0.8rem !important;
+                max-width: 100% !important;
+                margin: 1rem auto !important;
+                padding: 0 1rem !important;
+            }
+
+            /* TODOS LOS CUADROS EXACTAMENTE IGUALES */
+            .why-choose-grid .occasion-item {
+                padding: 0.8rem !important;
+                height: 70px !important;
+                /* ALTURA FIJA IGUAL */
+                width: 100% !important;
+                font-size: 0.8rem !important;
+                line-height: 1.2 !important;
+                text-align: center !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                word-break: break-word !important;
+                overflow: hidden !important;
+                box-sizing: border-box !important;
+                grid-column: 1 !important;
+            }
+
+            /* Uno debajo del otro */
+            .why-choose-grid .occasion-item:nth-child(1) {
+                grid-row: 1;
+            }
+
+            .why-choose-grid .occasion-item:nth-child(2) {
+                grid-row: 2;
+            }
+
+            .why-choose-grid .occasion-item:nth-child(3) {
+                grid-row: 3;
+            }
+
+            .why-choose-grid .occasion-item:nth-child(4) {
+                grid-row: 4;
+            }
+
+            .why-choose-grid .occasion-item:nth-child(5) {
+                grid-row: 5;
+            }
+
+            .why-choose-grid .occasion-item:nth-child(6) {
+                grid-row: 6;
+            }
+
+            .why-choose-grid .occasion-item:nth-child(7) {
+                grid-row: 7;
+            }
+
+            .why-choose-grid .occasion-item:nth-child(8) {
+                grid-row: 8;
+            }
+
+            /* Ocasiones también una columna */
+            .occasions-grid:not(.why-choose-grid) {
+                display: grid !important;
+                grid-template-columns: 1fr !important;
+                grid-template-rows: repeat(5, 70px) !important;
+                gap: 0.8rem !important;
+            }
+
+            .occasions-grid:not(.why-choose-grid)>* {
+                padding: 0.8rem !important;
+                height: 70px !important;
+                /* MISMO TAMAÑO */
+                width: 100% !important;
+                font-size: 0.8rem !important;
+                line-height: 1.2 !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                text-align: center !important;
+                word-break: break-word !important;
+                overflow: hidden !important;
+                box-sizing: border-box !important;
+                grid-column: 1 !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            /* Móviles pequeños - MISMO TAMAÑO */
+            .why-choose-grid {
+                grid-template-rows: repeat(8, 70px) !important;
+                gap: 0.6rem !important;
+                margin: 0.8rem auto !important;
+                padding: 0 0.8rem !important;
+            }
+
+            .why-choose-grid .occasion-item {
+                height: 70px !important;
+                /* MISMO TAMAÑO SIEMPRE */
+                font-size: 0.75rem !important;
+                padding: 0.6rem !important;
+            }
+
+            .occasions-grid:not(.why-choose-grid) {
+                grid-template-rows: repeat(5, 70px) !important;
+                gap: 0.6rem !important;
+            }
+
+            .occasions-grid:not(.why-choose-grid)>* {
+                height: 70px !important;
+                /* MISMO TAMAÑO SIEMPRE */
+                font-size: 0.75rem !important;
+                padding: 0.6rem !important;
+            }
+        }
+
+        /* ===================================================================
+   SOLUCIÓN DEFINITIVA - CSS LIMPIO Y DIRECTO
+   Eliminar conflictos y hacer que funcione DE VERDAD
+   =================================================================== */
+
+        /* RESET BRUTAL - Eliminar todos los conflictos previos */
+        @media (max-width: 768px) {
+
+            /* FORZAR que .why-choose-grid sea UNA COLUMNA en móvil */
+            .why-choose-grid {
+                display: grid !important;
+                grid-template-columns: 1fr !important;
+                grid-template-rows: repeat(8, 80px) !important;
+                gap: 0.8rem !important;
+                margin: 1rem auto !important;
+                padding: 0 1rem !important;
+                max-width: 100% !important;
+                width: 100% !important;
+            }
+
+            /* TODOS los elementos de Por Qué Elegir IGUALES */
+            .why-choose-grid .occasion-item,
+            .why-choose-grid>div,
+            .why-choose-grid>* {
+                grid-column: 1 !important;
+                grid-row: auto !important;
+                height: 80px !important;
+                min-height: 80px !important;
+                max-height: 80px !important;
+                width: 100% !important;
+                padding: 1rem !important;
+                margin: 0 !important;
+                font-size: 0.85rem !important;
+                line-height: 1.3 !important;
+                text-align: center !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                word-break: break-word !important;
+                overflow: hidden !important;
+                box-sizing: border-box !important;
+
+                /* Eliminar cualquier posicionamiento grid previo */
+                grid-template-columns: unset !important;
+                grid-template-rows: unset !important;
+            }
+
+            /* ANULAR todos los nth-child problemáticos */
+            .why-choose-grid .occasion-item:nth-child(1),
+            .why-choose-grid .occasion-item:nth-child(2),
+            .why-choose-grid .occasion-item:nth-child(3),
+            .why-choose-grid .occasion-item:nth-child(4),
+            .why-choose-grid .occasion-item:nth-child(5),
+            .why-choose-grid .occasion-item:nth-child(6),
+            .why-choose-grid .occasion-item:nth-child(7),
+            .why-choose-grid .occasion-item:nth-child(8) {
+                grid-column: 1 !important;
+                grid-row: auto !important;
+                justify-self: stretch !important;
+                align-self: stretch !important;
+            }
+
+            /* OCASIONES de productos - 3+2 layout SOLO EN MÓVIL */
+            .occasions-grid:not(.why-choose-grid) {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+                grid-template-rows: auto auto auto !important;
+                gap: 0.8rem !important;
+            }
+
+            .occasions-grid:not(.why-choose-grid)>*:nth-child(1) {
+                grid-column: 1;
+                grid-row: 1;
+            }
+
+            .occasions-grid:not(.why-choose-grid)>*:nth-child(2) {
+                grid-column: 2;
+                grid-row: 1;
+            }
+
+            .occasions-grid:not(.why-choose-grid)>*:nth-child(3) {
+                grid-column: 1;
+                grid-row: 2;
+            }
+
+            .occasions-grid:not(.why-choose-grid)>*:nth-child(4) {
+                grid-column: 2;
+                grid-row: 2;
+            }
+
+            .occasions-grid:not(.why-choose-grid)>*:nth-child(5) {
+                grid-column: 1 / 3;
+                grid-row: 3;
+                justify-self: center;
+                max-width: 250px;
+            }
+
+            .occasions-grid:not(.why-choose-grid)>* {
+                height: 80px !important;
+                padding: 1rem !important;
+                font-size: 0.8rem !important;
+                line-height: 1.3 !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                text-align: center !important;
+                word-break: break-word !important;
+                overflow: hidden !important;
+                box-sizing: border-box !important;
+            }
+        }
+
+        /* MÓVILES MUY PEQUEÑOS */
+        @media (max-width: 480px) {
+            .why-choose-grid {
+                gap: 0.6rem !important;
+                padding: 0 0.8rem !important;
+            }
+
+            .why-choose-grid .occasion-item {
+                height: 75px !important;
+                font-size: 0.8rem !important;
+                padding: 0.8rem !important;
+            }
+
+            .occasions-grid:not(.why-choose-grid) {
+                grid-template-columns: 1fr !important;
+            }
+
+            .occasions-grid:not(.why-choose-grid)>* {
+                grid-column: 1 !important;
+                grid-row: auto !important;
+                max-width: none !important;
+                height: 75px !important;
+            }
+        }
+
+        /* DESKTOP - SE MANTIENE IGUAL */
+        @media (min-width: 769px) {
+            .why-choose-grid {
+                display: grid !important;
+                grid-template-columns: repeat(4, 1fr) !important;
+                grid-template-rows: auto auto !important;
+                gap: 1.2rem !important;
+                margin: 2rem auto !important;
+                max-width: 1200px !important;
+            }
+
+            .why-choose-grid .occasion-item:nth-child(1) {
+                grid-column: 1;
+                grid-row: 1;
+            }
+
+            .why-choose-grid .occasion-item:nth-child(2) {
+                grid-column: 2;
+                grid-row: 1;
+            }
+
+            .why-choose-grid .occasion-item:nth-child(3) {
+                grid-column: 3;
+                grid-row: 1;
+            }
+
+            .why-choose-grid .occasion-item:nth-child(4) {
+                grid-column: 4;
+                grid-row: 1;
+            }
+
+            .why-choose-grid .occasion-item:nth-child(5) {
+                grid-column: 1;
+                grid-row: 2;
+            }
+
+            .why-choose-grid .occasion-item:nth-child(6) {
+                grid-column: 2;
+                grid-row: 2;
+            }
+
+            .why-choose-grid .occasion-item:nth-child(7) {
+                grid-column: 3;
+                grid-row: 2;
+            }
+
+            .why-choose-grid .occasion-item:nth-child(8) {
+                grid-column: 4;
+                grid-row: 2;
+            }
+
+            /* Ocasiones 3+2 en desktop */
+            .occasions-grid:not(.why-choose-grid) {
+                display: grid !important;
+                grid-template-columns: repeat(6, 1fr) !important;
+                grid-template-rows: auto auto !important;
+                gap: 0.8rem !important;
+            }
+
+            .occasions-grid:not(.why-choose-grid)>*:nth-child(1) {
+                grid-column: 1 / 3;
+                grid-row: 1;
+            }
+
+            .occasions-grid:not(.why-choose-grid)>*:nth-child(2) {
+                grid-column: 3 / 5;
+                grid-row: 1;
+            }
+
+            .occasions-grid:not(.why-choose-grid)>*:nth-child(3) {
+                grid-column: 5 / 7;
+                grid-row: 1;
+            }
+
+            .occasions-grid:not(.why-choose-grid)>*:nth-child(4) {
+                grid-column: 2 / 4;
+                grid-row: 2;
+            }
+
+            .occasions-grid:not(.why-choose-grid)>*:nth-child(5) {
+                grid-column: 4 / 6;
+                grid-row: 2;
+            }
+        }
+
+        /* ===================================================================
+   CSS OCASIONES COMPACTAS - DISEÑO PROFESIONAL Y ÓPTIMO
+   Mejora visual para una experiencia de usuario superior
+   =================================================================== */
+
+        /* ===== RESET Y BASE ===== */
+        * {
+            box-sizing: border-box;
+        }
+
+        /* ===== MÓVIL COMPACTO Y PROFESIONAL (320px - 767px) ===== */
+        @media (max-width: 767px) {
+
+            /* POR QUÉ ELEGIR - GRID COMPACTO Y ELEGANTE */
+            .why-choose-grid {
+                display: grid !important;
+                grid-template-columns: 1fr !important;
+                grid-template-rows: repeat(8, auto) !important;
+                gap: 8px !important;
+                /* MUCHO MÁS COMPACTO */
+                margin: 1.5rem auto !important;
+                padding: 0 1rem !important;
+                max-width: 100% !important;
+                width: 100% !important;
+            }
+
+            /* ELEMENTOS MÁS COMPACTOS Y PROFESIONALES */
+            .why-choose-grid .occasion-item,
+            .why-choose-grid>div,
+            .why-choose-grid>* {
+                grid-column: 1 !important;
+                grid-row: auto !important;
+                height: 45px !important;
+                /* ALTURA COMPACTA */
+                min-height: 45px !important;
+                max-height: 45px !important;
+                width: 100% !important;
+                padding: 8px 12px !important;
+                /* PADDING REDUCIDO */
+                margin: 0 !important;
+                font-size: 0.8rem !important;
+                /* TEXTO LEGIBLE PERO COMPACTO */
+                line-height: 1.3 !important;
+                text-align: center !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                word-break: break-word !important;
+                overflow: hidden !important;
+                box-sizing: border-box !important;
+
+                /* ESTILO VISUAL MEJORADO */
+                background: rgba(255, 255, 255, 0.05) !important;
+                border: 1px solid rgba(189, 147, 249, 0.2) !important;
+                border-radius: 8px !important;
+                transition: all 0.3s ease !important;
+
+                /* Eliminar posicionamiento grid previo */
+                grid-template-columns: unset !important;
+                grid-template-rows: unset !important;
+            }
+
+            /* HOVER EFFECT SUTIL */
+            .why-choose-grid .occasion-item:hover,
+            .why-choose-grid>*:hover {
+                background: rgba(189, 147, 249, 0.1) !important;
+                border-color: rgba(189, 147, 249, 0.4) !important;
+                transform: translateY(-1px) !important;
+            }
+
+            /* ANULAR nth-child problemáticos */
+            .why-choose-grid .occasion-item:nth-child(1),
+            .why-choose-grid .occasion-item:nth-child(2),
+            .why-choose-grid .occasion-item:nth-child(3),
+            .why-choose-grid .occasion-item:nth-child(4),
+            .why-choose-grid .occasion-item:nth-child(5),
+            .why-choose-grid .occasion-item:nth-child(6),
+            .why-choose-grid .occasion-item:nth-child(7),
+            .why-choose-grid .occasion-item:nth-child(8) {
+                grid-column: 1 !important;
+                grid-row: auto !important;
+                justify-self: stretch !important;
+                align-self: stretch !important;
+            }
+
+            /* OCASIONES DE PRODUCTOS - TAMBIÉN COMPACTO */
+            .occasions-grid:not(.why-choose-grid) {
+                display: grid !important;
+                grid-template-columns: 1fr !important;
+                grid-template-rows: repeat(5, auto) !important;
+                gap: 8px !important;
+                /* MISMO GAP COMPACTO */
+            }
+
+            .occasions-grid:not(.why-choose-grid)>* {
+                grid-column: 1 !important;
+                grid-row: auto !important;
+                height: 45px !important;
+                /* MISMA ALTURA */
+                min-height: 45px !important;
+                max-height: 45px !important;
+                width: 100% !important;
+                padding: 8px 12px !important;
+                /* MISMO PADDING */
+                margin: 0 !important;
+                font-size: 0.8rem !important;
+                /* MISMO TAMAÑO */
+                line-height: 1.3 !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                text-align: center !important;
+                word-break: break-word !important;
+                overflow: hidden !important;
+                box-sizing: border-box !important;
+                max-width: none !important;
+                justify-self: stretch !important;
+
+                /* ESTILO VISUAL CONSISTENTE */
+                background: rgba(255, 255, 255, 0.05) !important;
+                border: 1px solid rgba(80, 250, 123, 0.2) !important;
+                border-radius: 8px !important;
+                transition: all 0.3s ease !important;
+            }
+
+            /* HOVER PARA OCASIONES */
+            .occasions-grid:not(.why-choose-grid)>*:hover {
+                background: rgba(80, 250, 123, 0.1) !important;
+                border-color: rgba(80, 250, 123, 0.4) !important;
+                transform: translateY(-1px) !important;
+            }
+
+            /* ANULAR nth-child de ocasiones */
+            .occasions-grid:not(.why-choose-grid)>*:nth-child(1),
+            .occasions-grid:not(.why-choose-grid)>*:nth-child(2),
+            .occasions-grid:not(.why-choose-grid)>*:nth-child(3),
+            .occasions-grid:not(.why-choose-grid)>*:nth-child(4),
+            .occasions-grid:not(.why-choose-grid)>*:nth-child(5) {
+                grid-column: 1 !important;
+                grid-row: auto !important;
+                justify-self: stretch !important;
+                max-width: none !important;
+            }
+        }
+
+        /* ===== MÓVIL PEQUEÑO - AJUSTE ADICIONAL ===== */
+        @media (max-width: 480px) {
+            .why-choose-grid {
+                gap: 6px !important;
+                /* AÚN MÁS COMPACTO */
+                padding: 0 0.8rem !important;
+                margin: 1rem auto !important;
+            }
+
+            .why-choose-grid .occasion-item,
+            .why-choose-grid>* {
+                height: 42px !important;
+                font-size: 0.75rem !important;
+                padding: 6px 10px !important;
+            }
+
+            .occasions-grid:not(.why-choose-grid) {
+                gap: 6px !important;
+            }
+
+            .occasions-grid:not(.why-choose-grid)>* {
+                height: 42px !important;
+                padding: 6px 10px !important;
+                font-size: 0.75rem !important;
+            }
+        }
+
+        /* ===== MÓVIL MUY PEQUEÑO - ULTRA COMPACTO ===== */
+        @media (max-width: 360px) {
+
+            .why-choose-grid,
+            .occasions-grid:not(.why-choose-grid) {
+                gap: 4px !important;
+                margin: 0.8rem auto !important;
+                padding: 0 0.5rem !important;
+            }
+
+            .why-choose-grid .occasion-item,
+            .why-choose-grid>*,
+            .occasions-grid:not(.why-choose-grid)>* {
+                height: 38px !important;
+                min-height: 38px !important;
+                max-height: 38px !important;
+                font-size: 0.7rem !important;
+                padding: 4px 8px !important;
+                border-radius: 6px !important;
+            }
+        }
+
+        /* ===== TABLET - MANTENER FUNCIONALIDAD EXISTENTE ===== */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .why-choose-grid {
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                grid-template-rows: repeat(4, auto) !important;
+                gap: 12px !important;
+                margin: 2rem auto !important;
+                max-width: 600px !important;
+            }
+
+            .why-choose-grid .occasion-item {
+                height: 60px !important;
+                padding: 12px !important;
+                font-size: 0.9rem !important;
+            }
+
+            .occasions-grid:not(.why-choose-grid) {
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                grid-template-rows: repeat(3, auto) !important;
+                gap: 12px !important;
+            }
+
+            .occasions-grid:not(.why-choose-grid)>*:nth-child(5) {
+                grid-column: 1 / 3 !important;
+                max-width: 50% !important;
+                justify-self: center !important;
+            }
+        }
+
+        /* ===== DESKTOP - LAYOUT OPTIMIZADO ===== */
+        @media (min-width: 1024px) {
+            .why-choose-grid {
+                display: grid !important;
+                grid-template-columns: repeat(4, 1fr) !important;
+                grid-template-rows: auto auto !important;
+                gap: 16px !important;
+                margin: 2.5rem auto !important;
+                max-width: 1000px !important;
+            }
+
+            .why-choose-grid .occasion-item:nth-child(1) {
+                grid-column: 1;
+                grid-row: 1;
+            }
+
+            .why-choose-grid .occasion-item:nth-child(2) {
+                grid-column: 2;
+                grid-row: 1;
+            }
+
+            .why-choose-grid .occasion-item:nth-child(3) {
+                grid-column: 3;
+                grid-row: 1;
+            }
+
+            .why-choose-grid .occasion-item:nth-child(4) {
+                grid-column: 4;
+                grid-row: 1;
+            }
+
+            .why-choose-grid .occasion-item:nth-child(5) {
+                grid-column: 1;
+                grid-row: 2;
+            }
+
+            .why-choose-grid .occasion-item:nth-child(6) {
+                grid-column: 2;
+                grid-row: 2;
+            }
+
+            .why-choose-grid .occasion-item:nth-child(7) {
+                grid-column: 3;
+                grid-row: 2;
+            }
+
+            .why-choose-grid .occasion-item:nth-child(8) {
+                grid-column: 4;
+                grid-row: 2;
+            }
+
+            /* Ocasiones en layout 3+2 más elegante */
+            .occasions-grid:not(.why-choose-grid) {
+                display: grid !important;
+                grid-template-columns: repeat(6, 1fr) !important;
+                grid-template-rows: auto auto !important;
+                gap: 16px !important;
+                max-width: 800px !important;
+                margin: 0 auto !important;
+            }
+
+            .occasions-grid:not(.why-choose-grid)>*:nth-child(1) {
+                grid-column: 1 / 3;
+                grid-row: 1;
+            }
+
+            .occasions-grid:not(.why-choose-grid)>*:nth-child(2) {
+                grid-column: 3 / 5;
+                grid-row: 1;
+            }
+
+            .occasions-grid:not(.why-choose-grid)>*:nth-child(3) {
+                grid-column: 5 / 7;
+                grid-row: 1;
+            }
+
+            .occasions-grid:not(.why-choose-grid)>*:nth-child(4) {
+                grid-column: 2 / 4;
+                grid-row: 2;
+            }
+
+            .occasions-grid:not(.why-choose-grid)>*:nth-child(5) {
+                grid-column: 4 / 6;
+                grid-row: 2;
+            }
+        }
+
+        /* ===== MEJORAS VISUALES ADICIONALES ===== */
+
+        /* TÍTULO DE SECCIÓN MÁS COMPACTO EN MÓVIL */
+        @media (max-width: 767px) {
+
+            .occasions-section h4,
+            .why-choose-section h4 {
+                font-size: 1.1rem !important;
+                margin-bottom: 1rem !important;
+                margin-top: 1.5rem !important;
+                text-align: center !important;
+                background: var(--gradient-accent) !important;
+                -webkit-background-clip: text !important;
+                -webkit-text-fill-color: transparent !important;
+                background-clip: text !important;
+            }
+        }
+
+        /* ANIMACIONES SUAVES */
+        .why-choose-grid .occasion-item,
+        .occasions-grid:not(.why-choose-grid)>* {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+
+        /* FOCUS STATES PARA ACCESIBILIDAD */
+        .why-choose-grid .occasion-item:focus,
+        .occasions-grid:not(.why-choose-grid)>*:focus {
+            outline: 2px solid var(--accent-purple) !important;
+            outline-offset: 2px !important;
+            box-shadow: 0 0 0 4px rgba(189, 147, 249, 0.2) !important;
+        }
+
+        /* ===== OPCIONAL: VARIANTE CON ICONOS ===== */
+        .occasion-item.with-icon::before {
+            content: "🎉";
+            margin-right: 6px;
+            font-size: 0.9em;
+        }
+
+        .occasion-item.celebration::before {
+            content: "🎊";
+        }
+
+        .occasion-item.family::before {
+            content: "👨‍👩‍👧‍👦";
+        }
+
+        .occasion-item.business::before {
+            content: "💼";
+        }
+
+        .occasion-item.dinner::before {
+            content: "🍽️";
+        }
+
+        .occasion-item.toast::before {
+            content: "🥂";
+        }
+    </style>
+</head>
+
+<body>
+    <div class="catalog-container">
+        <!-- Navegación -->
+        <div class="page-nav">
+            <div class="nav-dot active" data-page="0" title="Portada"></div>
+            <div class="nav-dot" data-page="1" title="AJEDREZ Rosado"></div>
+            <div class="nav-dot" data-page="2" title="AJEDREZ Espumoso"></div>
+            <div class="nav-dot" data-page="3" title="AJEDREZ Cereza"></div>
+            <div class="nav-dot" data-page="4" title="AJEDREZ Manzana"></div>
+            <div class="nav-dot" data-page="5" title="AJEDREZ Uva"></div>
+            <div class="nav-dot" data-page="6" title="Información Corporativa"></div>
+        </div>
+
+        <!-- ===== PORTADA ===== -->
+        <div class="page cover-page" id="page-0">
+            <div class="cover-content">
+                <div class="logo-container">
+                    <div class="company-logo">
+                        <img src="images/Logomain.png" alt="Logo COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S"
+                            onerror="this.style.display='none'; this.parentElement.className+=' placeholder'; this.parentElement.innerHTML='HG';">
+                    </div>
+                    <div class="company-name">COMERCIALIZADORA Y DISTRIBUIDORA</div>
+                    <div class="company-subtitle">HG S.A.S</div>
+                    <div class="company-nit">NIT: 901.000.572-1</div>
+                </div>
+
+                <h1 class="catalog-title">AJEDREZ</h1>
+                <p class="catalog-subtitle">Champañas Espumosas y Vinos Premium Sin Alcohol</p>
+            </div>
+        </div>
+
+        <!-- ===== PÁGINA 1: AJEDREZ ROSADO ===== -->
+        <div class="page product-page rosado" id="page-1">
+            <div class="product-header">
+                <h2 class="product-title">AJEDREZ ROSADO</h2>
+                <p class="product-subtitle">Elegancia y frescura para brindis especiales</p>
+            </div>
+
+            <div class="product-content">
+                <div class="product-image-container">
+                    <img src="images/rosadorosado.png" class="product-image"
+                        alt="AJEDREZ Rosado - Bebida gasificada sin alcohol"
+                        onerror="this.className='product-image placeholder'; this.innerHTML='AJEDREZ<br>ROSADO'; this.src='';">
+                </div>
+
+                <div class="product-info">
+                    <div class="info-section">
+                        <h3>📋 Ficha Técnica</h3>
+                        <table class="technical-table">
+                            <thead>
+                                <tr>
+                                    <th>CARACTERÍSTICA</th>
+                                    <th>ESPECIFICACIÓN</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Naturaleza del Producto</td>
+                                    <td>Bebida</td>
+                                </tr>
+                                <tr>
+                                    <td>Descripción</td>
+                                    <td>Champaña espumosa a base de agua con sabor delicado rosado</td>
+                                </tr>
+                                <tr>
+                                    <td>Registro Sanitario</td>
+                                    <td>RSA-0014265-2021</td>
+                                </tr>
+                                <tr>
+                                    <td>Presentaciones</td>
+                                    <td>750mL, 1000mL, 1500mL, 2000mL</td>
+                                </tr>
+                                <tr>
+                                    <td>Grado Alcohólico</td>
+                                    <td>0% Vol.</td>
+                                </tr>
+                                <tr>
+                                    <td>Material del Envase</td>
+                                    <td>Vidrio y Pet.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="info-section">
+                        <h3>🧪 Composición (Base de cálculo para 1 litro)</h3>
+                        <table class="ingredients-table">
+                            <thead>
+                                <tr>
+                                    <th>INGREDIENTE</th>
+                                    <th>CANTIDAD</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Agua Microfiltrada</td>
+                                    <td>706 gr/lt</td>
+                                </tr>
+                                <tr>
+                                    <td>Sacarosa (edulcorante)</td>
+                                    <td>80gr/lt</td>
+                                </tr>
+                                <tr>
+                                    <td>Gasificante (CO2) al 4%</td>
+                                    <td>100 gr/lt</td>
+                                </tr>
+                                <tr>
+                                    <td>Ácido cítrico (acidulante)</td>
+                                    <td>1 gramo</td>
+                                </tr>
+                                <tr>
+                                    <td>Sabor artificial a champaña (saborizante)</td>
+                                    <td>0,8 gr/lt</td>
+                                </tr>
+                                <tr>
+                                    <td>Metabisulfito de Sodio (antioxidante)</td>
+                                    <td>0,06 gr/lt</td>
+                                </tr>
+                                <tr>
+                                    <td>Color amarillo No. 5 (colorante natural)</td>
+                                    <td>0,06 gr/lt</td>
+                                </tr>
+                                <tr>
+                                    <td>Sorbato de potasio (conservante)</td>
+                                    <td>0,05 gr/lt</td>
+                                </tr>
+                                <tr>
+                                    <td>Benzoato de sodio (conservante)</td>
+                                    <td>0,05 gr/lt</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="full-width-section">
+                <div class="full-width-card">
+                    <h3>🍷 Características Organolépticas</h3>
+                    <div class="characteristics-grid">
+                        <div class="characteristic-item">
+                            <span class="characteristic-label">Color:</span>
+                            <span class="characteristic-value">Rosa elegante y brillante</span>
+                        </div>
+                        <div class="characteristic-item">
+                            <span class="characteristic-label">Sabor:</span>
+                            <span class="characteristic-value">Delicado, floral, con notas frutales</span>
+                        </div>
+                        <div class="characteristic-item">
+                            <span class="characteristic-label">Aroma:</span>
+                            <span class="characteristic-value">Bouquet fino con toques de rosas</span>
+                        </div>
+                        <div class="characteristic-item">
+                            <span class="characteristic-label">Textura:</span>
+                            <span class="characteristic-value">Burbujas finas y sedosas</span>
+                        </div>
+                        <div class="characteristic-item">
+                            <span class="characteristic-label">Aspecto:</span>
+                            <span class="characteristic-value">Cristalino con efervescencia persistente</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="full-width-card">
+                    <h3>🎉 Ocasiones Ideales</h3>
+                    <div class="occasions-grid">
+                        <div class="occasion-item">Celebraciones románticas</div>
+                        <div class="occasion-item">Brindis especiales</div>
+                        <div class="occasion-item">Bodas y aniversarios</div>
+                        <div class="occasion-item">Eventos corporativos</div>
+                        <div class="occasion-item">Cenas elegantes</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== PÁGINA 3: AJEDREZ ESPUMOSO ===== -->
+        <div class="page product-page espumoso" id="page-2">
+            <div class="product-header">
+                <h2 class="product-title">AJEDREZ BLANCO</h2>
+                <p class="product-subtitle">Experiencia premium sin alcohol</p>
+            </div>
+
+            <div class="product-content">
+                <div class="product-image-container">
+                    <img src="images/rosadablanco.png" class="product-image"
+                        alt="AJEDREZ Blanco - Bebida gasificada sin alcohol"
+                        onerror="this.className='product-image placeholder'; this.innerHTML='AJEDREZ<br>ESPUMOSO'; this.src='';">
+                </div>
+
+                <div class="product-info">
+                    <div class="info-section">
+                        <h3>📋 Ficha Técnica Completa</h3>
+                        <table class="technical-table">
+                            <thead>
+                                <tr>
+                                    <th>CARACTERÍSTICA</th>
+                                    <th>ESPECIFICACIÓN</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Naturaleza del Producto</td>
+                                    <td>Bebida</td>
+                                </tr>
+                                <tr>
+                                    <td>Descripción</td>
+                                    <td>Champaña espumosa premium a base de agua con sabor clásico</td>
+                                </tr>
+                                <tr>
+                                    <td>Registro Sanitario</td>
+                                    <td>RSA-0014265-2021</td>
+                                </tr>
+                                <tr>
+                                    <td>Presentaciones</td>
+                                    <td>750mL, 1000mL, 1500mL, 2000mL</td>
+                                </tr>
+                                <tr>
+                                    <td>Grado Alcohólico</td>
+                                    <td>0% Vol.</td>
+                                </tr>
+                                <tr>
+                                    <td>Material del Envase</td>
+                                    <td>Vidrio y Pet.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="info-section">
+                        <h3>🧪 Composición Detallada</h3>
+                        <table class="ingredients-table">
+                            <thead>
+                                <tr>
+                                    <th>INGREDIENTE</th>
+                                    <th>FUNCIÓN</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Agua Microfiltrada, Sacarosa</td>
+                                    <td>Edulcorante</td>
+                                </tr>
+                                <tr>
+                                    <td>Gasificante (CO2)</td>
+                                    <td>Agente gasificante</td>
+                                </tr>
+                                <tr>
+                                    <td>Ácido cítrico</td>
+                                    <td>Acidulante</td>
+                                </tr>
+                                <tr>
+                                    <td>Sabor artificial a champaña</td>
+                                    <td>Saborizante</td>
+                                </tr>
+                                <tr>
+                                    <td>Metabisulfito de Sodio</td>
+                                    <td>Antioxidante</td>
+                                </tr>
+                                <tr>
+                                    <td>Color rojo No. 40</td>
+                                    <td>Colorante natural</td>
+                                </tr>
+                                <tr>
+                                    <td>Sorbato de potasio</td>
+                                    <td>Conservante</td>
+                                </tr>
+                                <tr>
+                                    <td>Benzoato de sodio</td>
+                                    <td>Conservante</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="full-width-section">
+                <div class="full-width-card">
+                    <h3>🍷 Características Organolépticas</h3>
+                    <div class="characteristics-grid">
+                        <div class="characteristic-item">
+                            <span class="characteristic-label">Color:</span>
+                            <span class="characteristic-value">Dorado brillante y luminoso</span>
+                        </div>
+                        <div class="characteristic-item">
+                            <span class="characteristic-label">Sabor:</span>
+                            <span class="characteristic-value">Premium, complejo, con final largo</span>
+                        </div>
+                        <div class="characteristic-item">
+                            <span class="characteristic-label">Aroma:</span>
+                            <span class="characteristic-value">Sofisticado, estilo champaña clásica</span>
+                        </div>
+                        <div class="characteristic-item">
+                            <span class="characteristic-label">Textura:</span>
+                            <span class="characteristic-value">Burbujas persistentes y elegantes</span>
+                        </div>
+                        <div class="characteristic-item">
+                            <span class="characteristic-label">Aspecto:</span>
+                            <span class="characteristic-value">Espuma cremosa y duradera</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="full-width-card">
+                    <h3>🎉 Ocasiones Premium</h3>
+                    <div class="occasions-grid">
+                        <div class="occasion-item">Eventos de gala</div>
+                        <div class="occasion-item">Celebraciones VIP</div>
+                        <div class="occasion-item">Brindis ejecutivos</div>
+                        <div class="occasion-item">Cenas de lujo</div>
+                        <div class="occasion-item">Festividades especiales</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ===== PÁGINA 3: AJEDREZ CEREZA ===== -->
+        <div class="page product-page cereza" id="page-3">
+            <div class="product-header">
+                <h2 class="product-title">AJEDREZ CEREZA</h2>
+                <p class="product-subtitle">Intensidad frutal para celebraciones únicas</p>
+            </div>
+
+            <div class="product-content">
+                <div class="product-image-container">
+                    <img src="images/cereza1.png" class="product-image"
+                        alt="AJEDREZ Cereza - Bebida gasificada sin alcohol"
+                        onerror="this.className='product-image placeholder'; this.innerHTML='AJEDREZ<br>CEREZA'; this.src='';">
+                </div>
+
+                <div class="product-info">
+                    <div class="info-section">
+                        <h3>📋 Ficha Técnica</h3>
+                        <table class="technical-table">
+                            <thead>
+                                <tr>
+                                    <th>CARACTERÍSTICA</th>
+                                    <th>ESPECIFICACIÓN</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Naturaleza del Producto</td>
+                                    <td>Bebida</td>
+                                </tr>
+                                <tr>
+                                    <td>Descripción</td>
+                                    <td>Vino espumoso a base de agua con sabor natural a cereza</td>
+                                </tr>
+                                <tr>
+                                    <td>Registro Sanitario</td>
+                                    <td>RSA-0014265-2021</td>
+                                </tr>
+                                <tr>
+                                    <td>Presentaciones</td>
+                                    <td>750mL, 1000mL, 1500mL, 2000mL</td>
+                                </tr>
+                                <tr>
+                                    <td>Grado Alcohólico</td>
+                                    <td>0% Vol.</td>
+                                </tr>
+                                <tr>
+                                    <td>Material del Envase</td>
+                                    <td>Vidrio y Pet.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="info-section">
+                        <h3>🧪 Composición (Base de cálculo para 1 litro)</h3>
+                        <table class="ingredients-table">
+                            <thead>
+                                <tr>
+                                    <th>INGREDIENTE</th>
+                                    <th>CANTIDAD</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Agua microfiltrada y desinfectada</td>
+                                    <td>706 gr/lt</td>
+                                </tr>
+                                <tr>
+                                    <td>Sacarosa (edulcorante)</td>
+                                    <td>80gr/lt</td>
+                                </tr>
+                                <tr>
+                                    <td>Ácido cítrico (acidulante)</td>
+                                    <td>1 gramo</td>
+                                </tr>
+                                <tr>
+                                    <td>Sabor artificial a cereza (saborizante)</td>
+                                    <td>0,8 gr/lt</td>
+                                </tr>
+                                <tr>
+                                    <td>Metabisulfito de Sodio (antioxidante)</td>
+                                    <td>0,06 gr/lt</td>
+                                </tr>
+                                <tr>
+                                    <td>Color caramelo de azúcar (colorante natural)</td>
+                                    <td>0,06 gr/lt</td>
+                                </tr>
+                                <tr>
+                                    <td>Sorbato de potasio (conservante)</td>
+                                    <td>0,05 gr/lt</td>
+                                </tr>
+                                <tr>
+                                    <td>Benzoato de sodio (conservante)</td>
+                                    <td>0,05 gr/lt</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="full-width-section">
+                <div class="full-width-card">
+                    <h3>🍷 Características Organolépticas</h3>
+                    <div class="characteristics-grid">
+                        <div class="characteristic-item">
+                            <span class="characteristic-label">Color:</span>
+                            <span class="characteristic-value">Rojo cereza vibrante e intenso</span>
+                        </div>
+                        <div class="characteristic-item">
+                            <span class="characteristic-label">Sabor:</span>
+                            <span class="characteristic-value">Dulce, frutal, con explosión de cereza</span>
+                        </div>
+                        <div class="characteristic-item">
+                            <span class="characteristic-label">Aroma:</span>
+                            <span class="characteristic-value">Intenso a cereza madura y jugosa</span>
+                        </div>
+                        <div class="characteristic-item">
+                            <span class="characteristic-label">Textura:</span>
+                            <span class="characteristic-value">Refrescante con final burbujeante</span>
+                        </div>
+                        <div class="characteristic-item">
+                            <span class="characteristic-label">Aspecto:</span>
+                            <span class="characteristic-value">Brillante con tonos rubí</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="full-width-card">
+                    <h3>🎉 Ocasiones Ideales</h3>
+                    <div class="occasions-grid">
+                        <div class="occasion-item">Celebraciones juveniles</div>
+                        <div class="occasion-item">Fiestas de verano</div>
+                        <div class="occasion-item">Reuniones familiares</div>
+                        <div class="occasion-item">Eventos al aire libre</div>
+                        <div class="occasion-item">Brindis informales</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== PÁGINA 4: AJEDREZ MANZANA ===== -->
+        <div class="page product-page manzana" id="page-4">
+            <div class="product-header">
+                <h2 class="product-title">AJEDREZ MANZANA</h2>
+                <p class="product-subtitle">Refrescancia natural y sofisticación</p>
+            </div>
+
+            <div class="product-content">
+                <div class="product-image-container">
+                    <img src="images/manzana.png" class="product-image"
+                        alt="AJEDREZ Manzana - Bebida gasificada sin alcohol"
+                        onerror="this.className='product-image placeholder'; this.innerHTML='AJEDREZ<br>MANZANA'; this.src='';">
+                </div>
+
+                <div class="product-info">
+                    <div class="info-section">
+                        <h3>📋 Ficha Técnica</h3>
+                        <table class="technical-table">
+                            <thead>
+                                <tr>
+                                    <th>CARACTERÍSTICA</th>
+                                    <th>ESPECIFICACIÓN</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Naturaleza del Producto</td>
+                                    <td>Bebida</td>
+                                </tr>
+                                <tr>
+                                    <td>Descripción</td>
+                                    <td>Vino espumoso a base de agua con sabor natural a manzana</td>
+                                </tr>
+                                <tr>
+                                    <td>Registro Sanitario</td>
+                                    <td>RSA-0014265-2021</td>
+                                </tr>
+                                <tr>
+                                    <td>Presentaciones</td>
+                                    <td>750mL, 1000mL, 1500mL, 2000mL</td>
+                                </tr>
+                                <tr>
+                                    <td>Grado Alcohólico</td>
+                                    <td>0% Vol.</td>
+                                </tr>
+                                <tr>
+                                    <td>Material del Envase</td>
+                                    <td>Vidrio y Pet.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="info-section">
+                        <h3>🧪 Composición (Base de cálculo para 1 litro)</h3>
+                        <table class="ingredients-table">
+                            <thead>
+                                <tr>
+                                    <th>INGREDIENTE</th>
+                                    <th>CANTIDAD</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Agua microfiltrada y desinfectada</td>
+                                    <td>706 gr/lt</td>
+                                </tr>
+                                <tr>
+                                    <td>Sacarosa (edulcorante)</td>
+                                    <td>80gr/lt</td>
+                                </tr>
+                                <tr>
+                                    <td>Ácido cítrico (acidulante)</td>
+                                    <td>1 gramo</td>
+                                </tr>
+                                <tr>
+                                    <td>Sabor artificial a manzana (saborizante)</td>
+                                    <td>0,8 gr/lt</td>
+                                </tr>
+                                <tr>
+                                    <td>Metabisulfito de Sodio (antioxidante)</td>
+                                    <td>0,06 gr/lt</td>
+                                </tr>
+                                <tr>
+                                    <td>Color caramelo de azúcar (colorante natural)</td>
+                                    <td>0,06 gr/lt</td>
+                                </tr>
+                                <tr>
+                                    <td>Sorbato de potasio (conservante)</td>
+                                    <td>0,05 gr/lt</td>
+                                </tr>
+                                <tr>
+                                    <td>Benzoato de sodio (conservante)</td>
+                                    <td>0,05 gr/lt</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="full-width-section">
+                <div class="full-width-card">
+                    <h3>🍷 Características Organolépticas</h3>
+                    <div class="characteristics-grid">
+                        <div class="characteristic-item">
+                            <span class="characteristic-label">Color:</span>
+                            <span class="characteristic-value">Verde dorado cristalino</span>
+                        </div>
+                        <div class="characteristic-item">
+                            <span class="characteristic-label">Sabor:</span>
+                            <span class="characteristic-value">Fresco, crujiente, naturalmente dulce</span>
+                        </div>
+                        <div class="characteristic-item">
+                            <span class="characteristic-label">Aroma:</span>
+                            <span class="characteristic-value">Manzana verde recién cortada</span>
+                        </div>
+                        <div class="characteristic-item">
+                            <span class="characteristic-label">Textura:</span>
+                            <span class="characteristic-value">Ligera, refrescante y revitalizante</span>
+                        </div>
+                        <div class="characteristic-item">
+                            <span class="characteristic-label">Aspecto:</span>
+                            <span class="characteristic-value">Transparente con burbujas activas</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="full-width-card">
+                    <h3>🎉 Ocasiones Ideales</h3>
+                    <div class="occasions-grid">
+                        <div class="occasion-item">Comidas saludables</div>
+                        <div class="occasion-item">Aperitivos ligeros</div>
+                        <div class="occasion-item">Eventos deportivos</div>
+                        <div class="occasion-item">Reuniones de día</div>
+                        <div class="occasion-item">Acompañar mariscos</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ===== PÁGINA 5: AJEDREZ UVA ===== -->
+        <div class="page product-page uva" id="page-5">
+            <div class="product-header">
+                <h2 class="product-title">AJEDREZ UVA</h2>
+                <p class="product-subtitle">Tradición y calidad en cada sorbo</p>
+            </div>
+
+            <div class="product-content">
+                <div class="product-image-container">
+                    <img src="images/uva.png" class="product-image" alt="AJEDREZ Uva - Bebida gasificada sin alcohol"
+                        onerror="this.className='product-image placeholder'; this.innerHTML='AJEDREZ<br>UVA'; this.src='';">
+                </div>
+
+                <div class="product-info">
+                    <div class="info-section">
+                        <h3>📋 Ficha Técnica</h3>
+                        <table class="technical-table">
+                            <thead>
+                                <tr>
+                                    <th>CARACTERÍSTICA</th>
+                                    <th>ESPECIFICACIÓN</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Naturaleza del Producto</td>
+                                    <td>Bebida</td>
+                                </tr>
+                                <tr>
+                                    <td>Descripción</td>
+                                    <td>Vino espumoso a base de agua con sabor a moscatel</td>
+                                </tr>
+                                <tr>
+                                    <td>Registro Sanitario</td>
+                                    <td>RSA-0014265-2021</td>
+                                </tr>
+                                <tr>
+                                    <td>Presentaciones</td>
+                                    <td>750mL, 1000mL, 1500mL, 2000mL</td>
+                                </tr>
+                                <tr>
+                                    <td>Grado Alcohólico</td>
+                                    <td>0% Vol.</td>
+                                </tr>
+                                <tr>
+                                    <td>Material del Envase</td>
+                                    <td>Vidrio y Pet.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="info-section">
+                        <h3>🧪 Composición (Base de cálculo para 1 litro)</h3>
+                        <table class="ingredients-table">
+                            <thead>
+                                <tr>
+                                    <th>INGREDIENTE</th>
+                                    <th>CANTIDAD</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Agua microfiltrada y desinfectada</td>
+                                    <td>706 gr/lt</td>
+                                </tr>
+                                <tr>
+                                    <td>Sacarosa (edulcorante)</td>
+                                    <td>80gr/lt</td>
+                                </tr>
+                                <tr>
+                                    <td>Ácido cítrico (acidulante)</td>
+                                    <td>1 gramo</td>
+                                </tr>
+                                <tr>
+                                    <td>Sabor artificial a moscatel (saborizante)</td>
+                                    <td>0,8 gr/lt</td>
+                                </tr>
+                                <tr>
+                                    <td>Metabisulfito de Sodio (antioxidante)</td>
+                                    <td>0,06 gr/lt</td>
+                                </tr>
+                                <tr>
+                                    <td>Color caramelo de azúcar (colorante natural)</td>
+                                    <td>0,06 gr/lt</td>
+                                </tr>
+                                <tr>
+                                    <td>Sorbato de potasio (conservante)</td>
+                                    <td>0,05 gr/lt</td>
+                                </tr>
+                                <tr>
+                                    <td>Benzoato de sodio (conservante)</td>
+                                    <td>0,05 gr/lt</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="full-width-section">
+                <div class="full-width-card">
+                    <h3>🍷 Características Organolépticas</h3>
+                    <div class="characteristics-grid">
+                        <div class="characteristic-item">
+                            <span class="characteristic-label">Color:</span>
+                            <span class="characteristic-value">Púrpura profundo y elegante</span>
+                        </div>
+                        <div class="characteristic-item">
+                            <span class="characteristic-label">Sabor:</span>
+                            <span class="characteristic-value">Tradicional, complejo, estilo moscatel</span>
+                        </div>
+                        <div class="characteristic-item">
+                            <span class="characteristic-label">Aroma:</span>
+                            <span class="characteristic-value">Intenso bouquet de uvas maduras</span>
+                        </div>
+                        <div class="characteristic-item">
+                            <span class="characteristic-label">Textura:</span>
+                            <span class="characteristic-value">Aterciopelada con burbujas finas</span>
+                        </div>
+                        <div class="characteristic-item">
+                            <span class="characteristic-label">Aspecto:</span>
+                            <span class="characteristic-value">Rico, profundo, con cuerpo</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="full-width-card">
+                    <h3>🎉 Ocasiones Ideales</h3>
+                    <div class="occasions-grid">
+                        <div class="occasion-item">Brindis tradicionales</div>
+                        <div class="occasion-item">Cenas familiares</div>
+                        <div class="occasion-item">Celebraciones clásicas</div>
+                        <div class="occasion-item">Reuniones elegantes</div>
+                        <div class="occasion-item">Eventos tradicionales</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== PÁGINA 6: INFORMACIÓN CORPORATIVA ===== -->
+        <div class="page product-page" id="page-6"
+            style="background: linear-gradient(135deg, #0f0f23 0%, #1e1e3f 50%, #bd93f9 100%);">
+            <div class="product-header">
+                <h2 class="product-title"
+                    style="background: linear-gradient(135deg, #50fa7b, #bd93f9); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                    COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S</h2>
+                <p class="product-subtitle">Distribuidores oficiales de bebidas premium sin alcohol</p>
+            </div>
+
+            <div class="full-width-section" style="max-width: 900px;">
+                <div class="full-width-card">
+                    <h3>🏢 Información Legal y Corporativa</h3>
+                    <table class="technical-table">
+                        <tbody>
+                            <tr>
+                                <td><strong>Razón Social:</strong></td>
+                                <td>COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S</td>
+                            </tr>
+                            <tr>
+                                <td><strong>NIT:</strong></td>
+                                <td>901.000.572-1</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Año de Fundación:</strong></td>
+                                <td>2016</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Ubicación:</strong></td>
+                                <td>Cundinamarca, Colombia</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Especialidad:</strong></td>
+                                <td>Comercialización de bebidas premium sin alcohol</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Cobertura:</strong></td>
+                                <td>Distribución nacional con enfoque en Cundinamarca</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="full-width-card">
+                    <h3>📞 Información de Contacto</h3>
+                    <table class="technical-table">
+                        <tbody>
+                            <tr>
+                                <td><strong>Dirección:</strong></td>
+                                <td>Calle 35 Sur # 26C - 29, Barrio Bravo Páez</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Teléfonos:</strong></td>
+                                <td>322 8126618 - 322 2284212</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Correo Electrónico:</strong></td>
+                                <td>distribuidora.hgsas72@gmail.com</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Horarios de Atención:</strong></td>
+                                <td>Lunes a Viernes: 8:00 AM - 6:00 PM</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="full-width-card">
+                    <h3>🎯 Nuestro Compromiso Empresarial</h3>
+                    <table class="technical-table">
+                        <tbody>
+                            <tr>
+                                <td><strong>Misión:</strong></td>
+                                <td>Comercializar y distribuir bebidas premium sin alcohol de la más alta calidad,
+                                    brindando a nuestros clientes productos que combinan tradición, sabor y
+                                    responsabilidad social.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Visión:</strong></td>
+                                <td>Ser la empresa líder en distribución de bebidas sin alcohol en Colombia, reconocida
+                                    por nuestra excelencia en servicio, calidad de productos y compromiso con el
+                                    desarrollo sostenible.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Valores:</strong></td>
+                                <td>Responsabilidad, Cumplimiento, Calidad, Innovación, Integridad y Compromiso con el
+                                    cliente.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="full-width-card">
+                    <h3>✅ Por Qué Elegir HG S.A.S</h3>
+                    <div class="why-choose-grid">
+                        <div class="occasion-item">9 años de experiencia</div>
+                        <div class="occasion-item">Cobertura nacional garantizada</div>
+                        <div class="occasion-item">Productos certificados</div>
+                        <div class="occasion-item">Distribución confiable y puntual</div>
+                        <div class="occasion-item">Atención personalizada</div>
+                        <div class="occasion-item">Precios competitivos</div>
+                        <div class="occasion-item">Calidad premium</div>
+                        <div class="occasion-item">Responsabilidad social</div>
+                    </div>
+                </div>
+
+                <div class="full-width-card">
+                    <h3>🏆 Nuestros Productos AJEDREZ</h3>
+                    <table class="technical-table">
+                        <tbody>
+                            <tr>
+                                <td><strong>AJEDREZ Rosado:</strong></td>
+                                <td>Elegancia y frescura para brindis especiales</td>
+                            </tr>
+                            <tr>
+                                <td><strong>AJEDREZ Blanco:</strong></td>
+                                <td>Experiencia premium sin alcohol</td>
+                            </tr>
+                            <tr>
+                                <td><strong>AJEDREZ Cereza:</strong></td>
+                                <td>Intensidad frutal para celebraciones únicas</td>
+                            </tr>
+                            <tr>
+                                <td><strong>AJEDREZ Manzana:</strong></td>
+                                <td>Refrescancia natural y sofisticación</td>
+                            </tr>
+                            <tr>
+                                <td><strong>AJEDREZ Uva:</strong></td>
+                                <td>Tradición y calidad en cada sorbo</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Características Comunes:</strong></td>
+                                <td>0% alcohol, certificados sanitarios, edulcorantes naturales, 24 meses de vida útil
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Variables globales
+        let isAnimating = false;
+        let currentPage = 0;
+
+        // Inicialización del catálogo
+        document.addEventListener('DOMContentLoaded', function () {
+            initNavigation();
+            initProductImages(); // Nueva función para manejar imágenes
+            initAnimations();
+            console.log('📖 Catálogo AJEDREZ inicializado correctamente');
+        });
+
+        // Nueva función para inicializar las imágenes de productos
+        function initProductImages() {
+            const productContainers = document.querySelectorAll('.product-content');
+
+            productContainers.forEach((container, index) => {
+                const imageContainer = container.querySelector('.product-image-container');
+                const productImage = container.querySelector('.product-image');
+                const productInfo = container.querySelector('.product-info');
+
+                if (imageContainer && productImage && productInfo) {
+                    // Remover sticky positioning
+                    imageContainer.style.position = 'static';
+                    imageContainer.style.top = 'auto';
+
+                    // Configurar el contenedor de imagen para ocupar toda la altura
+                    imageContainer.style.display = 'flex';
+                    imageContainer.style.flexDirection = 'column';
+                    imageContainer.style.alignItems = 'center';
+                    imageContainer.style.justifyContent = 'center';
+                    imageContainer.style.height = '100%';
+                    imageContainer.style.minHeight = '100%';
+
+                    // Función para ajustar imagen con mejor proporción visual
+                    function adjustImageOptimalSize() {
+                        // Esperar a que el DOM se estabilice
+                        setTimeout(() => {
+                            if (productImage.complete && productImage.naturalHeight !== 0) {
+                                // Obtener la altura total del contenido de la derecha
+                                const contentHeight = productInfo.offsetHeight;
+                                const aspectRatio = productImage.naturalWidth / productImage.naturalHeight;
+
+                                // Configurar contenedor para ocupar toda la altura del contenido
+                                imageContainer.style.height = `${contentHeight}px`;
+                                imageContainer.style.minHeight = `${contentHeight}px`;
+
+                                // AUMENTAR los límites para mejor proporción visual
+                                const maxWidth = 500; // Aumentado de 400 a 500px
+                                const maxHeight = contentHeight * 0.95; // Aumentado de 0.9 a 0.95 (95% del espacio)
+
+                                let finalWidth = productImage.naturalWidth;
+                                let finalHeight = productImage.naturalHeight;
+
+                                // Escalar para usar más espacio disponible
+                                const scaleByWidth = maxWidth / finalWidth;
+                                const scaleByHeight = maxHeight / finalHeight;
+                                const optimalScale = Math.min(scaleByWidth, scaleByHeight, 2.5); // Permitir hasta 2.5x del tamaño original
+
+                                finalWidth = finalWidth * optimalScale;
+                                finalHeight = finalHeight * optimalScale;
+
+                                // Asegurar que no exceda los límites finales
+                                if (finalWidth > maxWidth) {
+                                    finalWidth = maxWidth;
+                                    finalHeight = maxWidth / aspectRatio;
+                                }
+
+                                if (finalHeight > maxHeight) {
+                                    finalHeight = maxHeight;
+                                    finalWidth = maxHeight * aspectRatio;
+                                }
+
+                                // Aplicar las dimensiones calculadas - TAMAÑO OPTIMIZADO
+                                productImage.style.width = `${finalWidth}px`;
+                                productImage.style.height = `${finalHeight}px`;
+                                productImage.style.maxWidth = `${maxWidth}px`;
+                                productImage.style.maxHeight = `${maxHeight}px`;
+                                productImage.style.objectFit = 'contain'; // MANTENER proporciones naturales
+
+                                // Ajustar el contenedor al ancho de la imagen
+                                imageContainer.style.width = `${finalWidth}px`;
+                                imageContainer.style.maxWidth = '100%';
+
+                                console.log(`✅ Imagen optimizada visualmente: ${finalWidth}x${finalHeight}px (escala: ${optimalScale.toFixed(2)}x, altura contenido: ${contentHeight}px) para producto ${index + 1}`);
+                            } else {
+                                // Si la imagen no está cargada, esperar un poco más
+                                setTimeout(adjustImageOptimalSize, 100);
+                            }
+                        }, 100);
+                    }
+
+                    // Ejecutar ajuste inicial
+                    if (productImage.complete) {
+                        adjustImageOptimalSize();
+                    } else {
+                        // Esperar a que la imagen se cargue
+                        productImage.addEventListener('load', adjustImageOptimalSize);
+                        productImage.addEventListener('error', function () {
+                            console.warn('❌ Error cargando imagen del producto:', this.src);
+                            // En caso de error, usar dimensiones más grandes por defecto
+                            const contentHeight = productInfo.offsetHeight;
+                            imageContainer.style.height = `${contentHeight}px`;
+                            this.style.width = '450px'; // Aumentado de 300px
+                            this.style.height = '500px'; // Aumentado de 400px
+                            this.style.objectFit = 'contain';
+                            imageContainer.style.width = '450px';
+                        });
+                    }
+
+                    // Observar cambios en el tamaño del contenido
+                    if (window.ResizeObserver) {
+                        const resizeObserver = new ResizeObserver(entries => {
+                            for (let entry of entries) {
+                                if (entry.target === productInfo) {
+                                    adjustImageOptimalSize();
+                                }
+                            }
+                        });
+                        resizeObserver.observe(productInfo);
+                    }
+                }
+            });
+
+            // Reajustar grid layout para mejor distribución
+            adjustProductLayout();
+        }
+
+        // Función para ajustar el layout de productos
+        function adjustProductLayout() {
+            const productContents = document.querySelectorAll('.product-content');
+
+            productContents.forEach(content => {
+                // Cambiar a grid más flexible
+                content.style.display = 'grid';
+                content.style.gridTemplateColumns = 'auto 1fr';
+                content.style.gap = '3rem';
+                content.style.alignItems = 'start';
+                content.style.width = '100%';
+                content.style.marginBottom = '2rem';
+            });
+        }
+
+        // Sistema de navegación (sin cambios en la funcionalidad de scroll)
+        function initNavigation() {
+            const navDots = document.querySelectorAll('.nav-dot');
+            const pages = document.querySelectorAll('.page');
+
+            navDots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    if (isAnimating) return;
+                    navigateToPage(index, navDots, pages);
+                });
+            });
+
+            let scrollTimer = null;
+            window.addEventListener('scroll', () => {
+                if (scrollTimer) clearTimeout(scrollTimer);
+                scrollTimer = setTimeout(() => {
+                    updateActiveNav(navDots, pages);
+                }, 100);
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (isAnimating) return;
+
+                switch (e.key) {
+                    case 'ArrowDown':
+                    case 'PageDown':
+                        e.preventDefault();
+                        if (currentPage < pages.length - 1) {
+                            navigateToPage(currentPage + 1, navDots, pages);
+                        }
+                        break;
+                    case 'ArrowUp':
+                    case 'PageUp':
+                        e.preventDefault();
+                        if (currentPage > 0) {
+                            navigateToPage(currentPage - 1, navDots, pages);
+                        }
+                        break;
+                }
+            });
+        }
+
+        function navigateToPage(index, navDots, pages) {
+            if (index === currentPage) return;
+
+            isAnimating = true;
+            currentPage = index;
+
+            navDots.forEach(d => d.classList.remove('active'));
+            navDots[index].classList.add('active');
+
+            pages[index].scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+
+            setTimeout(() => {
+                isAnimating = false;
+            }, 1000);
+        }
+
+        function updateActiveNav(navDots, pages) {
+            let current = 0;
+            const scrollPosition = window.scrollY + window.innerHeight / 2;
+
+            pages.forEach((page, index) => {
+                const rect = page.getBoundingClientRect();
+                const pageTop = rect.top + window.scrollY;
+                const pageBottom = pageTop + rect.height;
+
+                if (scrollPosition >= pageTop && scrollPosition <= pageBottom) {
+                    current = index;
+                }
+            });
+
+            if (current !== currentPage) {
+                currentPage = current;
+                navDots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === current);
+                });
+            }
+        }
+
+        function initAnimations() {
+            const tables = document.querySelectorAll('.technical-table, .ingredients-table');
+            tables.forEach((table, index) => {
+                table.style.animationDelay = `${index * 0.1}s`;
+            });
+        }
+
+        // Sistema de mensajes
+        function showMessage(text, type = 'info') {
+            const existingMessage = document.querySelector('.catalog-message');
+            if (existingMessage) {
+                existingMessage.remove();
+            }
+
+            const message = document.createElement('div');
+            message.className = `catalog-message ${type}`;
+            message.textContent = text;
+
+            const colors = {
+                loading: { bg: 'rgba(189, 147, 249, 0.1)', border: '#bd93f9', color: '#bd93f9' },
+                success: { bg: 'rgba(80, 250, 123, 0.1)', border: '#50fa7b', color: '#50fa7b' },
+                error: { bg: 'rgba(255, 121, 198, 0.1)', border: '#ff79c6', color: '#ff79c6' },
+                info: { bg: 'rgba(255, 255, 255, 0.1)', border: '#ffffff', color: '#ffffff' }
+            };
+
+            const colorScheme = colors[type] || colors.info;
+
+            message.style.cssText = `
+        position: fixed;
+        top: 2rem;
+        right: 2rem;
+        background: ${colorScheme.bg};
+        color: ${colorScheme.color};
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        font-family: 'Inter', sans-serif;
+        font-weight: 600;
+        z-index: 1000;
+        border: 2px solid ${colorScheme.border};
+        backdrop-filter: blur(10px);
+        max-width: 300px;
+        text-align: center;
+        animation: slideInMessage 0.3s ease;
+    `;
+
+            document.body.appendChild(message);
+
+            if (type !== 'loading') {
+                setTimeout(() => {
+                    if (document.body.contains(message)) {
+                        message.style.animation = 'slideOutMessage 0.3s ease';
+                        setTimeout(() => {
+                            if (document.body.contains(message)) {
+                                document.body.removeChild(message);
+                            }
+                        }, 300);
+                    }
+                }, 3000);
+            }
+        }
+
+        // Manejo de redimensionamiento de ventana
+        window.addEventListener('resize', () => {
+            // Reajustar imágenes cuando cambia el tamaño de ventana
+            setTimeout(initProductImages, 100);
+        });
+
+        // Optimización para móvil
+        if (window.innerWidth <= 768) {
+            document.documentElement.style.setProperty('--animation-duration', '0.3s');
+        }
+
+        // Gestión de errores global
+        window.addEventListener('error', (e) => {
+            console.error('Error en el catálogo:', e.error);
+        });
+
+        // CSS adicional para el comportamiento responsive
+        const additionalStyles = document.createElement('style');
+        additionalStyles.textContent = `
+    /* Estilos mejorados para contenedores de imagen de producto */
+    .product-image-container {
+        position: static !important;
+        top: auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important; /* Centrar la imagen verticalmente */
+        height: 100% !important;
+        min-height: 100% !important;
+        text-align: center;
+    }
+    
+    .product-image {
+        object-fit: contain !important; /* MANTENER proporciones naturales */
+        background: transparent !important;
+        transition: transform 0.3s ease;
+        border-radius: 20px;
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+        max-width: 500px !important; /* Aumentado de 400px a 500px */
+        width: auto !important; /* Ancho automático basado en proporciones */
+        height: auto !important; /* Altura automática basada en proporciones */
+    }
+    
+    .product-image:hover {
+        transform: scale(1.02);
+    }
+    
+    .product-content {
+        display: grid !important;
+        grid-template-columns: auto 1fr !important;
+        gap: 3rem !important;
+        align-items: stretch !important;
+        width: 100% !important;
+        margin-bottom: 2rem !important;
+        min-height: fit-content !important;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .product-content {
+            grid-template-columns: 1fr !important;
+            gap: 2rem !important;
+        }
+        
+        .product-image-container {
+            order: -1;
+        }
+        
+        .product-image {
+            max-width: 100% !important;
+            height: auto !important;
+        }
+    }
+    
+    /* Placeholder styles */
+    .product-image.placeholder {
+        background: rgba(255, 255, 255, 0.05) !important;
+        border: 2px dashed rgba(255, 255, 255, 0.3) !important;
+        padding: 20px;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 1.2rem;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-weight: 300;
+        letter-spacing: 1px;
+    }
+    
+    @keyframes slideInMessage {
+        from {
+            opacity: 0;
+            transform: translateX(100%);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+    
+    @keyframes slideOutMessage {
+        from {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        to {
+            opacity: 0;
+            transform: translateX(100%);
+        }
+    }
+    
+    /* Scrollbar personalizado */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: linear-gradient(135deg, #bd93f9, #ff79c6);
+        border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(135deg, #ff79c6, #50fa7b);
+    }
+    
+    /* Mejoras de accesibilidad */
+    .nav-dot:focus {
+        outline: 2px solid #50fa7b;
+        outline-offset: 2px;
+    }
+    
+    /* Animaciones reducidas para usuarios con preferencias de movimiento reducido */
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+        
+        .company-logo {
+            animation: none;
+        }
+        
+        .product-image:hover {
+            transform: none;
+        }
+    }
+    
+    /* Clase especial para modo impresión */
+    .print-mode .page-nav {
+        display: none !important;
+    }
+    
+    .print-mode body {
+        overflow: visible !important;
+    }
+`;
+
+        document.head.appendChild(additionalStyles);
+
+        // Log de inicialización exitosa
+        console.log('✅ Catálogo AJEDREZ inicializado con sistema de imágenes mejorado');
+
+        // Exportar funciones globales para debugging
+        window.CatalogAJEDREZ = {
+            navigateToPage: (index) => {
+                const navDots = document.querySelectorAll('.nav-dot');
+                const pages = document.querySelectorAll('.page');
+                navigateToPage(index, navDots, pages);
+            },
+            showMessage,
+            getCurrentPage: () => currentPage,
+            reinitImages: initProductImages // Nueva función exportada
+        };
+    </script>
+</body>
+
+</html>

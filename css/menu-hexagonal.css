@@ -12,7 +12,7 @@
 /* ===== SOLO MOSTRAR EN TABLET ===== */
 .menu-hexagonal {
     display: none;
-    position: relative;
+    position: relative !important;;
     align-items: center;
     justify-content: center;
     z-index: 1001;

@@ -15,8 +15,8 @@
 /* ===== ORBITAL ACTIVATOR (Centro del menú) ===== */
 .orbital-activator {
     position: relative;
-    width: 80px;
-    height: 80px;
+    width: 50px;
+    height: 50px;
     background: var(--gradient-accent);
     border: none;
     border-radius: 50%;
@@ -96,11 +96,11 @@
 /* ===== ORBITAL ITEMS CONTAINER - ALINEADO VERTICALMENTE ===== */
 .orbital-items {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 100%;
+    left: 100%;
     transform: translate(-50%, -50%);
-    width: 200px;
-    height: 600px; /* Aumentado para acomodar mayor separación */
+    width: 80px;
+    height: 280px; /* Aumentado para acomodar mayor separación */
     pointer-events: none;
     z-index: 1000;
 }
@@ -112,8 +112,8 @@
 /* ===== INDIVIDUAL ORBITAL ITEMS - EFECTO CREATIVO MEJORADO ===== */
 .orbital-item {
     position: absolute;
-    width: 100px;
-    height: 100px;
+    width: 65px;
+    height: 65px;
     background: 
         radial-gradient(circle at 30% 30%, rgba(189, 147, 249, 0.25), rgba(80, 250, 123, 0.15) 50%, rgba(255, 121, 198, 0.1) 70%, transparent 85%),
         linear-gradient(135deg, rgba(189, 147, 249, 0.2), rgba(80, 250, 123, 0.12), rgba(255, 121, 198, 0.08), rgba(15, 15, 35, 0.3));
@@ -210,7 +210,7 @@
 
 /* Inicio - 7px más abajo adicionales */
 .orbital-item[data-position="12"] {
-    top: calc(50% + 102px); /* 95px + 7px más abajo = 102px */
+    top: calc(50% + 70px); /* 95px + 7px más abajo = 102px */
     left: calc(50% + 2px);  /* Mantener posición horizontal */
     transition-delay: 0.1s;
 }
@@ -221,7 +221,7 @@
 
 /* Productos - Ajustado por el movimiento del Inicio */
 .orbital-item[data-position="3"] {
-    top: calc(50% + 227px); /* 220px + 7px por Inicio = 227px */
+    top: calc(50% + 140px); /* 220px + 7px por Inicio = 227px */
     left: calc(50% + 2px);  
     transition-delay: 0.2s;
 }
@@ -232,7 +232,7 @@
 
 /* Quiénes Somos - Ajustado por el movimiento del Inicio */
 .orbital-item[data-position="6"] {
-    top: calc(50% + 352px); /* 345px + 7px por Inicio = 352px */
+    top: calc(50% + 210px); /* 345px + 7px por Inicio = 352px */
     left: calc(50% + 2px);  
     transition-delay: 0.3s;
 }
@@ -243,7 +243,7 @@
 
 /* Contacto - Ajustado por el movimiento del Inicio */
 .orbital-item[data-position="9"] {
-    top: calc(50% + 477px); /* 470px + 7px por Inicio = 477px */
+    top: calc(50% + 280px); /* 470px + 7px por Inicio = 477px */
     left: calc(50% + 2px);  
     transition-delay: 0.4s;
 }
@@ -441,17 +441,17 @@
 @media (min-width: 1200px) {
     .orbital-items {
         width: 200px;
-        height: 620px; /* Aún más espacio en pantallas grandes */
+        height: 300px; /* Aún más espacio en pantallas grandes */
     }
     
     .orbital-activator {
-        width: 85px;
-        height: 85px;
+        width: 65px;
+        height: 65px;
     }
     
     .orbital-item {
-        width: 105px;
-        height: 105px;
+        width: 79px;
+        height: 79px;
     }
     
     /* Espaciado ajustado - Inicio 7px más abajo */
