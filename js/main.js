@@ -445,21 +445,7 @@ class SiteController {
     }
     
     preloadCriticalResources() {
-        // Preload de fuentes críticas
-        const criticalFonts = [
-            '/fonts/inter-var.woff2',
-            '/fonts/space-grotesk-var.woff2'
-        ];
         
-        criticalFonts.forEach(fontUrl => {
-            const link = document.createElement('link');
-            link.rel = 'preload';
-            link.href = fontUrl;
-            link.as = 'font';
-            link.type = 'font/woff2';
-            link.crossOrigin = 'anonymous';
-            document.head.appendChild(link);
-        });
     }
     
     /* ===== ANALYTICS TRACKING ===== */
@@ -762,3 +748,35 @@ if (typeof module !== 'undefined' && module.exports) {
 }
 
 console.log('🎯 main.js cargado completamente');
+
+
+// ===== FORCE SCROLL PROGRESS INIT =====
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(function() {
+        const progressFill = document.querySelector('.progress-fill');
+        const progressContainer = document.querySelector('.scroll-progress');
+        
+        if (progressFill && progressContainer) {
+            // Forzar visibilidad
+            progressContainer.style.display = 'block';
+            progressContainer.style.visibility = 'visible';
+            progressContainer.style.opacity = '1';
+            
+            // Función de actualización forzada
+            function forceUpdateProgress() {
+                const scrollTop = window.pageYOffset;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const progress = docHeight > 0 ? Math.min((scrollTop / docHeight) * 100, 100) : 0;
+                progressFill.style.width = progress + '%';
+            }
+            
+            // Ejecutar inmediatamente
+            forceUpdateProgress();
+            
+            // Agregar listener
+            window.addEventListener('scroll', forceUpdateProgress);
+            
+            console.log('🔥 SCROLL PROGRESS FORZADO');
+        }
+    }, 500);
+});

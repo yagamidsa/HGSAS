@@ -14,7 +14,7 @@ class ScrollEffectsController {
 
         // Configuración
         this.config = {
-            backToTopThreshold: 300,
+            backToTopThreshold: 0,
             headerHideThreshold: 200,
             smoothScrollDuration: 800,
             throttleDelay: 16 // 60fps

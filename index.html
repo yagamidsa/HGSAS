@@ -107,178 +107,191 @@
     <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
 
     <!-- Loading Screen -->
-    <div id="loading-screen" class="loading-screen" aria-hidden="true">
-        <div class="loading-content">
-            <div class="loading-logo">
-                <div class="logo-morphing">HG S.A.S</div>
-            </div>
-            <div class="loading-text">Cargando experiencia AJEDREZ...</div>
-            <div class="loading-progress">
-                <div class="progress-bar"></div>
 
-                <!-- Copa de vino que se llena -->
-                <div class="wine-glass-container">
-                    <div class="wine-glass">
-                        <svg class="wine-glass-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <path d="M8 2h8l-2 8c0 2.2-1.8 4-4 4s-4-1.8-4-4L8 2z" />
-                            <line x1="12" y1="14" x2="12" y2="22" />
-                            <line x1="8" y1="22" x2="16" y2="22" />
-                        </svg>
-                        <div class="wine-fill"></div>
+    <!-- ===================================================================
+     SPLASH SCREEN PROFESIONAL - HTML Structure
+     =================================================================== -->
+
+    <div class="video-splash-screen" id="splashScreen">
+        <div class="splash-main-container">
+
+            <!-- ===== ÁREA DE CONTENIDO (Izquierda) ===== -->
+            <div class="splash-content-area">
+
+                <!-- Información de la empresa -->
+                <div class="company-text-section">
+                    <div class="company-legal-name">
+                        Comercializadora y Distribuidora
+                    </div>
+                    <div class="company-brand-name">
+                        HG S.A.S
+                    </div>
+                    <div class="company-tagline">
+                        Vinos Espumosos Sin Alcohol
                     </div>
                 </div>
 
-                <!-- Burbujas flotantes -->
-                <div class="wine-bubbles">
-                    <div class="bubble"></div>
-                    <div class="bubble"></div>
-                    <div class="bubble"></div>
-                    <div class="bubble"></div>
-                    <div class="bubble"></div>
-                    <div class="bubble"></div>
+                <!-- Información del producto -->
+                <div class="product-highlight-section">
+                    <div class="product-name-main">
+                        AJEDREZ
+                    </div>
+                    <div class="product-subtitle">
+                        Cuatro sabores únicos para cada celebración
+                    </div>
+                    <div class="product-experience">
+                        Desde 2016 • Calidad Premium<br>
+                        Cargando experiencia premium...
+                    </div>
                 </div>
+            </div>
 
-                <!-- Partículas de vino -->
-                <div class="wine-particles">
-                    <div class="particle"></div>
-                    <div class="particle"></div>
-                    <div class="particle"></div>
-                    <div class="particle"></div>
-                    <div class="particle"></div>
-                    <div class="particle"></div>
+            <!-- ===== ÁREA DE MEDIA (Derecha) ===== -->
+            <div class="splash-media-area">
+                <div class="video-container">
+                    <video class="splash-video" autoplay muted loop playsinline poster="images/champañas.png">
+                        <source src="images/vinosplash.mp4" type="video/mp4">
+                        <!-- Fallback para navegadores sin soporte de video -->
+                        <img src="images/champañas.png" alt="AJEDREZ Vinos Espumosos" class="splash-video">
+                    </video>
                 </div>
+            </div>
+        </div>
 
-                <div class="progress-percentage" id="progress-percentage">0</div>
+        <!-- ===== INDICADOR DE PROGRESO ===== -->
+        <div class="loading-section">
+            <div class="progress-container">
+                <div class="progress-bar-modern"></div>
+                <div class="loading-text-modern">
+                    Cargando...
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Header with Innovative Menu -->
-    <header class="header" role="banner">
-        <nav class="navbar" role="navigation" aria-label="Navegación principal">
-            <!-- Company Logo -->
+    <header class="header" id="mainHeader">
+        <!-- Indicador de progreso de scroll -->
+        <div class="scroll-indicator" id="scrollIndicator"></div>
+
+        <nav class="navbar">
+            <!-- ===== LOGO/MARCA ===== -->
             <div class="navbar-brand">
-                <a href="#home" class="brand-link" aria-label="COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S - Inicio">
+                <a href="#inicio" class="brand-link" aria-label="COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S - Inicio">
                     <div class="brand-logo">
-                        <span class="brand-text">COMERCIALIZADORA Y DISTRIBUIDORA</span>
+                        <span class="brand-text">Comercializadora y Distribuidora</span>
                         <span class="brand-highlight">HG S.A.S</span>
                     </div>
                 </a>
             </div>
 
-            <!-- Innovative Menu System -->
-            <div class="menu-system">
-                <!-- Desktop: Orbital Menu -->
-                <div class="menu-orbital desktop-only" aria-label="Menú orbital">
-                    <button class="orbital-activator" aria-expanded="false" aria-controls="orbital-menu"
-                        aria-label="Abrir menú orbital">
-                        <div class="orbital-icon">
-                            <div class="orbital-center">HG</div>
-                        </div>
-                    </button>
-                    <nav id="orbital-menu" class="orbital-items" role="menu">
-                        <a href="#home" class="orbital-item" role="menuitem" data-position="12">
-                            <div class="item-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                                    <polyline points="9,22 9,12 15,12 15,22" />
-                                </svg>
-                            </div>
-                            <span class="item-text">Inicio</span>
+            <!-- ===== NAVEGACIÓN PRINCIPAL (DESKTOP/TABLET) ===== -->
+            <div class="main-navigation">
+                <ul class="nav-menu" role="menubar">
+                    <li class="nav-item" role="none">
+                        <a href="#inicio" class="nav-link active" role="menuitem" aria-current="page">
+                            Inicio
                         </a>
-                        <a href="#productos" class="orbital-item" role="menuitem" data-position="3">
-                            <div class="item-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path
-                                        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                                    <circle cx="12" cy="12" r="3" fill="currentColor" opacity="0.3" />
-                                </svg>
-                            </div>
-                            <span class="item-text">Productos AJEDREZ</span>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a href="#productos" class="nav-link" role="menuitem">
+                            Productos AJEDREZ
                         </a>
-                        <a href="#quienes-somos" class="orbital-item" role="menuitem" data-position="6">
-                            <div class="item-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                                    <circle cx="9" cy="7" r="4" />
-                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                                </svg>
-                            </div>
-                            <span class="item-text">Quiénes Somos</span>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a href="#quienes-somos" class="nav-link" role="menuitem">
+                            Quiénes Somos
                         </a>
-                        <a href="#contacto" class="orbital-item" role="menuitem" data-position="9">
-                            <div class="item-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path
-                                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                                </svg>
-                            </div>
-                            <span class="item-text">Contacto</span>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a href="#contacto" class="nav-link" role="menuitem">
+                            Contacto
                         </a>
-                    </nav>
-                </div>
+                    </li>
+                </ul>
 
-                <!-- Tablet: Hexagonal Menu -->
-                <div class="menu-hexagonal tablet-only" aria-label="Menú hexagonal">
-                    <button class="hex-activator" aria-expanded="false" aria-controls="hex-menu"
-                        aria-label="Abrir menú hexagonal">
-                        <div class="hex-shape">
-                            <span class="hex-center">HG</span>
-                        </div>
-                    </button>
-                    <nav id="hex-menu" class="hex-items" role="menu">
-                        <a href="#inicio" class="hex-item" role="menuitem" data-vertex="1">
-                            <span>Inicio</span>
-                        </a>
-                        <a href="#productos" class="hex-item" role="menuitem" data-vertex="2">
-                            <span>Productos</span>
-                        </a>
-                        <a href="#quienes-somos" class="hex-item" role="menuitem" data-vertex="3">
-                            <span>Empresa</span>
-                        </a>
-                        <a href="#contacto" class="hex-item" role="menuitem" data-vertex="4">
-                            <span>Contacto</span>
-                        </a>
-                        <a href="https://wa.me/573XXXXXXXXX" class="hex-item" role="menuitem" data-vertex="5"
-                            target="_blank">
-                            <span>WhatsApp</span>
-                        </a>
-                        <a href="#contacto" class="hex-item" role="menuitem" data-vertex="6">
-                            <span>Consulta</span>
-                        </a>
-                    </nav>
-                </div>
-
-                <!-- Mobile: Morphing Dots Menu -->
-                <div class="menu-morphing mobile-only" aria-label="Menú móvil">
-                    <button class="morphing-trigger" aria-expanded="false" aria-controls="morphing-menu"
-                        aria-label="Abrir menú">
-                        <div class="morphing-dots">
-                            <span class="dot dot-1"></span>
-                            <span class="dot dot-2"></span>
-                            <span class="dot dot-3"></span>
-                        </div>
-                    </button>
-                    <nav id="morphing-menu" class="morphing-panel" role="menu">
-                        <div class="morphing-content">
-                            <a href="#home" class="morphing-item" role="menuitem">Inicio</a>
-                            <a href="#productos" class="morphing-item" role="menuitem">Productos AJEDREZ</a>
-                            <a href="#quienes-somos" class="morphing-item" role="menuitem">Quiénes Somos</a>
-                            <a href="#contacto" class="morphing-item" role="menuitem">Contacto</a>
-                        </div>
-                    </nav>
+                <!-- Botón Catálogo -->
+                <div class="nav-cta">
+                    <a href="images/CatalogoHGSASVF.pdf" class="btn-catalog"
+                        download="CatalogoHGSASVF.pdf" title="Descargar catálogo de productos AJEDREZ">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+                            <polyline points="7,10 12,15 17,10" />
+                            <line x1="12" y1="15" x2="12" y2="3" />
+                        </svg>
+                        Catálogo
+                    </a>
                 </div>
             </div>
-        </nav>
 
-        <!-- Scroll Progress Indicator -->
-        <div class="scroll-progress" role="progressbar" aria-label="Progreso de lectura" aria-valuenow="0"
-            aria-valuemin="0" aria-valuemax="100">
-            <div class="progress-fill"></div>
-        </div>
+            <!-- ===== BOTÓN HAMBURGER (MOBILE) ===== -->
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menú de navegación"
+                aria-expanded="false" aria-controls="mobileNavigation">
+                <div class="hamburger-icon">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </div>
+            </button>
+        </nav>
     </header>
+
+    <!-- ===== NAVEGACIÓN MOBILE ===== -->
+    <nav class="mobile-navigation" id="mobileNavigation" aria-label="Menú de navegación móvil" role="navigation">
+        <ul class="mobile-nav-menu" role="menubar">
+            <li class="mobile-nav-item" role="none">
+                <a href="#inicio" class="mobile-nav-link active" role="menuitem" aria-current="page">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                        <polyline points="9,22 9,12 15,12 15,22" />
+                    </svg>
+                    Inicio
+                </a>
+            </li>
+            <li class="mobile-nav-item" role="none">
+                <a href="#productos" class="mobile-nav-link" role="menuitem">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                    </svg>
+                    Productos AJEDREZ
+                </a>
+            </li>
+            <li class="mobile-nav-item" role="none">
+                <a href="#quienes-somos" class="mobile-nav-link" role="menuitem">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                    </svg>
+                    Quiénes Somos
+                </a>
+            </li>
+            <li class="mobile-nav-item" role="none">
+                <a href="#contacto" class="mobile-nav-link" role="menuitem">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
+                    </svg>
+                    Contacto
+                </a>
+            </li>
+        </ul>
+
+        <div class="mobile-nav-cta">
+            <a href="images/CatalogoHGSASVF.pdf" class="btn-catalog" download="CatalogoHGSASVF.pdf"
+                title="Descargar catálogo de productos AJEDREZ">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+                    <polyline points="7,10 12,15 17,10" />
+                    <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+                Descargar Catálogo
+            </a>
+        </div>
+    </nav>
+
+    <!-- ===== OVERLAY PARA MOBILE ===== -->
+    <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true"></div>
 
     <!-- Main Content -->
     <main id="main-content" class="main-content" role="main">
@@ -301,7 +314,7 @@
                 </div>
                 <div class="hero-visual">
                     <div class="products-showcase-hero">
-                        <img src="images/products.png"
+                        <img src="images/champañas.png"
                             alt="Colección completa AJEDREZ: 4 variedades de vinos espumosos sin alcohol"
                             class="hero-products-image" loading="eager">
                     </div>
@@ -321,7 +334,7 @@
                     <!-- AJEDREZ Rosado -->
                     <article class="product-card" data-product="rosado">
                         <div class="product-preview">
-                            <img src="assets/images/products/ajedrez-rosado.webp"
+                            <img src="images/rosadafinal.png"
                                 alt="AJEDREZ Rosado - Vino espumoso sin alcohol sabor rosado 750ml"
                                 class="product-image" loading="lazy">
                             <div class="product-info-preview">
@@ -338,7 +351,7 @@
                     <!-- AJEDREZ Cereza -->
                     <article class="product-card" data-product="cereza">
                         <div class="product-preview">
-                            <img src="assets/images/products/ajedrez-cereza.webp"
+                            <img src="images/cerezafinal.png"
                                 alt="AJEDREZ Cereza - Vino espumoso sin alcohol sabor cereza 750ml"
                                 class="product-image" loading="lazy">
                             <div class="product-info-preview">
@@ -355,7 +368,7 @@
                     <!-- AJEDREZ Manzana -->
                     <article class="product-card" data-product="manzana">
                         <div class="product-preview">
-                            <img src="assets/images/products/ajedrez-manzana.webp"
+                            <img src="images/Manzanafinal.png"
                                 alt="AJEDREZ Manzana - Vino espumoso sin alcohol sabor manzana 750ml"
                                 class="product-image" loading="lazy">
                             <div class="product-info-preview">
@@ -372,9 +385,8 @@
                     <!-- AJEDREZ Uva -->
                     <article class="product-card" data-product="uva">
                         <div class="product-preview">
-                            <img src="assets/images/products/ajedrez-uva.webp"
-                                alt="AJEDREZ Uva - Vino espumoso sin alcohol sabor uva 750ml" class="product-image"
-                                loading="lazy">
+                            <img src="images/uvafinal.png" alt="AJEDREZ Uva - Vino espumoso sin alcohol sabor uva 750ml"
+                                class="product-image" loading="lazy">
                             <div class="product-info-preview">
                                 <h3 class="product-name">AJEDREZ Uva</h3>
                                 <p class="product-description-short">Tradición y calidad en cada sorbo</p>
@@ -641,7 +653,7 @@
                     </div>
 
                     <div class="gallery-item">
-                        <img src="assets/images/gallery/celebracion-familiar.webp" alt="AJEDREZ en celebración familiar"
+                        <img src="images/celebracion.png" alt="AJEDREZ en celebración familiar"
                             loading="lazy">
                         <div class="gallery-overlay">
                             <span>Celebraciones Familiares</span>
@@ -727,13 +739,7 @@
         </div>
     </a>
 
-    <!-- Back to Top Button -->
-    <button id="back-to-top" class="back-to-top" aria-label="Volver al inicio" title="Volver arriba"
-        style="display: none;">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z" />
-        </svg>
-    </button>
+
 
     <!-- Footer -->
     <footer class="footer" role="contentinfo">
@@ -1015,6 +1021,117 @@
         fbq('init', 'YOUR_PIXEL_ID');
         fbq('track', 'PageView');
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const splashScreen = document.getElementById('splashScreen');
+
+            if (!splashScreen) {
+                console.warn('Splash screen element not found');
+                return;
+            }
+
+            // ===== CONFIGURACIÓN =====
+            const splashDuration = 4000; // 4 segundos
+            let splashTimer = null;
+            let hasBeenHidden = false;
+
+            // ===== FUNCIÓN PARA OCULTAR SPLASH =====
+            function hideSplash() {
+                if (hasBeenHidden) return; // Prevenir múltiples ejecuciones
+
+                hasBeenHidden = true;
+
+                // Limpiar timer si existe
+                if (splashTimer) {
+                    clearTimeout(splashTimer);
+                    splashTimer = null;
+                }
+
+                // Agregar clase hidden con transición
+                splashScreen.classList.add('hidden');
+
+                // Remover completamente del DOM después de la transición
+                setTimeout(function () {
+                    if (splashScreen && splashScreen.parentNode) {
+                        splashScreen.parentNode.removeChild(splashScreen);
+                    }
+                }, 800); // 800ms = duración de la transición CSS
+            }
+
+            // ===== AUTO-HIDE DESPUÉS DE 4 SEGUNDOS =====
+            splashTimer = setTimeout(hideSplash, splashDuration);
+
+            // ===== SKIP CON CLICK =====
+            splashScreen.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                hideSplash();
+            });
+
+            // ===== SKIP CON TECLA ESCAPE =====
+            function handleKeydown(e) {
+                if (e.key === 'Escape' && !hasBeenHidden) {
+                    e.preventDefault();
+                    hideSplash();
+                    // Remover el listener después de usar
+                    document.removeEventListener('keydown', handleKeydown);
+                }
+            }
+
+            document.addEventListener('keydown', handleKeydown);
+
+            // ===== PAUSAR VIDEO AL OCULTAR (Si existe) =====
+            const video = splashScreen.querySelector('.splash-video');
+            if (video && video.tagName === 'VIDEO') {
+                splashScreen.addEventListener('transitionend', function (e) {
+                    if (e.target === splashScreen && splashScreen.classList.contains('hidden')) {
+                        video.pause();
+                        video.currentTime = 0; // Resetear video
+                    }
+                });
+            }
+
+            // ===== CLEANUP AL CAMBIAR PÁGINA =====
+            window.addEventListener('beforeunload', function () {
+                if (splashTimer) {
+                    clearTimeout(splashTimer);
+                }
+            });
+
+            // ===== DEBUG INFO (Remover en producción) =====
+            console.log('Splash screen initialized. Duration:', splashDuration + 'ms');
+        });
+    </script>
+
+    <!-- ===== ESTILOS ADICIONALES INLINE (Opcional) ===== -->
+    <style>
+        /* Asegurar que el scroll indicator funcione */
+        .scroll-indicator {
+            --scroll-progress: 0;
+        }
+
+        /* Prevenir scroll horizontal */
+        body.menu-open {
+            overflow-x: hidden;
+        }
+
+        /* Mejorar transiciones en iOS */
+        @supports (-webkit-overflow-scrolling: touch) {
+            .mobile-navigation {
+                -webkit-overflow-scrolling: touch;
+            }
+        }
+
+        /* Asegurar que los enlaces sean clickeables */
+        .nav-link,
+        .mobile-nav-link,
+        .btn-contact {
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+    </style>
 </body>
 
 </html>
