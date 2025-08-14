@@ -46,6 +46,7 @@
     <link rel="stylesheet" href="css/menu-hexagonal.css">
     <link rel="stylesheet" href="css/menu-morphing.css">
     <link rel="stylesheet" href="css/accessibility.css">
+    <link rel="stylesheet" href="css/images-fix.css">
 
     <!-- Schema Markup -->
     <script type="application/ld+json">
@@ -211,8 +212,8 @@
 
                 <!-- Botón Catálogo -->
                 <div class="nav-cta">
-                    <a href="images/CatalogoHGSASVF.pdf" class="btn-catalog"
-                        download="CatalogoHGSASVF.pdf" title="Descargar catálogo de productos AJEDREZ">
+                    <a href="images/CatalogoHGSASVF.pdf" class="btn-catalog" download="CatalogoHGSASVF.pdf"
+                        title="Descargar catálogo de productos AJEDREZ">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2">
                             <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
@@ -645,31 +646,28 @@
 
                 <div class="gallery-grid">
                     <div class="gallery-item">
-                        <img src="assets/images/gallery/evento-corporativo.webp" alt="AJEDREZ en evento corporativo"
-                            loading="lazy">
+                        <img src="images/corportativo.png" alt="AJEDREZ en evento corporativo" loading="lazy">
                         <div class="gallery-overlay">
                             <span>Eventos Corporativos</span>
                         </div>
                     </div>
 
                     <div class="gallery-item">
-                        <img src="images/celebracion.png" alt="AJEDREZ en celebración familiar"
-                            loading="lazy">
+                        <img src="images/celebracion.png" alt="AJEDREZ en celebración familiar" loading="lazy">
                         <div class="gallery-overlay">
                             <span>Celebraciones Familiares</span>
                         </div>
                     </div>
 
                     <div class="gallery-item">
-                        <img src="assets/images/gallery/brindis-especial.webp" alt="Brindis con AJEDREZ" loading="lazy">
+                        <img src="images/brindis.png" alt="Brindis con AJEDREZ" loading="lazy">
                         <div class="gallery-overlay">
                             <span>Brindis Especiales</span>
                         </div>
                     </div>
 
                     <div class="gallery-item">
-                        <img src="assets/images/gallery/distribuidor-satisfecho.webp"
-                            alt="Distribuidor satisfecho con AJEDREZ" loading="lazy">
+                        <img src="images/distribuidor.png" alt="Distribuidor satisfecho con AJEDREZ" loading="lazy">
                         <div class="gallery-overlay">
                             <span>Distribuidores Satisfechos</span>
                         </div>
@@ -713,8 +711,7 @@
 
                     <article class="news-card">
                         <div class="news-image">
-                            <img src="assets/images/news/tendencias-sin-alcohol.webp"
-                                alt="Tendencias bebidas sin alcohol" loading="lazy">
+                            <img src="images/bebidas.png" alt="Tendencias bebidas sin alcohol" loading="lazy">
                         </div>
                         <div class="news-content">
                             <h3>Tendencias en Bebidas Sin Alcohol</h3>
@@ -922,7 +919,7 @@
         <div class="catalog-content">
             <button class="catalog-close" aria-label="Cerrar catálogo de AJEDREZ Uva">&times;</button>
             <div class="catalog-image">
-                <img src="assets/images/products/ajedrez-uva-detail.webp"
+                <img src="images/uvafinalsin.png"
                     alt="AJEDREZ Uva - Vista detallada del producto" loading="lazy">
             </div>
             <div class="catalog-details">
@@ -1100,6 +1097,106 @@
 
             // ===== DEBUG INFO (Remover en producción) =====
             console.log('Splash screen initialized. Duration:', splashDuration + 'ms');
+        });
+    </script>
+    <script>
+        /* ===================================================================
+   TRANSICIÓN EQUILIBRADA Y PROFESIONAL
+   Sencilla pero elegante, con timing perfecto
+   =================================================================== */
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Buscar la imagen existente
+            const heroImage = document.querySelector('.hero-products-image') ||
+                document.querySelector('.products-showcase-hero img') ||
+                document.querySelector('.hero-visual img') ||
+                document.querySelector('.hero img');
+
+            if (!heroImage) {
+                console.log('No se encontró la imagen hero');
+                return;
+            }
+
+            // Configuración
+            const images = [
+                'images/champañas.png', // Primera imagen
+                'images/vinosf.png'     // Segunda imagen
+            ];
+
+            let currentIndex = 0;
+            let isTransitioning = false;
+
+            // Aplicar CSS base una sola vez
+            heroImage.style.transition = 'all 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            heroImage.style.willChange = 'transform, opacity, filter';
+            heroImage.style.backfaceVisibility = 'hidden';
+
+            // Precargar imágenes
+            function preloadImages() {
+                images.forEach(src => {
+                    const img = new Image();
+                    img.src = src;
+                });
+            }
+
+            // Transición suave y profesional
+            function elegantTransition() {
+                if (isTransitioning) return;
+                isTransitioning = true;
+
+                // Fase 1: Salida elegante (1.2 segundos)
+                heroImage.style.transform = 'scale(0.94) translateY(-8px)';
+                heroImage.style.opacity = '0.2';
+                heroImage.style.filter = 'blur(3px) brightness(0.6)';
+
+                setTimeout(() => {
+                    // Fase 2: Cambiar imagen en el punto más invisible
+                    currentIndex = currentIndex === 0 ? 1 : 0;
+                    heroImage.src = images[currentIndex];
+
+                    // Preparar entrada desde el otro lado
+                    heroImage.style.transform = 'scale(1.06) translateY(8px)';
+                    heroImage.style.opacity = '0.2';
+                    heroImage.style.filter = 'blur(2px) brightness(1.3)';
+
+                    setTimeout(() => {
+                        // Fase 3: Entrada suave al estado normal (1.2 segundos)
+                        heroImage.style.transform = 'scale(1) translateY(0)';
+                        heroImage.style.opacity = '1';
+                        heroImage.style.filter = 'blur(0px) brightness(1)';
+
+                        setTimeout(() => {
+                            isTransitioning = false;
+                        }, 1200); // Esperar a que termine la transición
+
+                    }, 100); // Pequeña pausa para cambio de imagen
+
+                }, 1200); // Duración de la salida
+            }
+
+            // Inicializar
+            preloadImages();
+
+            // Iniciar slideshow cada 5 segundos
+            let slideInterval = setInterval(elegantTransition, 5000);
+
+            // Pausar en hover para mejor UX
+            heroImage.addEventListener('mouseenter', () => {
+                clearInterval(slideInterval);
+                // Efecto hover sutil: solo agrandar un poco
+                if (!isTransitioning) {
+                    heroImage.style.transform = 'scale(1.03)';
+                }
+            });
+
+            heroImage.addEventListener('mouseleave', () => {
+                // Volver al tamaño normal
+                if (!isTransitioning) {
+                    heroImage.style.transform = 'scale(1)';
+                }
+                // Reanudar slideshow
+                slideInterval = setInterval(elegantTransition, 5000);
+            });
         });
     </script>
 

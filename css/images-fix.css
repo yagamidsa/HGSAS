@@ -1,0 +1,915 @@
+/* ===================================================================
+   CSS COMPLETO - GALERÍA BIEN ORDENADA MOBILE Y DESKTOP
+   =================================================================== */
+
+/* ===== CONTENEDORES BASE ===== */
+.gallery-item {
+    width: 100%;
+    height: 520px;
+    border: 2px solid rgba(189, 147, 249, 0.3);
+    border-radius: 20px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* ===== FLEXBOX DIFERENTE PARA CADA GRUPO ===== */
+
+/* Primeras dos: texto pegado abajo */
+.gallery-item:nth-child(1),
+.gallery-item:nth-child(2) {
+    justify-content: space-between;
+}
+
+/* Últimas dos: sin justify, para poder mover el texto */
+.gallery-item:nth-child(3),
+.gallery-item:nth-child(4) {
+    justify-content: flex-start;
+}
+
+/* ===== ÁREA DE IMAGEN ===== */
+.gallery-item .image-container,
+.gallery-item>div:first-child {
+    width: 100%;
+    height: 420px;
+    border-radius: 15px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    /* No se encoja */
+}
+
+/* ===== IMÁGENES ===== */
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 10px;
+}
+
+/* Ajuste para las últimas dos */
+.gallery-item:nth-child(3) img,
+.gallery-item:nth-child(4) img {
+    width: 100%;
+    height: 100%;
+    margin: -1%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* ===== TEXTO BASE ===== */
+.gallery-item h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--accent-purple);
+    text-align: left;
+    /* Cambiar a izquierda */
+    margin: 0;
+    padding: 15px 10px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    /* Alinear contenido a la izquierda */
+    background: rgba(15, 15, 35, 0.3);
+    border-radius: 10px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    /* No se encoja */
+}
+
+/* ===== TEXTO ESPECÍFICO POR GRUPO ===== */
+
+/* Primeras dos: sin margin-top (pegado abajo por space-between) */
+.gallery-item:nth-child(1) h3,
+.gallery-item:nth-child(2) h3 {
+    margin-top: 0;
+}
+
+/* Últimas dos: con margin-top para bajar */
+.gallery-item:nth-child(3) h3,
+.gallery-item:nth-child(4) h3 {
+    margin-top: 40px;
+}
+
+/* ===== GRID ===== */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* ===== HOVER ===== */
+.gallery-item:hover {
+    transform: translateY(-5px);
+    transition: all 0.3s ease;
+}
+
+.gallery-item:hover img {
+    opacity: 0.9;
+    transform: scale(1.02);
+    transition: all 0.3s ease;
+}
+
+/* ===== RESPONSIVE TABLET (768px - 1023px) ===== */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        padding: 15px;
+    }
+
+    .gallery-item {
+        height: 480px;
+        /* Ajustar altura para tablet */
+    }
+
+    .gallery-item .image-container,
+    .gallery-item>div:first-child {
+        height: 380px;
+        /* Ajustar imagen para tablet */
+    }
+
+    .gallery-item h3 {
+        height: 55px;
+        padding: 12px 8px;
+        font-size: 1rem;
+    }
+
+    /* Texto de las últimas dos en tablet */
+    .gallery-item:nth-child(3) h3,
+    .gallery-item:nth-child(4) h3 {
+        margin-top: 30px;
+        /* Menos margen en tablet */
+    }
+}
+
+/* ===== RESPONSIVE MOBILE (320px - 767px) ===== */
+@media (max-width: 767px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 15px;
+    }
+
+    .gallery-item {
+        height: 450px;
+        /* Altura ajustada para mobile */
+        padding: 15px;
+        /* Menos padding en mobile */
+    }
+
+    .gallery-item .image-container,
+    .gallery-item>div:first-child {
+        height: 350px;
+        /* Imagen más pequeña en mobile */
+    }
+
+    .gallery-item h3 {
+        height: 50px;
+        padding: 10px 8px;
+        font-size: 0.95rem;
+        margin-top: 0 !important;
+        /* RESETEAR margin-top en mobile */
+    }
+
+    /* En mobile, todas usan space-between para aprovechar espacio */
+    .gallery-item:nth-child(3),
+    .gallery-item:nth-child(4) {
+        justify-content: space-between !important;
+    }
+
+    /* Hover más sutil en mobile */
+    .gallery-item:hover {
+        transform: translateY(-2px);
+    }
+}
+
+/* ===== MOBILE PEQUEÑO (320px - 480px) ===== */
+@media (max-width: 480px) {
+    .gallery-grid {
+        padding: 10px;
+        gap: 15px;
+    }
+
+    .gallery-item {
+        height: 420px;
+        padding: 12px;
+    }
+
+    .gallery-item .image-container,
+    .gallery-item>div:first-child {
+        height: 320px;
+    }
+
+    .gallery-item h3 {
+        font-size: 0.9rem;
+        height: 45px;
+        padding: 8px 6px;
+    }
+}
+
+/* ===== DESKTOP GRANDE (1200px+) ===== */
+@media (min-width: 1200px) {
+    .gallery-grid {
+        gap: 30px;
+        padding: 25px;
+    }
+
+    .gallery-item {
+        height: 550px;
+        /* Un poco más alto en pantallas grandes */
+    }
+
+    .gallery-item .image-container,
+    .gallery-item>div:first-child {
+        height: 440px;
+    }
+
+    .gallery-item h3 {
+        font-size: 1.2rem;
+        height: 65px;
+        padding: 18px 12px;
+    }
+
+    /* Más margen para las últimas dos en desktop grande */
+    .gallery-item:nth-child(3) h3,
+    .gallery-item:nth-child(4) h3 {
+        margin-top: 50px;
+    }
+}
+
+/* ===== UTILIDADES ===== */
+
+/* Evitar overflow de texto */
+.gallery-item h3 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Focus para accesibilidad */
+.gallery-item:focus {
+    outline: 2px solid var(--accent-purple);
+    outline-offset: 2px;
+}
+
+/* Loading state */
+.gallery-item.loading {
+    opacity: 0.7;
+}
+
+.gallery-item.loading .image-container {
+    background: linear-gradient(45deg,
+            rgba(189, 147, 249, 0.1) 0%,
+            rgba(80, 250, 123, 0.1) 50%,
+            rgba(255, 121, 198, 0.1) 100%);
+    animation: loadingPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes loadingPulse {
+
+    0%,
+    100% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+}
+
+
+
+.hero-products-image,
+.products-showcase-hero img {
+    transition: all 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    will-change: transform, opacity, filter !important;
+    backface-visibility: hidden !important;
+    transform-style: preserve-3d !important;
+}
+
+/* ===================================================================
+   AUMENTAR ALTURA DE IMÁGENES +20px VERTICALMENTE (EL DOBLE)
+   =================================================================== */
+
+/* ===== HERO IMAGE MÁS ALTA ===== */
+.hero-products-image,
+.products-showcase-hero img,
+.hero-visual img {
+    height: calc(100% + 20px) !important;
+    margin-top: -10px !important;
+    /* Centrar el exceso */
+    margin-bottom: -10px !important;
+    /* Centrar el exceso */
+}
+
+/* ===== CONTENEDOR HERO TAMBIÉN MÁS ALTO ===== */
+.hero-visual,
+.products-showcase-hero {
+    height: calc(100% + 20px) !important;
+    min-height: calc(100% + 20px) !important;
+}
+
+/* ===== ALTERNATIVA: SOLO AUMENTAR LA IMAGEN ===== */
+.hero-products-image {
+    transform: scaleY(1.05) !important;
+    /* Agranda 5% verticalmente */
+}
+
+/* ===== PARA IMÁGENES EN LA GALERÍA TAMBIÉN ===== */
+.gallery-item img {
+    height: calc(100% + 20px) !important;
+    margin-top: -10px !important;
+    margin-bottom: -10px !important;
+}
+
+.gallery-item .image-container {
+    height: calc(420px + 20px) !important;
+    /* Si la altura era 420px */
+}
+
+/* ===== RESPONSIVE - MANTENER PROPORCIÓN ===== */
+@media (max-width: 767px) {
+
+    .hero-products-image,
+    .products-showcase-hero img {
+        height: calc(100% + 16px) !important;
+        /* Menos en mobile */
+        margin-top: -8px !important;
+        margin-bottom: -8px !important;
+    }
+}
+
+@media (min-width: 1024px) {
+
+    .hero-products-image,
+    .products-showcase-hero img {
+        height: calc(100% + 24px) !important;
+        /* Más en desktop */
+        margin-top: -12px !important;
+        margin-bottom: -12px !important;
+    }
+}
+
+
+
+
+
+
+
+/* ===================================================================
+   ORGANIZACIÓN PROFESIONAL DEL CATÁLOGO - TODAS LAS PANTALLAS
+   =================================================================== 
+/* ===================================================================
+   CATÁLOGO - APROVECHAR TODO EL ESPACIO DISPONIBLE
+   =================================================================== */
+
+/* ===== CONTENEDOR PRINCIPAL OPTIMIZADO ===== */
+/* ===== CENTRADO PERFECTO Y LIMPIO ===== */
+.catalog-container {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 90vw !important;
+    max-width: 1100px !important;
+    height: 85vh !important;
+    max-height: 750px !important;
+    background: linear-gradient(135deg, #1e1e3f, #0f0f23) !important;
+    border-radius: 20px !important;
+    border: 2px solid rgba(189, 147, 249, 0.3) !important;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6) !important;
+    overflow: hidden !important;
+    z-index: 9999 !important;
+}
+
+/* ===== CONTENIDO PERFECTAMENTE CENTRADO ===== */
+.catalog-content {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 94% !important;
+    height: 94% !important;
+    padding: 20px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 15px !important;
+    box-sizing: border-box !important;
+}
+
+/* ===== HEADER COMPACTO: IMAGEN + INFO PRINCIPAL ===== */
+.catalog-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    height: 45% !important;
+    gap: 20px !important;
+    background: rgba(255, 255, 255, 0.02) !important;
+    border-radius: 15px !important;
+    padding: 15px !important;
+    border: 1px solid rgba(189, 147, 249, 0.1) !important;
+}
+
+/* ===== IMAGEN DEL PRODUCTO ===== */
+.product-image-large {
+    flex: 0 0 30% !important;
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(189, 147, 249, 0.15) !important;
+    position: relative !important;
+    padding: 10px !important;
+}
+
+.product-image-large img {
+    max-width: 100% !important;
+    max-height: 100% !important;
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain !important;
+    filter: drop-shadow(0 8px 25px rgba(0,0,0,0.4)) !important;
+    transition: transform 0.3s ease !important;
+}
+
+/* ===== INFORMACIÓN PRINCIPAL CENTRADA ===== */
+.product-info {
+    flex: 1 !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 12px !important;
+    padding: 0 10px !important;
+}
+
+/* ===== TÍTULO BALANCEADO ===== */
+.product-title {
+    font-size: 2.5rem !important;
+    font-weight: 700 !important;
+    margin: 0 !important;
+    line-height: 1.1 !important;
+    background: linear-gradient(135deg, var(--product-color, #bd93f9), white) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+}
+
+/* ===== DESCRIPCIÓN UNIFORME ===== */
+.product-description {
+    font-size: 1rem !important;
+    color: rgba(255, 255, 255, 0.85) !important;
+    line-height: 1.3 !important;
+    margin: 0 !important;
+    font-weight: 400 !important;
+    max-width: 85% !important;
+}
+
+/* ===== ESPECIFICACIONES LIMPIAS ===== */
+.product-specs {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    flex-wrap: wrap !important;
+}
+
+.spec-item {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-radius: 8px !important;
+    border: 1px solid rgba(189, 147, 249, 0.2) !important;
+    padding: 8px 12px !important;
+    text-align: center !important;
+    min-width: 80px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+}
+
+.spec-label {
+    font-size: 0.75rem !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    font-weight: 500 !important;
+    margin-bottom: 2px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+}
+
+.spec-value {
+    font-size: 0.9rem !important;
+    color: var(--product-color, #bd93f9) !important;
+    font-weight: 600 !important;
+    line-height: 1.1 !important;
+}
+
+/* ===== INFORMACIÓN SECUNDARIA ORGANIZADA EN GRID ===== */
+.catalog-body {
+    flex: 1 !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+    overflow: hidden !important;
+    min-height: 0 !important;
+}
+
+.catalog-section {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(189, 147, 249, 0.15) !important;
+    padding: 12px !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.catalog-section h3 {
+    font-size: 0.8rem !important;
+    color: var(--product-color, #bd93f9) !important;
+    margin: 0 0 8px 0 !important;
+    text-align: center !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    padding-bottom: 4px !important;
+    border-bottom: 1px solid rgba(189, 147, 249, 0.2) !important;
+}
+
+/* ===== CONTENIDO DE SECCIONES SIN LISTAS ===== */
+.section-content {
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+    overflow: hidden !important;
+}
+
+/* ===== INGREDIENTES COMO TAGS PROFESIONALES ===== */
+.ingredients-container {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 4px !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex: 1 !important;
+}
+
+.ingredient-tag {
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: 0.65rem !important;
+    font-weight: 500 !important;
+    padding: 3px 6px !important;
+    border-radius: 4px !important;
+    border: 1px solid rgba(189, 147, 249, 0.1) !important;
+    white-space: nowrap !important;
+    text-align: center !important;
+}
+
+/* ===== TEXTO PROFESIONAL PARA OTRAS SECCIONES ===== */
+.section-text {
+    color: rgba(255, 255, 255, 0.85) !important;
+    font-size: 0.75rem !important;
+    line-height: 1.4 !important;
+    text-align: center !important;
+    margin: 0 !important;
+    font-weight: 400 !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 4 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+}
+
+/* ===== BOTÓN WHATSAPP SUTIL Y PROFESIONAL ===== */
+.whatsapp-btn {
+    position: absolute !important;
+    bottom: 8px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    background: #1DB954 !important;
+    color: white !important;
+    padding: 6px 16px !important;
+    border-radius: 18px !important;
+    border: none !important;
+    font-size: 0.75rem !important;
+    font-weight: 500 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 2px 8px rgba(29, 185, 84, 0.25) !important;
+    text-transform: none !important;
+    letter-spacing: 0.3px !important;
+}
+
+.whatsapp-btn:hover {
+    background: #1ed760 !important;
+    transform: translateX(-50%) translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(29, 185, 84, 0.4) !important;
+}
+
+/* ===== RESPONSIVE TABLET (768px - 1199px) ===== */
+@media (min-width: 768px) and (max-width: 1199px) {
+    .catalog-container {
+        width: 92vw !important;
+        height: 88vh !important;
+    }
+    
+    .product-title {
+        font-size: 2.2rem !important;
+    }
+    
+    .product-description {
+        font-size: 0.95rem !important;
+    }
+    
+    .catalog-header {
+        height: 42% !important;
+    }
+}
+
+/* ===== RESPONSIVE MOBILE (320px - 767px) ===== */
+@media (max-width: 767px) {
+    .catalog-container {
+        width: 96vw !important;
+        height: 92vh !important;
+        max-height: none !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    
+    .catalog-content {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        width: 94% !important;
+        height: 94% !important;
+        padding: 15px !important;
+        gap: 12px !important;
+        margin: auto !important;
+    }
+    
+    /* LAYOUT VERTICAL LIMPIO EN MOBILE */
+    .catalog-header {
+        flex-direction: column !important;
+        height: 50% !important;
+        gap: 12px !important;
+        padding: 12px !important;
+    }
+    
+    .product-image-large {
+        flex: 0 0 45% !important;
+        width: 80% !important;
+        padding: 8px !important;
+    }
+    
+    .product-info {
+        flex: 1 !important;
+        width: 100% !important;
+        gap: 8px !important;
+        padding: 0 !important;
+    }
+    
+    .product-title {
+        font-size: 1.8rem !important;
+        line-height: 1.1 !important;
+    }
+    
+    .product-description {
+        font-size: 0.9rem !important;
+        max-width: 100% !important;
+    }
+    
+    .product-specs {
+        gap: 8px !important;
+    }
+    
+    .spec-item {
+        min-width: 70px !important;
+        padding: 6px 8px !important;
+    }
+    
+    .spec-label {
+        font-size: 0.7rem !important;
+    }
+    
+    .spec-value {
+        font-size: 0.8rem !important;
+    }
+    
+    /* GRID DE 1 COLUMNA EN MOBILE */
+    .catalog-body {
+        grid-template-columns: 1fr !important;
+        gap: 8px !important;
+    }
+    
+    .catalog-section {
+        padding: 8px !important;
+        min-height: 60px !important;
+    }
+    
+    .catalog-section h3 {
+        font-size: 0.75rem !important;
+        margin: 0 0 6px 0 !important;
+        padding-bottom: 3px !important;
+    }
+    
+    .section-text {
+        font-size: 0.7rem !important;
+        line-height: 1.3 !important;
+        -webkit-line-clamp: 2 !important;
+    }
+    
+    .ingredient-tag {
+        font-size: 0.6rem !important;
+        padding: 2px 4px !important;
+    }
+    
+    .whatsapp-btn {
+        bottom: 6px !important;
+        font-size: 0.7rem !important;
+        padding: 5px 12px !important;
+        border-radius: 15px !important;
+    }
+}
+
+/* ===== RESPONSIVE SMALL MOBILE (320px - 414px) ===== */
+@media (max-width: 414px) {
+    .catalog-container {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    
+    .catalog-content {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        margin: auto !important;
+    }
+    
+    .product-title {
+        font-size: 1.6rem !important;
+    }
+    
+    .product-description {
+        font-size: 0.85rem !important;
+    }
+    
+    .catalog-header {
+        height: 45% !important;
+    }
+    
+    .spec-item {
+        min-width: 60px !important;
+        padding: 5px 6px !important;
+    }
+    
+    .spec-label {
+        font-size: 0.65rem !important;
+    }
+    
+    .spec-value {
+        font-size: 0.75rem !important;
+    }
+    
+    .catalog-section {
+        min-height: 50px !important;
+    }
+}
+
+/* ===== RESPONSIVE DESKTOP GRANDE (1200px+) ===== */
+@media (min-width: 1200px) {
+    .catalog-container {
+        max-width: 1200px !important;
+        max-height: 850px !important;
+    }
+    
+    .catalog-header {
+        height: 48% !important;
+        padding: 20px !important;
+    }
+    
+    .product-title {
+        font-size: 2.8rem !important;
+    }
+    
+    .product-description {
+        font-size: 1.1rem !important;
+    }
+    
+    .catalog-section {
+        padding: 15px !important;
+    }
+    
+    .section-text {
+        font-size: 0.8rem !important;
+        -webkit-line-clamp: 5 !important;
+    }
+    
+    .ingredient-tag {
+        font-size: 0.7rem !important;
+    }
+}
+
+/* ===== EFECTOS VISUALES SUTILES Y PROFESIONALES ===== */
+.product-image-large:hover img {
+    transform: scale(1.02) !important;
+}
+
+/* Glow effect muy sutil */
+.product-image-large::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    width: 40% !important;
+    height: 40% !important;
+    background: radial-gradient(circle, var(--product-color, #bd93f9) 0%, transparent 70%) !important;
+    border-radius: 50% !important;
+    opacity: 0.05 !important;
+    filter: blur(15px) !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 1 !important;
+}
+
+/* Hover effects profesionales */
+.spec-item:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: var(--product-color, #bd93f9) !important;
+    transition: all 0.2s ease !important;
+}
+
+.ingredient-tag:hover {
+    background: rgba(255, 255, 255, 0.12) !important;
+    transform: scale(1.02) !important;
+    transition: all 0.2s ease !important;
+}
+
+.catalog-section:hover {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: rgba(189, 147, 249, 0.25) !important;
+    transition: all 0.2s ease !important;
+}
+
+/* Animación de entrada suave */
+.catalog-content {
+    animation: smoothFadeIn 0.4s ease-out !important;
+}
+
+@keyframes smoothFadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -48%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* Focus states para accesibilidad */
+.spec-item:focus,
+.ingredient-tag:focus,
+.whatsapp-btn:focus {
+    outline: 2px solid var(--product-color, #bd93f9) !important;
+    outline-offset: 1px !important;
+}
+
+/* Mejora tipográfica */
+* {
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+}
+
+/* Sin scrollbars */
+.catalog-section,
+.section-content {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+}
+
+.catalog-section::-webkit-scrollbar,
+.section-content::-webkit-scrollbar {
+    display: none !important;
+}

@@ -238,7 +238,7 @@ class CatalogSystem {
             <div class="catalog-page" style="--product-color: ${productData.color}">
                 <div class="catalog-header">
                     <div class="product-image-large">
-                        <img src="assets/images/products/ajedrez-${this.currentProduct}-large.webp" 
+                        <img src="images/${this.currentProduct}.png" 
                              alt="${productData.name}"
                              loading="lazy">
                         <div class="product-glow" style="background: ${productData.color}"></div>
