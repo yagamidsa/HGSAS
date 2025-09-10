@@ -11,10 +11,10 @@ class CatalogSystem {
         this.touchStartX = 0;
         this.touchStartY = 0;
         this.isSwipeGesture = false;
-        
+
         this.init();
     }
-    
+
     init() {
         this.loadCatalogData();
         this.setupProductCards();
@@ -22,10 +22,10 @@ class CatalogSystem {
         this.setupKeyboardNavigation();
         this.setupTouchGestures();
         this.setupAccessibility();
-        
+
         console.log('📖 Catalog System inicializado');
     }
-    
+
     loadCatalogData() {
         // Datos de los productos AJEDREZ
         this.catalogData = {
@@ -46,6 +46,41 @@ class CatalogSystem {
                 ],
                 color: '#ff79c6',
                 whatsappMessage: 'Buenos días, me interesa obtener información sobre el producto AJEDREZ Rosado 750ml. ¿Podrían proporcionarme detalles sobre precios, disponibilidad y condiciones de distribución? Quedo atento a su respuesta. Saludos cordiales.'
+            },
+            'blanco': {
+                name: 'AJEDREZ Champagne Blanco',
+                description: 'Pureza y distinción para momentos especiales',
+                volume: '750ml',
+                alcohol: '0% Vol',
+                sweetener: 'Edulcorantes naturales',
+                flavor: 'Champagne blanco clásico',
+                profile: 'Fresco, limpio y equilibrado',
+                occasions: [
+                    'Brindis elegantes',
+                    'Bodas',
+                    'Eventos corporativos de alto nivel',
+                    'Cenas de gala',
+                    'Celebraciones familiares especiales'
+                ],
+                ingredients: [
+                    'Agua carbonatada premium',
+                    'Edulcorantes naturales (stevia, eritritol)',
+                    'Aromas naturales de uva blanca',
+                    'Ácido tartárico',
+                    'Conservantes naturales',
+                    'Antioxidantes naturales'
+                ],
+                serving: 'Servir bien frío (6-8°C) en copas flauta',
+                pairing: ['Canapés', 'Mariscos', 'Quesos suaves', 'Postres delicados'],
+                benefits: [
+                    '0% alcohol - Apto para toda la familia',
+                    'Edulcorantes naturales sin azúcares añadidos',
+                    'Perfecto para conductores designados',
+                    'Ideal para embarazadas y lactantes',
+                    'Experiencia premium sin comprometer la salud'
+                ],
+                color: '#f8f8ff',
+                whatsappMessage: 'Buenos días, me interesa obtener información sobre el producto AJEDREZ Blanco 750ml. ¿Podrían proporcionarme detalles sobre precios, disponibilidad y condiciones de distribución para este elegante espumoso sin alcohol? Quedo atento a su respuesta. Saludos cordiales.'
             },
             'cereza': {
                 name: 'AJEDREZ Cereza',
@@ -107,26 +142,26 @@ class CatalogSystem {
             }
         };
     }
-    
+
     setupProductCards() {
         const productCards = document.querySelectorAll('.product-card');
-        
+
         productCards.forEach(card => {
             const openButton = card.querySelector('.product-open-catalog');
             const productType = card.dataset.product;
-            
+
             if (!openButton || !productType) return;
-            
+
             // Click para abrir catálogo
             openButton.addEventListener('click', (e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 this.openCatalog(productType);
-                
+
                 // Analytics
                 this.trackCatalogOpen(productType);
             });
-            
+
             // Accesibilidad con Enter/Space
             openButton.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
@@ -134,45 +169,45 @@ class CatalogSystem {
                     this.openCatalog(productType);
                 }
             });
-            
+
             // Efecto hover mejorado
             card.addEventListener('mouseenter', () => {
                 this.enhanceCardHover(card, true);
             });
-            
+
             card.addEventListener('mouseleave', () => {
                 this.enhanceCardHover(card, false);
             });
         });
-        
+
         console.log(`🎯 ${productCards.length} tarjetas de producto configuradas`);
     }
-    
+
     setupCatalogModal() {
         // Crear modal si no existe
         let catalogModal = document.getElementById('product-catalog-modal');
-        
+
         if (!catalogModal) {
             catalogModal = this.createCatalogModal();
             document.body.appendChild(catalogModal);
         }
-        
+
         this.catalogModal = catalogModal;
         this.catalogContent = catalogModal.querySelector('.catalog-content');
         this.catalogClose = catalogModal.querySelector('.catalog-close');
-        
+
         // Eventos del modal
         this.catalogClose.addEventListener('click', () => {
             this.closeCatalog();
         });
-        
+
         // Cerrar con click en backdrop
         catalogModal.addEventListener('click', (e) => {
             if (e.target === catalogModal) {
                 this.closeCatalog();
             }
         });
-        
+
         // Escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && this.isOpen) {
@@ -180,7 +215,7 @@ class CatalogSystem {
             }
         });
     }
-    
+
     createCatalogModal() {
         const modal = document.createElement('div');
         modal.id = 'product-catalog-modal';
@@ -201,38 +236,38 @@ class CatalogSystem {
                 </div>
             </div>
         `;
-        
+
         return modal;
     }
-    
+
     openCatalog(productType) {
         const productData = this.catalogData[productType];
-        
+
         if (!productData) {
             console.error(`❌ Producto no encontrado: ${productType}`);
             return;
         }
-        
+
         this.currentProduct = productType;
         this.isOpen = true;
-        
+
         // Generar contenido del catálogo
         this.generateCatalogContent(productData);
-        
+
         // Mostrar modal con animación
         this.catalogModal.style.display = 'flex';
         this.catalogModal.offsetHeight; // Force reflow
         this.catalogModal.classList.add('catalog-open');
-        
+
         // Focus management
         this.catalogClose.focus();
-        
+
         // Prevent body scroll
         document.body.style.overflow = 'hidden';
-        
+
         console.log(`📖 Catálogo abierto: ${productData.name}`);
     }
-    
+
     generateCatalogContent(productData) {
         const contentHTML = `
             <div class="catalog-page" style="--product-color: ${productData.color}">
@@ -336,21 +371,21 @@ class CatalogSystem {
                 </div>
             </div>
         `;
-        
+
         this.catalogContent.innerHTML = contentHTML;
-        
+
         // Setup animaciones para el contenido
         this.setupCatalogAnimations();
     }
-    
+
     setupCatalogAnimations() {
         const catalogPage = this.catalogContent.querySelector('.catalog-page');
         const sections = this.catalogContent.querySelectorAll('.catalog-section');
-        
+
         // Animar entrada del catálogo
         setTimeout(() => {
             catalogPage.classList.add('catalog-page-animate');
-            
+
             sections.forEach((section, index) => {
                 setTimeout(() => {
                     section.classList.add('section-animate');
@@ -358,60 +393,60 @@ class CatalogSystem {
             });
         }, 100);
     }
-    
+
     closeCatalog() {
         if (!this.isOpen) return;
-        
+
         this.catalogModal.classList.remove('catalog-open');
-        
+
         setTimeout(() => {
             this.catalogModal.style.display = 'none';
             this.catalogContent.innerHTML = '';
             this.isOpen = false;
             this.currentProduct = null;
-            
+
             // Restore body scroll
             document.body.style.overflow = '';
-            
+
         }, 300);
-        
+
         console.log('📖 Catálogo cerrado');
     }
-    
+
     enhanceCardHover(card, isHover) {
         const image = card.querySelector('.product-image');
         const content = card.querySelector('.product-content');
         const button = card.querySelector('.product-open-catalog');
-        
+
         if (isHover) {
             card.style.transform = 'translateY(-5px) scale(1.02)';
             card.style.boxShadow = '0 20px 40px rgba(189, 147, 249, 0.3)';
-            
+
             if (image) {
                 image.style.filter = 'brightness(1.1) contrast(1.05)';
             }
-            
+
             if (button) {
                 button.style.transform = 'scale(1.05)';
             }
         } else {
             card.style.transform = 'translateY(0) scale(1)';
             card.style.boxShadow = '';
-            
+
             if (image) {
                 image.style.filter = '';
             }
-            
+
             if (button) {
                 button.style.transform = 'scale(1)';
             }
         }
     }
-    
+
     setupKeyboardNavigation() {
         document.addEventListener('keydown', (e) => {
             if (!this.isOpen) return;
-            
+
             switch (e.key) {
                 case 'Tab':
                     this.handleTabNavigation(e);
@@ -427,36 +462,36 @@ class CatalogSystem {
             }
         });
     }
-    
+
     setupTouchGestures() {
         document.addEventListener('touchstart', (e) => {
             if (!this.isOpen) return;
-            
+
             this.touchStartX = e.touches[0].clientX;
             this.touchStartY = e.touches[0].clientY;
             this.isSwipeGesture = false;
         });
-        
+
         document.addEventListener('touchmove', (e) => {
             if (!this.isOpen) return;
-            
+
             const touchX = e.touches[0].clientX;
             const touchY = e.touches[0].clientY;
             const deltaX = touchX - this.touchStartX;
             const deltaY = touchY - this.touchStartY;
-            
+
             // Detectar swipe horizontal
             if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
                 this.isSwipeGesture = true;
             }
         });
-        
+
         document.addEventListener('touchend', (e) => {
             if (!this.isOpen || !this.isSwipeGesture) return;
-            
+
             const touchX = e.changedTouches[0].clientX;
             const deltaX = touchX - this.touchStartX;
-            
+
             if (Math.abs(deltaX) > 100) {
                 if (deltaX > 0) {
                     this.navigateProduct('prev');
@@ -464,36 +499,36 @@ class CatalogSystem {
                     this.navigateProduct('next');
                 }
             }
-            
+
             this.isSwipeGesture = false;
         });
     }
-    
+
     navigateProduct(direction) {
         const products = Object.keys(this.catalogData);
         const currentIndex = products.indexOf(this.currentProduct);
-        
+
         let newIndex;
         if (direction === 'next') {
             newIndex = (currentIndex + 1) % products.length;
         } else {
             newIndex = currentIndex - 1 < 0 ? products.length - 1 : currentIndex - 1;
         }
-        
+
         const newProduct = products[newIndex];
         this.openCatalog(newProduct);
-        
+
         console.log(`📖 Navegando: ${this.currentProduct} → ${newProduct}`);
     }
-    
+
     handleTabNavigation(e) {
         const focusableElements = this.catalogModal.querySelectorAll(
             'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
         );
-        
+
         const firstElement = focusableElements[0];
         const lastElement = focusableElements[focusableElements.length - 1];
-        
+
         if (e.shiftKey) {
             if (document.activeElement === firstElement) {
                 e.preventDefault();
@@ -506,7 +541,7 @@ class CatalogSystem {
             }
         }
     }
-    
+
     setupAccessibility() {
         // Anunciar cambios de contenido para lectores de pantalla
         const announcer = document.createElement('div');
@@ -514,10 +549,10 @@ class CatalogSystem {
         announcer.setAttribute('aria-atomic', 'true');
         announcer.className = 'sr-only';
         document.body.appendChild(announcer);
-        
+
         this.announcer = announcer;
     }
-    
+
     announceToScreenReader(message) {
         if (this.announcer) {
             this.announcer.textContent = message;
@@ -526,7 +561,7 @@ class CatalogSystem {
             }, 1000);
         }
     }
-    
+
     trackCatalogOpen(productType) {
         // Google Analytics
         if (typeof gtag !== 'undefined') {
@@ -536,7 +571,7 @@ class CatalogSystem {
                 value: 1
             });
         }
-        
+
         // Facebook Pixel
         if (typeof fbq !== 'undefined') {
             fbq('track', 'ViewContent', {
@@ -545,43 +580,43 @@ class CatalogSystem {
                 content_type: 'product'
             });
         }
-        
+
         console.log(`📊 Tracking: Catálogo abierto - ${productType}`);
     }
-    
+
     // ===== MÉTODOS PÚBLICOS =====
-    
+
     openProductCatalog(productType) {
         this.openCatalog(productType);
     }
-    
+
     closeProductCatalog() {
         this.closeCatalog();
     }
-    
+
     getCurrentProduct() {
         return this.currentProduct;
     }
-    
+
     isModalOpen() {
         return this.isOpen;
     }
-    
+
     updateProductData(productType, newData) {
         if (this.catalogData[productType]) {
             this.catalogData[productType] = { ...this.catalogData[productType], ...newData };
             console.log(`📖 Datos actualizados: ${productType}`);
         }
     }
-    
+
     getProductData(productType) {
         return this.catalogData[productType] || null;
     }
-    
+
     getAllProducts() {
         return Object.keys(this.catalogData);
     }
-    
+
     getStats() {
         return {
             totalProducts: Object.keys(this.catalogData).length,
@@ -972,7 +1007,7 @@ document.head.appendChild(catalogStyles);
 // ===== INICIALIZACIÓN =====
 document.addEventListener('DOMContentLoaded', () => {
     window.catalogSystem = new CatalogSystem();
-    
+
     // Funciones globales para testing y uso
     window.openCatalog = (product) => window.catalogSystem.openProductCatalog(product);
     window.closeCatalog = () => window.catalogSystem.closeProductCatalog();

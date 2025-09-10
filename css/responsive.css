@@ -2151,3 +2151,279 @@ body {
 
 /* Fin extra small */
 
+/* ===================================================================
+   BOTONES WHATSAPP OPTIMIZADOS - CENTRADOS Y CIRCULARES
+   Especialmente optimizados para mobile y todas las pantallas
+   =================================================================== */
+
+/* ===== BOTÓN WHATSAPP EN CATÁLOGO - NUEVO DISEÑO COMPACTO ===== */
+.whatsapp-btn {
+    /* POSICIONAMIENTO CENTRADO */
+    position: absolute !important;
+    bottom: 12px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    
+    /* DISEÑO CIRCULAR COMPACTO */
+    width: 45px !important;
+    height: 45px !important;
+    border-radius: 50% !important;
+    
+    /* COLORES Y EFECTOS */
+    background: #1DB954 !important;
+    color: white !important;
+    border: none !important;
+    
+    /* EFECTOS VISUALES */
+    box-shadow: 0 4px 12px rgba(29, 185, 84, 0.3) !important;
+    cursor: pointer !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    
+    /* CENTRAR CONTENIDO */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    
+    /* TIPOGRAFÍA MINIMALISTA */
+    font-size: 0px !important; /* Ocultar texto */
+    text-indent: -9999px !important;
+    overflow: hidden !important;
+}
+
+/* ICONO DE WHATSAPP CON CSS */
+.whatsapp-btn::before {
+    content: '' !important;
+    position: absolute !important;
+    width: 20px !important;
+    height: 20px !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.89 3.687'/%3E%3C/svg%3E") !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+}
+
+/* EFECTOS HOVER Y ACTIVE */
+.whatsapp-btn:hover {
+    background: #1ed760 !important;
+    transform: translateX(-50%) translateY(-3px) scale(1.1) !important;
+    box-shadow: 0 8px 20px rgba(29, 185, 84, 0.5) !important;
+}
+
+.whatsapp-btn:active {
+    transform: translateX(-50%) translateY(-1px) scale(1.05) !important;
+    box-shadow: 0 4px 10px rgba(29, 185, 84, 0.4) !important;
+}
+
+/* ===== RESPONSIVE OPTIMIZATIONS ===== */
+
+/* MOBILE PEQUEÑO (320px - 374px) */
+@media (max-width: 374px) {
+    .whatsapp-btn {
+        width: 40px !important;
+        height: 40px !important;
+        bottom: 8px !important;
+    }
+    
+    .whatsapp-btn::before {
+        width: 18px !important;
+        height: 18px !important;
+    }
+}
+
+/* MOBILE ESTÁNDAR (375px - 480px) */
+@media (min-width: 375px) and (max-width: 480px) {
+    .whatsapp-btn {
+        width: 45px !important;
+        height: 45px !important;
+        bottom: 10px !important;
+    }
+    
+    .whatsapp-btn::before {
+        width: 20px !important;
+        height: 20px !important;
+    }
+}
+
+/* TABLET (481px - 767px) */
+@media (min-width: 481px) and (max-width: 767px) {
+    .whatsapp-btn {
+        width: 48px !important;
+        height: 48px !important;
+        bottom: 12px !important;
+    }
+    
+    .whatsapp-btn::before {
+        width: 22px !important;
+        height: 22px !important;
+    }
+}
+
+/* TABLET HORIZONTAL (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .whatsapp-btn {
+        width: 50px !important;
+        height: 50px !important;
+        bottom: 15px !important;
+    }
+    
+    .whatsapp-btn::before {
+        width: 24px !important;
+        height: 24px !important;
+    }
+}
+
+/* DESKTOP (1024px+) */
+@media (min-width: 1024px) {
+    .whatsapp-btn {
+        width: 52px !important;
+        height: 52px !important;
+        bottom: 18px !important;
+    }
+    
+    .whatsapp-btn::before {
+        width: 24px !important;
+        height: 24px !important;
+    }
+    
+    /* Mostrar tooltip en hover para desktop */
+    .whatsapp-btn:hover::after {
+        content: 'Solicitar por WhatsApp' !important;
+        position: absolute !important;
+        bottom: 120% !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        background: rgba(0, 0, 0, 0.8) !important;
+        color: white !important;
+        padding: 6px 12px !important;
+        border-radius: 6px !important;
+        font-size: 12px !important;
+        white-space: nowrap !important;
+        z-index: 10000 !important;
+        animation: tooltipFadeIn 0.3s ease !important;
+    }
+}
+
+/* ===== BOTÓN WHATSAPP FLOTANTE - TAMBIÉN OPTIMIZADO ===== */
+.whatsapp-float {
+    /* POSICIÓN FIJA */
+    position: fixed !important;
+    bottom: 20px !important;
+    right: 20px !important;
+    
+    /* DISEÑO CIRCULAR */
+    width: 60px !important;
+    height: 60px !important;
+    border-radius: 50% !important;
+    
+    /* COLORES Y EFECTOS */
+    background: #1DB954 !important;
+    color: white !important;
+    border: none !important;
+    
+    /* EFECTOS VISUALES MEJORADOS */
+    box-shadow: 0 6px 20px rgba(29, 185, 84, 0.4) !important;
+    cursor: pointer !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    
+    /* CENTRAR CONTENIDO */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    
+    /* Z-INDEX ALTO */
+    z-index: 9999 !important;
+    
+    /* OCULTAR TEXTO */
+    font-size: 0px !important;
+    text-indent: -9999px !important;
+    overflow: hidden !important;
+}
+
+/* ICONO PARA BOTÓN FLOTANTE */
+.whatsapp-float::before {
+    content: '' !important;
+    position: absolute !important;
+    width: 28px !important;
+    height: 28px !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.89 3.687'/%3E%3C/svg%3E") !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+}
+
+/* EFECTOS PARA BOTÓN FLOTANTE */
+.whatsapp-float:hover {
+    transform: scale(1.1) translateY(-3px) !important;
+    box-shadow: 0 10px 30px rgba(29, 185, 84, 0.6) !important;
+    background: #1ed760 !important;
+}
+
+.whatsapp-float:active {
+    transform: scale(1.05) translateY(-1px) !important;
+}
+
+/* ANIMACIÓN DE PULSACIÓN PARA BOTÓN FLOTANTE */
+@keyframes whatsappPulse {
+    0% { transform: scale(1); box-shadow: 0 6px 20px rgba(29, 185, 84, 0.4); }
+    50% { transform: scale(1.05); box-shadow: 0 8px 25px rgba(29, 185, 84, 0.6); }
+    100% { transform: scale(1); box-shadow: 0 6px 20px rgba(29, 185, 84, 0.4); }
+}
+
+.whatsapp-float {
+    animation: whatsappPulse 2s infinite !important;
+}
+
+/* ===== RESPONSIVE PARA BOTÓN FLOTANTE ===== */
+@media (max-width: 480px) {
+    .whatsapp-float {
+        width: 55px !important;
+        height: 55px !important;
+        bottom: 15px !important;
+        right: 15px !important;
+    }
+    
+    .whatsapp-float::before {
+        width: 24px !important;
+        height: 24px !important;
+    }
+}
+
+/* ===== ANIMACIONES ADICIONALES ===== */
+@keyframes tooltipFadeIn {
+    0% { opacity: 0; transform: translateX(-50%) translateY(5px); }
+    100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* ===== ACCESIBILIDAD ===== */
+.whatsapp-btn:focus,
+.whatsapp-float:focus {
+    outline: 3px solid rgba(29, 185, 84, 0.6) !important;
+    outline-offset: 3px !important;
+}
+
+/* ===== MODO ALTO CONTRASTE ===== */
+@media (prefers-contrast: high) {
+    .whatsapp-btn,
+    .whatsapp-float {
+        border: 2px solid white !important;
+        box-shadow: 0 0 0 2px #1DB954 !important;
+    }
+}
+
+/* ===== REDUCIR MOVIMIENTO PARA ACCESIBILIDAD ===== */
+@media (prefers-reduced-motion: reduce) {
+    .whatsapp-btn,
+    .whatsapp-float {
+        animation: none !important;
+        transition: none !important;
+    }
+    
+    .whatsapp-btn:hover,
+    .whatsapp-float:hover {
+        transform: translateX(-50%) !important; /* Solo para botón catálogo */
+    }
+    
+    .whatsapp-float:hover {
+        transform: none !important; /* Para botón flotante */
+    }
+}
