@@ -47,6 +47,7 @@
     <link rel="stylesheet" href="css/menu-morphing.css">
     <link rel="stylesheet" href="css/accessibility.css">
     <link rel="stylesheet" href="css/images-fix.css">
+    <link rel="stylesheet" href="css/menu-mobile-fix.css">
 
     <!-- Schema Markup -->
     <script type="application/ld+json">
@@ -506,24 +507,285 @@
                         </div>
                     </div>
 
-                    <!-- Distributors Map -->
-                    <div class="distributors-map">
-                        <h3>Encuentra AJEDREZ Cerca de Ti</h3>
-                        <div class="map-container">
-                            <div class="map-placeholder">
-                                <p>Mapa interactivo de distribuidores</p>
-                                <span>Cobertura nacional con enfoque en Cundinamarca</span>
+                    <!-- Distributors Map Section -->
+                    <div class="coverage-section">
+                        <div class="container">
+                            <!-- Header -->
+                            <div class="coverage-header">
+                                <h2 class="coverage-title">Nuestra Cobertura</h2>
+                                <p class="coverage-subtitle">Distribuimos AJEDREZ en Bogotá D.C. y toda la región de
+                                    Cundinamarca</p>
                             </div>
-                            <div class="distributors-list">
-                                <h4>Principales Zonas de Distribución:</h4>
-                                <ul>
-                                    <li>🎯 Cundinamarca (Cobertura completa)</li>
-                                    <li>📍 Bogotá D.C.</li>
-                                    <li>📍 Medellín</li>
-                                    <li>📍 Cali</li>
-                                    <li>📍 Barranquilla</li>
-                                    <li>📍 Y en expansión nacional</li>
-                                </ul>
+
+                            <!-- Main Coverage Area -->
+                            <div class="coverage-main">
+                                <!-- Visual Map Card -->
+                                <div class="map-card">
+                                    <div class="map-visual">
+                                        <!-- Professional Colombia Map -->
+                                        <svg viewBox="0 0 500 400" class="colombia-professional">
+                                            <!-- Definitions for gradients and effects -->
+                                            <defs>
+                                                <!-- Map background gradient -->
+                                                <linearGradient id="mapBg" x1="0%" y1="0%" x2="100%" y2="100%">
+                                                    <stop offset="0%" style="stop-color:#1a1a2e;stop-opacity:0.8" />
+                                                    <stop offset="100%" style="stop-color:#16213e;stop-opacity:0.9" />
+                                                </linearGradient>
+
+                                                <!-- Zona de cobertura gradient -->
+                                                <radialGradient id="zonaCobertura" cx="50%" cy="50%" r="50%">
+                                                    <stop offset="0%" style="stop-color:#bd93f9;stop-opacity:0.4" />
+                                                    <stop offset="30%" style="stop-color:#bd93f9;stop-opacity:0.2" />
+                                                    <stop offset="70%" style="stop-color:#ff79c6;stop-opacity:0.1" />
+                                                    <stop offset="100%" style="stop-color:#50fa7b;stop-opacity:0.05" />
+                                                </radialGradient>
+
+                                                <!-- Bogotá glow effect -->
+                                                <filter id="bogotaGlow">
+                                                    <feGaussianBlur stdDeviation="4" result="coloredBlur" />
+                                                    <feMerge>
+                                                        <feMergeNode in="coloredBlur" />
+                                                        <feMergeNode in="SourceGraphic" />
+                                                    </feMerge>
+                                                </filter>
+
+                                                <!-- Drop shadow for map -->
+                                                <filter id="mapShadow" x="-50%" y="-50%" width="200%" height="200%">
+                                                    <feDropShadow dx="4" dy="8" stdDeviation="6"
+                                                        flood-color="rgba(0,0,0,0.4)" />
+                                                </filter>
+                                            </defs>
+
+                                            <!-- Map background -->
+                                            <rect width="500" height="400" fill="url(#mapBg)" rx="20"
+                                                filter="url(#mapShadow)" />
+
+                                            <!-- ZONA DE COBERTURA - Círculo principal -->
+                                            <circle cx="250" cy="200" r="120" fill="url(#zonaCobertura)"
+                                                stroke="rgba(189, 147, 249, 0.4)" stroke-width="2"
+                                                stroke-dasharray="8,4" class="zona-cobertura-principal">
+                                                <animate attributeName="stroke-opacity" values="0.4;0.8;0.4" dur="4s"
+                                                    repeatCount="indefinite" />
+                                            </circle>
+
+                                            <!-- Círculos concéntricos de cobertura -->
+                                            <g class="coverage-rings">
+                                                <!-- Anillo exterior -->
+                                                <circle cx="250" cy="200" r="100" fill="none"
+                                                    stroke="rgba(189, 147, 249, 0.3)" stroke-width="1"
+                                                    stroke-dasharray="6,3">
+                                                    <animate attributeName="r" values="100;110;100" dur="6s"
+                                                        repeatCount="indefinite" />
+                                                    <animate attributeName="opacity" values="0.3;0.1;0.3" dur="6s"
+                                                        repeatCount="indefinite" />
+                                                </circle>
+
+                                                <!-- Anillo medio -->
+                                                <circle cx="250" cy="200" r="80" fill="none"
+                                                    stroke="rgba(255, 121, 198, 0.4)" stroke-width="2"
+                                                    stroke-dasharray="4,2">
+                                                    <animate attributeName="r" values="80;90;80" dur="5s" begin="1s"
+                                                        repeatCount="indefinite" />
+                                                    <animate attributeName="opacity" values="0.4;0.1;0.4" dur="5s"
+                                                        begin="1s" repeatCount="indefinite" />
+                                                </circle>
+
+                                                <!-- Anillo interior -->
+                                                <circle cx="250" cy="200" r="60" fill="none"
+                                                    stroke="rgba(80, 250, 123, 0.5)" stroke-width="1"
+                                                    stroke-dasharray="3,1">
+                                                    <animate attributeName="r" values="60;70;60" dur="4s" begin="2s"
+                                                        repeatCount="indefinite" />
+                                                    <animate attributeName="opacity" values="0.5;0.2;0.5" dur="4s"
+                                                        begin="2s" repeatCount="indefinite" />
+                                                </circle>
+                                            </g>
+
+                                            <!-- Bogotá D.C. - Centro principal -->
+                                            <g class="bogota-marker" filter="url(#bogotaGlow)">
+                                                <!-- Marcador principal -->
+                                                <circle cx="250" cy="200" r="16" fill="#bd93f9" class="capital-main">
+                                                    <animate attributeName="r" values="16;20;16" dur="3s"
+                                                        repeatCount="indefinite" />
+                                                </circle>
+                                                <!-- Núcleo blanco -->
+                                                <circle cx="250" cy="200" r="10" fill="#ffffff" />
+                                                <!-- Anillo de resplandor -->
+                                                <circle cx="250" cy="200" r="24" fill="none" stroke="#bd93f9"
+                                                    stroke-width="3" opacity="0.7">
+                                                    <animate attributeName="r" values="24;32;24" dur="3s"
+                                                        repeatCount="indefinite" />
+                                                    <animate attributeName="opacity" values="0.7;0.2;0.7" dur="3s"
+                                                        repeatCount="indefinite" />
+                                                </circle>
+                                            </g>
+
+                                            <!-- Labels elegantes -->
+                                            <g class="map-labels">
+                                                <!-- Bogotá label principal -->
+                                                <rect x="180" y="125" width="140" height="30"
+                                                    fill="rgba(15, 15, 35, 0.95)" rx="15"
+                                                    stroke="rgba(189, 147, 249, 0.6)" stroke-width="1" />
+                                                <text x="250" y="144" text-anchor="middle" fill="#ffffff" font-size="16"
+                                                    font-weight="700">Bogotá D.C.</text>
+                                                <text x="250" y="156" text-anchor="middle" fill="#bd93f9" font-size="12"
+                                                    font-weight="500">Sede Principal</text>
+
+                                                <!-- Zona de cobertura label -->
+                                                <rect x="160" y="300" width="180" height="30"
+                                                    fill="rgba(15, 15, 35, 0.95)" rx="15"
+                                                    stroke="rgba(189, 147, 249, 0.6)" stroke-width="1" />
+                                                <text x="250" y="319" text-anchor="middle" fill="#bd93f9" font-size="14"
+                                                    font-weight="600">Zona de Cobertura</text>
+                                                <text x="250" y="331" text-anchor="middle" fill="#ffffff" font-size="12"
+                                                    font-weight="500">Cundinamarca Completo</text>
+                                            </g>
+
+                                            <!-- Panel de estadísticas -->
+                                            <g class="coverage-stats-overlay">
+                                                <rect x="30" y="30" width="180" height="100"
+                                                    fill="rgba(15, 15, 35, 0.96)" rx="18"
+                                                    stroke="rgba(189, 147, 249, 0.4)" stroke-width="1" />
+
+                                                <text x="120" y="52" text-anchor="middle" fill="#bd93f9" font-size="14"
+                                                    font-weight="700">Cobertura Actual</text>
+                                                <text x="45" y="72" fill="#ffffff" font-size="12" font-weight="600">📍
+                                                    32 Localidades</text>
+                                                <text x="45" y="88" fill="#ffffff" font-size="12" font-weight="600">🎯
+                                                    116 Municipios</text>
+                                                <text x="45" y="104" fill="#50fa7b" font-size="12" font-weight="600">✅
+                                                    100% Regional</text>
+                                            </g>
+
+                                            <!-- Interactive hotspot -->
+                                            <circle cx="250" cy="200" r="35" fill="transparent"
+                                                class="map-interactive-area" onclick="showMapDetails()" />
+                                        </svg>
+                                    </div>
+
+                                    <div class="map-info">
+                                        <h3 class="map-title">Zona de Cobertura Actual</h3>
+                                        <p class="map-description">Desde 2016 atendemos toda la región de Cundinamarca
+                                            con distribución directa y confiable.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Coverage Details -->
+                                <div class="coverage-details">
+                                    <!-- Bogotá Card -->
+                                    <div class="location-card primary">
+                                        <div class="location-header">
+                                            <div class="location-icon">
+                                                <span class="icon">🏢</span>
+                                                <div class="status-dot active"></div>
+                                            </div>
+                                            <div class="location-info">
+                                                <h3 class="location-name">Bogotá D.C.</h3>
+                                                <p class="location-type">Sede Principal</p>
+                                            </div>
+                                            <button class="contact-location-btn" onclick="contactLocation('bogota')">
+                                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                                    <path
+                                                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.531 3.488" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <div class="location-details">
+                                            <div class="detail-item">
+                                                <span class="detail-label">Cobertura:</span>
+                                                <span class="detail-value">32 localidades</span>
+                                            </div>
+                                            <div class="detail-item">
+                                                <span class="detail-label">Servicio:</span>
+                                                <span class="detail-value">Mayorista y minorista</span>
+                                            </div>
+                                            <div class="detail-item">
+                                                <span class="detail-label">Desde:</span>
+                                                <span class="detail-value">2016</span>
+                                            </div>
+                                        </div>
+                                        <div class="location-features">
+                                            <span class="feature-tag">Centro de distribución</span>
+                                            <span class="feature-tag">Eventos corporativos</span>
+                                            <span class="feature-tag">Retail premium</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Cundinamarca Card -->
+                                    <div class="location-card secondary">
+                                        <div class="location-header">
+                                            <div class="location-icon">
+                                                <span class="icon">🎯</span>
+                                                <div class="status-dot active"></div>
+                                            </div>
+                                            <div class="location-info">
+                                                <h3 class="location-name">Cundinamarca</h3>
+                                                <p class="location-type">Cobertura Regional</p>
+                                            </div>
+                                            <button class="contact-location-btn"
+                                                onclick="contactLocation('cundinamarca')">
+                                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                                    <path
+                                                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.531 3.488" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <div class="location-details">
+                                            <div class="detail-item">
+                                                <span class="detail-label">Cobertura:</span>
+                                                <span class="detail-value">116 municipios</span>
+                                            </div>
+                                            <div class="detail-item">
+                                                <span class="detail-label">Servicio:</span>
+                                                <span class="detail-value">Distribución regional</span>
+                                            </div>
+                                            <div class="detail-item">
+                                                <span class="detail-label">Desde:</span>
+                                                <span class="detail-value">2016</span>
+                                            </div>
+                                        </div>
+                                        <div class="location-features">
+                                            <span class="feature-tag">Toda la región</span>
+                                            <span class="feature-tag">Mercados locales</span>
+                                            <span class="feature-tag">Logística rural</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Stats Section -->
+                            <div class="coverage-stats">
+                                <div class="stat-card">
+                                    <div class="stat-number">2</div>
+                                    <div class="stat-label">Ubicaciones Activas</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-number">148</div>
+                                    <div class="stat-label">Municipios Cubiertos</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-number">9</div>
+                                    <div class="stat-label">Años de Experiencia</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-number">100%</div>
+                                    <div class="stat-label">Cobertura Regional</div>
+                                </div>
+                            </div>
+
+                            <!-- Expansion CTA -->
+                            <div class="expansion-cta">
+                                <div class="cta-content">
+                                    <h3 class="cta-title">¿Tu ciudad no está en nuestra cobertura?</h3>
+                                    <p class="cta-description">Estamos constantemente evaluando nuevas oportunidades de
+                                        expansión. ¡Contáctanos si te interesa ser distribuidor!</p>
+                                    <button class="cta-button" onclick="contactLocation('expansion')">
+                                        <span>Quiero ser Distribuidor</span>
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                            <path d="m9 18 6-6-6-6" />
+                                        </svg>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -534,85 +796,241 @@
         <!-- Contact Form Section -->
         <section id="contacto" class="contact-section" aria-labelledby="contact-title">
             <div class="container">
+                <!-- Header -->
                 <header class="section-header">
                     <h2 id="contact-title" class="section-title">¿Interesado en Distribuir AJEDREZ?</h2>
-                    <p class="section-subtitle">Completa el formulario y nos pondremos en contacto contigo</p>
+                    <p class="section-subtitle">Completa el formulario y nos pondremos en contacto contigo en menos de
+                        24 horas</p>
                 </header>
 
-                <div class="contact-content">
-                    <form id="contact-form" class="contact-form" aria-label="Formulario de contacto" novalidate>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="nombre" class="form-label">Nombre Completo *</label>
-                                <input type="text" id="nombre" name="nombre" class="form-input" required
-                                    aria-describedby="nombre-error" autocomplete="name">
-                                <span id="nombre-error" class="error-message" aria-live="polite"></span>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="empresa" class="form-label">Empresa/Negocio</label>
-                                <input type="text" id="empresa" name="empresa" class="form-input"
-                                    autocomplete="organization">
-                            </div>
+                <div class="contact-main">
+                    <!-- Formulario Principal -->
+                    <div class="form-container">
+                        <div class="form-header">
+                            <h3 class="form-title">Solicitud de Información Comercial</h3>
+                            <p class="form-subtitle">Todos los campos marcados con * son obligatorios</p>
                         </div>
 
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="telefono" class="form-label">Teléfono *</label>
-                                <input type="tel" id="telefono" name="telefono" class="form-input" required
-                                    aria-describedby="telefono-error" autocomplete="tel" pattern="[0-9+\-\s()]+">
-                                <span id="telefono-error" class="error-message" aria-live="polite"></span>
+                        <form id="distributorForm" class="contact-form" novalidate>
+                            <!-- Información Personal -->
+                            <div class="form-section">
+                                <h4 class="section-title-form">📋 Información Personal</h4>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="firstName" class="form-label">Nombre *</label>
+                                        <input type="text" id="firstName" name="firstName" class="form-input" required
+                                            placeholder="Tu nombre" autocomplete="given-name">
+                                        <div class="form-error" id="firstName-error"></div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="lastName" class="form-label">Apellidos *</label>
+                                        <input type="text" id="lastName" name="lastName" class="form-input" required
+                                            placeholder="Tus apellidos" autocomplete="family-name">
+                                        <div class="form-error" id="lastName-error"></div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="email" class="form-label">Email *</label>
+                                        <input type="email" id="email" name="email" class="form-input" required
+                                            placeholder="tu@email.com" autocomplete="email">
+                                        <div class="form-error" id="email-error"></div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="phone" class="form-label">Teléfono *</label>
+                                        <input type="tel" id="phone" name="phone" class="form-input" required
+                                            placeholder="+57 300 123 4567" autocomplete="tel">
+                                        <div class="form-error" id="phone-error"></div>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="email" class="form-label">Email *</label>
-                                <input type="email" id="email" name="email" class="form-input" required
-                                    aria-describedby="email-error" autocomplete="email">
-                                <span id="email-error" class="error-message" aria-live="polite"></span>
+                            <!-- Información del Negocio -->
+                            <div class="form-section">
+                                <h4 class="section-title-form">🏢 Información del Negocio</h4>
+
+                                <div class="form-group">
+                                    <label for="businessName" class="form-label">Nombre del Negocio/Empresa *</label>
+                                    <input type="text" id="businessName" name="businessName" class="form-input" required
+                                        placeholder="Nombre de tu empresa o negocio" autocomplete="organization">
+                                    <div class="form-error" id="businessName-error"></div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="businessType" class="form-label">Tipo de Negocio *</label>
+                                        <select id="businessType" name="businessType" class="form-select" required>
+                                            <option value="">Selecciona una opción</option>
+                                            <option value="supermercado">Supermercado</option>
+                                            <option value="tienda">Tienda de Barrio</option>
+                                            <option value="restaurante">Restaurante</option>
+                                            <option value="eventos">Organizador de Eventos</option>
+                                            <option value="hotel">Hotel/Hotelería</option>
+                                            <option value="mayorista">Mayorista</option>
+                                            <option value="otro">Otro</option>
+                                        </select>
+                                        <div class="form-error" id="businessType-error"></div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="experience" class="form-label">Años de Experiencia</label>
+                                        <select id="experience" name="experience" class="form-select">
+                                            <option value="">Selecciona una opción</option>
+                                            <option value="nuevo">Nuevo en el negocio</option>
+                                            <option value="1-3">1-3 años</option>
+                                            <option value="4-10">4-10 años</option>
+                                            <option value="10+">Más de 10 años</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Ubicación -->
+                            <div class="form-section">
+                                <h4 class="section-title-form">📍 Ubicación</h4>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="department" class="form-label">Departamento *</label>
+                                        <select id="department" name="department" class="form-select" required>
+                                            <option value="">Selecciona departamento</option>
+                                            <option value="cundinamarca">Cundinamarca</option>
+                                            <option value="bogota">Bogotá D.C.</option>
+                                            <option value="antioquia">Antioquia</option>
+                                            <option value="valle">Valle del Cauca</option>
+                                            <option value="atlantico">Atlántico</option>
+                                            <option value="bolivar">Bolívar</option>
+                                            <option value="santander">Santander</option>
+                                            <option value="otro-depto">Otro departamento</option>
+                                        </select>
+                                        <div class="form-error" id="department-error"></div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="city" class="form-label">Ciudad *</label>
+                                        <input type="text" id="city" name="city" class="form-input" required
+                                            placeholder="Tu ciudad" autocomplete="address-level2">
+                                        <div class="form-error" id="city-error"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Información Comercial -->
+                            <div class="form-section">
+                                <h4 class="section-title-form">💼 Información Comercial</h4>
+
+                                <div class="form-group">
+                                    <label for="inquiryType" class="form-label">Tipo de Consulta *</label>
+                                    <select id="inquiryType" name="inquiryType" class="form-select" required>
+                                        <option value="">¿Qué te interesa?</option>
+                                        <option value="distribucion">Ser Distribuidor</option>
+                                        <option value="precios">Información de Precios</option>
+                                        <option value="productos">Detalles de Productos</option>
+                                        <option value="eventos">Eventos Especiales</option>
+                                        <option value="mayorista">Compra Mayorista</option>
+                                        <option value="otro">Otra consulta</option>
+                                    </select>
+                                    <div class="form-error" id="inquiryType-error"></div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="monthlyVolume" class="form-label">Volumen Mensual Estimado</label>
+                                    <select id="monthlyVolume" name="monthlyVolume" class="form-select">
+                                        <option value="">Selecciona volumen esperado</option>
+                                        <option value="1-50">1-50 unidades</option>
+                                        <option value="51-100">51-100 unidades</option>
+                                        <option value="101-500">101-500 unidades</option>
+                                        <option value="500+">Más de 500 unidades</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="message" class="form-label">Mensaje Adicional</label>
+                                    <textarea id="message" name="message" class="form-textarea" rows="4"
+                                        placeholder="Cuéntanos más sobre tu interés en AJEDREZ, preguntas específicas, o cualquier información adicional que consideres importante..."></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Términos y Condiciones -->
+                            <div class="form-section">
+                                <div class="form-group">
+                                    <label class="checkbox-container">
+                                        <input type="checkbox" id="terms" name="terms" required>
+                                        <span class="checkmark"></span>
+                                        <span class="checkbox-text">
+                                            Acepto los <a href="#" class="form-link">términos y condiciones</a> y
+                                            autorizo el tratamiento de mis datos personales conforme a la
+                                            <a href="#" class="form-link">política de privacidad</a> *
+                                        </span>
+                                    </label>
+                                    <div class="form-error" id="terms-error"></div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="checkbox-container">
+                                        <input type="checkbox" id="newsletter" name="newsletter">
+                                        <span class="checkmark"></span>
+                                        <span class="checkbox-text">
+                                            Deseo recibir información comercial y novedades de AJEDREZ por email
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Botones de Acción -->
+                            <div class="form-actions">
+                                <button type="submit" class="submit-btn" id="submitBtn">
+                                    <span class="btn-text">Enviar Solicitud</span>
+                                    <span class="btn-loading" style="display: none;">
+                                        <svg class="loading-spinner" viewBox="0 0 24 24">
+                                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"
+                                                fill="none" opacity="0.3" />
+                                            <path d="M12 2 A10 10 0 0 1 22 12" stroke="currentColor" stroke-width="4"
+                                                fill="none" />
+                                        </svg>
+                                        Enviando...
+                                    </span>
+                                </button>
+
+                                <div class="alternative-contact">
+                                    <p class="alt-text">¿Prefieres contacto directo?</p>
+                                    <div class="alt-buttons">
+
+                                        <a href="tel:+573XXXXXXXXX" class="phone-btn">
+                                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                                <path
+                                                    d="M6.62 10.79a15.91 15.91 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24 11.36 11.36 0 0 0 3.57.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.36 11.36 0 0 0 .57 3.57 1 1 0 0 1-.24 1.02l-2.2 2.2z" />
+                                            </svg>
+                                            Llamar Ahora
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                        <!-- Mensaje de Éxito -->
+                        <div id="successMessage" class="success-message" style="display: none;">
+                            <div class="success-content">
+                                <svg class="success-icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <h3>¡Solicitud Enviada Exitosamente!</h3>
+                                <p>Gracias por tu interés en AJEDREZ. Nuestro equipo comercial se pondrá en contacto
+                                    contigo en las próximas 24 horas.</p>
+                                <button class="new-form-btn" onclick="resetForm()">Enviar Nueva Solicitud</button>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="ciudad" class="form-label">Ciudad *</label>
-                                <input type="text" id="ciudad" name="ciudad" class="form-input" required
-                                    aria-describedby="ciudad-error" autocomplete="address-level2">
-                                <span id="ciudad-error" class="error-message" aria-live="polite"></span>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="tipo-consulta" class="form-label">Tipo de Consulta</label>
-                                <select id="tipo-consulta" name="tipo-consulta" class="form-select">
-                                    <option value="">Selecciona una opción</option>
-                                    <option value="distribucion">Distribución</option>
-                                    <option value="informacion">Información</option>
-                                    <option value="precios">Precios</option>
-                                    <option value="otro">Otro</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="mensaje" class="form-label">Mensaje</label>
-                        </div>
-
-                        <div class="form-actions">
-                            <button type="submit" class="btn btn-primary btn-submit" aria-describedby="form-status">
-                                <span class="btn-text">Enviar Consulta</span>
-                                <span class="btn-loading" aria-hidden="true">Enviando...</span>
-                            </button>
-                            <a href="tel:+573XXXXXXXXX" class="btn btn-secondary">
-                                Llamar Ahora
-                            </a>
-                        </div>
-
-                        <div id="form-status" class="form-status" aria-live="polite"></div>
-                    </form>
-
-                    <!-- Contact Information -->
+                    <!-- Información de Contacto -->
                     <div class="contact-info">
-                        <h3>Información de Contacto Directo</h3>
-                        <div class="contact-details">
+                        <div class="info-card">
+                            <h3 class="info-title">Información de Contacto</h3>
+
                             <div class="contact-item">
                                 <span class="contact-icon">📞</span>
                                 <div class="contact-content">
@@ -642,6 +1060,43 @@
                                 <div class="contact-content">
                                     <strong>Horarios de Atención</strong>
                                     <span>Lunes a Viernes 8:00 AM - 6:00 PM</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Beneficios de ser Distribuidor -->
+                        <div class="benefits-card">
+                            <h3 class="benefits-title">¿Por qué ser Distribuidor AJEDREZ?</h3>
+
+                            <div class="benefit-item">
+                                <span class="benefit-icon">✅</span>
+                                <div class="benefit-content">
+                                    <strong>Producto Único</strong>
+                                    <p>Vinos espumosos sin alcohol de alta calidad</p>
+                                </div>
+                            </div>
+
+                            <div class="benefit-item">
+                                <span class="benefit-icon">📈</span>
+                                <div class="benefit-content">
+                                    <strong>Mercado Creciente</strong>
+                                    <p>Tendencia en alza de bebidas saludables</p>
+                                </div>
+                            </div>
+
+                            <div class="benefit-item">
+                                <span class="benefit-icon">🤝</span>
+                                <div class="benefit-content">
+                                    <strong>Apoyo Comercial</strong>
+                                    <p>Capacitación y material promocional</p>
+                                </div>
+                            </div>
+
+                            <div class="benefit-item">
+                                <span class="benefit-icon">🚚</span>
+                                <div class="benefit-content">
+                                    <strong>Distribución Directa</strong>
+                                    <p>Entrega confiable desde Cundinamarca</p>
                                 </div>
                             </div>
                         </div>
@@ -1306,7 +1761,43 @@
             });
         });
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggle = document.getElementById('mobileMenuToggle');
+            const nav = document.getElementById('mobileNavigation');
+            const overlay = document.querySelector('.mobile-overlay');
 
+            if (toggle && nav) {
+                toggle.addEventListener('click', function () {
+                    const isOpen = nav.classList.contains('active');
+
+                    if (isOpen) {
+                        toggle.classList.remove('active');
+                        nav.classList.remove('active');
+                        if (overlay) overlay.classList.remove('active');
+                        document.body.classList.remove('no-scroll');
+                    } else {
+                        toggle.classList.add('active');
+                        nav.classList.add('active');
+                        if (overlay) overlay.classList.add('active');
+                        document.body.classList.add('no-scroll');
+                    }
+                });
+
+                // Cerrar con overlay click
+                if (overlay) {
+                    overlay.addEventListener('click', function () {
+                        toggle.classList.remove('active');
+                        nav.classList.remove('active');
+                        overlay.classList.remove('active');
+                        document.body.classList.remove('no-scroll');
+                    });
+                }
+
+                console.log('✅ Mobile menu funcionando');
+            }
+        });
+    </script>
     <!-- ===== ESTILOS ADICIONALES INLINE (Opcional) ===== -->
     <style>
         /* Asegurar que el scroll indicator funcione */
