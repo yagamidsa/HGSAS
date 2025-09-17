@@ -6,7 +6,7 @@
 class WhatsAppController {
     constructor() {
         // Configuración del negocio
-        this.businessPhone = '573118026851'; // Cambiar por el número real
+        this.businessPhone = '573222284212'; 
         this.businessName = 'COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S';
         this.businessHours = {
             start: 8,  // 8:00 AM

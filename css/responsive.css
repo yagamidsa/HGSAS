@@ -2427,3 +2427,290 @@ body {
         transform: none !important; /* Para botón flotante */
     }
 }
+
+/* SPLASH MOBILE FIX - SIMPLE: Solo subir texto 2cm */
+
+/* Mobile - 767px y menores */
+@media (max-width: 767px) {
+    
+    /* SOLO mover el área de contenido de texto 2cm arriba */
+    .splash-content-area {
+        margin-top: -75px; /* 2cm = ~75px */
+    }
+    
+    /* Loading section también subirlo un poco */
+    .loading-section {
+        bottom: 100px; /* En lugar de 30px, subirlo a 100px del bottom */
+    }
+    
+    /* TODO LO DEMÁS SE MANTIENE IGUAL - NO TOCAR NADA MÁS */
+}
+
+/* Mobile pequeño */
+@media (max-width: 480px) {
+    .splash-content-area {
+        margin-top: -60px; /* Un poco menos en pantallas pequeñas */
+    }
+    
+    .loading-section {
+        bottom: 80px;
+    }
+}
+
+
+/* NAVBAR ULTRA PROFESIONAL Y ELEGANTE - Estilo Premium */
+
+/* Contenedor de la marca/logo */
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 8px 0;
+}
+
+.brand-link {
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.brand-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    padding: 12px 20px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.03) 0%, 
+        rgba(189, 147, 249, 0.05) 50%, 
+        rgba(255, 255, 255, 0.02) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Efecto elegante al hover del contenedor */
+.brand-link:hover .brand-logo {
+    background: linear-gradient(135deg, 
+        rgba(189, 147, 249, 0.08) 0%, 
+        rgba(80, 250, 123, 0.06) 50%, 
+        rgba(255, 121, 198, 0.04) 100%);
+    border-color: rgba(189, 147, 249, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 
+        0 8px 32px rgba(189, 147, 249, 0.15),
+        0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* COMERCIALIZADORA Y DISTRIBUIDORA - Texto principal ultra elegante */
+.brand-text {
+    font-family: 'Inter', 'Segoe UI', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    font-size: 0.85rem !important;
+    font-weight: 500 !important;
+    color: #e8eaed !important;
+    letter-spacing: 1.2px !important;
+    line-height: 1.1 !important;
+    text-transform: uppercase !important;
+    margin-bottom: 4px !important;
+    
+    /* Efecto premium con múltiples sombras */
+    text-shadow: 
+        0 1px 2px rgba(0, 0, 0, 0.4),
+        0 2px 8px rgba(189, 147, 249, 0.1) !important;
+    
+    /* Transición ultra suave */
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1) !important;
+    
+    /* Gradiente sutil en el texto */
+    background: linear-gradient(135deg, #ffffff 0%, #e8eaed 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* HG S.A.S - Texto destacado con estilo premium */
+.brand-highlight {
+    font-family: 'Inter', 'Segoe UI', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    font-size: 1.15rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 2px !important;
+    line-height: 1 !important;
+    
+    /* Gradiente elegante en el texto */
+    background: linear-gradient(135deg, 
+        #bd93f9 0%, 
+        #ff79c6 50%, 
+        #50fa7b 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    background-size: 200% 200% !important;
+    animation: gradientShift 6s ease infinite !important;
+    
+    /* Efectos de resplandor múltiple */
+    filter: drop-shadow(0 0 8px rgba(189, 147, 249, 0.3)) 
+            drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2)) !important;
+    
+    /* Transición premium */
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1) !important;
+    
+    /* Pequeño icono decorativo antes del texto */
+    position: relative;
+}
+
+.brand-highlight::before {
+    content: '◆';
+    position: absolute;
+    left: -15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.6rem;
+    color: rgba(189, 147, 249, 0.6);
+    transition: all 0.3s ease;
+}
+
+/* Efectos hover ultra elegantes */
+.brand-link:hover .brand-text {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.3),
+        0 4px 12px rgba(189, 147, 249, 0.2);
+    letter-spacing: 1.5px;
+}
+
+.brand-link:hover .brand-highlight {
+    background-size: 100% 100% !important;
+    filter: drop-shadow(0 0 15px rgba(189, 147, 249, 0.5)) 
+            drop-shadow(0 0 25px rgba(255, 121, 198, 0.3)) 
+            drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2)) !important;
+    transform: scale(1.05);
+}
+
+.brand-link:hover .brand-highlight::before {
+    color: rgba(80, 250, 123, 0.8);
+    transform: translateY(-50%) rotate(45deg) scale(1.2);
+}
+
+/* Animación del gradiente */
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+/* Efecto de brillo que pasa por el texto ocasionalmente */
+.brand-logo::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.1) 50%, 
+        transparent 100%);
+    animation: shine 8s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes shine {
+    0%, 90%, 100% { left: -100%; opacity: 0; }
+    5%, 15% { left: 100%; opacity: 1; }
+}
+
+/* Responsive elegante */
+@media (max-width: 767px) {
+    .brand-logo {
+        padding: 8px 12px;
+    }
+    
+    .brand-text {
+        font-size: 0.7rem !important;
+        letter-spacing: 0.8px !important;
+    }
+    
+    .brand-highlight {
+        font-size: 0.9rem !important;
+        letter-spacing: 1.5px !important;
+    }
+    
+    .brand-highlight::before {
+        left: -10px;
+        font-size: 0.5rem;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .brand-text {
+        font-size: 0.8rem !important;
+        letter-spacing: 1px !important;
+    }
+    
+    .brand-highlight {
+        font-size: 1rem !important;
+        letter-spacing: 1.8px !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .brand-logo {
+        padding: 15px 25px;
+    }
+    
+    .brand-text {
+        font-size: 0.9rem !important;
+        letter-spacing: 1.4px !important;
+    }
+    
+    .brand-highlight {
+        font-size: 1.25rem !important;
+        letter-spacing: 2.5px !important;
+    }
+}
+
+/* Estados especiales del header */
+.header.transparent .brand-text {
+    text-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.8),
+        0 4px 16px rgba(189, 147, 249, 0.2);
+}
+
+.header.scrolled .brand-logo {
+    background: linear-gradient(135deg, 
+        rgba(15, 15, 35, 0.95) 0%, 
+        rgba(30, 30, 63, 0.9) 100%);
+    border-color: rgba(189, 147, 249, 0.15);
+}
+
+/* Efecto de focus para accesibilidad */
+.brand-link:focus-visible {
+    outline: 2px solid rgba(189, 147, 249, 0.6);
+    outline-offset: 4px;
+    border-radius: 8px;
+}
+
+/* Animación de aparición inicial */
+.brand-logo {
+    animation: brandAppear 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    opacity: 0;
+}
+
+@keyframes brandAppear {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.9);
+    }
+    60% {
+        opacity: 0.8;
+        transform: translateY(2px) scale(1.02);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}

@@ -857,7 +857,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Configuración del mapa profesional
 const MapaConfig = {
-    phoneNumber: '573XXXXXXXXX', // ⚠️ CAMBIAR POR TU NÚMERO REAL
+    phoneNumber: '573222284212', 
     locations: {
         bogota: {
             name: "Bogotá D.C.",
@@ -1657,7 +1657,7 @@ const FORM_CONFIG = {
     },
     
     // WhatsApp Configuration
-    whatsappNumber: '573XXXXXXXXX',
+    whatsappNumber: '573222284212',
     whatsappBaseMessage: 'Hola, me interesa información sobre distribución de AJEDREZ. ',
     
     // Form Validation Rules
@@ -2356,4 +2356,477 @@ window.addEventListener('error', function(e) {
 // ===== EXPORT FOR TESTING =====
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = { DistributorContactForm, FloatingWhatsApp, FORM_CONFIG };
+}
+
+
+
+
+
+
+// AJEDREZ News Modal System - Complete JavaScript
+class AjedrezNewsModal {
+    constructor() {
+        // CONFIGURACIÓN - CAMBIAR AQUÍ TU NÚMERO DE WHATSAPP
+        this.config = {
+            whatsappNumber: '573222284212',
+            images: {
+                expansionNacional: 'images/Expansion.webp',
+                nuevosDistribuidores: 'images/wine.jpg',
+                tendenciasBebidas: 'images/bebidas.png',
+                // Fallbacks usando imágenes existentes
+                fallbacks: {
+                    expansion: 'images/Expansion.webp',
+                    distribuidores: 'images/wine.jpg'
+                }
+            }
+        };
+
+        this.newsData = {
+            'expansion-nacional': {
+                title: 'Expansión Nacional AJEDREZ 2025',
+                date: '15 de Enero, 2025',
+                image: this.config.images.expansionNacional,
+                type: 'expansion',
+                content: {
+                    intro: 'Durante 2025, AJEDREZ llegará a 8 nuevas ciudades estratégicas de Colombia, consolidando su presencia nacional con una inversión de $45 millones de pesos colombianos y la incorporación de más de 35 nuevos distribuidores especializados.',
+                    sections: [
+                        {
+                            title: 'Nuevas Ciudades Estratégicas',
+                            content: `
+                                <p>Durante 2025, AJEDREZ llegará a <strong>8 nuevas ciudades estratégicas</strong> de Colombia, expandiendo gradualmente su presencia regional. Esta expansión inteligente incluye:</p>
+                                <ul class="feature-list">
+                                    <li><strong>Costa Atlántica:</strong> Barranquilla, Cartagena</li>
+                                    <li><strong>Eje Cafetero:</strong> Manizales, Pereira</li>
+                                    <li><strong>Valle del Cauca:</strong> Cali, Palmira</li>
+                                    <li><strong>Santanderes:</strong> Bucaramanga, Cúcuta</li>
+                                </ul>
+                                <p>Cada nueva ciudad representa una oportunidad cuidadosamente estudiada para maximizar el retorno de inversión.</p>
+                            `
+                        },
+                        {
+                            title: 'Inversión y Crecimiento',
+                            content: `
+                                <div class="stats-grid">
+                                    <div class="stat-item">
+                                        <span class="stat-number">$45M</span>
+                                        <span class="stat-label">Millones COP Inversión</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-number">35+</span>
+                                        <span class="stat-label">Nuevos Distribuidores</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-number">180%</span>
+                                        <span class="stat-label">Crecimiento Proyectado</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-number">12</span>
+                                        <span class="stat-label">Departamentos Cubiertos</span>
+                                    </div>
+                                </div>
+                            `
+                        },
+                        {
+                            title: 'Estrategia de Distribución',
+                            content: `
+                                <div class="highlight-box">
+                                    <p><strong>🎯 Objetivo 2025:</strong> Consolidarnos como distribuidores especializados en vinos espumosos sin alcohol, con presencia estratégica en las principales ciudades de Colombia.</p>
+                                </div>
+                                <p>Nuestra estrategia de expansión se basa en crecimiento sostenible:</p>
+                                <ul class="feature-list">
+                                    <li><strong>Distribuidores Selectos:</strong> Alianzas con socios locales de confianza</li>
+                                    <li><strong>Logística Eficiente:</strong> 3 centros de distribución regionales</li>
+                                    <li><strong>Marketing Dirigido:</strong> Campañas focalizadas por región</li>
+                                    <li><strong>Capacitación Personalizada:</strong> Entrenamiento directo a cada distribuidor</li>
+                                </ul>
+                            `
+                        }
+                    ],
+                    whatsappMessage: "Hola, me interesa ser distribuidor de AJEDREZ en la expansión 2025. ¿Podrían darme información sobre las oportunidades en mi región y los requisitos para participar?"
+                }
+            },
+            'nuevos-distribuidores': {
+                title: 'Nuevos Distribuidores Autorizados',
+                date: '20 de Diciembre, 2024',
+                image: this.config.images.nuevosDistribuidores,
+                type: 'distribuidores',
+                content: {
+                    intro: 'La familia AJEDREZ crece con la incorporación de distribuidores estratégicos que fortalecen nuestra presencia nacional y garantizan la mejor experiencia para nuestros consumidores.',
+                    sections: [
+                        {
+                            title: 'Nuevos Socios Estratégicos',
+                            content: `
+                                <p>Durante el último trimestre de 2024, hemos incorporado <strong>12 nuevos distribuidores autorizados</strong> cuidadosamente seleccionados por su experiencia local y compromiso con la excelencia en el servicio.</p>
+                                
+                                <div class="highlight-box">
+                                    <h4>🏆 Distribuidores Destacados del Mes</h4>
+                                    <ul class="feature-list">
+                                        <li><strong>Bebidas Premium Medellín:</strong> Especialistas en eventos corporativos</li>
+                                        <li><strong>Distribuciones del Caribe:</strong> Cobertura en Barranquilla y zona metropolitana</li>
+                                        <li><strong>Vinos Selectos Cali:</strong> Red en tiendas gourmet y restaurantes</li>
+                                        <li><strong>Celebraciones Especiales Bucaramanga:</strong> Enfoque en mercado de eventos</li>
+                                    </ul>
+                                </div>
+                            `
+                        },
+                        {
+                            title: 'Perfil del Distribuidor AJEDREZ',
+                            content: `
+                                <p>Nuestros distribuidores autorizados cumplen con estrictos estándares de calidad y servicio:</p>
+                                <div class="stats-grid">
+                                    <div class="stat-item">
+                                        <span class="stat-number">5+</span>
+                                        <span class="stat-label">Años de Experiencia</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-number">98%</span>
+                                        <span class="stat-label">Satisfacción del Cliente</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-number">24h</span>
+                                        <span class="stat-label">Tiempo de Respuesta</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-number">100%</span>
+                                        <span class="stat-label">Productos Originales</span>
+                                    </div>
+                                </div>
+                            `
+                        },
+                        {
+                            title: 'Beneficios y Garantías',
+                            content: `
+                                <h4>🤝 Lo que ofrecemos a nuestros distribuidores:</h4>
+                                <ul class="feature-list">
+                                    <li><strong>Territorio Exclusivo:</strong> Protección de zona geográfica</li>
+                                    <li><strong>Material POP:</strong> Elementos promocionales de alta calidad</li>
+                                    <li><strong>Capacitación Continua:</strong> Entrenamientos mensuales especializados</li>
+                                    <li><strong>Soporte Técnico:</strong> Asesoría comercial permanente</li>
+                                    <li><strong>Marketing Digital:</strong> Campañas locales personalizadas</li>
+                                    <li><strong>Descuentos Escalonados:</strong> Mejores precios por volumen</li>
+                                </ul>
+                                
+                                <div class="highlight-box">
+                                    <p><strong>💡 ¿Sabías que?</strong> El 87% de nuestros distribuidores han aumentado sus ventas en un 25% durante el primer año de asociación con AJEDREZ.</p>
+                                </div>
+                            `
+                        }
+                    ],
+                    whatsappMessage: "Hola, me interesa convertirme en distribuidor autorizado de AJEDREZ. ¿Podrían enviarme información sobre los requisitos y beneficios?"
+                }
+            },
+            'tendencias-sin-alcohol': {
+                title: 'Tendencias en Bebidas Sin Alcohol',
+                date: '10 de Diciembre, 2024',
+                image: this.config.images.tendenciasBebidas,
+                type: 'tendencias',
+                content: {
+                    intro: 'Colombia se posiciona como uno de los mercados más prometedores para las bebidas sin alcohol en Latinoamérica, con un crecimiento del 185% en los últimos 3 años y un mercado proyectado de $280 millones de pesos para 2026.',
+                    sections: [
+                        {
+                            title: 'El Boom de las Bebidas Saludables',
+                            content: `
+                                <p>Colombia se posiciona como uno de los mercados más prometedores para las bebidas sin alcohol en Latinoamérica, con un crecimiento del <strong>185% en los últimos 3 años</strong>.</p>
+                                
+                                <div class="stats-grid">
+                                    <div class="stat-item">
+                                        <span class="stat-number">72%</span>
+                                        <span class="stat-label">Prefiere opciones sin alcohol</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-number">58%</span>
+                                        <span class="stat-label">Busca alternativas saludables</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-number">38%</span>
+                                        <span class="stat-label">Millennials conscientes</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-number">$280M</span>
+                                        <span class="stat-label">Millones COP Mercado 2026</span>
+                                    </div>
+                                </div>
+                            `
+                        },
+                        {
+                            title: 'Perfil del Consumidor Moderno',
+                            content: `
+                                <div class="highlight-box">
+                                    <h4>🎯 ¿Quién elige AJEDREZ?</h4>
+                                    <p>Nuestros estudios revelan el perfil del consumidor colombiano de bebidas sin alcohol premium:</p>
+                                </div>
+                                
+                                <ul class="feature-list">
+                                    <li><strong>Edad:</strong> 25-45 años (68% del mercado)</li>
+                                    <li><strong>Estilo de vida:</strong> Activo y consciente de la salud</li>
+                                    <li><strong>Ocasiones:</strong> Celebraciones familiares, eventos corporativos</li>
+                                    <li><strong>Valores:</strong> Sostenibilidad, bienestar, autenticidad</li>
+                                    <li><strong>Ubicación:</strong> Ciudades principales y municipios emergentes</li>
+                                    <li><strong>Poder adquisitivo:</strong> Medio-alto, dispuesto a pagar por calidad</li>
+                                </ul>
+                            `
+                        },
+                        {
+                            title: 'Innovación y Futuro',
+                            content: `
+                                <p><strong>AJEDREZ lidera la innovación</strong> en el segmento de vinos espumosos sin alcohol con tecnología avanzada y sabores únicos.</p>
+                                
+                                <h4>🚀 Tendencias que marcan el 2025:</h4>
+                                <ul class="feature-list">
+                                    <li><strong>Ingredientes Naturales:</strong> 100% edulcorantes de origen natural</li>
+                                    <li><strong>Experiencias Premium:</strong> Empaques elegantes y presentaciones exclusivas</li>
+                                    <li><strong>Personalización:</strong> Sabores únicos para diferentes momentos</li>
+                                    <li><strong>Sostenibilidad:</strong> Procesos eco-amigables y empaques reciclables</li>
+                                    <li><strong>Conveniencia:</strong> Disponibilidad en múltiples canales de venta</li>
+                                </ul>
+                                
+                                <div class="highlight-box">
+                                    <p><strong>🌟 Proyección 2025:</strong> Se espera que las bebidas sin alcohol representen el 28% del mercado total de bebidas premium en Colombia.</p>
+                                </div>
+                            `
+                        }
+                    ],
+                    whatsappMessage: "Hola, me interesa conocer más sobre las tendencias del mercado de bebidas sin alcohol y las oportunidades con AJEDREZ."
+                }
+            }
+        };
+        
+        this.init();
+    }
+
+    init() {
+        this.createModalStructure();
+        this.bindEvents();
+        console.log('📰 Sistema de Noticias AJEDREZ inicializado');
+        console.log('💬 WhatsApp configurado:', this.config.whatsappNumber);
+    }
+
+    createModalStructure() {
+        // Crear el overlay del modal si no existe
+        if (!document.getElementById('newsModalOverlay')) {
+            const overlay = document.createElement('div');
+            overlay.id = 'newsModalOverlay';
+            overlay.className = 'news-modal-overlay';
+            overlay.innerHTML = `
+                <div class="news-modal" id="newsModal">
+                    <div class="modal-header">
+                        <img class="modal-header-image" src="" alt="">
+                        <button class="modal-close" id="closeModal">&times;</button>
+                    </div>
+                    <div class="modal-content">
+                        <h2 class="modal-title"></h2>
+                        <div class="modal-date"></div>
+                        <div class="modal-text"></div>
+                        <div class="cta-section">
+                            <h3>¿Te interesa esta información?</h3>
+                            <p>Contáctanos por WhatsApp para conocer más detalles</p>
+                            <a href="" class="cta-button" target="_blank">
+                                <span>📱</span>
+                                <span>Contactar por WhatsApp</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(overlay);
+        }
+    }
+
+    bindEvents() {
+        // Event listeners para las tarjetas de noticias
+        document.addEventListener('click', (e) => {
+            const newsCard = e.target.closest('.news-card');
+            if (newsCard) {
+                const newsType = this.getNewsType(newsCard);
+                if (newsType && this.newsData[newsType]) {
+                    this.openModal(newsType);
+                }
+            }
+
+            // Cerrar modal
+            if (e.target.id === 'closeModal' || e.target.id === 'newsModalOverlay') {
+                this.closeModal();
+            }
+        });
+
+        // Cerrar con ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                this.closeModal();
+            }
+        });
+
+        // Prevenir scroll del body cuando el modal está abierto
+        document.getElementById('newsModalOverlay').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) {
+                this.closeModal();
+            }
+        });
+    }
+
+    getNewsType(newsCard) {
+        // Determinar el tipo de noticia basado en el contenido de la tarjeta
+        const titleElement = newsCard.querySelector('h3');
+        const imageElement = newsCard.querySelector('img');
+        
+        if (!titleElement) return null;
+
+        const title = titleElement.textContent.toLowerCase();
+        const imageSrc = imageElement ? imageElement.src.toLowerCase() : '';
+        
+        // Detectar por título
+        if (title.includes('expansión') || title.includes('nacional') || title.includes('2025')) {
+            return 'expansion-nacional';
+        } else if (title.includes('distribuidores') || title.includes('autorizados') || title.includes('nuevos')) {
+            return 'nuevos-distribuidores';
+        } else if (title.includes('tendencias') || title.includes('sin alcohol') || imageSrc.includes('bebidas')) {
+            return 'tendencias-sin-alcohol';
+        }
+        
+        // Detectar por imagen si el título no es claro
+        if (imageSrc.includes('expansion') || imageSrc.includes('nacional')) {
+            return 'expansion-nacional';
+        } else if (imageSrc.includes('distribuidores')) {
+            return 'nuevos-distribuidores';
+        } else if (imageSrc.includes('bebidas') || imageSrc.includes('tendencias')) {
+            return 'tendencias-sin-alcohol';
+        }
+        
+        return null;
+    }
+
+    openModal(newsType) {
+        const data = this.newsData[newsType];
+        const modal = document.getElementById('newsModal');
+        const overlay = document.getElementById('newsModalOverlay');
+
+        // Determinar la imagen a usar - priorizar las del proyecto o usar fallbacks
+        let modalImage = data.image;
+        
+        // Si es la imagen de tendencias, usar la existente del proyecto
+        if (newsType === 'tendencias-sin-alcohol') {
+            modalImage = this.config.images.tendenciasBebidas;
+        }
+        
+        // Para las otras, usar fallbacks temporales hasta que agregues las imágenes
+        if (newsType === 'expansion-nacional') {
+            // Verificar si existe la imagen específica, sino usar fallback
+            modalImage = this.config.images.fallbacks.expansion;
+        }
+        
+        if (newsType === 'nuevos-distribuidores') {
+            // Verificar si existe la imagen específica, sino usar fallback
+            modalImage = this.config.images.fallbacks.distribuidores;
+        }
+
+        // IMPORTANTE: Limpiar imagen anterior primero
+        const headerImage = modal.querySelector('.modal-header-image');
+        headerImage.style.opacity = '0';
+        headerImage.style.transform = 'scale(0.8)';
+        
+        // Actualizar contenido del modal después de un pequeño delay
+        setTimeout(() => {
+            headerImage.src = modalImage;
+            headerImage.alt = data.title;
+            modal.querySelector('.modal-title').textContent = data.title;
+            modal.querySelector('.modal-date').textContent = data.date;
+            
+            // Generar contenido completo
+            let contentHTML = `<p class="modal-text">${data.content.intro}</p>`;
+            
+            data.content.sections.forEach(section => {
+                contentHTML += `
+                    <h3>${section.title}</h3>
+                    <div class="modal-text">${section.content}</div>
+                `;
+            });
+            
+            modal.querySelector('.modal-text').innerHTML = contentHTML;
+
+            // Actualizar WhatsApp link usando la configuración
+            const whatsappUrl = `https://wa.me/${this.config.whatsappNumber}?text=${encodeURIComponent(data.content.whatsappMessage)}`;
+            modal.querySelector('.cta-button').href = whatsappUrl;
+
+            // Añadir clase específica para el tipo de modal
+            modal.className = `news-modal modal-${data.type}`;
+
+            // Mostrar imagen con animación
+            headerImage.style.opacity = '1';
+            headerImage.style.transform = 'scale(1)';
+        }, 100);
+
+        // Mostrar modal
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+
+        // Tracking de interacción
+        this.trackInteraction('modal_opened', newsType);
+
+        // Efectos de entrada después de que la imagen esté lista
+        setTimeout(() => {
+            this.animateElements();
+        }, 400);
+    }
+
+    closeModal() {
+        const overlay = document.getElementById('newsModalOverlay');
+        const modal = document.getElementById('newsModal');
+        const headerImage = modal.querySelector('.modal-header-image');
+
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+
+        // Limpiar la imagen al cerrar para evitar que se mantenga
+        setTimeout(() => {
+            headerImage.style.transform = 'scale(1)';
+            headerImage.src = ''; // Limpiar la imagen
+            headerImage.alt = '';
+            
+            // Limpiar el contenido también
+            modal.querySelector('.modal-title').textContent = '';
+            modal.querySelector('.modal-date').textContent = '';
+            modal.querySelector('.modal-text').innerHTML = '';
+            
+            // Resetear clase del modal
+            modal.className = 'news-modal';
+        }, 100);
+    }
+
+    // Método para añadir animaciones de entrada a los elementos
+    animateElements() {
+        const elements = document.querySelectorAll('.modal-content .stat-item, .modal-content .feature-list li, .modal-content .highlight-box');
+        elements.forEach((element, index) => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                element.style.transition = 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+            }, 200 + (index * 100));
+        });
+    }
+
+    // Método para tracking de interacciones
+    trackInteraction(action, newsType) {
+        if (typeof gtag !== 'undefined') {
+            gtag('event', action, {
+                'event_category': 'News Modal',
+                'event_label': newsType,
+                'value': 1
+            });
+        }
+        
+        console.log(`📊 Tracking: ${action} - ${newsType}`);
+    }
+}
+
+// Inicializar cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', () => {
+    window.ajedrezNewsModal = new AjedrezNewsModal();
+});
+
+// Exportar para uso en otros scripts
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = AjedrezNewsModal;
 }

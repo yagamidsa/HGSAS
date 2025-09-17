@@ -10,7 +10,7 @@ class SEOAnalytics {
             fbPixelId: 'FB_PIXEL_ID', // Reemplazar con tu Facebook Pixel ID
             siteName: 'COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S',
             siteUrl: 'https://discomerhgsas.com.co',
-            businessPhone: '573XXXXXXXXX', // Reemplazar con tu número
+            businessPhone: '573222284212',
             businessEmail: 'info@discomerhgsas.com.co'
         };
         

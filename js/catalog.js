@@ -358,7 +358,7 @@ class CatalogSystem {
                 </div>
                 
                 <div class="catalog-footer">
-                    <a href="https://wa.me/573XXXXXXXXX?text=${encodeURIComponent(productData.whatsappMessage)}" 
+                    <a href="https://wa.me/573222284212?text=${encodeURIComponent(productData.whatsappMessage)}" 
                        class="btn btn-whatsapp btn-large" 
                        target="_blank" 
                        rel="noopener noreferrer"

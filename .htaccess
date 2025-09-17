@@ -225,7 +225,7 @@ ErrorDocument 503 /error-pages/503.html
 # RewriteRule ^(.*)$ https://www.discomerhgsas.com.co/$1 [R=301,L]
 
 # WhatsApp redirect
-RewriteRule ^whatsapp/?$ https://wa.me/573XXXXXXXXX?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20los%20productos%20AJEDREZ [R=302,L]
+RewriteRule ^whatsapp/?$ https://wa.me/573222284212?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20los%20productos%20AJEDREZ [R=302,L]
 
 # Social media redirects (si tienes redes sociales)
 # RewriteRule ^facebook/?$ https://www.facebook.com/tu-pagina [R=302,L]
