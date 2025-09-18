@@ -1,62 +1,66 @@
 document.addEventListener('DOMContentLoaded', function () {
+    console.log('🔧 Inicializando splash screen...');
+    
     const splashScreen = document.getElementById('videoSplashScreen');
     const splashVideo = document.getElementById('splashVideo');
     const mainContent = document.getElementById('mainContent');
-
-    // Configuración del video
-    splashVideo.muted = true;
-    splashVideo.autoplay = true;
-
-    // Función para ocultar splash y mostrar contenido
-    function hideSplashScreen() {
-        splashScreen.classList.add('hidden');
-
-        // Después de la transición, mostrar contenido principal
-        setTimeout(() => {
-            splashScreen.style.display = 'none';
-            mainContent.style.display = 'block';
-            document.body.style.overflow = 'auto';
-        }, 800);
-    }
-
-    // Configurar timer de 6 segundos
-    let splashTimer = setTimeout(() => {
-        hideSplashScreen();
-    }, 6000);
-
-    // Si el video termina antes de 6 segundos, esperar a que se complete el tiempo
-    splashVideo.addEventListener('ended', function () {
-        // No hacer nada, dejar que el timer se encargue
-        console.log('Video terminado, esperando timer...');
-    });
-
-    // Manejar errores de video
-    splashVideo.addEventListener('error', function () {
-        console.error('Error al cargar el video');
-        // Si hay error, continuar después de 2 segundos
-        clearTimeout(splashTimer);
-        setTimeout(() => {
-            hideSplashScreen();
-        }, 2000);
-    });
-
-    // Asegurar que el video se reproduzca
-    splashVideo.addEventListener('loadeddata', function () {
-        console.log('Video cargado correctamente');
-        splashVideo.play().catch(function (error) {
-            console.error('Error al reproducir video:', error);
-        });
-    });
-
-    // Prevenir scroll durante splash
-    document.body.style.overflow = 'hidden';
-
-    // Fallback: si después de 8 segundos no se ha ocultado, forzar
-    setTimeout(() => {
-        if (!splashScreen.classList.contains('hidden')) {
+    
+    // VERIFICAR QUE LOS ELEMENTOS EXISTAN
+    if (splashVideo) {
+        console.log('📹 Video encontrado, configurando...');
+        try {
+            splashVideo.muted = true;
+            splashVideo.autoplay = true;
+            splashVideo.playsInline = true; // Para móviles
+            
+            // Reproducir el video
+            splashVideo.play().then(() => {
+                console.log('✅ Video reproduciéndose');
+            }).catch(error => {
+                console.log('⚠️ No se pudo reproducir video:', error);
+                // Si falla, pasar directamente al contenido
+                hideSplashScreen();
+            });
+            
+            // Cuando termine el video, mostrar contenido
+            splashVideo.addEventListener('ended', () => {
+                console.log('📹 Video terminado');
+                hideSplashScreen();
+            });
+            
+            // Timeout de seguridad (máximo 5 segundos)
+            setTimeout(() => {
+                console.log('⏰ Timeout del video');
+                hideSplashScreen();
+            }, 5000);
+            
+        } catch (error) {
+            console.error('❌ Error configurando video:', error);
             hideSplashScreen();
         }
-    }, 8000);
+    } else {
+        console.log('⚠️ No se encontró elemento de video, saltando splash screen');
+        // Si no hay video, mostrar contenido inmediatamente
+        hideSplashScreen();
+    }
+    
+    function hideSplashScreen() {
+        if (splashScreen) {
+            splashScreen.style.opacity = '0';
+            setTimeout(() => {
+                splashScreen.style.display = 'none';
+            }, 500);
+        }
+        
+        if (mainContent) {
+            mainContent.style.display = 'block';
+            setTimeout(() => {
+                mainContent.style.opacity = '1';
+            }, 100);
+        }
+        
+        console.log('✅ Splash screen ocultado');
+    }
 });
 
 // Precargar el video si es posible

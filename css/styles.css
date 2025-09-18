@@ -7145,3 +7145,165 @@ select option:selected {
         text-decoration: none !important;
     }
 }
+
+
+@media (max-width: 767px) {
+    .catalog-modal[data-product="rosado"] .catalog-section,
+    .catalog-modal:has(.product-title:contains("ROSADO")) .catalog-section,
+    .rosado-catalog .catalog-section {
+        padding: 65px !important;
+        min-height: 60px !important;
+    }
+}
+
+/* Padding específico para catálogo de CEREZA */
+@media (max-width: 767px) {
+    .catalog-modal[data-product="cereza"] .catalog-section,
+    .catalog-modal:has(.product-title:contains("CEREZA")) .catalog-section,
+    .cereza-catalog .catalog-section {
+        padding: 65px !important;
+        min-height: 60px !important;
+    }
+}
+
+/* Si no funcionan los selectores de arriba, usar clases dinámicas */
+@media (max-width: 767px) {
+    .catalog-modal.rosado-active .catalog-section,
+    .catalog-modal.cereza-active .catalog-section {
+        padding: 65px !important;
+        min-height: 60px !important;
+    }
+}
+
+
+
+/* ===================================================================
+   🔒 BLOQUEAR SCROLL DE PRODUCTS-SECTION - SOLO BODY
+   🎯 Eliminar scroll interno de la sección productos
+   =================================================================== */
+
+/* Eliminar cualquier scroll interno de la sección productos */
+.products-section {
+    overflow: visible !important;
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+    height: auto !important;
+    max-height: none !important;
+}
+
+/* Asegurar que el contenedor de productos no haga scroll */
+.products-section .container {
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
+}
+
+/* Grid de productos sin scroll interno */
+.productos-grid,
+.products-grid {
+    overflow: visible !important;
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+    height: auto !important;
+    max-height: none !important;
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+    gap: 30px !important;
+}
+
+/* Cada card de producto sin scroll */
+.product-card {
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
+    position: relative !important;
+}
+
+/* Eliminar scroll de cualquier elemento dentro de productos */
+.products-section * {
+    overflow-x: visible !important;
+}
+
+/* Solo permitir scroll-y en elementos específicos que lo necesiten */
+.products-section .product-description {
+    overflow-y: auto !important;
+    max-height: 100px !important; /* Solo si es necesario */
+}
+
+/* Responsive - mantener sin scroll interno */
+@media (max-width: 768px) {
+    .products-section {
+        overflow: visible !important;
+        height: auto !important;
+    }
+    
+    .productos-grid,
+    .products-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+        overflow: visible !important;
+    }
+    
+    .product-card {
+        margin-bottom: 20px !important;
+        overflow: visible !important;
+    }
+}
+
+/* Forzar que solo el body tenga scroll */
+html {
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+}
+
+body {
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    height: auto !important;
+    min-height: 100vh !important;
+}
+
+/* Eliminar scroll horizontal en toda la página */
+* {
+    overflow-x: hidden !important;
+}
+
+/* Excepciones donde sí necesitamos scroll */
+.catalog-content,
+.modal-content,
+textarea,
+input[type="text"],
+pre,
+code {
+    overflow-x: auto !important;
+}
+
+/* Fix específico si tienes algún contenedor problemático */
+.section-container,
+.main-content,
+.page-wrapper {
+    overflow: visible !important;
+    height: auto !important;
+}
+
+/* Asegurar que las imágenes no causen overflow */
+.products-section img {
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+}
+
+/* Grid responsive sin overflow */
+@media (max-width: 480px) {
+    .productos-grid,
+    .products-grid {
+        padding: 0 15px !important;
+        overflow: visible !important;
+    }
+    
+    .product-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: visible !important;
+    }
+}

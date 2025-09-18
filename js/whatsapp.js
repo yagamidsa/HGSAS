@@ -1,656 +1,456 @@
 /* ===================================================================
-   WHATSAPP INTEGRATION - COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S
-   Sistema avanzado de WhatsApp con mensajes predefinidos
+   💬 WHATSAPP CONTROLLER - HG SAS
+   📁 Archivo: js/whatsapp.js (OPCIONAL - Solo si quieres funciones extra)
+   🎯 Sistema completo de WhatsApp con mensajes personalizados
    =================================================================== */
 
 class WhatsAppController {
     constructor() {
-        // Configuración del negocio
-        this.businessPhone = '573222284212'; 
-        this.businessName = 'COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S';
-        this.businessHours = {
-            start: 8,  // 8:00 AM
-            end: 18,   // 6:00 PM
-            days: [1, 2, 3, 4, 5] // Lunes a Viernes (1=Lunes, 0=Domingo)
-        };
+        this.phoneNumber = '573222284212';
+        this.isInitialized = false;
         
-        // Estados
-        this.isBusinessHours = false;
-        this.isMobile = false;
-        this.clickCount = 0;
+        // Mensajes predefinidos
+        this.messages = {
+            default: 'Hola, me interesa conocer más sobre los productos AJEDREZ',
+            rosado: 'Buenos días, me interesa obtener información sobre el producto AJEDREZ Rosado 750ml. ¿Podrían proporcionarme detalles sobre precios, disponibilidad y condiciones de distribución? Quedo atento a su respuesta. Saludos cordiales.',
+            cereza: 'Buenos días, me interesa el producto AJEDREZ Cereza 750ml. ¿Podrían facilitarme información sobre precios mayoristas, cantidades mínimas de pedido y tiempos de entrega? Agradezco su pronta respuesta.',
+            manzana: 'Estimados, solicito cotización para el producto AJEDREZ Manzana 750ml. Requiero información sobre precios, descuentos por volumen y cobertura de distribución en mi zona. Muchas gracias.',
+            uva: 'Buen día, me dirijo a ustedes para solicitar información comercial sobre AJEDREZ Uva 750ml. Necesito conocer precios, condiciones de pago y requisitos para convertirme en distribuidor. Quedo pendiente de su respuesta.',
+            distribucion: 'Hola, estoy interesado en convertirme en distribuidor de productos AJEDREZ en mi zona. ¿Podrían proporcionarme información sobre requisitos, precios mayoristas y condiciones comerciales?',
+            evento: 'Buenos días, necesito cotización de productos AJEDREZ para un evento. ¿Podrían ayudarme con precios y disponibilidad?',
+            catalogo: 'Hola, me gustaría recibir el catálogo completo de productos AJEDREZ con precios actualizados.'
+        };
         
         this.init();
     }
-    
+
     init() {
-        this.detectDevice();
-        this.checkBusinessHours();
-        this.setupEventListeners();
-        this.enhanceFloatingButton();
-        this.setupHourlyCheck();
+        if (this.isInitialized) return;
         
-        console.log('📱 WhatsApp Controller iniciado');
-        console.log(`📱 Dispositivo: ${this.isMobile ? 'Móvil' : 'Desktop'}`);
-        console.log(`🕒 Horario comercial: ${this.isBusinessHours ? 'ABIERTO' : 'CERRADO'}`);
+        try {
+            this.setupEventListeners();
+            this.createFloatingButton();
+            this.preconnectWhatsApp();
+            
+            this.isInitialized = true;
+            console.log('💬 WhatsApp Controller inicializado');
+            
+        } catch (error) {
+            console.error('❌ Error inicializando WhatsApp:', error);
+        }
     }
-    
-    detectDevice() {
-        this.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    }
-    
-    checkBusinessHours() {
-        const now = new Date();
-        const currentHour = now.getHours();
-        const currentDay = now.getDay();
-        
-        this.isBusinessHours = 
-            this.businessHours.days.includes(currentDay) &&
-            currentHour >= this.businessHours.start &&
-            currentHour < this.businessHours.end;
-    }
-    
+
     setupEventListeners() {
-        // Botones WhatsApp en catálogos
-        document.querySelectorAll('.btn-whatsapp').forEach(button => {
-            button.addEventListener('click', (e) => {
+        // Esperar a que el DOM esté cargado
+        document.addEventListener('DOMContentLoaded', () => {
+            this.bindExistingElements();
+        });
+        
+        // Si el DOM ya está cargado
+        if (document.readyState === 'loading') {
+            this.bindExistingElements();
+        }
+    }
+
+    bindExistingElements() {
+        // Botón flotante existente
+        const floatingBtn = document.getElementById('whatsappFloating');
+        if (floatingBtn) {
+            floatingBtn.addEventListener('click', () => {
+                this.openWhatsApp(this.messages.default);
+            });
+        }
+
+        // Enlaces de productos específicos
+        const productLinks = document.querySelectorAll('.btn-whatsapp');
+        productLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
                 e.preventDefault();
-                this.handleWhatsAppClick(button);
+                this.handleProductClick(link);
             });
         });
-        
-        // Botón flotante
-        const floatingButton = document.querySelector('.whatsapp-float');
-        if (floatingButton) {
-            floatingButton.addEventListener('click', (e) => {
+
+        // Enlaces con data attributes personalizados
+        const customLinks = document.querySelectorAll('[data-whatsapp]');
+        customLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
                 e.preventDefault();
-                this.handleFloatingButtonClick();
+                const messageType = link.dataset.whatsapp;
+                const customMessage = link.dataset.message;
+                
+                const message = customMessage || this.messages[messageType] || this.messages.default;
+                this.openWhatsApp(message);
             });
-        }
-        
-        // Otros enlaces de WhatsApp en la página
-        document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
-            if (!link.classList.contains('btn-whatsapp') && !link.classList.contains('whatsapp-float')) {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    this.handleGenericWhatsAppClick(link);
-                });
-            }
         });
+
+        console.log('🔗 Enlaces de WhatsApp configurados');
     }
-    
-    handleWhatsAppClick(button) {
-        // Obtener el href original
-        const originalHref = button.getAttribute('href');
-        const productName = this.extractProductName(button);
-        
-        // Validar número de teléfono
-        if (!this.validatePhoneNumber()) {
-            this.showPhoneError();
-            return;
-        }
-        
-        // Crear URL optimizada
-        const optimizedUrl = this.createOptimizedUrl(originalHref, {
-            source: 'catalog',
-            product: productName,
-            timestamp: Date.now()
-        });
-        
-        // Tracking
-        this.trackWhatsAppClick('product_catalog', productName);
-        
-        // Abrir WhatsApp
-        this.openWhatsApp(optimizedUrl);
-        
-        // Efecto visual en el botón
-        this.addClickEffect(button);
-    }
-    
-    handleFloatingButtonClick() {
-        const defaultMessage = this.createFloatingButtonMessage();
-        
-        // Validar número
-        if (!this.validatePhoneNumber()) {
-            this.showPhoneError();
-            return;
-        }
-        
-        const url = this.createWhatsAppUrl(defaultMessage, {
-            source: 'floating_button',
-            timestamp: Date.now()
-        });
-        
-        // Tracking
-        this.trackWhatsAppClick('floating_button', 'general_inquiry');
-        
-        // Abrir WhatsApp
-        this.openWhatsApp(url);
-        
-        // Efecto visual
-        this.addFloatingButtonEffect();
-    }
-    
-    handleGenericWhatsAppClick(link) {
-        const href = link.getAttribute('href');
-        
-        // Tracking
-        this.trackWhatsAppClick('generic_link', 'unknown');
-        
-        // Abrir directamente
-        this.openWhatsApp(href);
-    }
-    
-    extractProductName(button) {
-        // Buscar en el texto del botón
-        const buttonText = button.textContent;
-        if (buttonText.includes('Rosado')) return 'Rosado';
-        if (buttonText.includes('Cereza')) return 'Cereza';
-        if (buttonText.includes('Manzana')) return 'Manzana';
-        if (buttonText.includes('Uva')) return 'Uva';
-        
-        // Buscar en el catálogo padre
-        const catalog = button.closest('.product-catalog');
-        if (catalog) {
-            const catalogTitle = catalog.querySelector('h3');
-            if (catalogTitle) {
-                const titleText = catalogTitle.textContent;
-                if (titleText.includes('Rosado')) return 'Rosado';
-                if (titleText.includes('Cereza')) return 'Cereza';
-                if (titleText.includes('Manzana')) return 'Manzana';
-                if (titleText.includes('Uva')) return 'Uva';
+
+    handleProductClick(element) {
+        // Detectar tipo de producto por clase o data attribute
+        let messageType = 'default';
+        let customMessage = null;
+
+        // Por data attribute
+        if (element.dataset.message) {
+            customMessage = element.dataset.message;
+        } else if (element.dataset.product) {
+            messageType = element.dataset.product.toLowerCase();
+        } else {
+            // Por clases CSS
+            if (element.closest('.rosado') || element.textContent.toLowerCase().includes('rosado')) {
+                messageType = 'rosado';
+            } else if (element.closest('.cereza') || element.textContent.toLowerCase().includes('cereza')) {
+                messageType = 'cereza';
+            } else if (element.closest('.manzana') || element.textContent.toLowerCase().includes('manzana')) {
+                messageType = 'manzana';
+            } else if (element.closest('.uva') || element.textContent.toLowerCase().includes('uva')) {
+                messageType = 'uva';
             }
         }
-        
-        return 'Producto AJEDREZ';
+
+        const message = customMessage || this.messages[messageType] || this.messages.default;
+        this.openWhatsApp(message);
+
+        // Analytics tracking
+        this.trackWhatsAppClick(messageType, element);
     }
-    
-    createFloatingButtonMessage() {
-        const greeting = this.getGreeting();
-        const businessStatus = this.isBusinessHours ? 
-            'Estamos en horario de atención comercial.' : 
-            'Estamos fuera del horario comercial, pero te responderemos pronto.';
-            
-        return `${greeting} Me interesa conocer más sobre los productos AJEDREZ. ${businessStatus}`;
-    }
-    
-    getGreeting() {
-        const hour = new Date().getHours();
-        if (hour < 12) return 'Buenos días';
-        if (hour < 18) return 'Buenas tardes';
-        return 'Buenas noches';
-    }
-    
-    createOptimizedUrl(originalHref, metadata = {}) {
-        try {
-            const url = new URL(originalHref);
-            
-            // Agregar metadata como parámetros (para tracking interno)
-            Object.keys(metadata).forEach(key => {
-                url.searchParams.set(`_${key}`, metadata[key]);
-            });
-            
-            return url.toString();
-        } catch (error) {
-            console.warn('Error optimizando URL de WhatsApp:', error);
-            return originalHref;
-        }
-    }
-    
-    createWhatsAppUrl(message, metadata = {}) {
-        const baseUrl = `https://wa.me/${this.businessPhone}`;
+
+    openWhatsApp(message, trackingLabel = null) {
         const encodedMessage = encodeURIComponent(message);
+        const whatsappURL = `https://wa.me/${this.phoneNumber}?text=${encodedMessage}`;
         
-        let url = `${baseUrl}?text=${encodedMessage}`;
+        // Abrir WhatsApp
+        const newWindow = window.open(whatsappURL, '_blank', 'noopener,noreferrer');
         
-        // Agregar metadata
-        Object.keys(metadata).forEach(key => {
-            url += `&_${key}=${encodeURIComponent(metadata[key])}`;
-        });
-        
-        return url;
-    }
-    
-    validatePhoneNumber() {
-        // TEMPORAL: Desactivar validación para testing
-        return true;
-        
-        // Código original (comentado)
-        /*
-        const hasValidPhone = this.businessPhone && 
-                            this.businessPhone.length >= 8 && 
-                            !this.businessPhone.includes('X') &&
-                            /\d/.test(this.businessPhone);
-        
-        const isDevelopment = this.businessPhone.includes('TEST') || 
-                            window.location.hostname === 'localhost';
-        
-        return hasValidPhone || isDevelopment;
-        */
-    }
-    
-    showPhoneError() {
-        // Solo mostrar una notificación sutil
-        this.showSubtleNotification('📱 Servicio temporalmente no disponible', 'info');
-        console.warn('⚠️ Número de WhatsApp necesita configuración');
-    }
-    
-    showSubtleNotification(message, type = 'info') {
-        // Verificar si ya existe una notificación
-        const existing = document.querySelector('.subtle-notification');
-        if (existing) {
-            existing.remove();
+        // Verificar si se abrió correctamente
+        if (!newWindow) {
+            console.warn('⚠️ No se pudo abrir WhatsApp (posiblemente bloqueado por popup blocker)');
+            
+            // Fallback: mostrar alerta con el enlace
+            this.showWhatsAppFallback(whatsappURL);
         }
+
+        // Tracking
+        this.trackWhatsAppClick(trackingLabel || 'manual', null, message);
         
-        // Crear notificación sutil
-        const notification = document.createElement('div');
-        notification.className = 'subtle-notification';
-        
-        const colors = {
-            info: { bg: 'rgba(33, 150, 243, 0.9)', border: '#2196F3' },
-            success: { bg: 'rgba(76, 175, 80, 0.9)', border: '#4CAF50' },
-            warning: { bg: 'rgba(255, 152, 0, 0.9)', border: '#FF9800' }
-        };
-        
-        const color = colors[type] || colors.info;
-        
-        notification.innerHTML = `
-            <div class="notification-content">
-                <span class="notification-message">${message}</span>
-                <button class="notification-close" aria-label="Cerrar">&times;</button>
+        console.log('💬 WhatsApp abierto con mensaje:', message.substring(0, 50) + '...');
+    }
+
+    showWhatsAppFallback(url) {
+        // Crear modal de fallback
+        const fallbackModal = document.createElement('div');
+        fallbackModal.className = 'whatsapp-fallback-modal';
+        fallbackModal.innerHTML = `
+            <div class="fallback-content">
+                <h3>Abrir WhatsApp</h3>
+                <p>Haz clic en el botón para abrir WhatsApp:</p>
+                <a href="${url}" target="_blank" rel="noopener" class="btn btn-whatsapp btn-large">
+                    Abrir WhatsApp
+                </a>
+                <button class="btn btn-secondary" onclick="this.closest('.whatsapp-fallback-modal').remove()">
+                    Cerrar
+                </button>
             </div>
+            <div class="fallback-overlay" onclick="this.closest('.whatsapp-fallback-modal').remove()"></div>
         `;
         
-        // Estilos sutiles y elegantes
-        notification.style.cssText = `
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: ${color.bg};
-            backdrop-filter: blur(10px);
-            color: white;
-            padding: 12px 16px;
-            border-radius: 8px;
-            border-left: 3px solid ${color.border};
-            z-index: 8999;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            font-size: 0.9rem;
-            max-width: 300px;
-            transform: translateX(100%);
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        `;
+        document.body.appendChild(fallbackModal);
         
-        // Estilo del contenido
-        const content = notification.querySelector('.notification-content');
-        content.style.cssText = `
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        `;
-        
-        // Estilo del botón cerrar
-        const closeBtn = notification.querySelector('.notification-close');
-        closeBtn.style.cssText = `
-            background: none;
-            border: none;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-            opacity: 0.7;
-            transition: opacity 0.2s ease;
-            padding: 0;
-            margin-left: auto;
-        `;
-        
-        closeBtn.addEventListener('mouseenter', () => closeBtn.style.opacity = '1');
-        closeBtn.addEventListener('mouseleave', () => closeBtn.style.opacity = '0.7');
-        
-        document.body.appendChild(notification);
-        
-        // Animar entrada
+        // Auto-remove después de 10 segundos
         setTimeout(() => {
-            notification.style.transform = 'translateX(0)';
-        }, 100);
-        
-        // Función para cerrar
-        const closeNotification = () => {
-            notification.style.transform = 'translateX(100%)';
-            setTimeout(() => {
-                if (notification.parentNode) {
-                    notification.parentNode.removeChild(notification);
-                }
-            }, 300);
-        };
-        
-        // Cerrar al hacer click en el botón
-        closeBtn.addEventListener('click', closeNotification);
-        
-        // Auto-cerrar después de 4 segundos
-        setTimeout(closeNotification, 4000);
-    }
-    
-    openWhatsApp(url) {
-        // SIEMPRE abrir en nueva pestaña/ventana para no perder el sitio web
-        try {
-            const newWindow = window.open(url, '_blank', 'noopener,noreferrer,width=800,height=600');
-            
-            // Si el popup es bloqueado, intentar abrir de otra forma
-            if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
-                // Crear un enlace temporal y hacer click
-                const tempLink = document.createElement('a');
-                tempLink.href = url;
-                tempLink.target = '_blank';
-                tempLink.rel = 'noopener noreferrer';
-                tempLink.style.display = 'none';
-                
-                document.body.appendChild(tempLink);
-                tempLink.click();
-                document.body.removeChild(tempLink);
+            if (fallbackModal.parentNode) {
+                fallbackModal.remove();
             }
-            
-            this.clickCount++;
-            console.log(`📱 WhatsApp abierto en nueva pestaña (click #${this.clickCount})`);
-            
-        } catch (error) {
-            console.error('Error abriendo WhatsApp:', error);
-            this.showSubtleNotification('❌ No se pudo abrir WhatsApp', 'warning');
-        }
+        }, 10000);
     }
+
     
-    addClickEffect(button) {
-        // Efecto de pulso en el botón
-        button.style.transform = 'scale(0.95)';
-        button.style.transition = 'transform 0.15s ease';
-        
-        setTimeout(() => {
-            button.style.transform = 'scale(1.05)';
-        }, 150);
-        
-        setTimeout(() => {
-            button.style.transform = '';
-        }, 300);
-        
-        // Crear efecto de ondas
-        const ripple = document.createElement('div');
-        ripple.style.cssText = `
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            animation: ripple 0.6s ease-out;
-            pointer-events: none;
-        `;
-        
-        button.style.position = 'relative';
-        button.style.overflow = 'hidden';
-        button.appendChild(ripple);
-        
-        setTimeout(() => ripple.remove(), 600);
+    preconnectWhatsApp() {
+        // Preconnect para acelerar la carga de WhatsApp
+        const preconnectLink = document.createElement('link');
+        preconnectLink.rel = 'preconnect';
+        preconnectLink.href = 'https://wa.me';
+        document.head.appendChild(preconnectLink);
+
+        // DNS prefetch también
+        const dnsLink = document.createElement('link');
+        dnsLink.rel = 'dns-prefetch';
+        dnsLink.href = '//wa.me';
+        document.head.appendChild(dnsLink);
     }
-    
-    addFloatingButtonEffect() {
-        const floatingButton = document.querySelector('.whatsapp-float');
-        if (floatingButton) {
-            // Efecto de rebote
-            floatingButton.style.animation = 'bounce 0.6s ease';
-            
-            setTimeout(() => {
-                floatingButton.style.animation = '';
-            }, 600);
-        }
-    }
-    
-    enhanceFloatingButton() {
-        const floatingButton = document.querySelector('.whatsapp-float');
-        if (!floatingButton) return;
-        
-        // Agregar indicador de estado
-        this.addStatusIndicator(floatingButton);
-        
-        // Agregar tooltip dinámico
-        this.addDynamicTooltip(floatingButton);
-        
-        // Efecto de hover mejorado
-        this.enhanceHoverEffect(floatingButton);
-    }
-    
-    addStatusIndicator(button) {
-        const statusDot = document.createElement('div');
-        statusDot.className = 'whatsapp-status-dot';
-        statusDot.style.cssText = `
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: ${this.isBusinessHours ? '#4CAF50' : '#FF9800'};
-            border: 2px solid white;
-            box-shadow: 0 0 8px rgba(0,0,0,0.3);
-            z-index: 2;
-        `;
-        
-        button.appendChild(statusDot);
-    }
-    
-    addDynamicTooltip(button) {
-        const tooltip = document.createElement('div');
-        tooltip.className = 'whatsapp-tooltip';
-        
-        const tooltipText = this.isBusinessHours ? 
-            'Estamos en línea - ¡Escríbenos!' : 
-            'Fuera de horario - Te responderemos pronto';
-            
-        tooltip.textContent = tooltipText;
-        tooltip.style.cssText = `
-            position: absolute;
-            bottom: 120%;
-            right: 0;
-            background: rgba(0, 0, 0, 0.9);
-            color: white;
-            padding: 8px 12px;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            white-space: nowrap;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 3;
-        `;
-        
-        button.appendChild(tooltip);
-        
-        // Mostrar/ocultar tooltip en hover
-        button.addEventListener('mouseenter', () => {
-            tooltip.style.opacity = '1';
-            tooltip.style.visibility = 'visible';
-            tooltip.style.transform = 'translateY(-5px)';
-        });
-        
-        button.addEventListener('mouseleave', () => {
-            tooltip.style.opacity = '0';
-            tooltip.style.visibility = 'hidden';
-            tooltip.style.transform = 'translateY(0)';
-        });
-    }
-    
-    enhanceHoverEffect(button) {
-        let isHovering = false;
-        
-        button.addEventListener('mouseenter', () => {
-            isHovering = true;
-            
-            // Efecto de glow pulsante
-            const glowInterval = setInterval(() => {
-                if (!isHovering) {
-                    clearInterval(glowInterval);
-                    return;
-                }
-                
-                button.style.boxShadow = `
-                    0 4px 20px rgba(29, 185, 84, 0.4),
-                    0 0 0 ${Math.sin(Date.now() * 0.005) * 5 + 10}px rgba(29, 185, 84, 0.1)
-                `;
-            }, 16);
-        });
-        
-        button.addEventListener('mouseleave', () => {
-            isHovering = false;
-            button.style.boxShadow = '';
-        });
-    }
-    
-    setupHourlyCheck() {
-        // Verificar horario comercial cada hora
-        setInterval(() => {
-            const wasBusinessHours = this.isBusinessHours;
-            this.checkBusinessHours();
-            
-            if (wasBusinessHours !== this.isBusinessHours) {
-                console.log(`🕒 Cambio de horario: ${this.isBusinessHours ? 'ABIERTO' : 'CERRADO'}`);
-                this.updateFloatingButtonStatus();
-            }
-        }, 3600000); // 1 hora
-    }
-    
-    updateFloatingButtonStatus() {
-        const floatingButton = document.querySelector('.whatsapp-float');
-        const statusDot = floatingButton?.querySelector('.whatsapp-status-dot');
-        const tooltip = floatingButton?.querySelector('.whatsapp-tooltip');
-        
-        if (statusDot) {
-            statusDot.style.background = this.isBusinessHours ? '#4CAF50' : '#FF9800';
-        }
-        
-        if (tooltip) {
-            tooltip.textContent = this.isBusinessHours ? 
-                'Estamos en línea - ¡Escríbenos!' : 
-                'Fuera de horario - Te responderemos pronto';
-        }
-    }
-    
-    trackWhatsAppClick(source, product) {
-        // Google Analytics 4
+
+    trackWhatsAppClick(type, element, message) {
+        // Google Analytics
         if (typeof gtag !== 'undefined') {
             gtag('event', 'whatsapp_click', {
-                'source': source,
-                'product': product,
-                'device_type': this.isMobile ? 'mobile' : 'desktop',
-                'business_hours': this.isBusinessHours,
-                'click_count': this.clickCount + 1
+                'event_category': 'WhatsApp',
+                'event_label': type,
+                'custom_parameter_1': message ? message.substring(0, 100) : null
             });
         }
-        
+
         // Facebook Pixel
         if (typeof fbq !== 'undefined') {
             fbq('track', 'Contact', {
-                content_name: product,
-                content_category: 'whatsapp_contact',
-                source: source
+                content_name: `WhatsApp - ${type}`,
+                content_category: 'Communication'
             });
         }
-        
-        // Console log para debug
-        console.log(`📊 WhatsApp click tracked:`, {
-            source,
-            product,
-            device: this.isMobile ? 'mobile' : 'desktop',
-            businessHours: this.isBusinessHours
+
+        // Custom tracking
+        console.log(`📊 WhatsApp tracking: ${type}`, {
+            element: element?.tagName || 'unknown',
+            message_preview: message ? message.substring(0, 50) + '...' : 'default'
         });
+
+        // Enviar evento personalizado para otros listeners
+        window.dispatchEvent(new CustomEvent('whatsappClick', {
+            detail: {
+                type: type,
+                element: element,
+                message: message
+            }
+        }));
     }
-    
-    // ===== MÉTODOS PÚBLICOS =====
-    
-    updateBusinessPhone(newPhone) {
-        this.businessPhone = newPhone;
-        console.log(`📱 Número actualizado: ${newPhone}`);
+
+    /* ===== MÉTODOS PÚBLICOS ===== */
+
+    // Abrir WhatsApp con mensaje personalizado
+    sendMessage(message, trackingLabel = null) {
+        this.openWhatsApp(message, trackingLabel);
     }
-    
-    updateBusinessHours(newHours) {
-        this.businessHours = { ...this.businessHours, ...newHours };
-        this.checkBusinessHours();
-        this.updateFloatingButtonStatus();
-        console.log(`🕒 Horarios actualizados:`, this.businessHours);
+
+    // Obtener mensaje predefinido
+    getMessage(type) {
+        return this.messages[type] || this.messages.default;
     }
-    
-    getStats() {
+
+    // Agregar mensaje personalizado
+    addMessage(key, message) {
+        this.messages[key] = message;
+    }
+
+    // Cambiar número de teléfono
+    setPhoneNumber(number) {
+        this.phoneNumber = number.replace(/\D/g, ''); // Solo números
+        console.log(`📱 Número actualizado: ${this.phoneNumber}`);
+    }
+
+    // Crear enlace de WhatsApp
+    createWhatsAppLink(message, className = 'btn-whatsapp') {
+        const encodedMessage = encodeURIComponent(message);
+        return `https://wa.me/${this.phoneNumber}?text=${encodedMessage}`;
+    }
+
+    // Verificar disponibilidad de WhatsApp
+    static isWhatsAppAvailable() {
+        const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        const isWhatsAppInstalled = navigator.userAgent.includes('WhatsApp');
+        
         return {
-            clickCount: this.clickCount,
-            isBusinessHours: this.isBusinessHours,
-            isMobile: this.isMobile,
-            businessPhone: this.businessPhone
+            isMobile: isMobile,
+            isInstalled: isWhatsAppInstalled,
+            canOpen: isMobile || !isMobile // WhatsApp Web funciona en desktop
         };
     }
-    
-    testWhatsApp(message = 'Mensaje de prueba') {
-        const url = this.createWhatsAppUrl(message, { source: 'test' });
-        this.openWhatsApp(url);
+
+    // Estado de inicialización
+    isReady() {
+        return this.isInitialized;
     }
 }
 
-// ===== ESTILOS CSS DINÁMICOS =====
-const whatsappStyles = document.createElement('style');
-whatsappStyles.textContent = `
-    @keyframes ripple {
-        to {
-            width: 100px;
-            height: 100px;
-            opacity: 0;
+/* ===== CSS AUTOMÁTICO PARA EL BOTÓN FLOTANTE ===== */
+function injectWhatsAppStyles() {
+    if (document.getElementById('whatsapp-styles')) return;
+
+    const styles = document.createElement('style');
+    styles.id = 'whatsapp-styles';
+    styles.textContent = `
+        /* Botón flotante de WhatsApp */
+        .whatsapp-floating {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: #1DB954;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 8px 30px rgba(29, 185, 84, 0.4);
+            transition: all 0.3s ease;
         }
-    }
-    
-    @keyframes bounce {
-        0%, 20%, 53%, 80%, 100% {
-            transform: scale(1);
-        }
-        40%, 43% {
+
+        .whatsapp-floating:hover {
             transform: scale(1.1);
+            box-shadow: 0 12px 40px rgba(29, 185, 84, 0.6);
         }
-        70% {
-            transform: scale(1.05);
+
+        .whatsapp-floating .whatsapp-icon {
+            width: 30px;
+            height: 30px;
+            color: white;
         }
-        90% {
-            transform: scale(1.02);
+
+        .whatsapp-floating .whatsapp-icon svg {
+            width: 100%;
+            height: 100%;
         }
-    }
-    
-    @keyframes slideInRight {
-        from {
-            transform: translateX(100%);
+
+        .whatsapp-floating .whatsapp-tooltip {
+            position: absolute;
+            right: 70px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #333;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            white-space: nowrap;
             opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
         }
-        to {
-            transform: translateX(0);
+
+        .whatsapp-floating:hover .whatsapp-tooltip {
             opacity: 1;
         }
-    }
-    
-    @keyframes slideOutRight {
-        from {
-            transform: translateX(0);
-            opacity: 1;
-        }
-        to {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-    }
-`;
-document.head.appendChild(whatsappStyles);
 
-// ===== INICIALIZACIÓN =====
-document.addEventListener('DOMContentLoaded', () => {
-    window.whatsappController = new WhatsAppController();
-    
-    // Funciones globales para testing
-    window.testWhatsApp = (message) => window.whatsappController.testWhatsApp(message);
-    window.whatsappStats = () => window.whatsappController.getStats();
-});
+        .whatsapp-floating .whatsapp-tooltip::after {
+            content: '';
+            position: absolute;
+            right: -5px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border: 5px solid transparent;
+            border-left-color: #333;
+        }
 
-// Exportar para otros módulos
+        /* Animación de pulso */
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 8px 30px rgba(29, 185, 84, 0.4);
+            }
+            50% {
+                box-shadow: 0 8px 30px rgba(29, 185, 84, 0.6);
+            }
+            100% {
+                box-shadow: 0 8px 30px rgba(29, 185, 84, 0.4);
+            }
+        }
+
+        .whatsapp-floating {
+            animation: pulse 2s infinite;
+        }
+
+        /* Modal fallback */
+        .whatsapp-fallback-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .whatsapp-fallback-modal .fallback-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .whatsapp-fallback-modal .fallback-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 400px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .whatsapp-fallback-modal h3 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .whatsapp-fallback-modal p {
+            margin-bottom: 1.5rem;
+            color: #666;
+        }
+
+        .whatsapp-fallback-modal .btn {
+            margin: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .whatsapp-floating {
+                bottom: 80px;
+                right: 15px;
+                width: 55px;
+                height: 55px;
+            }
+            
+            .whatsapp-floating .whatsapp-icon {
+                width: 25px;
+                height: 25px;
+            }
+            
+            .whatsapp-floating .whatsapp-tooltip {
+                display: none;
+            }
+        }
+    `;
+
+    document.head.appendChild(styles);
+}
+
+/* ===== INICIALIZACIÓN AUTOMÁTICA ===== */
+let whatsappController;
+
+// Inyectar estilos inmediatamente
+injectWhatsAppStyles();
+
+// Inicializar cuando el DOM esté listo
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        whatsappController = new WhatsAppController();
+        window.WhatsApp = whatsappController; // Global access
+    });
+} else {
+    whatsappController = new WhatsAppController();
+    window.WhatsApp = whatsappController;
+}
+
+/* ===== FUNCIONES GLOBALES DE CONVENIENCIA ===== */
+window.openWhatsApp = (message, trackingLabel) => {
+    if (whatsappController) {
+        whatsappController.sendMessage(message, trackingLabel);
+    } else {
+        console.warn('WhatsApp controller not initialized yet');
+    }
+};
+
+window.getWhatsAppController = () => whatsappController;
+
+console.log('💬 WhatsApp Controller cargado');
+
+/* ===== EXPORT PARA MÓDULOS ===== */
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = WhatsAppController;
 }

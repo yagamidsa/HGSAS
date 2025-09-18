@@ -248,6 +248,12 @@ class CatalogSystem {
             return;
         }
 
+        setTimeout(() => {
+            if (this.catalogContent) {
+                this.catalogContent.scrollTop = 0;
+            }
+        }, 100);
+
         this.currentProduct = productType;
         this.isOpen = true;
 
@@ -266,6 +272,11 @@ class CatalogSystem {
         document.body.style.overflow = 'hidden';
 
         console.log(`📖 Catálogo abierto: ${productData.name}`);
+        setTimeout(() => {
+            if (this.catalogContent) {
+                this.catalogContent.scrollTop = 0;
+            }
+        }, 600);
     }
 
     generateCatalogContent(productData) {

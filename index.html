@@ -32,10 +32,11 @@
         content="https://www.discomerhgsas.com.co/assets/images/ajedrez-collection-social.jpg">
 
     <!-- Favicons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicons/favicon-16x16.png">
-    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="images/android-chrome-192x192">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="manifest" href="images/site.webmanifest">
     <meta name="theme-color" content="#0f0f23">
 
     <!-- CSS Files -->
@@ -149,7 +150,7 @@
             <!-- ===== ÁREA DE MEDIA (Derecha) ===== -->
             <div class="splash-media-area">
                 <div class="video-container">
-                    <video class="splash-video" autoplay muted loop playsinline poster="images/champañas.png">
+                    <video class="splash-video" autoplay muted loop playsinline poster="">
                         <source src="images/vinosplash.mp4" type="video/mp4">
                         <!-- Fallback para navegadores sin soporte de video -->
                         <img src="images/champañas.png" alt="AJEDREZ Vinos Espumosos" class="splash-video">
@@ -334,8 +335,7 @@
                     <!-- AJEDREZ Rosado -->
                     <article class="product-card" data-product="rosado">
                         <div class="product-preview">
-                            <img src="images/rosadafinal.png"
-                                alt="AJEDREZ Rosado - Champaña espumosa sin alcohol 750ml"
+                            <img src="images/rosadafinal.png" alt="AJEDREZ Rosado - Champaña espumosa sin alcohol 750ml"
                                 class="product-image" loading="lazy">
                             <div class="product-info-preview">
                                 <h3 class="product-name">AJEDREZ Rosado</h3>
@@ -350,8 +350,7 @@
 
                     <article class="product-card" data-product="blanco">
                         <div class="product-preview">
-                            <img src="images/blancofinal.png"
-                                alt="AJEDREZ Blanco - Champaña espumosa sin alcohol 750ml"
+                            <img src="images/blancofinal.png" alt="AJEDREZ Blanco - Champaña espumosa sin alcohol 750ml"
                                 class="product-image" loading="lazy">
                             <div class="product-info-preview">
                                 <h3 class="product-name">AJEDREZ Blanco</h3>
@@ -1165,8 +1164,7 @@
                 <div class="news-grid">
                     <article class="news-card">
                         <div class="news-image">
-                            <img src="images/Expansion.webp" alt="Expansión nacional de AJEDREZ"
-                                loading="lazy">
+                            <img src="images/Expansion.webp" alt="Expansión nacional de AJEDREZ" loading="lazy">
                         </div>
                         <div class="news-content">
                             <h3>Expansión Nacional 2025</h3>
@@ -1177,8 +1175,7 @@
 
                     <article class="news-card">
                         <div class="news-image">
-                            <img src="images/wine.jpg" alt="Nuevos distribuidores AJEDREZ"
-                                loading="lazy">
+                            <img src="images/wine.jpg" alt="Nuevos distribuidores AJEDREZ" loading="lazy">
                         </div>
                         <div class="news-content">
                             <h3>Nuevos Distribuidores Autorizados</h3>
@@ -1216,57 +1213,313 @@
 
 
 
-    <!-- Footer -->
-    <footer class="footer" role="contentinfo">
+    <!-- ===================================================================
+     📋 FOOTER ACTUALIZADO PARA TU INDEX.HTML
+     =================================================================== -->
+
+    <footer class="footer">
         <div class="container">
             <div class="footer-content">
+                <!-- Columna 1: Empresa -->
                 <div class="footer-column">
                     <div class="footer-brand">
-                        <h3>COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S</h3>
-                        <p>Distribuidores de bebidas premium sin alcohol</p>
+                        <h3>COMERCIALIZADORA Y<br>DISTRIBUIDORA HG S.A.S</h3>
+                        <p>"Distribuidores de bebidas premium sin alcohol"</p>
                         <p><strong>NIT:</strong> 901.000.572-1</p>
+                        <p><strong>Desde:</strong> 2016</p>
                     </div>
                 </div>
 
+                <!-- Columna 2: Productos -->
                 <div class="footer-column">
-                    <h4>Productos</h4>
+                    <h4>Productos AJEDREZ</h4>
                     <ul class="footer-links">
-                        <li><a href="#productos">AJEDREZ Rosado</a></li>
-                        <li><a href="#productos">AJEDREZ Blanco</a></li>
-                        <li><a href="#productos">AJEDREZ Cereza</a></li>
-                        <li><a href="#productos">AJEDREZ Manzana</a></li>
-                        <li><a href="#productos">AJEDREZ Uva</a></li>
+                        <li><a href="#productos" onclick="goToSection('productos')">AJEDREZ Champaña Rosado</a></li>
+                        <li><a href="#productos" onclick="goToSection('productos')">AJEDREZ Champaña Blanco</a></li>
+                        <li><a href="#productos" onclick="goToSection('productos')">AJEDREZ Cereza</a></li>
+                        <li><a href="#productos" onclick="goToSection('productos')">AJEDREZ Manzana</a></li>
+                        <li><a href="#productos" onclick="goToSection('productos')">AJEDREZ Uva</a></li>
                     </ul>
                 </div>
 
+                <!-- Columna 3: Contacto -->
                 <div class="footer-column">
-                    <h4>Contacto</h4>
-                    <ul class="footer-contact">
-                        <li>📞 <a href="tel:+573222284212">+57 322 228 4212</a></li>
-                        <li>📧 <a href="mailto:contacto@discomerhgsas.com.co">contacto@discomerhgsas.com.co</a></li>
-                        <li>📍 Cundinamarca, Colombia</li>
-                        <li>🕒 Lun - Vie: 8:00 AM - 6:00 PM</li>
-                    </ul>
+                    <h4>Contacto Comercial</h4>
+                    <div class="footer-contact">
+                        <p>
+                            <svg class="footer-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+                            </svg>
+                            <a href="tel:+573222284212">+57 322 228 4212</a>
+                        </p>
+                        <p>
+                            <svg class="footer-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                            </svg>
+                            <a href="mailto:contacto@discomerhgsas.com.co">contacto@discomerhgsas.com.co</a>
+                        </p>
+                        <p>
+                            <svg class="footer-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                            </svg>
+                            Cundinamarca, Colombia
+                        </p>
+                        <p>
+                            <svg class="footer-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
+                            </svg>
+                            Lunes a Viernes: 8:00 AM - 6:00 PM
+                        </p>
+                    </div>
                 </div>
 
+                <!-- Columna 4: Legal -->
                 <div class="footer-column">
                     <h4>Legal</h4>
-                    <ul class="footer-links">
-                        <li><a href="#politica-privacidad">Política de Privacidad</a></li>
-                        <li><a href="#terminos-condiciones">Términos y Condiciones</a></li>
-                        <li><a href="#cookies">Política de Cookies</a></li>
+                    <ul class="footer-legal">
+                        <li>
+                            <a href="javascript:void(0)" onclick="openLegalModal('privacyModal')">
+                                Política de Privacidad
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" onclick="openLegalModal('termsModal')">
+                                Términos y Condiciones
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" onclick="openLegalModal('cookiesModal')">
+                                Política de Cookies
+                            </a>
+                        </li>
                     </ul>
+
                 </div>
             </div>
 
+            <!-- Footer Bottom -->
             <div class="footer-bottom">
-                <div class="footer-copyright">
+                <div class="footer-bottom-content">
                     <p>&copy; 2025 COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S - Todos los derechos reservados</p>
-                    <p>AJEDREZ - Bebidas sin alcohol premium</p>
+                    <p>AJEDREZ - Bebidas sin alcohol premium | NIT: 901.000.572-1</p>
                 </div>
             </div>
         </div>
     </footer>
+
+
+    <style>
+        .footer {
+            background: linear-gradient(135deg, #0f0f23, #1e1e3f);
+            padding: 60px 0 20px;
+            border-top: 1px solid rgba(189, 147, 249, 0.3);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            color: #bd93f9;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .footer-column h4 {
+            color: #50fa7b;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .footer-column h5 {
+            color: #ff79c6;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .footer-column p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .footer-brand p:first-of-type {
+            color: rgba(255, 255, 255, 0.6);
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .footer-links,
+        .footer-legal {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li,
+        .footer-legal li {
+            margin-bottom: 8px;
+        }
+
+        .footer-links a,
+        .footer-legal a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            position: relative;
+        }
+
+        .footer-links a:hover,
+        .footer-legal a:hover {
+            color: #bd93f9;
+            padding-left: 10px;
+        }
+
+        .footer-links a:hover::before,
+        .footer-legal a:hover::before {
+            content: '→';
+            position: absolute;
+            left: -10px;
+            color: #50fa7b;
+        }
+
+        .footer-contact p {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .footer-contact a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-contact a:hover {
+            color: #50fa7b;
+        }
+
+        .footer-icon {
+            width: 16px;
+            height: 16px;
+            color: #bd93f9;
+            flex-shrink: 0;
+        }
+
+        .footer-social {
+            margin-top: 20px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(189, 147, 249, 0.1);
+            border-radius: 50%;
+            color: #bd93f9;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .social-icons a:hover {
+            background: rgba(189, 147, 249, 0.2);
+            border-color: #bd93f9;
+            transform: translateY(-2px);
+        }
+
+        .social-icons svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(189, 147, 249, 0.2);
+            padding-top: 30px;
+            text-align: center;
+        }
+
+        .footer-bottom-content p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .footer-bottom-content p:first-child {
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .footer {
+                padding: 40px 0 20px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-column {
+                text-align: center;
+            }
+
+            .footer-contact p {
+                justify-content: center;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+
+            .footer-bottom-content p {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer-column h3 {
+                font-size: 1.1rem;
+            }
+
+            .footer-column h4 {
+                font-size: 1rem;
+            }
+
+            .footer-contact p {
+                font-size: 0.9rem;
+            }
+
+            .social-icons a {
+                width: 35px;
+                height: 35px;
+            }
+
+            .social-icons svg {
+                width: 18px;
+                height: 18px;
+            }
+        }
+    </style>
 
     <!-- ===== CATÁLOGOS DIGITALES (FUERA DE LAS TARJETAS) ===== -->
 
@@ -1275,8 +1528,7 @@
         <div class="catalog-content">
             <button class="catalog-close" aria-label="Cerrar catálogo de AJEDREZ Rosado">&times;</button>
             <div class="catalog-image">
-                <img src="images/rosado.png"
-                    alt="AJEDREZ Rosado - Vista detallada del producto" loading="lazy">
+                <img src="images/rosado.png" alt="AJEDREZ Rosado - Vista detallada del producto" loading="lazy">
             </div>
             <div class="catalog-details">
                 <h3>AJEDREZ Rosado</h3>
@@ -1316,8 +1568,7 @@
             <button class="catalog-close" aria-label="Cerrar catálogo de AJEDREZ Blanco">&times;</button>
 
             <div class="catalog-image">
-                <img src="images/blanco.png"
-                    alt="AJEDREZ  Blanco - Vista detallada del producto" loading="lazy">
+                <img src="images/blanco.png" alt="AJEDREZ  Blanco - Vista detallada del producto" loading="lazy">
             </div>
 
             <div class="catalog-details">
@@ -1401,8 +1652,7 @@
         <div class="catalog-content">
             <button class="catalog-close" aria-label="Cerrar catálogo de AJEDREZ Cereza">&times;</button>
             <div class="catalog-image">
-                <img src="images/cereza.png"
-                    alt="AJEDREZ Cereza - Vista detallada del producto" loading="lazy">
+                <img src="images/cereza.png" alt="AJEDREZ Cereza - Vista detallada del producto" loading="lazy">
             </div>
             <div class="catalog-details">
                 <h3>AJEDREZ Cereza</h3>
@@ -1442,8 +1692,7 @@
         <div class="catalog-content">
             <button class="catalog-close" aria-label="Cerrar catálogo de AJEDREZ Manzana">&times;</button>
             <div class="catalog-image">
-                <img src="images/Manzana.png"
-                    alt="AJEDREZ Manzana - Vista detallada del producto" loading="lazy">
+                <img src="images/Manzana.png" alt="AJEDREZ Manzana - Vista detallada del producto" loading="lazy">
             </div>
             <div class="catalog-details">
                 <h3>AJEDREZ Manzana</h3>
@@ -1483,7 +1732,7 @@
         <div class="catalog-content">
             <button class="catalog-close" aria-label="Cerrar catálogo de AJEDREZ Uva">&times;</button>
             <div class="catalog-image">
-                <img src="images/uvafinalsin.png" alt="AJEDREZ Uva - Vista detallada del producto" loading="lazy">
+                <img src="images/uva.png" alt="AJEDREZ Uva - Vista detallada del producto" loading="lazy">
             </div>
             <div class="catalog-details">
                 <h3>AJEDREZ Uva</h3>
@@ -1555,6 +1804,494 @@
     <script src="js/cookies-banner.js"></script>
     <script src="js/seo-analytics.js"></script>
     <script src="js/responsive.js"></script>
+
+    
+    <!-- MODAL POLÍTICA DE PRIVACIDAD -->
+    <div id="privacyModal" class="legal-modal">
+        <div class="legal-modal-overlay" onclick="closeLegalModal('privacyModal')"></div>
+        <div class="legal-modal-content">
+            <button class="legal-modal-close" onclick="closeLegalModal('privacyModal')">&times;</button>
+            <div class="legal-modal-header">
+                <h2>POLÍTICA DE PRIVACIDAD</h2>
+                <p><strong>COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S</strong></p>
+                <p>NIT: 901.000.572-1 | Actualizado: Enero 2025</p>
+            </div>
+            <div class="legal-modal-body">
+                <div class="legal-section">
+                    <h3>1. RESPONSABLE DEL TRATAMIENTO</h3>
+                    <p><strong>COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S</strong> es el responsable del tratamiento de
+                        sus datos personales, de conformidad con la Ley 1581 de 2012 y el Decreto 1377 de 2013.</p>
+                    <ul>
+                        <li><strong>NIT:</strong> 901.000.572-1</li>
+                        <li><strong>Domicilio:</strong> Cundinamarca, Colombia</li>
+                        <li><strong>Actividad:</strong> Comercialización y distribución de bebidas sin alcohol</li>
+                    </ul>
+                </div>
+
+                <div class="legal-section">
+                    <h3>2. DATOS QUE RECOPILAMOS</h3>
+                    <p>Recopilamos los siguientes datos cuando usted:</p>
+                    <ul>
+                        <li><strong>Completa nuestro formulario:</strong> Nombre, email, teléfono, empresa, ciudad,
+                            mensaje</li>
+                        <li><strong>Navega por nuestro sitio:</strong> Dirección IP, tipo de navegador, páginas
+                            visitadas</li>
+                        <li><strong>Nos contacta por WhatsApp:</strong> Número de teléfono, mensajes enviados</li>
+                    </ul>
+                </div>
+
+                <div class="legal-section">
+                    <h3>3. FINALIDADES DEL TRATAMIENTO</h3>
+                    <p>Sus datos personales serán utilizados para:</p>
+                    <ul>
+                        <li>Responder a sus consultas sobre productos AJEDREZ</li>
+                        <li>Brindar información comercial sobre distribución</li>
+                        <li>Establecer relaciones comerciales</li>
+                        <li>Mejorar nuestros servicios y experiencia web</li>
+                        <li>Cumplir obligaciones legales y comerciales</li>
+                    </ul>
+                </div>
+
+                <div class="legal-section">
+                    <h3>4. DERECHOS DEL TITULAR</h3>
+                    <p>Usted tiene derecho a:</p>
+                    <ul>
+                        <li>Conocer, actualizar y rectificar sus datos personales</li>
+                        <li>Solicitar la supresión de sus datos cuando sea procedente</li>
+                        <li>Revocar la autorización y/o solicitar la supresión del dato</li>
+                        <li>Ser informado sobre el uso que se ha dado a sus datos personales</li>
+                    </ul>
+                </div>
+
+                <div class="legal-section">
+                    <h3>5. CONTACTO</h3>
+                    <div class="contact-info">
+                        <p>Para ejercer sus derechos o realizar consultas:</p>
+                        <p><strong>Email:</strong> contacto@discomerhgsas.com.co</p>
+                        <p><strong>WhatsApp:</strong> +57 322 228 4212</p>
+                        <p><strong>Dirección:</strong> Cundinamarca, Colombia</p>
+                    </div>
+                </div>
+
+                <div class="legal-section">
+                    <h3>6. COOKIES</h3>
+                    <p>Utilizamos cookies técnicas necesarias para el funcionamiento del sitio web. Al continuar
+                        navegando, acepta su uso según nuestra Política de Cookies.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL TÉRMINOS Y CONDICIONES -->
+    <div id="termsModal" class="legal-modal">
+        <div class="legal-modal-overlay" onclick="closeLegalModal('termsModal')"></div>
+        <div class="legal-modal-content">
+            <button class="legal-modal-close" onclick="closeLegalModal('termsModal')">&times;</button>
+            <div class="legal-modal-header">
+                <h2>TÉRMINOS Y CONDICIONES</h2>
+                <p><strong>COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S</strong></p>
+                <p>NIT: 901.000.572-1 | Vigente desde: Enero 2025</p>
+            </div>
+            <div class="legal-modal-body">
+                <div class="legal-section">
+                    <h3>1. INFORMACIÓN DE LA EMPRESA</h3>
+                    <p><strong>COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S</strong> es una sociedad comercial colombiana
+                        dedicada a la distribución de bebidas sin alcohol, especialmente los productos de la marca
+                        AJEDREZ.</p>
+                    <ul>
+                        <li><strong>Razón Social:</strong> COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S</li>
+                        <li><strong>NIT:</strong> 901.000.572-1</li>
+                        <li><strong>Año de constitución:</strong> 2016</li>
+                        <li><strong>Domicilio:</strong> Cundinamarca, Colombia</li>
+                    </ul>
+                </div>
+
+                <div class="legal-section">
+                    <h3>2. USO DEL SITIO WEB</h3>
+                    <p>Al acceder y utilizar este sitio web, usted acepta cumplir con estos términos y condiciones.</p>
+                    <ul>
+                        <li>El sitio es de uso gratuito para fines informativos y comerciales</li>
+                        <li>Está prohibido el uso para fines ilegales o no autorizados</li>
+                        <li>No se permite la reproducción no autorizada del contenido</li>
+                    </ul>
+                </div>
+
+                <div class="legal-section">
+                    <h3>3. PRODUCTOS Y SERVICIOS</h3>
+                    <p>Somos distribuidores oficiales de los productos AJEDREZ:</p>
+                    <ul>
+                        <li>AJEDREZ Rosado - Vino espumoso sin alcohol</li>
+                        <li>AJEDREZ Cereza - Vino espumoso sin alcohol</li>
+                        <li>AJEDREZ Manzana - Vino espumoso sin alcohol</li>
+                        <li>AJEDREZ Uva - Vino espumoso sin alcohol</li>
+                    </ul>
+                    <p>Todos nuestros productos cumplen con las regulaciones sanitarias colombianas.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h3>4. CONDICIONES COMERCIALES</h3>
+                    <ul>
+                        <li>Atendemos consultas de distribuidores y mayoristas</li>
+                        <li>Los precios están sujetos a cambios sin previo aviso</li>
+                        <li>La disponibilidad de productos puede variar según la región</li>
+                        <li>Las condiciones específicas se acordarán por contacto directo</li>
+                    </ul>
+                </div>
+
+                <div class="legal-section">
+                    <h3>5. LIMITACIÓN DE RESPONSABILIDAD</h3>
+                    <p>COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S no será responsable por:</p>
+                    <ul>
+                        <li>Daños derivados del mal uso de la información del sitio</li>
+                        <li>Interrupciones temporales del servicio web</li>
+                        <li>Decisiones comerciales tomadas basándose únicamente en la información web</li>
+                    </ul>
+                </div>
+
+                <div class="legal-section">
+                    <h3>6. PROPIEDAD INTELECTUAL</h3>
+                    <p>Todos los contenidos de este sitio web, incluyendo textos, imágenes, logotipos y diseños, están
+                        protegidos por derechos de autor. La marca AJEDREZ es propiedad de sus respectivos titulares.
+                    </p>
+                </div>
+
+                <div class="legal-section">
+                    <h3>7. MODIFICACIONES</h3>
+                    <p>Nos reservamos el derecho de modificar estos términos en cualquier momento. Los cambios entrarán
+                        en vigencia inmediatamente después de su publicación en el sitio web.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h3>8. LEY APLICABLE</h3>
+                    <p>Estos términos se rigen por las leyes de la República de Colombia. Cualquier controversia será
+                        resuelta por los tribunales competentes de Colombia.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL POLÍTICA DE COOKIES -->
+    <div id="cookiesModal" class="legal-modal">
+        <div class="legal-modal-overlay" onclick="closeLegalModal('cookiesModal')"></div>
+        <div class="legal-modal-content">
+            <button class="legal-modal-close" onclick="closeLegalModal('cookiesModal')">&times;</button>
+            <div class="legal-modal-header">
+                <h2>POLÍTICA DE COOKIES</h2>
+                <p><strong>COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S</strong></p>
+                <p>Información sobre el uso de cookies</p>
+            </div>
+            <div class="legal-modal-body">
+                <div class="legal-section">
+                    <h3>1. ¿QUÉ SON LAS COOKIES?</h3>
+                    <p>Las cookies son pequeños archivos de texto que se almacenan en su dispositivo cuando visita
+                        nuestro sitio web. Nos ayudan a mejorar su experiencia de navegación y analizar el uso del
+                        sitio.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h3>2. TIPOS DE COOKIES QUE UTILIZAMOS</h3>
+
+                    <h4>Cookies Técnicas (Necesarias)</h4>
+                    <ul>
+                        <li><strong>Función:</strong> Funcionamiento básico del sitio web</li>
+                        <li><strong>Duración:</strong> Sesión</li>
+                        <li><strong>Finalidad:</strong> Navegación, formularios, preferencias de idioma</li>
+                    </ul>
+
+                    <h4>Cookies de Análisis</h4>
+                    <ul>
+                        <li><strong>Google Analytics:</strong> Analizar el tráfico del sitio</li>
+                        <li><strong>Duración:</strong> 2 años</li>
+                        <li><strong>Finalidad:</strong> Estadísticas de uso, páginas más visitadas</li>
+                    </ul>
+
+                    <h4>Cookies de Marketing</h4>
+                    <ul>
+                        <li><strong>Facebook Pixel:</strong> Seguimiento de conversiones</li>
+                        <li><strong>Duración:</strong> 90 días</li>
+                        <li><strong>Finalidad:</strong> Medir efectividad de campañas publicitarias</li>
+                    </ul>
+                </div>
+
+                <div class="legal-section">
+                    <h3>3. GESTIÓN DE COOKIES</h3>
+                    <p>Usted puede controlar las cookies de las siguientes maneras:</p>
+                    <ul>
+                        <li><strong>Banner de cookies:</strong> Al visitar el sitio por primera vez</li>
+                        <li><strong>Configuración del navegador:</strong> Bloquear o eliminar cookies</li>
+                        <li><strong>Opt-out de análisis:</strong> <a href="https://tools.google.com/dlpage/gaoptout"
+                                target="_blank">Google Analytics Opt-out</a></li>
+                    </ul>
+                </div>
+
+                <div class="legal-section">
+                    <h3>4. COOKIES DE TERCEROS</h3>
+                    <p>Algunos servicios externos que utilizamos pueden instalar sus propias cookies:</p>
+                    <ul>
+                        <li><strong>Google Analytics:</strong> Análisis de tráfico web</li>
+                        <li><strong>Facebook:</strong> Píxel de seguimiento para redes sociales</li>
+                        <li><strong>WhatsApp:</strong> Integración de chat (sin cookies persistentes)</li>
+                    </ul>
+                </div>
+
+                <div class="legal-section">
+                    <h3>5. ACTUALIZACIÓN DE LA POLÍTICA</h3>
+                    <p>Esta política de cookies puede actualizarse periódicamente para reflejar cambios en nuestras
+                        prácticas o por razones operativas, legales o reglamentarias.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h3>6. CONTACTO</h3>
+                    <div class="contact-info">
+                        <p>Si tiene preguntas sobre nuestro uso de cookies:</p>
+                        <p><strong>Email:</strong> contacto@discomerhgsas.com.co</p>
+                        <p><strong>WhatsApp:</strong> +57 322 228 4212</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ESTILOS CSS PARA LOS MODALES -->
+    <style>
+        .legal-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            overflow-y: auto;
+        }
+
+        .legal-modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .legal-modal-content {
+            position: relative;
+            background: linear-gradient(135deg, #1e1e3f, #0f0f23);
+            margin: 50px auto;
+            padding: 0;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(189, 147, 249, 0.3);
+        }
+
+        .legal-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 10001;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .legal-modal-close:hover {
+            background: rgba(189, 147, 249, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .legal-modal-header {
+            background: linear-gradient(135deg, rgba(189, 147, 249, 0.2), rgba(255, 121, 198, 0.2));
+            padding: 30px;
+            text-align: center;
+            border-bottom: 1px solid rgba(189, 147, 249, 0.3);
+        }
+
+        .legal-modal-header h2 {
+            color: #bd93f9;
+            font-size: 2rem;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+        }
+
+        .legal-modal-header p {
+            color: rgba(255, 255, 255, 0.8);
+            margin: 5px 0;
+            font-size: 0.95rem;
+        }
+
+        .legal-modal-body {
+            padding: 30px;
+            max-height: calc(90vh - 200px);
+            overflow-y: auto;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+
+        .legal-modal-body::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .legal-modal-body::-webkit-scrollbar-track {
+            background: rgba(30, 30, 63, 0.3);
+            border-radius: 4px;
+        }
+
+        .legal-modal-body::-webkit-scrollbar-thumb {
+            background: #bd93f9;
+            border-radius: 4px;
+        }
+
+        .legal-section {
+            margin-bottom: 25px;
+        }
+
+        .legal-section h3 {
+            color: #50fa7b;
+            font-size: 1.3rem;
+            margin: 0 0 15px 0;
+            font-weight: 600;
+        }
+
+        .legal-section h4 {
+            color: #ff79c6;
+            font-size: 1.1rem;
+            margin: 15px 0 8px 0;
+            font-weight: 500;
+        }
+
+        .legal-section p {
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        .legal-section ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .legal-section li {
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .contact-info {
+            background: rgba(80, 250, 123, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #50fa7b;
+            margin: 15px 0;
+        }
+
+        .contact-info p {
+            margin: 5px 0;
+            font-weight: 500;
+        }
+
+        .legal-section a {
+            color: #bd93f9;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .legal-section a:hover {
+            color: #ff79c6;
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .legal-modal-content {
+                margin: 20px auto;
+                width: 95%;
+                max-height: 95vh;
+            }
+
+            .legal-modal-header {
+                padding: 20px;
+            }
+
+            .legal-modal-header h2 {
+                font-size: 1.5rem;
+            }
+
+            .legal-modal-body {
+                padding: 20px;
+                max-height: calc(95vh - 150px);
+            }
+
+            .legal-section h3 {
+                font-size: 1.2rem;
+            }
+
+            .legal-modal-close {
+                top: 15px;
+                right: 20px;
+                font-size: 24px;
+            }
+        }
+    </style>
+
+    <!-- JAVASCRIPT PARA LOS MODALES -->
+    <script>
+        function openLegalModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+
+                // Focus en el botón cerrar para accesibilidad
+                setTimeout(() => {
+                    const closeBtn = modal.querySelector('.legal-modal-close');
+                    if (closeBtn) closeBtn.focus();
+                }, 100);
+            }
+        }
+
+        function closeLegalModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Cerrar modal al hacer clic fuera del contenido
+        window.addEventListener('click', function (event) {
+            if (event.target.classList.contains('legal-modal')) {
+                event.target.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Cerrar modal con tecla Escape
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') {
+                const openModal = document.querySelector('.legal-modal[style*="block"]');
+                if (openModal) {
+                    openModal.style.display = 'none';
+                    document.body.style.overflow = '';
+                }
+            }
+        });
+
+        console.log('📋 Modales legales cargados');
+    </script>
 
     <!-- Analytics (Google Analytics 4) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
@@ -1663,10 +2400,6 @@
         });
     </script>
     <script>
-        /* ===================================================================
-   TRANSICIÓN EQUILIBRADA Y PROFESIONAL
-   Sencilla pero elegante, con timing perfecto
-   =================================================================== */
 
         document.addEventListener('DOMContentLoaded', function () {
             // Buscar la imagen existente
