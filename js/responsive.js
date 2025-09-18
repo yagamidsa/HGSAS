@@ -659,3 +659,120 @@ isDesktop()
 responsiveController
 
 ===============================================*/
+
+
+
+
+/* ===================================================================
+   🔥 FIX SIMPLE DEL SCROLL - SOLO ELIMINA DUPLICADOS
+   Agrega esto AL FINAL del HTML, después de todos los JS
+   =================================================================== */
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Esperar que todos los scripts se carguen
+    setTimeout(() => {
+        console.log('🔥 Eliminando event listeners duplicados...');
+        
+        // ENCONTRAR TODOS LOS ENLACES PROBLEMÁTICOS
+        const enlacesProblematicos = document.querySelectorAll('a[href^="#"]:not(.whatsapp-btn)');
+        
+        console.log('🔍 Encontrados', enlacesProblematicos.length, 'enlaces para limpiar');
+        
+        // REEMPLAZAR CADA ENLACE (esto elimina TODOS los event listeners)
+        enlacesProblematicos.forEach((enlaceViejo, index) => {
+            const href = enlaceViejo.getAttribute('href');
+            
+            // Saltar enlaces vacíos
+            if (!href || href === '#' || href === '#top') return;
+            
+            // CREAR ENLACE NUEVO (sin event listeners)
+            const enlaceNuevo = enlaceViejo.cloneNode(true);
+            
+            // AGREGAR NUESTRO ÚNICO EVENT LISTENER
+            enlaceNuevo.addEventListener('click', function(e) {
+                e.preventDefault();
+                console.log('🎯 Click limpio en:', href);
+                
+                // MAPEO DE SECCIONES
+                const mapeo = {
+                    '#inicio': 'home',
+                    '#home': 'home',
+                    '#productos': 'productos', 
+                    '#quienes-somos': 'quienes-somos',
+                    '#contacto': 'contacto'
+                };
+                
+                const seccionId = mapeo[href] || href.substring(1);
+                const seccion = document.getElementById(seccionId);
+                
+                if (seccion) {
+                    // CERRAR MENÚ MOBILE SI ESTÁ ABIERTO
+                    const menuMobile = document.getElementById('mobileNavigation');
+                    const toggle = document.getElementById('mobileMenuToggle');
+                    const overlay = document.querySelector('.mobile-overlay');
+                    
+                    if (menuMobile && menuMobile.classList.contains('active')) {
+                        toggle?.classList.remove('active');
+                        menuMobile.classList.remove('active');
+                        overlay?.classList.remove('active');
+                        document.body.classList.remove('no-scroll');
+                        
+                        // Esperar que se cierre el menú
+                        setTimeout(() => {
+                            scrollLimpio(seccion);
+                        }, 300);
+                    } else {
+                        scrollLimpio(seccion);
+                    }
+                    
+                    // ACTUALIZAR URL
+                    history.pushState(null, null, href);
+                    
+                    // ACTUALIZAR ENLACES ACTIVOS
+                    actualizarActivos(href);
+                }
+            });
+            
+            // REEMPLAZAR EN EL DOM
+            enlaceViejo.parentNode.replaceChild(enlaceNuevo, enlaceViejo);
+            
+            console.log(`✅ Enlace ${index + 1} limpiado:`, href);
+        });
+        
+        console.log('🎉 Todos los enlaces limpiados - scroll debería funcionar normal');
+        
+    }, 500); // Esperar medio segundo para que se carguen todos los scripts
+});
+
+// FUNCIÓN DE SCROLL SIMPLE
+function scrollLimpio(elemento) {
+    const header = document.querySelector('.header');
+    const alturaHeader = header ? header.offsetHeight : 80;
+    
+    elemento.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+    });
+    
+    // Ajustar por el header después del scroll
+    setTimeout(() => {
+        const ajuste = elemento.getBoundingClientRect().top + window.pageYOffset - alturaHeader - 20;
+        window.scrollTo({
+            top: ajuste,
+            behavior: 'smooth'
+        });
+    }, 100);
+}
+
+// FUNCIÓN PARA ACTUALIZAR ENLACES ACTIVOS
+function actualizarActivos(hrefActivo) {
+    document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
+        link.classList.remove('active');
+    });
+    
+    document.querySelectorAll(`a[href="${hrefActivo}"]`).forEach(link => {
+        link.classList.add('active');
+    });
+}
+
+console.log('🔥 Script de limpieza de scroll cargado');

@@ -588,20 +588,20 @@ class SiteController {
     }
 
     updateActiveLinks(activeHref) {
-    // Remover active de todos los enlaces
-    document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
-        link.classList.remove('active');
-        link.removeAttribute('aria-current');
-    });
-    
-    // Agregar active a los enlaces correspondientes
-    document.querySelectorAll(`a[href="${activeHref}"]`).forEach(link => {
-        link.classList.add('active');
-        link.setAttribute('aria-current', 'page');
-    });
-    
-    console.log('✅ Enlaces activos actualizados:', activeHref);
-}
+        // Remover active de todos los enlaces
+        document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
+            link.classList.remove('active');
+            link.removeAttribute('aria-current');
+        });
+
+        // Agregar active a los enlaces correspondientes
+        document.querySelectorAll(`a[href="${activeHref}"]`).forEach(link => {
+            link.classList.add('active');
+            link.setAttribute('aria-current', 'page');
+        });
+
+        console.log('✅ Enlaces activos actualizados:', activeHref);
+    }
 
 
 }
@@ -857,7 +857,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Configuración del mapa profesional
 const MapaConfig = {
-    phoneNumber: '573222284212', 
+    phoneNumber: '573222284212',
     locations: {
         bogota: {
             name: "Bogotá D.C.",
@@ -877,20 +877,20 @@ const MapaConfig = {
 // Función principal de contacto con efectos profesionales
 function contactLocation(locationKey) {
     const location = MapaConfig.locations[locationKey];
-    
+
     if (location) {
         const message = encodeURIComponent(location.message);
         const whatsappUrl = `https://wa.me/${MapaConfig.phoneNumber}?text=${message}`;
-        
+
         // Efectos visuales profesionales
         mostrarEfectosContacto(locationKey);
-        
+
         // Abrir WhatsApp
         window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
-        
+
         // Tracking para analytics
         trackEventoMapa('contact_location', locationKey);
-        
+
         console.log(`📱 WhatsApp contact: ${location.name}`);
     }
 }
@@ -898,28 +898,28 @@ function contactLocation(locationKey) {
 // Efectos visuales profesionales al contactar
 function mostrarEfectosContacto(locationKey) {
     const button = document.querySelector(`[onclick="contactLocation('${locationKey}')"]`);
-    
+
     if (button) {
         // Agregar clase de click para efecto de onda
         button.classList.add('clicked');
-        
+
         // Guardar contenido original
         const originalContent = button.innerHTML;
-        
+
         // Cambiar a check de éxito
         button.innerHTML = `
             <svg viewBox="0 0 24 24" fill="currentColor">
                 <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
             </svg>
         `;
-        
+
         // Cambiar estilo a éxito
         button.style.background = 'linear-gradient(135deg, #10b981, #059669)';
         button.style.transform = 'translateY(-3px) scale(1.05)';
-        
+
         // Mostrar notificación de éxito
         mostrarNotificacionExito(locationKey);
-        
+
         // Restaurar botón después de 3 segundos
         setTimeout(() => {
             button.innerHTML = originalContent;
@@ -940,14 +940,14 @@ function mostrarNotificacionExito(locationKey) {
         </svg>
         <span>¡Abriendo WhatsApp!</span>
     `;
-    
+
     document.body.appendChild(notification);
-    
+
     // Animar entrada
     requestAnimationFrame(() => {
         notification.style.transform = 'translateX(0)';
     });
-    
+
     // Animar salida después de 3 segundos
     setTimeout(() => {
         notification.style.transform = 'translateX(100%)';
@@ -962,18 +962,18 @@ function mostrarNotificacionExito(locationKey) {
 // Función para mostrar detalles del mapa (modal)
 function showMapDetails() {
     const mapCard = document.querySelector('.map-card');
-    
+
     // Efecto visual en el mapa
     if (mapCard) {
         mapCard.style.transform = 'scale(1.02)';
         mapCard.style.boxShadow = '0 20px 50px rgba(189, 147, 249, 0.4)';
-        
+
         setTimeout(() => {
             mapCard.style.transform = '';
             mapCard.style.boxShadow = '';
         }, 300);
     }
-    
+
     // Mostrar modal informativo
     mostrarModalMapa();
 }
@@ -1019,12 +1019,12 @@ function mostrarModalMapa() {
             </div>
         </div>
     `;
-    
+
     // Aplicar estilos al modal
     aplicarEstilosModal(modal);
-    
+
     document.body.appendChild(modal);
-    
+
     // Animar entrada
     setTimeout(() => {
         modal.querySelector('.modal-overlay').style.opacity = '1';
@@ -1047,7 +1047,7 @@ function aplicarEstilosModal(modal) {
         justify-content: center;
         padding: 20px;
     `;
-    
+
     const overlay = modal.querySelector('.modal-overlay');
     overlay.style.cssText = `
         position: absolute;
@@ -1061,7 +1061,7 @@ function aplicarEstilosModal(modal) {
         transition: opacity 0.3s ease;
         cursor: pointer;
     `;
-    
+
     const content = modal.querySelector('.modal-content');
     content.style.cssText = `
         background: linear-gradient(135deg, #1e1e3f, #2a2a5f);
@@ -1074,7 +1074,7 @@ function aplicarEstilosModal(modal) {
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
     `;
-    
+
     const header = modal.querySelector('.modal-header');
     header.style.cssText = `
         padding: 24px 24px 0;
@@ -1082,7 +1082,7 @@ function aplicarEstilosModal(modal) {
         justify-content: space-between;
         align-items: center;
     `;
-    
+
     const title = modal.querySelector('.modal-header h3');
     title.style.cssText = `
         color: #bd93f9;
@@ -1090,7 +1090,7 @@ function aplicarEstilosModal(modal) {
         font-weight: 700;
         margin: 0;
     `;
-    
+
     const closeBtn = modal.querySelector('.modal-close');
     closeBtn.style.cssText = `
         background: none;
@@ -1104,13 +1104,13 @@ function aplicarEstilosModal(modal) {
         align-items: center;
         justify-content: center;
     `;
-    
+
     const body = modal.querySelector('.modal-body');
     body.style.cssText = `
         padding: 24px;
         color: rgba(255, 255, 255, 0.9);
     `;
-    
+
     // Estilos para elementos del cuerpo
     const details = modal.querySelectorAll('.coverage-detail');
     details.forEach(detail => {
@@ -1121,7 +1121,7 @@ function aplicarEstilosModal(modal) {
             border-radius: 12px;
             border: 1px solid rgba(189, 147, 249, 0.2);
         `;
-        
+
         const h4 = detail.querySelector('h4');
         if (h4) {
             h4.style.cssText = `
@@ -1131,7 +1131,7 @@ function aplicarEstilosModal(modal) {
                 margin-bottom: 8px;
             `;
         }
-        
+
         const p = detail.querySelector('p');
         if (p) {
             p.style.cssText = `
@@ -1141,7 +1141,7 @@ function aplicarEstilosModal(modal) {
             `;
         }
     });
-    
+
     const highlight = modal.querySelector('.coverage-highlight');
     if (highlight) {
         highlight.style.cssText = `
@@ -1151,7 +1151,7 @@ function aplicarEstilosModal(modal) {
             padding: 16px;
             margin-bottom: 20px;
         `;
-        
+
         const paragraphs = highlight.querySelectorAll('p');
         paragraphs.forEach(p => {
             p.style.cssText = `
@@ -1161,7 +1161,7 @@ function aplicarEstilosModal(modal) {
             `;
         });
     }
-    
+
     const actions = modal.querySelector('.modal-actions');
     if (actions) {
         actions.style.cssText = `
@@ -1170,7 +1170,7 @@ function aplicarEstilosModal(modal) {
             justify-content: center;
             margin-top: 20px;
         `;
-        
+
         const buttons = actions.querySelectorAll('.modal-contact-btn');
         buttons.forEach(btn => {
             btn.style.cssText = `
@@ -1195,7 +1195,7 @@ function cerrarModalMapa() {
         modal.querySelector('.modal-overlay').style.opacity = '0';
         modal.querySelector('.modal-content').style.transform = 'translateY(50px)';
         modal.querySelector('.modal-content').style.opacity = '0';
-        
+
         setTimeout(() => {
             modal.remove();
         }, 400);
@@ -1203,21 +1203,21 @@ function cerrarModalMapa() {
 }
 
 // Inicialización cuando el DOM esté listo
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     console.log('🗺️ Mapa Profesional inicializado');
-    
+
     // Inicializar animaciones
     inicializarAnimacionesMapa();
-    
+
     // Configurar efectos de hover mejorados
     configurarEfectosHover();
-    
+
     // Optimizar para dispositivos touch
     optimizarParaTouch();
-    
+
     // Configurar Intersection Observer para animaciones al scroll
     configurarScrollAnimations();
-    
+
     // Tracking de inicialización
     trackEventoMapa('map_initialized', window.innerWidth <= 768 ? 'mobile' : 'desktop');
 });
@@ -1227,13 +1227,13 @@ function inicializarAnimacionesMapa() {
     const mapVisual = document.querySelector('.map-visual');
     const locationCards = document.querySelectorAll('.location-card');
     const statCards = document.querySelectorAll('.stat-card');
-    
+
     // Animación del mapa con efecto de revelado
     if (mapVisual) {
         mapVisual.style.opacity = '0';
         mapVisual.style.transform = 'translateY(30px) scale(0.95)';
         mapVisual.style.filter = 'blur(5px)';
-        
+
         setTimeout(() => {
             mapVisual.style.transition = 'all 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
             mapVisual.style.opacity = '1';
@@ -1241,24 +1241,24 @@ function inicializarAnimacionesMapa() {
             mapVisual.style.filter = 'blur(0px)';
         }, 300);
     }
-    
+
     // Animación escalonada de las tarjetas
     locationCards.forEach((card, index) => {
         card.style.opacity = '0';
         card.style.transform = 'translateY(40px)';
-        
+
         setTimeout(() => {
             card.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
             card.style.opacity = '1';
             card.style.transform = 'translateY(0)';
         }, 800 + (index * 300));
     });
-    
+
     // Animación de estadísticas
     statCards.forEach((card, index) => {
         card.style.opacity = '0';
         card.style.transform = 'scale(0.8)';
-        
+
         setTimeout(() => {
             card.style.transition = 'all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
             card.style.opacity = '1';
@@ -1272,33 +1272,33 @@ function configurarEfectosHover() {
     // Efectos para las tarjetas de ubicación
     const locationCards = document.querySelectorAll('.location-card');
     locationCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
+        card.addEventListener('mouseenter', function () {
             this.style.transform = 'translateY(-8px) scale(1.02)';
             this.style.boxShadow = '0 20px 60px rgba(189, 147, 249, 0.3)';
         });
-        
-        card.addEventListener('mouseleave', function() {
+
+        card.addEventListener('mouseleave', function () {
             this.style.transform = '';
             this.style.boxShadow = '';
         });
     });
-    
+
     // Efectos para las estadísticas
     const statCards = document.querySelectorAll('.stat-card');
     statCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
+        card.addEventListener('mouseenter', function () {
             this.style.transform = 'translateY(-6px) scale(1.05)';
-            
+
             const statNumber = this.querySelector('.stat-number');
             if (statNumber) {
                 statNumber.style.transform = 'scale(1.1)';
                 statNumber.style.filter = 'drop-shadow(0 0 10px rgba(189, 147, 249, 0.8))';
             }
         });
-        
-        card.addEventListener('mouseleave', function() {
+
+        card.addEventListener('mouseleave', function () {
             this.style.transform = '';
-            
+
             const statNumber = this.querySelector('.stat-number');
             if (statNumber) {
                 statNumber.style.transform = '';
@@ -1312,15 +1312,15 @@ function configurarEfectosHover() {
 function optimizarParaTouch() {
     if ('ontouchstart' in window) {
         document.body.classList.add('touch-device');
-        
+
         const elementos = document.querySelectorAll('.contact-location-btn, .cta-button, .location-card');
         elementos.forEach(elemento => {
-            elemento.addEventListener('touchstart', function(e) {
+            elemento.addEventListener('touchstart', function (e) {
                 this.style.transform = 'scale(0.98)';
                 crearEfectoRipple(e, this);
             });
-            
-            elemento.addEventListener('touchend', function() {
+
+            elemento.addEventListener('touchend', function () {
                 setTimeout(() => {
                     this.style.transform = '';
                 }, 100);
@@ -1333,11 +1333,11 @@ function optimizarParaTouch() {
 function crearEfectoRipple(event, elemento) {
     const rect = elemento.getBoundingClientRect();
     const ripple = document.createElement('span');
-    
+
     const size = Math.max(rect.width, rect.height);
     const x = event.touches[0].clientX - rect.left - size / 2;
     const y = event.touches[0].clientY - rect.top - size / 2;
-    
+
     ripple.style.cssText = `
         position: absolute;
         border-radius: 50%;
@@ -1350,11 +1350,11 @@ function crearEfectoRipple(event, elemento) {
         animation: rippleAnimation 0.6s linear;
         pointer-events: none;
     `;
-    
+
     elemento.style.position = 'relative';
     elemento.style.overflow = 'hidden';
     elemento.appendChild(ripple);
-    
+
     setTimeout(() => {
         ripple.remove();
     }, 600);
@@ -1367,12 +1367,12 @@ function configurarScrollAnimations() {
             threshold: 0.1,
             rootMargin: '0px 0px -30px 0px'
         };
-        
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('in-view');
-                    
+
                     // Efectos específicos por tipo de elemento
                     if (entry.target.classList.contains('stat-number')) {
                         animarNumeroEstadistica(entry.target);
@@ -1385,7 +1385,7 @@ function configurarScrollAnimations() {
                 }
             });
         }, observerOptions);
-        
+
         // Observar elementos clave
         document.querySelectorAll('.stat-card, .location-card, .expansion-cta').forEach(el => {
             observer.observe(el);
@@ -1397,23 +1397,23 @@ function configurarScrollAnimations() {
 function animarNumeroEstadistica(elemento) {
     const finalNumber = parseInt(elemento.textContent.replace(/\D/g, ''));
     const suffix = elemento.textContent.replace(/\d/g, '');
-    
+
     if (finalNumber && !elemento.hasAttribute('data-animated')) {
         elemento.setAttribute('data-animated', 'true');
-        
+
         let currentNumber = 0;
         const increment = Math.ceil(finalNumber / 50);
         const duration = 1500; // 1.5 segundos
         const stepTime = duration / (finalNumber / increment);
-        
+
         const timer = setInterval(() => {
             currentNumber += increment;
-            
+
             if (currentNumber >= finalNumber) {
                 currentNumber = finalNumber;
                 clearInterval(timer);
             }
-            
+
             elemento.textContent = currentNumber + suffix;
         }, stepTime);
     }
@@ -1429,7 +1429,7 @@ function trackEventoMapa(action, label) {
             value: 1
         });
     }
-    
+
     // Facebook Pixel
     if (typeof fbq !== 'undefined') {
         fbq('track', 'ViewContent', {
@@ -1437,16 +1437,16 @@ function trackEventoMapa(action, label) {
             content_category: 'Map_Interaction'
         });
     }
-    
+
     // Console log para debug
     console.log(`📊 Event tracked: ${action} - ${label}`);
 }
 
 // Manejo de errores de WhatsApp
-window.addEventListener('error', function(e) {
+window.addEventListener('error', function (e) {
     if (e.message && (e.message.includes('wa.me') || e.message.includes('whatsapp'))) {
         console.warn('WhatsApp error handled:', e.message);
-        
+
         // Mostrar alerta amigable
         mostrarAlertaWhatsApp();
     }
@@ -1497,18 +1497,18 @@ function mostrarAlertaWhatsApp() {
             cursor: pointer;
         "></div>
     `;
-    
+
     document.body.appendChild(alerta);
 }
 
 // Preload de optimización
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Preload WhatsApp domain
     const link = document.createElement('link');
     link.rel = 'dns-prefetch';
     link.href = '//wa.me';
     document.head.appendChild(link);
-    
+
     // Preload Google Fonts si es necesario
     const fontLink = document.createElement('link');
     fontLink.rel = 'preload';
@@ -1648,18 +1648,18 @@ const FORM_CONFIG = {
     // Email Configuration
     emailTo: 'yagamidsa@hotmail.com',
     emailSubject: 'Nueva Solicitud de Distribución AJEDREZ',
-    
+
     // EmailJS Configuration (Opcional - configurar si se usa EmailJS)
     emailJS: {
         serviceID: 'service_ajedrez',
-        templateID: 'template_ajedrez', 
+        templateID: 'template_ajedrez',
         userID: 'tu_user_id_emailjs'
     },
-    
+
     // WhatsApp Configuration
     whatsappNumber: '573222284212',
     whatsappBaseMessage: 'Hola, me interesa información sobre distribución de AJEDREZ. ',
-    
+
     // Form Validation Rules
     validation: {
         name: {
@@ -1685,10 +1685,10 @@ class DistributorContactForm {
         this.successMessage = document.getElementById('successMessage');
         this.formData = {};
         this.isSubmitting = false;
-        
+
         this.init();
     }
-    
+
     init() {
         this.setupEventListeners();
         this.setupRealTimeValidation();
@@ -1696,44 +1696,44 @@ class DistributorContactForm {
         this.setupWhatsAppIntegration();
         console.log('📋 Formulario de contacto inicializado correctamente');
     }
-    
+
     // ===== EVENT LISTENERS =====
     setupEventListeners() {
         if (!this.form || !this.submitButton) {
             console.error('❌ Elementos del formulario no encontrados');
             return;
         }
-        
+
         // Form submission
         this.form.addEventListener('submit', (e) => this.handleSubmit(e));
-        
+
         // Input effects
         this.setupInputEffects();
-        
+
         // Button effects
         this.setupButtonEffects();
-        
+
         // Keyboard navigation
         this.setupKeyboardNavigation();
     }
-    
+
     setupInputEffects() {
         const inputs = this.form.querySelectorAll('input, select, textarea');
-        
+
         inputs.forEach(input => {
             const label = this.form.querySelector(`label[for="${input.id}"]`);
-            
+
             // Focus effects
             input.addEventListener('focus', () => {
                 this.animateInputFocus(input, label);
             });
-            
+
             // Blur effects
             input.addEventListener('blur', () => {
                 this.animateInputBlur(input, label);
                 this.validateField(input);
             });
-            
+
             // Input effects while typing
             input.addEventListener('input', () => {
                 this.clearFieldError(input);
@@ -1741,21 +1741,21 @@ class DistributorContactForm {
             });
         });
     }
-    
+
     setupButtonEffects() {
         const buttons = document.querySelectorAll('.submit-btn, .whatsapp-btn, .phone-btn');
-        
+
         buttons.forEach(button => {
             button.addEventListener('mouseenter', () => {
                 this.animateButtonHover(button, true);
             });
-            
+
             button.addEventListener('mouseleave', () => {
                 this.animateButtonHover(button, false);
             });
         });
     }
-    
+
     setupKeyboardNavigation() {
         this.form.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' && e.target.type !== 'textarea') {
@@ -1764,11 +1764,11 @@ class DistributorContactForm {
             }
         });
     }
-    
+
     // ===== VALIDACIÓN =====
     setupRealTimeValidation() {
         const requiredFields = this.form.querySelectorAll('[required]');
-        
+
         requiredFields.forEach(field => {
             if (field.type === 'email' || field.type === 'tel') {
                 field.addEventListener('input', () => {
@@ -1777,19 +1777,19 @@ class DistributorContactForm {
             }
         });
     }
-    
+
     validateField(field) {
         const value = field.value.trim();
         const fieldName = field.name;
         let isValid = true;
         let errorMessage = '';
-        
+
         // Required field validation
         if (field.hasAttribute('required') && !value) {
             isValid = false;
             errorMessage = 'Este campo es obligatorio';
         }
-        
+
         // Specific validations
         if (value && isValid) {
             switch (fieldName) {
@@ -1803,14 +1803,14 @@ class DistributorContactForm {
                         errorMessage = `Mínimo ${FORM_CONFIG.validation.name.minLength} caracteres`;
                     }
                     break;
-                    
+
                 case 'email':
                     if (!FORM_CONFIG.validation.email.pattern.test(value)) {
                         isValid = false;
                         errorMessage = 'Formato de email inválido';
                     }
                     break;
-                    
+
                 case 'phone':
                     if (!FORM_CONFIG.validation.phone.pattern.test(value)) {
                         isValid = false;
@@ -1820,14 +1820,14 @@ class DistributorContactForm {
                         errorMessage = 'Teléfono debe tener al menos 10 dígitos';
                     }
                     break;
-                    
+
                 case 'businessName':
                     if (value.length < 2) {
                         isValid = false;
                         errorMessage = 'Nombre del negocio muy corto';
                     }
                     break;
-                    
+
                 case 'city':
                     if (value.length < 2) {
                         isValid = false;
@@ -1836,36 +1836,36 @@ class DistributorContactForm {
                     break;
             }
         }
-        
+
         // Terms validation
         if (fieldName === 'terms' && !field.checked) {
             isValid = false;
             errorMessage = 'Debe aceptar los términos y condiciones';
         }
-        
+
         // Show/hide error
         if (!isValid) {
             this.showFieldError(field, errorMessage);
         } else {
             this.clearFieldError(field);
         }
-        
+
         return isValid;
     }
-    
+
     validateAllFields() {
         const fields = this.form.querySelectorAll('input, select, textarea');
         let isFormValid = true;
-        
+
         fields.forEach(field => {
             if (!this.validateField(field)) {
                 isFormValid = false;
             }
         });
-        
+
         return isFormValid;
     }
-    
+
     // ===== MANEJO DE ERRORES =====
     showFieldError(field, message) {
         const errorElement = document.getElementById(`${field.name}-error`);
@@ -1876,7 +1876,7 @@ class DistributorContactForm {
             field.style.boxShadow = '0 0 0 3px rgba(255, 121, 198, 0.2)';
         }
     }
-    
+
     clearFieldError(field) {
         const errorElement = document.getElementById(`${field.name}-error`);
         if (errorElement) {
@@ -1885,32 +1885,32 @@ class DistributorContactForm {
             field.style.boxShadow = '';
         }
     }
-    
+
     // ===== ANIMACIONES =====
     animateInputFocus(input, label) {
         if (label) {
             label.style.color = '#bd93f9';
             label.style.transform = 'translateY(-2px)';
         }
-        
+
         input.style.transform = 'translateY(-2px)';
         input.style.borderColor = '#bd93f9';
         input.style.boxShadow = '0 0 0 3px rgba(189, 147, 249, 0.2)';
     }
-    
+
     animateInputBlur(input, label) {
         if (label && !input.value) {
             label.style.color = '';
             label.style.transform = '';
         }
-        
+
         input.style.transform = '';
         if (!input.value) {
             input.style.borderColor = '';
             input.style.boxShadow = '';
         }
     }
-    
+
     animateButtonHover(button, isHover) {
         if (isHover) {
             button.style.transform = 'translateY(-3px)';
@@ -1920,34 +1920,34 @@ class DistributorContactForm {
             button.style.boxShadow = '';
         }
     }
-    
+
     // ===== ENVÍO DEL FORMULARIO =====
     async handleSubmit(e) {
         e.preventDefault();
-        
+
         if (this.isSubmitting) return;
-        
+
         // Validate all fields
         if (!this.validateAllFields()) {
             this.showFormError('Por favor, corrige los errores antes de enviar');
             return;
         }
-        
+
         this.isSubmitting = true;
         this.showLoadingState();
-        
+
         try {
             // Collect form data
             this.collectFormData();
-            
+
             // Send email
             await this.sendEmail();
-            
+
             // Show success
             this.showSuccessMessage();
-            
+
             console.log('✅ Formulario enviado exitosamente');
-            
+
         } catch (error) {
             console.error('❌ Error al enviar formulario:', error);
             this.showFormError('Error al enviar el formulario. Por favor, contacta directamente por WhatsApp.');
@@ -1956,31 +1956,31 @@ class DistributorContactForm {
             this.hideLoadingState();
         }
     }
-    
+
     collectFormData() {
         const formData = new FormData(this.form);
         this.formData = {};
-        
+
         for (let [key, value] of formData.entries()) {
             this.formData[key] = value;
         }
-        
+
         // Add metadata
         this.formData.timestamp = new Date().toISOString();
         this.formData.source = 'Formulario Web AJEDREZ';
-        
+
         console.log('📋 Datos recopilados:', this.formData);
     }
-    
+
     async sendEmail() {
         // Crear enlace mailto
         const subject = encodeURIComponent(FORM_CONFIG.emailSubject);
         const body = encodeURIComponent(this.formatEmailBody());
         const mailtoLink = `mailto:${FORM_CONFIG.emailTo}?subject=${subject}&body=${body}`;
-        
+
         // Abrir cliente de email
         window.open(mailtoLink, '_blank');
-        
+
         // Simular envío exitoso
         return new Promise((resolve) => {
             setTimeout(() => {
@@ -1988,7 +1988,7 @@ class DistributorContactForm {
             }, 1000);
         });
     }
-    
+
     formatEmailBody() {
         return `
 NUEVA SOLICITUD DE DISTRIBUCIÓN AJEDREZ
@@ -2022,49 +2022,49 @@ Fuente: Formulario Web AJEDREZ
 Enviado desde el sitio web de COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S
         `.trim();
     }
-    
+
     showLoadingState() {
         const btnText = this.submitButton.querySelector('.btn-text');
         const btnLoading = this.submitButton.querySelector('.btn-loading');
-        
+
         if (btnText) btnText.style.display = 'none';
         if (btnLoading) btnLoading.style.display = 'flex';
-        
+
         this.submitButton.disabled = true;
         this.submitButton.style.opacity = '0.7';
     }
-    
+
     hideLoadingState() {
         const btnText = this.submitButton.querySelector('.btn-text');
         const btnLoading = this.submitButton.querySelector('.btn-loading');
-        
+
         if (btnText) btnText.style.display = 'block';
         if (btnLoading) btnLoading.style.display = 'none';
-        
+
         this.submitButton.disabled = false;
         this.submitButton.style.opacity = '1';
     }
-    
+
     showSuccessMessage() {
         this.form.style.display = 'none';
         if (this.successMessage) {
             this.successMessage.style.display = 'block';
-            
+
             setTimeout(() => {
                 this.successMessage.style.opacity = '1';
                 this.successMessage.style.transform = 'translateY(0)';
             }, 100);
-            
-            this.successMessage.scrollIntoView({ 
-                behavior: 'smooth', 
-                block: 'center' 
+
+            this.successMessage.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
             });
         }
     }
-    
+
     showFormError(message) {
         let errorBanner = document.querySelector('.form-error-banner');
-        
+
         if (!errorBanner) {
             errorBanner = document.createElement('div');
             errorBanner.className = 'form-error-banner';
@@ -2083,14 +2083,14 @@ Enviado desde el sitio web de COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S
             `;
             this.form.insertBefore(errorBanner, this.form.firstChild);
         }
-        
+
         errorBanner.textContent = message;
-        
+
         setTimeout(() => {
             errorBanner.style.opacity = '1';
             errorBanner.style.transform = 'translateY(0)';
         }, 100);
-        
+
         setTimeout(() => {
             if (errorBanner) {
                 errorBanner.style.opacity = '0';
@@ -2099,11 +2099,11 @@ Enviado desde el sitio web de COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S
             }
         }, 5000);
     }
-    
+
     // ===== WHATSAPP INTEGRATION =====
     setupWhatsAppIntegration() {
         const whatsappButtons = document.querySelectorAll('.whatsapp-btn');
-        
+
         whatsappButtons.forEach(button => {
             button.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -2111,10 +2111,10 @@ Enviado desde el sitio web de COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S
             });
         });
     }
-    
+
     openWhatsApp(button) {
         let message = FORM_CONFIG.whatsappBaseMessage;
-        
+
         const partialData = this.getPartialFormData();
         if (partialData.businessName) {
             message += ` Mi empresa es: ${partialData.businessName}.`;
@@ -2122,28 +2122,28 @@ Enviado desde el sitio web de COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S
         if (partialData.city) {
             message += ` Ubicación: ${partialData.city}.`;
         }
-        
+
         const whatsappUrl = `https://wa.me/${FORM_CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
-        
+
         window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
-        
+
         console.log('📱 WhatsApp abierto');
     }
-    
+
     getPartialFormData() {
         const partialData = {};
         const fields = ['businessName', 'city', 'inquiryType'];
-        
+
         fields.forEach(fieldName => {
             const field = this.form.querySelector(`[name="${fieldName}"]`);
             if (field && field.value.trim()) {
                 partialData[fieldName] = field.value.trim();
             }
         });
-        
+
         return partialData;
     }
-    
+
     // ===== UTILITY FUNCTIONS =====
     debounce(func, wait) {
         let timeout;
@@ -2156,24 +2156,24 @@ Enviado desde el sitio web de COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S
             timeout = setTimeout(later, wait);
         };
     }
-    
+
     focusNextField(currentField) {
         const formElements = Array.from(this.form.querySelectorAll(
             'input, select, textarea, button'
         )).filter(el => !el.disabled && el.tabIndex !== -1);
-        
+
         const currentIndex = formElements.indexOf(currentField);
         const nextField = formElements[currentIndex + 1];
-        
+
         if (nextField) {
             nextField.focus();
         }
     }
-    
+
     updateFormData(field) {
         this.formData[field.name] = field.value;
     }
-    
+
     // ===== RESET FUNCTIONS =====
     resetForm() {
         this.form.reset();
@@ -2183,25 +2183,25 @@ Enviado desde el sitio web de COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S
         if (this.successMessage) {
             this.successMessage.style.display = 'none';
         }
-        
+
         console.log('🔄 Formulario reiniciado');
     }
-    
+
     clearAllErrors() {
         const errorElements = this.form.querySelectorAll('.form-error');
         errorElements.forEach(error => {
             error.classList.remove('show');
         });
-        
+
         const errorBanner = document.querySelector('.form-error-banner');
         if (errorBanner) {
             errorBanner.remove();
         }
     }
-    
+
     setupAnimations() {
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        
+
         if (prefersReducedMotion) {
             const style = document.createElement('style');
             style.textContent = `
@@ -2222,10 +2222,10 @@ class FloatingWhatsApp {
         this.createButton();
         this.setupEventListeners();
     }
-    
+
     createButton() {
         if (document.querySelector('.whatsapp-float')) return;
-        
+
         const button = document.createElement('a');
         button.className = 'whatsapp-float';
         button.href = '#';
@@ -2235,7 +2235,7 @@ class FloatingWhatsApp {
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.531 3.488"/>
             </svg>
         `;
-        
+
         const styles = `
             .whatsapp-float {
                 position: fixed;
@@ -2281,56 +2281,56 @@ class FloatingWhatsApp {
                 }
             }
         `;
-        
+
         if (!document.querySelector('#whatsapp-float-styles')) {
             const styleSheet = document.createElement('style');
             styleSheet.id = 'whatsapp-float-styles';
             styleSheet.textContent = styles;
             document.head.appendChild(styleSheet);
         }
-        
+
         document.body.appendChild(button);
     }
-    
+
     setupEventListeners() {
         const button = document.querySelector('.whatsapp-float');
         if (!button) return;
-        
+
         button.addEventListener('click', (e) => {
             e.preventDefault();
-            
+
             const message = 'Hola, me interesa conocer más sobre los productos AJEDREZ y las oportunidades de distribución.';
             const whatsappUrl = `https://wa.me/${FORM_CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
-            
+
             window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
-            
+
             console.log('📱 Floating WhatsApp button clicked');
         });
     }
 }
 
 // ===== GLOBAL RESET FUNCTION =====
-window.resetForm = function() {
+window.resetForm = function () {
     if (window.contactForm) {
         window.contactForm.resetForm();
     }
 };
 
 // ===== INITIALIZATION =====
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     console.log('🚀 Inicializando sistema de formularios AJEDREZ...');
-    
+
     // Initialize contact form if present
     const contactFormElement = document.getElementById('distributorForm');
     if (contactFormElement) {
         window.contactForm = new DistributorContactForm();
         console.log('✅ Formulario de contacto inicializado');
     }
-    
+
     // Initialize floating WhatsApp button
     window.floatingWhatsApp = new FloatingWhatsApp();
     console.log('✅ Botón flotante de WhatsApp inicializado');
-    
+
     // Initialize smooth scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -2344,12 +2344,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
+
     console.log('🎉 Todos los sistemas inicializados correctamente');
 });
 
 // ===== ERROR HANDLING =====
-window.addEventListener('error', function(e) {
+window.addEventListener('error', function (e) {
     console.error('❌ Error en el sistema de formularios:', e.error);
 });
 
@@ -2521,76 +2521,148 @@ class AjedrezNewsModal {
                 image: this.config.images.tendenciasBebidas,
                 type: 'tendencias',
                 content: {
-                    intro: 'Colombia se posiciona como uno de los mercados más prometedores para las bebidas sin alcohol en Latinoamérica, con un crecimiento del 185% en los últimos 3 años y un mercado proyectado de $280 millones de pesos para 2026.',
+                    intro: 'El mercado colombiano de bebidas sin alcohol presenta un panorama prometedor con múltiples oportunidades de crecimiento para distribuidores y consumidores conscientes.',
                     sections: [
                         {
-                            title: 'El Boom de las Bebidas Saludables',
+                            title: 'Panorama del Mercado Colombiano',
                             content: `
-                                <p>Colombia se posiciona como uno de los mercados más prometedores para las bebidas sin alcohol en Latinoamérica, con un crecimiento del <strong>185% en los últimos 3 años</strong>.</p>
-                                
-                                <div class="stats-grid">
-                                    <div class="stat-item">
-                                        <span class="stat-number">72%</span>
-                                        <span class="stat-label">Prefiere opciones sin alcohol</span>
-                                    </div>
-                                    <div class="stat-item">
-                                        <span class="stat-number">58%</span>
-                                        <span class="stat-label">Busca alternativas saludables</span>
-                                    </div>
-                                    <div class="stat-item">
-                                        <span class="stat-number">38%</span>
-                                        <span class="stat-label">Millennials conscientes</span>
-                                    </div>
-                                    <div class="stat-item">
-                                        <span class="stat-number">$280M</span>
-                                        <span class="stat-label">Millones COP Mercado 2026</span>
-                                    </div>
-                                </div>
-                            `
+                    <p>Colombia se consolida como un mercado clave en Latinoamérica para las bebidas premium sin alcohol, impulsado por nuevos hábitos de consumo y preferencias saludables.</p>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-number">42%</span>
+                            <span class="stat-label">Crecimiento anual del sector</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">67%</span>
+                            <span class="stat-label">Consumidores prefieren alternativas</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">25-40</span>
+                            <span class="stat-label">Años - Segmento principal</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">$450M</span>
+                            <span class="stat-label">Millones COP - Mercado 2026</span>
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-box">
+                        <h4>🌟 Datos Destacados</h4>
+                        <ul class="feature-list">
+                            <li><strong>Penetración de mercado:</strong> 31% en ciudades principales</li>
+                            <li><strong>Frecuencia de compra:</strong> 2.3 veces por mes promedio</li>
+                            <li><strong>Precio promedio:</strong> $28,000 - $45,000 COP por botella</li>
+                            <li><strong>Canales preferidos:</strong> Supermercados (54%), Tiendas especializadas (29%)</li>
+                        </ul>
+                    </div>
+                `
                         },
                         {
-                            title: 'Perfil del Consumidor Moderno',
+                            title: 'Comportamiento del Consumidor',
                             content: `
-                                <div class="highlight-box">
-                                    <h4>🎯 ¿Quién elige AJEDREZ?</h4>
-                                    <p>Nuestros estudios revelan el perfil del consumidor colombiano de bebidas sin alcohol premium:</p>
-                                </div>
-                                
-                                <ul class="feature-list">
-                                    <li><strong>Edad:</strong> 25-45 años (68% del mercado)</li>
-                                    <li><strong>Estilo de vida:</strong> Activo y consciente de la salud</li>
-                                    <li><strong>Ocasiones:</strong> Celebraciones familiares, eventos corporativos</li>
-                                    <li><strong>Valores:</strong> Sostenibilidad, bienestar, autenticidad</li>
-                                    <li><strong>Ubicación:</strong> Ciudades principales y municipios emergentes</li>
-                                    <li><strong>Poder adquisitivo:</strong> Medio-alto, dispuesto a pagar por calidad</li>
-                                </ul>
-                            `
+                    <div class="highlight-box">
+                        <h4>🎯 Perfil del Consumidor Moderno</h4>
+                        <p>Investigaciones recientes revelan patrones específicos en el consumo de bebidas sin alcohol en Colombia:</p>
+                    </div>
+                    
+                    <ul class="feature-list">
+                        <li><strong>Género:</strong> 58% mujeres, 42% hombres</li>
+                        <li><strong>Motivaciones principales:</strong> Salud (73%), Conducción responsable (48%)</li>
+                        <li><strong>Ocasiones de consumo:</strong> Celebraciones familiares (69%), Eventos corporativos (34%)</li>
+                        <li><strong>Factores de decisión:</strong> Sabor (81%), Calidad (76%), Precio (54%)</li>
+                        <li><strong>Lealtad de marca:</strong> 63% repite compra del mismo producto</li>
+                        <li><strong>Recomendación:</strong> 78% recomienda a familiares y amigos</li>
+                    </ul>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-number">89%</span>
+                            <span class="stat-label">Valora ingredientes naturales</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">76%</span>
+                            <span class="stat-label">Busca opciones premium</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">52%</span>
+                            <span class="stat-label">Compra online regularmente</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">$120K</span>
+                            <span class="stat-label">Gasto promedio mensual COP</span>
+                        </div>
+                    </div>
+                `
                         },
                         {
-                            title: 'Innovación y Futuro',
+                            title: 'Innovación y Oportunidades',
                             content: `
-                                <p><strong>AJEDREZ lidera la innovación</strong> en el segmento de vinos espumosos sin alcohol con tecnología avanzada y sabores únicos.</p>
-                                
-                                <h4>🚀 Tendencias que marcan el 2025:</h4>
-                                <ul class="feature-list">
-                                    <li><strong>Ingredientes Naturales:</strong> 100% edulcorantes de origen natural</li>
-                                    <li><strong>Experiencias Premium:</strong> Empaques elegantes y presentaciones exclusivas</li>
-                                    <li><strong>Personalización:</strong> Sabores únicos para diferentes momentos</li>
-                                    <li><strong>Sostenibilidad:</strong> Procesos eco-amigables y empaques reciclables</li>
-                                    <li><strong>Conveniencia:</strong> Disponibilidad en múltiples canales de venta</li>
-                                </ul>
-                                
-                                <div class="highlight-box">
-                                    <p><strong>🌟 Proyección 2025:</strong> Se espera que las bebidas sin alcohol representen el 28% del mercado total de bebidas premium en Colombia.</p>
-                                </div>
-                            `
+                    <p><strong>AJEDREZ lidera la innovación</strong> en el segmento de vinos espumosos sin alcohol con tecnología avanzada y sabores únicos desarrollados específicamente para el paladar colombiano.</p>
+                    
+                    <h4>🚀 Tendencias que Definen el 2025:</h4>
+                    <ul class="feature-list">
+                        <li><strong>Sabores Locales:</strong> Incorporación de frutas tropicales colombianas</li>
+                        <li><strong>Empaques Sostenibles:</strong> 94% prefiere envases eco-amigables</li>
+                        <li><strong>Experiencias Personalizadas:</strong> Eventos y degustaciones exclusivas</li>
+                        <li><strong>Tecnología:</strong> Apps para rastreo de productos y recompensas</li>
+                        <li><strong>Distribución:</strong> Expansión a municipios de segundo nivel</li>
+                        <li><strong>Alianzas:</strong> Partnerships con eventos y restaurantes</li>
+                    </ul>
+                    
+                    <div class="highlight-box">
+                        <p><strong>📈 Proyección Optimista:</strong> El segmento de bebidas sin alcohol premium alcanzará el 35% de participación en el mercado total de bebidas para celebraciones en Colombia para finales de 2025.</p>
+                    </div>
+                    
+                    <h4>💼 Oportunidades para Distribuidores:</h4>
+                    <ul class="feature-list">
+                        <li><strong>Márgenes atractivos:</strong> 40-55% de margen bruto promedio</li>
+                        <li><strong>Baja competencia:</strong> Mercado en desarrollo con pocos players</li>
+                        <li><strong>Demanda estable:</strong> Consumo durante todo el año</li>
+                        <li><strong>Apoyo de marca:</strong> Material publicitario y capacitación incluida</li>
+                        <li><strong>Territorialidad:</strong> Exclusividad por zonas geográficas</li>
+                        <li><strong>Crecimiento:</strong> Incremento del 15-25% anual proyectado</li>
+                    </ul>
+                `
+                        },
+                        {
+                            title: 'Análisis Regional',
+                            content: `
+                    <h4>🗺️ Penetración por Regiones (2024):</h4>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-number">68%</span>
+                            <span class="stat-label">Bogotá y Cundinamarca</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">45%</span>
+                            <span class="stat-label">Medellín y Antioquia</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">38%</span>
+                            <span class="stat-label">Cali y Valle del Cauca</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">29%</span>
+                            <span class="stat-label">Barranquilla y Costa</span>
+                        </div>
+                    </div>
+                    
+                    <ul class="feature-list">
+                        <li><strong>Zona Andina:</strong> Mayor consumo en eventos familiares y corporativos</li>
+                        <li><strong>Costa Caribe:</strong> Preferencia por sabores frutales y refrescantes</li>
+                        <li><strong>Pacífico:</strong> Mercado emergente con alto potencial</li>
+                        <li><strong>Orinoquia y Amazonia:</strong> Oportunidades inexploradas</li>
+                    </ul>
+                `
                         }
                     ],
-                    whatsappMessage: "Hola, me interesa conocer más sobre las tendencias del mercado de bebidas sin alcohol y las oportunidades con AJEDREZ."
+                    whatsappMessage: "Hola, me interesa conocer más sobre las oportunidades de distribución de AJEDREZ y las tendencias del mercado colombiano de bebidas sin alcohol."
                 }
             }
         };
-        
+
         this.init();
     }
 
@@ -2668,12 +2740,12 @@ class AjedrezNewsModal {
         // Determinar el tipo de noticia basado en el contenido de la tarjeta
         const titleElement = newsCard.querySelector('h3');
         const imageElement = newsCard.querySelector('img');
-        
+
         if (!titleElement) return null;
 
         const title = titleElement.textContent.toLowerCase();
         const imageSrc = imageElement ? imageElement.src.toLowerCase() : '';
-        
+
         // Detectar por título
         if (title.includes('expansión') || title.includes('nacional') || title.includes('2025')) {
             return 'expansion-nacional';
@@ -2682,7 +2754,7 @@ class AjedrezNewsModal {
         } else if (title.includes('tendencias') || title.includes('sin alcohol') || imageSrc.includes('bebidas')) {
             return 'tendencias-sin-alcohol';
         }
-        
+
         // Detectar por imagen si el título no es claro
         if (imageSrc.includes('expansion') || imageSrc.includes('nacional')) {
             return 'expansion-nacional';
@@ -2691,7 +2763,7 @@ class AjedrezNewsModal {
         } else if (imageSrc.includes('bebidas') || imageSrc.includes('tendencias')) {
             return 'tendencias-sin-alcohol';
         }
-        
+
         return null;
     }
 
@@ -2702,18 +2774,18 @@ class AjedrezNewsModal {
 
         // Determinar la imagen a usar - priorizar las del proyecto o usar fallbacks
         let modalImage = data.image;
-        
+
         // Si es la imagen de tendencias, usar la existente del proyecto
         if (newsType === 'tendencias-sin-alcohol') {
             modalImage = this.config.images.tendenciasBebidas;
         }
-        
+
         // Para las otras, usar fallbacks temporales hasta que agregues las imágenes
         if (newsType === 'expansion-nacional') {
             // Verificar si existe la imagen específica, sino usar fallback
             modalImage = this.config.images.fallbacks.expansion;
         }
-        
+
         if (newsType === 'nuevos-distribuidores') {
             // Verificar si existe la imagen específica, sino usar fallback
             modalImage = this.config.images.fallbacks.distribuidores;
@@ -2723,24 +2795,24 @@ class AjedrezNewsModal {
         const headerImage = modal.querySelector('.modal-header-image');
         headerImage.style.opacity = '0';
         headerImage.style.transform = 'scale(0.8)';
-        
+
         // Actualizar contenido del modal después de un pequeño delay
         setTimeout(() => {
             headerImage.src = modalImage;
             headerImage.alt = data.title;
             modal.querySelector('.modal-title').textContent = data.title;
             modal.querySelector('.modal-date').textContent = data.date;
-            
+
             // Generar contenido completo
             let contentHTML = `<p class="modal-text">${data.content.intro}</p>`;
-            
+
             data.content.sections.forEach(section => {
                 contentHTML += `
                     <h3>${section.title}</h3>
                     <div class="modal-text">${section.content}</div>
                 `;
             });
-            
+
             modal.querySelector('.modal-text').innerHTML = contentHTML;
 
             // Actualizar WhatsApp link usando la configuración
@@ -2781,12 +2853,12 @@ class AjedrezNewsModal {
             headerImage.style.transform = 'scale(1)';
             headerImage.src = ''; // Limpiar la imagen
             headerImage.alt = '';
-            
+
             // Limpiar el contenido también
             modal.querySelector('.modal-title').textContent = '';
             modal.querySelector('.modal-date').textContent = '';
             modal.querySelector('.modal-text').innerHTML = '';
-            
+
             // Resetear clase del modal
             modal.className = 'news-modal';
         }, 100);
@@ -2798,7 +2870,7 @@ class AjedrezNewsModal {
         elements.forEach((element, index) => {
             element.style.opacity = '0';
             element.style.transform = 'translateY(20px)';
-            
+
             setTimeout(() => {
                 element.style.transition = 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
                 element.style.opacity = '1';
@@ -2816,7 +2888,7 @@ class AjedrezNewsModal {
                 'value': 1
             });
         }
-        
+
         console.log(`📊 Tracking: ${action} - ${newsType}`);
     }
 }
@@ -2830,3 +2902,9 @@ document.addEventListener('DOMContentLoaded', () => {
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = AjedrezNewsModal;
 }
+
+
+
+
+
+
