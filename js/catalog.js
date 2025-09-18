@@ -30,12 +30,12 @@ class CatalogSystem {
         // Datos de los productos AJEDREZ
         this.catalogData = {
             'rosado': {
-                name: 'AJEDREZ Rosado',
+                name: 'AJEDREZ Champaña Rosado',
                 description: 'Elegancia y frescura para brindis especiales',
                 volume: '750ml',
                 alcohol: '0% Vol',
                 sweetener: 'Edulcorantes naturales',
-                flavor: 'Rosado elegante',
+                flavor: 'Champaña Rosado elegante',
                 occasions: ['Celebraciones', 'Brindis', 'Reuniones familiares'],
                 ingredients: [
                     'Agua carbonatada',
@@ -48,12 +48,12 @@ class CatalogSystem {
                 whatsappMessage: 'Buenos días, me interesa obtener información sobre el producto AJEDREZ Rosado 750ml. ¿Podrían proporcionarme detalles sobre precios, disponibilidad y condiciones de distribución? Quedo atento a su respuesta. Saludos cordiales.'
             },
             'blanco': {
-                name: 'AJEDREZ Champagne Blanco',
+                name: 'AJEDREZ Champaña Blanco',
                 description: 'Pureza y distinción para momentos especiales',
                 volume: '750ml',
                 alcohol: '0% Vol',
                 sweetener: 'Edulcorantes naturales',
-                flavor: 'Champagne blanco clásico',
+                flavor: 'Champaña blanco clásico',
                 profile: 'Fresco, limpio y equilibrado',
                 occasions: [
                     'Brindis elegantes',

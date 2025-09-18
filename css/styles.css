@@ -7010,3 +7010,138 @@ select option:selected {
         font-size: 0.85rem !important;
     }
 }
+
+
+
+
+
+/* CSS ESPECÍFICO SOLO PARA PORTÁTIL - SELECTORES PRECISOS */
+
+@media (min-width: 1200px) and (max-width: 1400px) {
+    
+    /* Simular zoom 80% que funciona bien */
+    html {
+        zoom: 0.8 !important;
+    }
+    
+    /* Grid de 2 columnas perfecto */
+    .products-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 2rem !important;
+        max-width: 1000px !important;
+        margin: 0 auto !important;
+        padding: 2rem 1rem !important;
+    }
+    
+    /* Cards con más altura para los botones */
+    .product-card {
+        padding: 2rem !important;
+        min-height: 550px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        overflow: visible !important;
+        position: relative !important;
+    }
+    
+    /* Container de preview */
+    .product-preview {
+        display: flex !important;
+        flex-direction: column !important;
+        height: 100% !important;
+        position: relative !important;
+    }
+    
+    /* Imágenes grandes y bien centradas */
+    .product-image {
+        height: 280px !important;
+        width: 100% !important;
+        object-fit: contain !important;
+        object-position: center !important;
+        margin-bottom: 1.5rem !important;
+    }
+    
+    /* Info del producto */
+    .product-info-preview {
+        flex-grow: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        margin-bottom: 2rem !important;
+    }
+    
+    /* Nombres de productos */
+    .product-name {
+        font-size: 1.3rem !important;
+        margin-bottom: 0.8rem !important;
+        font-weight: 700 !important;
+        color: #bd93f9 !important;
+    }
+    
+    /* Descripciones */
+    .product-description-short {
+        font-size: 1rem !important;
+        margin-bottom: 1rem !important;
+        flex-grow: 1 !important;
+        color: #ccc !important;
+        line-height: 1.6 !important;
+    }
+    
+    /* Especificaciones */
+    .product-specs {
+        font-size: 0.9rem !important;
+        margin-bottom: 1.5rem !important;
+        color: #bd93f9 !important;
+        background: rgba(189, 147, 249, 0.1) !important;
+        padding: 0.5rem !important;
+        border-radius: 8px !important;
+        text-align: center !important;
+    }
+    
+    /* SOLO BOTONES "VER DETALLES" - SELECTORES ESPECÍFICOS */
+    .product-open-catalog {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        padding: 1rem 2rem !important;
+        font-size: 1rem !important;
+        min-height: 50px !important;
+        border-radius: 25px !important;
+        width: 100% !important;
+        background: linear-gradient(45deg, #bd93f9, #ff79c6) !important;
+        color: white !important;
+        border: none !important;
+        margin-top: auto !important;
+        margin-bottom: 0 !important;
+        cursor: pointer !important;
+        text-align: center !important;
+        font-weight: 600 !important;
+        z-index: 10 !important;
+        position: relative !important;
+        transform: none !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* RESTAURAR ESTILOS DEL BOTÓN CERRAR */
+    .catalog-close {
+        position: absolute !important;
+        top: 20px !important;
+        right: 30px !important;
+        font-size: 40px !important;
+        font-weight: bold !important;
+        color: #aaa !important;
+        cursor: pointer !important;
+        background: none !important;
+        border: none !important;
+        padding: 0 !important;
+        width: auto !important;
+        height: auto !important;
+        line-height: 1 !important;
+        z-index: 1000 !important;
+    }
+    
+    .catalog-close:hover,
+    .catalog-close:focus {
+        color: #fff !important;
+        text-decoration: none !important;
+    }
+}
