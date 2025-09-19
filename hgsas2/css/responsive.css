@@ -1,0 +1,2716 @@
+/* ===================================================================
+   RESPONSIVE.CSS - COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S
+   Responsive correcto y profesional con mejores prácticas
+   =================================================================== */
+
+/* ===== RESET BASE ===== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-primary);
+    background: var(--primary-dark);
+    color: var(--white);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ===== CONTAINER RESPONSIVE ===== */
+.container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* ===== UTILITY CLASSES ===== */
+.desktop-only {
+    display: none;
+}
+
+.tablet-only {
+    display: none;
+}
+
+.mobile-only {
+    display: none;
+}
+
+/* ===== MOBILE FIRST (320px+) ===== */
+/* Base styles para móvil */
+
+.mobile-only {
+    display: block;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    min-height: 60px;
+}
+
+.brand-text {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.brand-highlight {
+    font-size: 1.4rem;
+    font-weight: 700;
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Hero Section Mobile */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 80px 0 40px;
+}
+
+.hero-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    text-align: center;
+}
+
+.hero-title {
+    font-size: 2.2rem;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.title-subtitle {
+    display: block;
+    font-size: 1.2rem;
+    color: var(--accent-green);
+    margin-top: 10px;
+}
+
+.hero-subtitle {
+    font-size: 1.1rem;
+    color: var(--accent-pink);
+    margin-bottom: 20px;
+}
+
+.hero-description {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 30px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+/* Products Section Mobile */
+.products-section {
+    padding: 60px 0;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-title {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: var(--accent-purple);
+}
+
+.section-subtitle {
+    font-size: 1.1rem;
+    color: var(--gray);
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+}
+
+.product-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 25px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    border: 1px solid rgba(189, 147, 249, 0.2);
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-image {
+    width: 100%;
+    max-width: 180px;
+    height: auto;
+    margin: 0 auto 20px;
+}
+
+.product-name {
+    font-size: 1.3rem;
+    color: var(--accent-purple);
+    margin-bottom: 10px;
+}
+
+.product-description-short {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 20px;
+}
+
+/* Form Mobile */
+.contact-section {
+    padding: 60px 0;
+}
+
+.contact-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+}
+
+.contact-form {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid rgba(189, 147, 249, 0.2);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(189, 147, 249, 0.3);
+    border-radius: 12px;
+    padding: 12px;
+    color: var(--white);
+    font-size: 1rem;
+    width: 100%;
+}
+
+/* Footer Mobile */
+.footer {
+    padding: 60px 0 30px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.footer-column h3,
+.footer-column h4 {
+    font-size: 1.1rem;
+    color: var(--accent-purple);
+    margin-bottom: 15px;
+}
+
+/* Testimonials Mobile */
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
+}
+
+.testimonial-card {
+    padding: 25px;
+}
+
+.testimonial-quote {
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-height: 44px;
+}
+
+/* Floating Buttons */
+.whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: var(--whatsapp-green);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+}
+
+.whatsapp-icon {
+    width: 24px;
+    height: 24px;
+    color: var(--white);
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    background: rgba(189, 147, 249, 0.9);
+    border: none;
+    border-radius: 50%;
+    color: var(--white);
+    cursor: pointer;
+    z-index: 999;
+    display: none;
+}
+
+/* Menu System */
+.menu-system {
+    display: flex;
+    align-items: center;
+}
+
+/* Mobile Morphing Menu */
+.morphing-trigger {
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.morphing-dots {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+}
+
+.dot {
+    width: 4px;
+    height: 4px;
+    background: var(--accent-purple);
+    border-radius: 50%;
+}
+
+.morphing-panel {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    max-width: 300px;
+    height: 100vh;
+    background: var(--gradient-primary);
+    backdrop-filter: blur(20px);
+    z-index: 2000;
+    transition: right 0.5s ease;
+}
+
+.menu-morphing[aria-expanded="true"] .morphing-panel {
+    right: 0;
+}
+
+.morphing-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    gap: 20px;
+}
+
+.morphing-item {
+    width: 100%;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(189, 147, 249, 0.2);
+    border-radius: 12px;
+    color: var(--white);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+/* ===== TABLET (768px - 1023px) ===== */
+@media (min-width: 768px) {
+    .container {
+        max-width: 750px;
+        padding: 0 20px;
+    }
+
+    .mobile-only {
+        display: none;
+    }
+
+    .tablet-only {
+        display: block;
+    }
+
+    .brand-text {
+        font-size: 0.8rem;
+    }
+
+    .brand-highlight {
+        font-size: 1.6rem;
+    }
+
+    .hero-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        text-align: left;
+        align-items: center;
+    }
+
+    .hero-title {
+        font-size: 2.8rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.3rem;
+    }
+
+    .hero-description {
+        font-size: 1.1rem;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 35px;
+    }
+
+    .contact-content {
+        grid-template-columns: 2fr 1fr;
+        gap: 50px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+        text-align: left;
+    }
+
+    .testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+
+    /* Tablet Hexagonal Menu */
+    .hex-activator {
+        width: 50px;
+        height: 50px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .hex-shape {
+        width: 42px;
+        height: 42px;
+        background: var(--gradient-accent);
+        clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .hex-shape::before {
+        content: 'HG';
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--primary-dark);
+    }
+
+    .hex-items {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 200px;
+        height: 200px;
+        pointer-events: none;
+    }
+
+    .hex-item {
+        position: absolute;
+        width: 38px;
+        height: 38px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(15px);
+        clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: var(--white);
+        font-size: 0.6rem;
+        font-weight: 600;
+        text-align: center;
+        opacity: 0;
+        visibility: hidden;
+        transform: translate(-50%, -50%) scale(0.3);
+    }
+
+    .menu-hexagonal[aria-expanded="true"] .hex-item {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1);
+    }
+
+    /* Hexagonal positions */
+    .hex-item[data-vertex="1"] {
+        top: calc(50% - 70px);
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .hex-item[data-vertex="2"] {
+        top: calc(50% - 35px);
+        left: calc(50% + 60px);
+        transform: translate(-50%, -50%);
+    }
+
+    .hex-item[data-vertex="3"] {
+        top: calc(50% + 35px);
+        left: calc(50% + 60px);
+        transform: translate(-50%, -50%);
+    }
+
+    .hex-item[data-vertex="4"] {
+        top: calc(50% + 70px);
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .hex-item[data-vertex="5"] {
+        top: calc(50% + 35px);
+        left: calc(50% - 60px);
+        transform: translate(-50%, -50%);
+    }
+
+    .hex-item[data-vertex="6"] {
+        top: calc(50% - 35px);
+        left: calc(50% - 60px);
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* ===== DESKTOP (1024px+) ===== */
+@media (min-width: 1024px) {
+    .container {
+        max-width: 1200px;
+        padding: 0 30px;
+    }
+
+    .tablet-only {
+        display: none;
+    }
+
+    .desktop-only {
+        display: block;
+    }
+
+    .brand-text {
+        font-size: 0.9rem;
+    }
+
+    .brand-highlight {
+        font-size: 1.8rem;
+    }
+
+    .hero-title {
+        font-size: 3.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.5rem;
+    }
+
+    .hero-description {
+        font-size: 1.2rem;
+    }
+
+    
+    .section-title {
+        font-size: 2.5rem;
+    }
+
+    .section-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 40px;
+    }
+
+    .footer-content {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .testimonials-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .whatsapp-float {
+        width: 55px;
+        height: 55px;
+        bottom: 25px;
+        right: 25px;
+    }
+
+    .whatsapp-icon {
+        width: 28px;
+        height: 28px;
+    }
+
+    .back-to-top {
+        width: 50px;
+        height: 50px;
+        bottom: 90px;
+        right: 25px;
+    }
+
+    /* Desktop Orbital Menu */
+    .orbital-activator {
+        width: 55px;
+        height: 55px;
+        background: var(--gradient-accent);
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 25px rgba(189, 147, 249, 0.3);
+    }
+
+    .orbital-center {
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--primary-dark);
+    }
+
+    .orbital-items {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 120px;
+        height: 300px;
+        pointer-events: none;
+    }
+
+    .orbital-item {
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(8px);
+        border: 2px solid rgba(189, 147, 249, 0.6);
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: var(--white);
+        font-size: 0.7rem;
+        font-weight: 600;
+        opacity: 0;
+        visibility: hidden;
+        transform: translate(-50%, -50%) scale(0.3);
+        padding: 5px;
+    }
+
+    .menu-orbital[aria-expanded="true"] .orbital-item {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1);
+    }
+
+    .orbital-item .item-icon {
+        width: 18px;
+        height: 18px;
+        margin-bottom: 3px;
+    }
+
+    .orbital-item .item-text {
+        font-size: 0.6rem;
+        text-align: center;
+        line-height: 1.1;
+    }
+
+    /* Orbital positions */
+    .orbital-item[data-position="12"] {
+        top: calc(50% + 40px);
+        left: calc(50% - 30px);
+        transform: translate(-50%, -50%);
+    }
+
+    .orbital-item[data-position="3"] {
+        top: calc(50% + 100px);
+        left: calc(50% - 30px);
+        transform: translate(-50%, -50%);
+    }
+
+    .orbital-item[data-position="6"] {
+        top: calc(50% + 160px);
+        left: calc(50% - 30px);
+        transform: translate(-50%, -50%);
+    }
+
+    .orbital-item[data-position="9"] {
+        top: calc(50% + 220px);
+        left: calc(50% - 30px);
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* ===== LARGE DESKTOP (1200px+) ===== */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1400px;
+    }
+
+    .hero-title {
+        font-size: 4rem;
+    }
+
+    .section-title {
+        font-size: 3rem;
+    }
+
+    .products-grid {
+        gap: 50px;
+    }
+}
+
+/* ===== EXTRA LARGE (1440px+) ===== */
+@media (min-width: 1440px) {
+    .container {
+        max-width: 1600px;
+    }
+
+    .hero-title {
+        font-size: 4.5rem;
+    }
+}
+
+/* ===== ULTRA WIDE (1920px+) ===== */
+@media (min-width: 1920px) {
+    .container {
+        max-width: 1800px;
+    }
+
+    .hero-title {
+        font-size: 5rem;
+    }
+}
+
+/* ===== LANDSCAPE MOBILE ===== */
+@media (max-width: 767px) and (orientation: landscape) and (max-height: 500px) {
+    .hero-section {
+        min-height: 80vh;
+        padding: 60px 0 20px;
+    }
+
+    .hero-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        text-align: left;
+    }
+
+    .hero-title {
+        font-size: 1.8rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .morphing-content {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 20px;
+    }
+
+    .morphing-item {
+        width: calc(50% - 5px);
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+}
+
+/* ===== CATALOG RESPONSIVE ===== */
+.product-catalog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 3000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease;
+}
+
+.product-catalog.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.catalog-content {
+    background: var(--gradient-primary);
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow-y: auto;
+    border: 2px solid rgba(189, 147, 249, 0.3);
+    position: relative;
+    display: grid;
+    gap: 30px;
+    grid-template-columns: 1fr;
+}
+
+.catalog-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 121, 198, 0.2);
+    border: 2px solid rgba(255, 121, 198, 0.5);
+    border-radius: 50%;
+    color: var(--accent-pink);
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+@media (min-width: 768px) {
+    .catalog-content {
+        grid-template-columns: 1fr 1fr;
+        max-width: 80vw;
+        max-height: 80vh;
+    }
+}
+
+@media (min-width: 1024px) {
+    .catalog-content {
+        max-width: 70vw;
+        max-height: 70vh;
+    }
+}
+
+/* ===== LOADING SCREEN ===== */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.loading-progress {
+    width: 250px;
+    height: 250px;
+    position: relative;
+}
+
+.wine-glass-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 100px;
+}
+
+.progress-percentage {
+    position: absolute;
+    bottom: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--white);
+}
+
+@media (min-width: 768px) {
+    .loading-progress {
+        width: 300px;
+        height: 300px;
+    }
+
+    .wine-glass-container {
+        width: 100px;
+        height: 120px;
+    }
+
+    .progress-percentage {
+        font-size: 3rem;
+        bottom: -70px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .loading-progress {
+        width: 350px;
+        height: 350px;
+    }
+
+    .wine-glass-container {
+        width: 120px;
+        height: 140px;
+    }
+
+    .progress-percentage {
+        font-size: 3.5rem;
+        bottom: -80px;
+    }
+}
+
+/* ===== GALLERY AND NEWS ===== */
+.gallery-grid,
+.news-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
+}
+
+@media (min-width: 768px) {
+
+    .gallery-grid,
+    .news-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .gallery-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .news-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ===== ABOUT SECTION ===== */
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+@media (min-width: 768px) {
+    .info-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .info-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 35px;
+    }
+}
+
+.info-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid rgba(189, 147, 249, 0.2);
+}
+
+.map-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+}
+
+@media (min-width: 768px) {
+    .map-container {
+        grid-template-columns: 2fr 1fr;
+        gap: 40px;
+    }
+}
+
+.map-placeholder {
+    background: rgba(189, 147, 249, 0.1);
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    border: 2px dashed var(--accent-purple);
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+
+    .header,
+    .whatsapp-float,
+    .back-to-top,
+    .menu-system,
+    .loading-screen {
+        display: none !important;
+    }
+
+    body {
+        background: white !important;
+        color: black !important;
+    }
+
+    .container {
+        max-width: none !important;
+        padding: 0 !important;
+    }
+
+    .products-grid,
+    .testimonials-grid,
+    .footer-content {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* ===== ACCESSIBILITY ===== */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ===== HIGH DPI ===== */
+@media (-webkit-min-device-pixel-ratio: 2) {
+
+    .hero-products-image,
+    .product-image {
+        image-rendering: crisp-edges;
+    }
+}
+
+/* ===================================================================
+   MOBILE FIXES ONLY - NO TOCAR DESKTOP/TABLET
+   Solo arreglar mobile (320px - 767px) sin dañar nada más
+   =================================================================== */
+
+/* ===== SOLO MOBILE - NO TOCAR DESKTOP/TABLET ===== */
+@media (max-width: 767px) {
+
+    /* Container mobile fix */
+    .container {
+        width: 100%;
+        max-width: 100vw;
+        padding-left: 16px;
+        padding-right: 16px;
+        margin: 0 auto;
+    }
+
+    /* Header mobile fix */
+    .navbar {
+        padding: 12px 0;
+        min-height: 60px;
+    }
+
+    .brand-text {
+        font-size: 0.65rem;
+        line-height: 1;
+    }
+
+    .brand-highlight {
+        font-size: 1.3rem;
+        line-height: 1;
+    }
+
+    /* Hero mobile fix */
+    .hero-section {
+        min-height: calc(100vh - 60px);
+        padding: 32px 0;
+    }
+
+    .hero-container {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+        text-align: center;
+    }
+
+    .hero-content {
+        order: 2;
+    }
+
+    .hero-visual {
+        order: 1;
+    }
+
+    .hero-title {
+        font-size: clamp(1.8rem, 8vw, 2.5rem);
+        margin-bottom: 20px;
+    }
+
+    .title-subtitle {
+        font-size: clamp(1rem, 4vw, 1.3rem);
+        margin-top: 10px;
+    }
+
+    .hero-subtitle {
+        font-size: clamp(1rem, 4vw, 1.3rem);
+        margin-bottom: 20px;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+        margin-bottom: 30px;
+        max-width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    
+    /* Products mobile fix */
+    .section-header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .section-title {
+        font-size: clamp(1.8rem, 6vw, 2.2rem);
+        margin-bottom: 15px;
+    }
+
+    .section-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .products-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .product-card {
+        padding: 24px;
+        text-align: center;
+    }
+
+    .product-image {
+        max-width: 200px;
+        width: 100%;
+        height: auto;
+        margin: 0 auto 20px;
+        display: block;
+    }
+
+    .product-name {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+    }
+
+    .product-description-short {
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+
+    .product-specs {
+        font-size: 0.9rem;
+        padding: 6px 16px;
+        margin-bottom: 20px;
+    }
+
+    .product-open-catalog {
+        min-height: 44px;
+        padding: 12px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Form mobile fix */
+    .contact-content {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .contact-form {
+        padding: 24px;
+    }
+
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+        min-height: 44px;
+        padding: 12px;
+        font-size: 16px;
+        /* Evita zoom en iOS */
+    }
+
+    .form-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .form-actions .btn {
+        width: 100%;
+        min-height: 44px;
+    }
+
+    /* Contact info mobile fix */
+    .contact-info {
+        padding: 24px;
+    }
+
+    .contact-details {
+        gap: 16px;
+    }
+
+    .contact-item {
+        padding: 16px;
+    }
+
+    /* Testimonials mobile fix */
+    .testimonials-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .testimonial-card {
+        padding: 24px;
+    }
+
+    .testimonial-quote {
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+
+    /* About mobile fix */
+    .info-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .info-card {
+        padding: 24px;
+    }
+
+    .info-card h3 {
+        font-size: 1.2rem;
+        margin-bottom: 16px;
+    }
+
+    /* Gallery mobile fix */
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .gallery-item {
+        border-radius: 16px;
+    }
+
+    .gallery-overlay {
+        padding: 20px;
+    }
+
+    /* News mobile fix */
+    .news-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .news-image {
+        height: 180px;
+    }
+
+    .news-content {
+        padding: 24px;
+    }
+
+    .news-content h3 {
+        font-size: 1.2rem;
+        margin-bottom: 16px;
+    }
+
+    .news-content p {
+        font-size: 1rem;
+        margin-bottom: 16px;
+    }
+
+    /* Footer mobile fix */
+    .footer-content {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center;
+    }
+
+    .footer-column h3,
+    .footer-column h4 {
+        font-size: 1.1rem;
+        margin-bottom: 16px;
+    }
+
+    .footer-links li,
+    .footer-contact li {
+        margin-bottom: 12px;
+    }
+
+    .footer-links a,
+    .footer-contact a {
+        display: inline-block;
+        padding: 8px;
+        min-height: 44px;
+        line-height: 1.4;
+    }
+
+    /* Buttons mobile fix */
+    .btn {
+        min-height: 44px;
+        padding: 12px 24px;
+        font-size: 1rem;
+    }
+
+    /* Floating buttons mobile fix */
+    .whatsapp-float {
+        width: 56px;
+        height: 56px;
+        bottom: 20px;
+        right: 16px;
+    }
+
+    .whatsapp-icon {
+        width: 28px;
+        height: 28px;
+    }
+
+    .back-to-top {
+        width: 48px;
+        height: 48px;
+        bottom: 85px;
+        right: 16px;
+    }
+
+    /* Catalog mobile fix */
+    .catalog-content {
+        width: 95%;
+        height: 90vh;
+        grid-template-columns: 1fr;
+        grid-template-rows: 40% 1fr;
+        margin: 16px;
+    }
+
+    .catalog-image {
+        padding: 20px;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .catalog-details {
+        padding: 20px;
+    }
+
+    .catalog-details h3 {
+        font-size: 1.5rem;
+        margin-bottom: 16px;
+    }
+
+    .catalog-description {
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+
+    .catalog-specs,
+    .catalog-ingredients,
+    .catalog-occasions,
+    .catalog-benefits,
+    .catalog-profile,
+    .catalog-recommendations,
+    .catalog-characteristics,
+    .catalog-pairing {
+        padding: 16px;
+        margin-bottom: 16px;
+    }
+
+    .catalog-specs h4,
+    .catalog-ingredients h4,
+    .catalog-occasions h4,
+    .catalog-benefits h4,
+    .catalog-profile h4,
+    .catalog-recommendations h4,
+    .catalog-characteristics h4,
+    .catalog-pairing h4 {
+        font-size: 1.1rem;
+        margin-bottom: 12px;
+    }
+
+    .catalog-specs li,
+    .catalog-ingredients li,
+    .catalog-occasions li,
+    .catalog-benefits li {
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+    }
+
+    .catalog-ingredients p,
+    .catalog-occasions p,
+    .catalog-benefits p,
+    .catalog-profile p,
+    .catalog-recommendations p,
+    .catalog-characteristics p,
+    .catalog-pairing p {
+        font-size: 0.9rem;
+    }
+
+    .catalog-details .btn-whatsapp {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .catalog-close {
+        width: 40px;
+        height: 40px;
+        top: 16px;
+        right: 16px;
+        font-size: 18px;
+    }
+
+    /* Morphing menu mobile fix */
+    .morphing-trigger {
+        width: 44px;
+        height: 44px;
+    }
+
+    .morphing-dots {
+        width: 24px;
+        height: 24px;
+        gap: 3px;
+    }
+
+    .dot {
+        width: 5px;
+        height: 5px;
+    }
+
+    .morphing-panel {
+        max-width: 300px;
+    }
+
+    .morphing-content {
+        padding: 30px 20px;
+        gap: 20px;
+    }
+
+    .morphing-item {
+        min-height: 44px;
+        padding: 12px 20px;
+        font-size: 1rem;
+    }
+
+    /* Loading mobile fix */
+    .loading-progress {
+        width: clamp(200px, 60vw, 300px);
+        height: clamp(200px, 60vw, 300px);
+    }
+
+    .wine-glass-container {
+        width: clamp(60px, 15vw, 100px);
+        height: clamp(75px, 18vw, 125px);
+    }
+
+    .progress-percentage {
+        font-size: clamp(1.5rem, 8vw, 2.5rem);
+        bottom: clamp(-40px, -10vw, -60px);
+    }
+
+    /* Cookies mobile fix */
+    .cookies-content {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+    }
+
+    .cookies-content p {
+        min-width: auto;
+        font-size: 0.9rem;
+    }
+
+    .cookies-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .cookies-actions .btn {
+        width: 100%;
+        font-size: 0.9rem;
+        padding: 10px 16px;
+    }
+
+    /* Small mobile fix */
+}
+
+/* Fin @media (max-width: 767px) */
+
+/* ===== SMALL MOBILE (320px - 374px) ===== */
+@media (max-width: 374px) {
+
+    .container {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .brand-text {
+        font-size: 0.6rem;
+    }
+
+    .brand-highlight {
+        font-size: 1.2rem;
+    }
+
+    .hero-title {
+        font-size: clamp(1.5rem, 10vw, 2rem);
+    }
+
+    
+    .section-title {
+        font-size: clamp(1.5rem, 8vw, 1.8rem);
+    }
+
+    .product-image {
+        max-width: 180px;
+    }
+
+    .morphing-panel {
+        max-width: 280px;
+    }
+
+    .catalog-content {
+        width: 98%;
+        margin: 8px;
+    }
+
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        bottom: 16px;
+        right: 12px;
+    }
+
+    .whatsapp-icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    .back-to-top {
+        width: 44px;
+        height: 44px;
+        bottom: 75px;
+        right: 12px;
+    }
+
+}
+
+/* Fin small mobile */
+
+/* ===== LANDSCAPE MOBILE ===== */
+@media (max-width: 767px) and (orientation: landscape) and (max-height: 500px) {
+
+    .hero-section {
+        min-height: 90vh;
+        padding: 20px 0;
+    }
+
+    .hero-container {
+        flex-direction: row;
+        gap: 20px;
+        text-align: left;
+    }
+
+    .hero-content {
+        flex: 1;
+        order: 1;
+    }
+
+    .hero-visual {
+        flex: 1;
+        order: 2;
+    }
+
+    .hero-title {
+        font-size: clamp(1.2rem, 6vw, 1.8rem);
+        margin-bottom: 16px;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 16px;
+    }
+
+    .hero-description {
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+    }
+
+    
+    .morphing-content {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 20px;
+    }
+
+    .morphing-item {
+        width: calc(50% - 6px);
+        padding: 8px 12px;
+        font-size: 0.9rem;
+        min-height: 40px;
+    }
+
+    .catalog-content {
+        grid-template-rows: 1fr;
+        grid-template-columns: 1fr 1fr;
+        height: 85vh;
+    }
+
+    .catalog-image {
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+        border-bottom: none;
+    }
+
+}
+
+/* Fin landscape mobile */
+
+/* ===== TOUCH OPTIMIZATIONS ===== */
+@media (max-width: 767px) {
+
+    /* Touch targets */
+    a,
+    button,
+    input,
+    select,
+    textarea {
+        min-height: 44px;
+    }
+
+    /* Prevent zoom on inputs */
+    input,
+    select,
+    textarea {
+        font-size: 16px;
+    }
+
+    /* Remove tap highlights */
+    * {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Improve touch scrolling */
+    .morphing-panel,
+    .catalog-details {
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
+    }
+
+    /* Safe area support */
+    .whatsapp-float {
+        bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .back-to-top {
+        bottom: calc(85px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .footer {
+        padding-bottom: calc(32px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .morphing-panel {
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    .cookies-banner {
+        padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+    }
+
+}
+
+/* Fin touch optimizations */
+
+
+/* ===================================================================
+   HERO MOBILE FIX ESPECÍFICO - Solo arreglar hero mobile
+   =================================================================== */
+
+/* ===== SOLO HERO MOBILE (320px - 767px) ===== */
+@media (max-width: 767px) {
+
+    /* Hero section centrado y con márgenes */
+    .hero-section {
+        min-height: calc(100vh - 60px);
+        min-height: calc(100dvh - 60px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 0;
+        text-align: center;
+    }
+
+    .hero-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .hero-content {
+        width: 100%;
+        max-width: 100%;
+        order: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .hero-visual {
+        width: 100%;
+        max-width: 100%;
+        order: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Centrar y espaciar el título */
+    .hero-title {
+        font-size: clamp(1.8rem, 8vw, 2.5rem);
+        line-height: 1.1;
+        margin: 0 auto 24px auto;
+        text-align: center;
+        width: 100%;
+        max-width: 90%;
+        background: var(--gradient-accent);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .title-subtitle {
+        display: block;
+        font-size: clamp(1rem, 4vw, 1.3rem);
+        color: var(--accent-green);
+        margin-top: 12px;
+        text-align: center;
+        font-weight: 500;
+    }
+
+    /* Centrar y espaciar el subtítulo */
+    .hero-subtitle {
+        font-size: clamp(1rem, 4vw, 1.3rem);
+        color: var(--accent-pink);
+        margin: 0 auto 24px auto;
+        text-align: center;
+        width: 100%;
+        max-width: 85%;
+        font-weight: 500;
+    }
+
+    /* Centrar y espaciar la descripción */
+    .hero-description {
+        font-size: 1rem;
+        color: rgba(255, 255, 255, 0.85);
+        margin: 0 auto 32px auto;
+        text-align: center;
+        width: 100%;
+        max-width: 85%;
+        line-height: 1.6;
+    }
+
+    /* Centrar imagen de productos */
+    
+
+    /* Centrar el CTA */
+    .hero-cta {
+        margin: 24px auto 0 auto;
+        text-align: center;
+        width: 100%;
+    }
+
+    .hero-cta .btn {
+        margin: 0 auto;
+        max-width: 280px;
+        width: 100%;
+    }
+
+}
+
+/* Fin hero mobile fix */
+
+/* ===== EXTRA SMALL MOBILE (320px - 374px) ===== */
+@media (max-width: 374px) {
+
+    .hero-container {
+        padding: 0 16px;
+        gap: 28px;
+    }
+
+    .hero-title {
+        font-size: clamp(1.5rem, 10vw, 2rem);
+        margin-bottom: 20px;
+        max-width: 95%;
+    }
+
+    .hero-subtitle {
+        font-size: clamp(0.9rem, 5vw, 1.1rem);
+        margin-bottom: 20px;
+        max-width: 90%;
+    }
+
+    .hero-description {
+        font-size: 0.9rem;
+        margin-bottom: 28px;
+        max-width: 90%;
+    }
+
+    
+
+}
+
+/* Fin extra small mobile */
+
+/* ===== LANDSCAPE MOBILE FIX ===== */
+@media (max-width: 767px) and (orientation: landscape) and (max-height: 500px) {
+
+    .hero-section {
+        min-height: 90vh;
+        min-height: 90dvh;
+        padding: 20px 0;
+    }
+
+    .hero-container {
+        flex-direction: row;
+        gap: 24px;
+        align-items: center;
+        justify-content: center;
+        text-align: left;
+        padding: 0 20px;
+    }
+
+    .hero-content {
+        flex: 1;
+        order: 1;
+        text-align: left;
+        align-items: flex-start;
+    }
+
+    .hero-visual {
+        flex: 1;
+        order: 2;
+        justify-content: center;
+    }
+
+    .hero-title {
+        font-size: clamp(1.3rem, 6vw, 1.8rem);
+        margin-bottom: 16px;
+        text-align: left;
+        max-width: 100%;
+    }
+
+    .hero-subtitle {
+        font-size: clamp(0.9rem, 4vw, 1.1rem);
+        margin-bottom: 16px;
+        text-align: left;
+        max-width: 100%;
+    }
+
+    .hero-description {
+        font-size: 0.85rem;
+        margin-bottom: 20px;
+        text-align: left;
+        max-width: 100%;
+    }
+
+    
+    .hero-cta {
+        margin: 16px 0 0 0;
+        text-align: left;
+    }
+
+    .hero-cta .btn {
+        max-width: 200px;
+    }
+
+}
+
+/* Fin landscape mobile fix */
+
+
+/* ===================================================================
+   HERO MOBILE FIX FUERTE - Sobrescribir desktop con !important
+   =================================================================== */
+
+/* ===== ANULAR ESTILOS DESKTOP EN MOBILE ===== */
+@media (max-width: 767px) {
+
+    /* RESETEAR todo lo que está mal */
+    .hero-content {
+        margin-left: 0 !important;
+        /* ❌ Quitar margin-left: 125px */
+        margin-right: 0 !important;
+        /* ❌ Resetear margin-right */
+        margin-top: 0 !important;
+        /* ❌ Resetear margin-top */
+        margin-bottom: 0 !important;
+        /* ❌ Resetear margin-bottom */
+        width: 100% !important;
+        /* ✅ Ancho completo */
+        max-width: 100% !important;
+        /* ✅ Sin límite máximo */
+        padding: 0 16px !important;
+        /* ✅ Padding lateral correcto */
+        text-align: center !important;
+        /* ✅ Centrado */
+        display: flex !important;
+        /* ✅ Flex para centrar */
+        flex-direction: column !important;
+        /* ✅ Columna vertical */
+        align-items: center !important;
+        /* ✅ Centrar horizontalmente */
+        justify-content: center !important;
+        /* ✅ Centrar verticalmente */
+        order: 2 !important;
+        /* ✅ Después de la imagen */
+    }
+
+    .hero-container {
+        display: flex !important;
+        /* ❌ No grid */
+        flex-direction: column !important;
+        /* ✅ Vertical en mobile */
+        grid-template-columns: none !important;
+        /* ❌ Quitar grid */
+        gap: 32px !important;
+        /* ✅ Espaciado correcto */
+        align-items: center !important;
+        /* ✅ Centrar todo */
+        justify-content: center !important;
+        /* ✅ Centrar verticalmente */
+        text-align: center !important;
+        /* ✅ Texto centrado */
+        width: 100% !important;
+        /* ✅ Ancho completo */
+        max-width: 100% !important;
+        /* ✅ Sin restricciones */
+        margin: 0 auto !important;
+        /* ✅ Centrado horizontal */
+        padding: 0 16px !important;
+        /* ✅ Márgenes laterales */
+    }
+
+    .hero-section {
+        min-height: calc(100vh - 60px) !important;
+        min-height: calc(100dvh - 60px) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 40px 0 !important;
+        text-align: center !important;
+        width: 100% !important;
+        overflow-x: hidden !important;
+        /* ✅ Evitar scroll horizontal */
+    }
+
+    .hero-visual {
+        width: 100% !important;
+        max-width: 100% !important;
+        order: 1 !important;
+        /* ✅ Antes del contenido */
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* TÍTULOS CENTRADOS */
+    .hero-title {
+        font-size: clamp(1.8rem, 8vw, 2.5rem) !important;
+        line-height: 1.1 !important;
+        margin: 0 auto 24px auto !important;
+        text-align: center !important;
+        width: 100% !important;
+        max-width: 90% !important;
+        padding: 0 !important;
+        background: var(--gradient-accent) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        background-clip: text !important;
+    }
+
+    .title-subtitle {
+        display: block !important;
+        font-size: clamp(1rem, 4vw, 1.3rem) !important;
+        color: var(--accent-green) !important;
+        margin-top: 12px !important;
+        text-align: center !important;
+        font-weight: 500 !important;
+    }
+
+    .hero-subtitle {
+        font-size: clamp(1rem, 4vw, 1.3rem) !important;
+        color: var(--accent-pink) !important;
+        margin: 0 auto 24px auto !important;
+        text-align: center !important;
+        width: 100% !important;
+        max-width: 85% !important;
+        font-weight: 500 !important;
+        padding: 0 !important;
+    }
+
+    .hero-description {
+        font-size: 1rem !important;
+        color: rgba(255, 255, 255, 0.85) !important;
+        margin: 0 auto 32px auto !important;
+        text-align: center !important;
+        width: 100% !important;
+        max-width: 85% !important;
+        line-height: 1.6 !important;
+        padding: 0 !important;
+    }
+
+    /* IMAGEN CENTRADA */
+    
+    /* CTA CENTRADO */
+    .hero-cta {
+        margin: 24px auto 0 auto !important;
+        text-align: center !important;
+        width: 100% !important;
+        padding: 0 !important;
+    }
+
+    .hero-cta .btn {
+        margin: 0 auto !important;
+        max-width: 280px !important;
+        width: 100% !important;
+        display: block !important;
+    }
+
+    /* CONTENEDOR PRINCIPAL */
+    .container {
+        width: 100% !important;
+        max-width: 100vw !important;
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        margin: 0 auto !important;
+        overflow-x: hidden !important;
+    }
+
+}
+
+/* Fin mobile fix */
+
+/* ===== EXTRA SMALL MOBILE ===== */
+@media (max-width: 374px) {
+
+    .hero-container {
+        padding: 0 12px !important;
+        gap: 28px !important;
+    }
+
+    .hero-content {
+        padding: 0 12px !important;
+    }
+
+    .hero-title {
+        font-size: clamp(1.5rem, 10vw, 2rem) !important;
+        margin-bottom: 20px !important;
+        max-width: 95% !important;
+    }
+
+    .hero-subtitle {
+        font-size: clamp(0.9rem, 5vw, 1.1rem) !important;
+        margin-bottom: 20px !important;
+        max-width: 90% !important;
+    }
+
+    .hero-description {
+        font-size: 0.9rem !important;
+        margin-bottom: 28px !important;
+        max-width: 90% !important;
+    }
+
+    
+
+    .container {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+    }
+
+}
+
+/* Fin extra small */
+
+/* ===================================================================
+   BOTONES WHATSAPP OPTIMIZADOS - CENTRADOS Y CIRCULARES
+   Especialmente optimizados para mobile y todas las pantallas
+   =================================================================== */
+
+/* ===== BOTÓN WHATSAPP EN CATÁLOGO - NUEVO DISEÑO COMPACTO ===== */
+.whatsapp-btn {
+    /* POSICIONAMIENTO CENTRADO */
+    position: absolute !important;
+    bottom: 12px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    
+    /* DISEÑO CIRCULAR COMPACTO */
+    width: 45px !important;
+    height: 45px !important;
+    border-radius: 50% !important;
+    
+    /* COLORES Y EFECTOS */
+    background: #1DB954 !important;
+    color: white !important;
+    border: none !important;
+    
+    /* EFECTOS VISUALES */
+    box-shadow: 0 4px 12px rgba(29, 185, 84, 0.3) !important;
+    cursor: pointer !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    
+    /* CENTRAR CONTENIDO */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    
+    /* TIPOGRAFÍA MINIMALISTA */
+    font-size: 0px !important; /* Ocultar texto */
+    text-indent: -9999px !important;
+    overflow: hidden !important;
+}
+
+/* ICONO DE WHATSAPP CON CSS */
+.whatsapp-btn::before {
+    content: '' !important;
+    position: absolute !important;
+    width: 20px !important;
+    height: 20px !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.89 3.687'/%3E%3C/svg%3E") !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+}
+
+/* EFECTOS HOVER Y ACTIVE */
+.whatsapp-btn:hover {
+    background: #1ed760 !important;
+    transform: translateX(-50%) translateY(-3px) scale(1.1) !important;
+    box-shadow: 0 8px 20px rgba(29, 185, 84, 0.5) !important;
+}
+
+.whatsapp-btn:active {
+    transform: translateX(-50%) translateY(-1px) scale(1.05) !important;
+    box-shadow: 0 4px 10px rgba(29, 185, 84, 0.4) !important;
+}
+
+/* ===== RESPONSIVE OPTIMIZATIONS ===== */
+
+/* MOBILE PEQUEÑO (320px - 374px) */
+@media (max-width: 374px) {
+    .whatsapp-btn {
+        width: 40px !important;
+        height: 40px !important;
+        bottom: 8px !important;
+    }
+    
+    .whatsapp-btn::before {
+        width: 18px !important;
+        height: 18px !important;
+    }
+}
+
+/* MOBILE ESTÁNDAR (375px - 480px) */
+@media (min-width: 375px) and (max-width: 480px) {
+    .whatsapp-btn {
+        width: 45px !important;
+        height: 45px !important;
+        bottom: 10px !important;
+    }
+    
+    .whatsapp-btn::before {
+        width: 20px !important;
+        height: 20px !important;
+    }
+}
+
+/* TABLET (481px - 767px) */
+@media (min-width: 481px) and (max-width: 767px) {
+    .whatsapp-btn {
+        width: 48px !important;
+        height: 48px !important;
+        bottom: 12px !important;
+    }
+    
+    .whatsapp-btn::before {
+        width: 22px !important;
+        height: 22px !important;
+    }
+}
+
+/* TABLET HORIZONTAL (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .whatsapp-btn {
+        width: 50px !important;
+        height: 50px !important;
+        bottom: 15px !important;
+    }
+    
+    .whatsapp-btn::before {
+        width: 24px !important;
+        height: 24px !important;
+    }
+}
+
+/* DESKTOP (1024px+) */
+@media (min-width: 1024px) {
+    .whatsapp-btn {
+        width: 52px !important;
+        height: 52px !important;
+        bottom: 18px !important;
+    }
+    
+    .whatsapp-btn::before {
+        width: 24px !important;
+        height: 24px !important;
+    }
+    
+    /* Mostrar tooltip en hover para desktop */
+    .whatsapp-btn:hover::after {
+        content: 'Solicitar por WhatsApp' !important;
+        position: absolute !important;
+        bottom: 120% !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        background: rgba(0, 0, 0, 0.8) !important;
+        color: white !important;
+        padding: 6px 12px !important;
+        border-radius: 6px !important;
+        font-size: 12px !important;
+        white-space: nowrap !important;
+        z-index: 10000 !important;
+        animation: tooltipFadeIn 0.3s ease !important;
+    }
+}
+
+/* ===== BOTÓN WHATSAPP FLOTANTE - TAMBIÉN OPTIMIZADO ===== */
+.whatsapp-float {
+    /* POSICIÓN FIJA */
+    position: fixed !important;
+    bottom: 20px !important;
+    right: 20px !important;
+    
+    /* DISEÑO CIRCULAR */
+    width: 60px !important;
+    height: 60px !important;
+    border-radius: 50% !important;
+    
+    /* COLORES Y EFECTOS */
+    background: #1DB954 !important;
+    color: white !important;
+    border: none !important;
+    
+    /* EFECTOS VISUALES MEJORADOS */
+    box-shadow: 0 6px 20px rgba(29, 185, 84, 0.4) !important;
+    cursor: pointer !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    
+    /* CENTRAR CONTENIDO */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    
+    /* Z-INDEX ALTO */
+    z-index: 9999 !important;
+    
+    /* OCULTAR TEXTO */
+    font-size: 0px !important;
+    text-indent: -9999px !important;
+    overflow: hidden !important;
+}
+
+/* ICONO PARA BOTÓN FLOTANTE */
+.whatsapp-float::before {
+    content: '' !important;
+    position: absolute !important;
+    width: 28px !important;
+    height: 28px !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.89 3.687'/%3E%3C/svg%3E") !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+}
+
+/* EFECTOS PARA BOTÓN FLOTANTE */
+.whatsapp-float:hover {
+    transform: scale(1.1) translateY(-3px) !important;
+    box-shadow: 0 10px 30px rgba(29, 185, 84, 0.6) !important;
+    background: #1ed760 !important;
+}
+
+.whatsapp-float:active {
+    transform: scale(1.05) translateY(-1px) !important;
+}
+
+/* ANIMACIÓN DE PULSACIÓN PARA BOTÓN FLOTANTE */
+@keyframes whatsappPulse {
+    0% { transform: scale(1); box-shadow: 0 6px 20px rgba(29, 185, 84, 0.4); }
+    50% { transform: scale(1.05); box-shadow: 0 8px 25px rgba(29, 185, 84, 0.6); }
+    100% { transform: scale(1); box-shadow: 0 6px 20px rgba(29, 185, 84, 0.4); }
+}
+
+.whatsapp-float {
+    animation: whatsappPulse 2s infinite !important;
+}
+
+/* ===== RESPONSIVE PARA BOTÓN FLOTANTE ===== */
+@media (max-width: 480px) {
+    .whatsapp-float {
+        width: 55px !important;
+        height: 55px !important;
+        bottom: 15px !important;
+        right: 15px !important;
+    }
+    
+    .whatsapp-float::before {
+        width: 24px !important;
+        height: 24px !important;
+    }
+}
+
+/* ===== ANIMACIONES ADICIONALES ===== */
+@keyframes tooltipFadeIn {
+    0% { opacity: 0; transform: translateX(-50%) translateY(5px); }
+    100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* ===== ACCESIBILIDAD ===== */
+.whatsapp-btn:focus,
+.whatsapp-float:focus {
+    outline: 3px solid rgba(29, 185, 84, 0.6) !important;
+    outline-offset: 3px !important;
+}
+
+/* ===== MODO ALTO CONTRASTE ===== */
+@media (prefers-contrast: high) {
+    .whatsapp-btn,
+    .whatsapp-float {
+        border: 2px solid white !important;
+        box-shadow: 0 0 0 2px #1DB954 !important;
+    }
+}
+
+/* ===== REDUCIR MOVIMIENTO PARA ACCESIBILIDAD ===== */
+@media (prefers-reduced-motion: reduce) {
+    .whatsapp-btn,
+    .whatsapp-float {
+        animation: none !important;
+        transition: none !important;
+    }
+    
+    .whatsapp-btn:hover,
+    .whatsapp-float:hover {
+        transform: translateX(-50%) !important; /* Solo para botón catálogo */
+    }
+    
+    .whatsapp-float:hover {
+        transform: none !important; /* Para botón flotante */
+    }
+}
+
+/* SPLASH MOBILE FIX - SIMPLE: Solo subir texto 2cm */
+
+/* Mobile - 767px y menores */
+@media (max-width: 767px) {
+    
+    /* SOLO mover el área de contenido de texto 2cm arriba */
+    .splash-content-area {
+        margin-top: -75px; /* 2cm = ~75px */
+    }
+    
+    /* Loading section también subirlo un poco */
+    .loading-section {
+        bottom: 100px; /* En lugar de 30px, subirlo a 100px del bottom */
+    }
+    
+    /* TODO LO DEMÁS SE MANTIENE IGUAL - NO TOCAR NADA MÁS */
+}
+
+/* Mobile pequeño */
+@media (max-width: 480px) {
+    .splash-content-area {
+        margin-top: -60px; /* Un poco menos en pantallas pequeñas */
+    }
+    
+    .loading-section {
+        bottom: 80px;
+    }
+}
+
+
+/* NAVBAR ULTRA PROFESIONAL Y ELEGANTE - Estilo Premium */
+
+/* Contenedor de la marca/logo */
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 8px 0;
+}
+
+.brand-link {
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.brand-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    padding: 12px 20px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.03) 0%, 
+        rgba(189, 147, 249, 0.05) 50%, 
+        rgba(255, 255, 255, 0.02) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Efecto elegante al hover del contenedor */
+.brand-link:hover .brand-logo {
+    background: linear-gradient(135deg, 
+        rgba(189, 147, 249, 0.08) 0%, 
+        rgba(80, 250, 123, 0.06) 50%, 
+        rgba(255, 121, 198, 0.04) 100%);
+    border-color: rgba(189, 147, 249, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 
+        0 8px 32px rgba(189, 147, 249, 0.15),
+        0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* COMERCIALIZADORA Y DISTRIBUIDORA - Texto principal ultra elegante */
+.brand-text {
+    font-family: 'Inter', 'Segoe UI', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    font-size: 0.85rem !important;
+    font-weight: 500 !important;
+    color: #e8eaed !important;
+    letter-spacing: 1.2px !important;
+    line-height: 1.1 !important;
+    text-transform: uppercase !important;
+    margin-bottom: 4px !important;
+    
+    /* Efecto premium con múltiples sombras */
+    text-shadow: 
+        0 1px 2px rgba(0, 0, 0, 0.4),
+        0 2px 8px rgba(189, 147, 249, 0.1) !important;
+    
+    /* Transición ultra suave */
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1) !important;
+    
+    /* Gradiente sutil en el texto */
+    background: linear-gradient(135deg, #ffffff 0%, #e8eaed 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* HG S.A.S - Texto destacado con estilo premium */
+.brand-highlight {
+    font-family: 'Inter', 'Segoe UI', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    font-size: 1.15rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 2px !important;
+    line-height: 1 !important;
+    
+    /* Gradiente elegante en el texto */
+    background: linear-gradient(135deg, 
+        #bd93f9 0%, 
+        #ff79c6 50%, 
+        #50fa7b 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    background-size: 200% 200% !important;
+    animation: gradientShift 6s ease infinite !important;
+    
+    /* Efectos de resplandor múltiple */
+    filter: drop-shadow(0 0 8px rgba(189, 147, 249, 0.3)) 
+            drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2)) !important;
+    
+    /* Transición premium */
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1) !important;
+    
+    /* Pequeño icono decorativo antes del texto */
+    position: relative;
+}
+
+.brand-highlight::before {
+    content: '◆';
+    position: absolute;
+    left: -15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.6rem;
+    color: rgba(189, 147, 249, 0.6);
+    transition: all 0.3s ease;
+}
+
+/* Efectos hover ultra elegantes */
+.brand-link:hover .brand-text {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.3),
+        0 4px 12px rgba(189, 147, 249, 0.2);
+    letter-spacing: 1.5px;
+}
+
+.brand-link:hover .brand-highlight {
+    background-size: 100% 100% !important;
+    filter: drop-shadow(0 0 15px rgba(189, 147, 249, 0.5)) 
+            drop-shadow(0 0 25px rgba(255, 121, 198, 0.3)) 
+            drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2)) !important;
+    transform: scale(1.05);
+}
+
+.brand-link:hover .brand-highlight::before {
+    color: rgba(80, 250, 123, 0.8);
+    transform: translateY(-50%) rotate(45deg) scale(1.2);
+}
+
+/* Animación del gradiente */
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+/* Efecto de brillo que pasa por el texto ocasionalmente */
+.brand-logo::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.1) 50%, 
+        transparent 100%);
+    animation: shine 8s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes shine {
+    0%, 90%, 100% { left: -100%; opacity: 0; }
+    5%, 15% { left: 100%; opacity: 1; }
+}
+
+/* Responsive elegante */
+@media (max-width: 767px) {
+    .brand-logo {
+        padding: 8px 12px;
+    }
+    
+    .brand-text {
+        font-size: 0.7rem !important;
+        letter-spacing: 0.8px !important;
+    }
+    
+    .brand-highlight {
+        font-size: 0.9rem !important;
+        letter-spacing: 1.5px !important;
+    }
+    
+    .brand-highlight::before {
+        left: -10px;
+        font-size: 0.5rem;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .brand-text {
+        font-size: 0.8rem !important;
+        letter-spacing: 1px !important;
+    }
+    
+    .brand-highlight {
+        font-size: 1rem !important;
+        letter-spacing: 1.8px !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .brand-logo {
+        padding: 15px 25px;
+    }
+    
+    .brand-text {
+        font-size: 0.9rem !important;
+        letter-spacing: 1.4px !important;
+    }
+    
+    .brand-highlight {
+        font-size: 1.25rem !important;
+        letter-spacing: 2.5px !important;
+    }
+}
+
+/* Estados especiales del header */
+.header.transparent .brand-text {
+    text-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.8),
+        0 4px 16px rgba(189, 147, 249, 0.2);
+}
+
+.header.scrolled .brand-logo {
+    background: linear-gradient(135deg, 
+        rgba(15, 15, 35, 0.95) 0%, 
+        rgba(30, 30, 63, 0.9) 100%);
+    border-color: rgba(189, 147, 249, 0.15);
+}
+
+/* Efecto de focus para accesibilidad */
+.brand-link:focus-visible {
+    outline: 2px solid rgba(189, 147, 249, 0.6);
+    outline-offset: 4px;
+    border-radius: 8px;
+}
+
+/* Animación de aparición inicial */
+.brand-logo {
+    animation: brandAppear 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    opacity: 0;
+}
+
+@keyframes brandAppear {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.9);
+    }
+    60% {
+        opacity: 0.8;
+        transform: translateY(2px) scale(1.02);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}

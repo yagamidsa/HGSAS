@@ -2906,14 +2906,13 @@ if (typeof module !== 'undefined' && module.exports) {
 
 
 
+
 /* ===================================================================
-   🚀 CÓDIGO LIMPIO DE PRODUCCIÓN - SIN DEBUG
-   🎯 Solo funcionalidad, sin console.log ni debug
+   🔧 APLICAR CLASES ESPECÍFICAS PARA ROSADO Y CEREZA
+   🎯 Agregar clases automáticamente cuando se abren estos catálogos
    =================================================================== */
 
-// REEMPLAZAR TODO EL CÓDIGO ANTERIOR CON ESTE:
-
-// Detectar apertura de catálogos específicos - VERSIÓN LIMPIA
+// Detectar apertura de catálogos específicos
 document.addEventListener('click', function(e) {
     const button = e.target;
     
@@ -2921,6 +2920,7 @@ document.addEventListener('click', function(e) {
         const card = button.closest('.product-card');
         
         if (card) {
+            // Detectar tipo de producto
             const isRosado = card.classList.contains('rosado') || 
                            card.textContent.toLowerCase().includes('rosado');
             
@@ -2928,6 +2928,9 @@ document.addEventListener('click', function(e) {
                            card.textContent.toLowerCase().includes('cereza');
             
             if (isRosado || isCereza) {
+                console.log(`🎯 Detectado click en ${isRosado ? 'Rosado' : 'Cereza'}`);
+                
+                // Aplicar clase específica después de que se abra el modal
                 setTimeout(() => {
                     applySpecificClass(isRosado ? 'rosado' : 'cereza');
                 }, 200);
@@ -2940,13 +2943,27 @@ function applySpecificClass(productType) {
     const modal = document.querySelector('.catalog-modal.active, .catalog-modal.catalog-open, .catalog-modal[style*="block"]');
     
     if (modal) {
+        // Limpiar clases anteriores
         modal.classList.remove('rosado-active', 'cereza-active', 'blanco-active', 'manzana-active', 'uva-active');
+        
+        // Aplicar clase específica
         modal.classList.add(`${productType}-active`);
         modal.setAttribute('data-product', productType);
+        
+        console.log(`✅ Clase aplicada: ${productType}-active`);
+        
+        // Verificar que se aplicó el padding
+        setTimeout(() => {
+            const catalogSection = modal.querySelector('.catalog-section');
+            if (catalogSection) {
+                const computedStyle = window.getComputedStyle(catalogSection);
+                console.log(`📏 Padding aplicado: ${computedStyle.padding}`);
+            }
+        }, 100);
     }
 }
 
-// Observer simplificado - SIN DEBUG
+// Observer para detectar modales que aparecen dinámicamente
 const modalObserver = new MutationObserver(mutations => {
     mutations.forEach(mutation => {
         if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
@@ -2955,12 +2972,14 @@ const modalObserver = new MutationObserver(mutations => {
             if (modal.classList.contains('catalog-modal') && 
                 (modal.classList.contains('active') || modal.classList.contains('catalog-open'))) {
                 
+                // Detectar producto por contenido del modal
                 setTimeout(() => {
                     detectProductFromModal(modal);
                 }, 100);
             }
         }
         
+        // También observar cuando se agregan elementos al DOM
         if (mutation.type === 'childList') {
             mutation.addedNodes.forEach(node => {
                 if (node.nodeType === 1 && node.classList?.contains('catalog-modal')) {
@@ -2992,8 +3011,9 @@ function detectProductFromModal(modal) {
     }
 }
 
-// Inicialización simple
+// Inicializar observer
 document.addEventListener('DOMContentLoaded', () => {
+    // Observar cambios en modales existentes
     const modals = document.querySelectorAll('.catalog-modal, .product-modal');
     modals.forEach(modal => {
         modalObserver.observe(modal, { 
@@ -3002,230 +3022,40 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
+    // Observar todo el documento para modales que se crean dinámicamente
     modalObserver.observe(document.body, {
         childList: true,
         subtree: true,
         attributes: true,
         attributeFilter: ['class', 'style']
     });
-});
-
-// ELIMINAR estas funciones de debug:
-// window.testSpecificClass = function() { ... }
-// window.checkActiveClass = function() { ... }
-// window.diagnosticImages = function() { ... }
-// window.debugCatalogImages = function() { ... }
-// window.fixRosadoCereza = function() { ... }
-
-// SCROLL FIX SIMPLE - SIN DEBUG
-function resetCatalogScroll() {
-    const catalogContent = document.querySelector('.catalog-content');
-    if (catalogContent) {
-        catalogContent.scrollTop = 0;
-    }
-}
-
-// Aplicar scroll reset cuando se abre catálogo
-document.addEventListener('click', function(e) {
-    if (e.target.classList.contains('catalog-btn') || e.target.closest('.catalog-btn')) {
-        setTimeout(() => {
-            resetCatalogScroll();
-        }, 300);
-    }
-});
-
-// Observer para reset de scroll - SIMPLIFICADO
-const scrollObserver = new MutationObserver(mutations => {
-    mutations.forEach(mutation => {
-        if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-            const modal = mutation.target;
-            if (modal.classList.contains('catalog-modal') && 
-                (modal.classList.contains('active') || modal.classList.contains('catalog-open'))) {
-                setTimeout(resetCatalogScroll, 100);
-            }
-        }
-    });
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-    const modals = document.querySelectorAll('.catalog-modal');
-    modals.forEach(modal => {
-        scrollObserver.observe(modal, { 
-            attributes: true, 
-            attributeFilter: ['class'] 
-        });
-    });
-});
-
-
-
-/* ===================================================================
-   🔒 JAVASCRIPT - ELIMINAR SCROLL DE PRODUCTS SECTION
-   🎯 Forzar que solo el body tenga scroll
-   =================================================================== */
-
-// Función para eliminar scroll interno de products section
-function removeProductsScroll() {
-    // Encontrar la sección de productos
-    const productsSection = document.querySelector('.products-section, .productos-section, #productos');
     
-    if (productsSection) {
-        // Eliminar overflow de la sección
-        productsSection.style.overflow = 'visible';
-        productsSection.style.overflowX = 'visible';
-        productsSection.style.overflowY = 'visible';
-        productsSection.style.height = 'auto';
-        productsSection.style.maxHeight = 'none';
-        
-        // Eliminar overflow de elementos hijos
-        const children = productsSection.querySelectorAll('*');
-        children.forEach(child => {
-            // Solo eliminar overflow-x, mantener overflow-y donde sea necesario
-            child.style.overflowX = 'visible';
-            
-            // Eliminar height fijo que pueda causar scroll
-            if (child.style.height && child.style.height !== 'auto') {
-                child.style.height = 'auto';
-            }
-            
-            // Eliminar max-height problemático
-            if (child.style.maxHeight && 
-                !child.matches('textarea, .product-description, .modal-content, .catalog-content')) {
-                child.style.maxHeight = 'none';
-            }
-        });
-    }
-    
-    // Asegurar que el grid de productos no tenga scroll
-    const productsGrid = document.querySelector('.productos-grid, .products-grid');
-    if (productsGrid) {
-        productsGrid.style.overflow = 'visible';
-        productsGrid.style.height = 'auto';
-        productsGrid.style.maxHeight = 'none';
-    }
-    
-    // Asegurar que las cards no tengan scroll interno
-    const productCards = document.querySelectorAll('.product-card');
-    productCards.forEach(card => {
-        card.style.overflow = 'visible';
-        card.style.height = 'auto';
-        card.style.maxHeight = 'none';
-    });
-}
-
-// Función para forzar scroll solo en body
-function enforceBodyScroll() {
-    // Asegurar que el body puede hacer scroll
-    document.body.style.overflowY = 'auto';
-    document.body.style.overflowX = 'hidden';
-    document.body.style.height = 'auto';
-    document.body.style.minHeight = '100vh';
-    
-    // Asegurar que html puede hacer scroll
-    document.documentElement.style.overflowY = 'auto';
-    document.documentElement.style.overflowX = 'hidden';
-    
-    // Eliminar overflow de elementos que no lo necesitan
-    const elementsToFix = document.querySelectorAll('main, .main-content, .page-wrapper, section:not(.catalog-modal)');
-    elementsToFix.forEach(element => {
-        if (!element.classList.contains('catalog-content') && 
-            !element.classList.contains('modal-content')) {
-            element.style.overflow = 'visible';
-            element.style.height = 'auto';
-        }
-    });
-}
-
-// Función para detectar y corregir elementos problemáticos
-function fixOverflowIssues() {
-    // Buscar elementos con overflow problemático
-    const allElements = document.querySelectorAll('*');
-    
-    allElements.forEach(element => {
-        const computedStyle = window.getComputedStyle(element);
-        
-        // Si tiene overflow-y: scroll o auto y no es un elemento que lo necesite
-        if ((computedStyle.overflowY === 'scroll' || computedStyle.overflowY === 'auto') &&
-            !element.matches('.catalog-content, .modal-content, textarea, .scrollable, pre')) {
-            
-            // Verificar si realmente necesita scroll
-            if (element.scrollHeight <= element.clientHeight + 10) {
-                element.style.overflow = 'visible';
-            }
-        }
-    });
-}
-
-// Ejecutar al cargar la página
-document.addEventListener('DOMContentLoaded', () => {
-    removeProductsScroll();
-    enforceBodyScroll();
-    
-    // Verificar después de que se carguen las imágenes
-    setTimeout(() => {
-        fixOverflowIssues();
-    }, 1000);
+    console.log('🎯 Sistema de clases específicas inicializado');
 });
 
-// Ejecutar cuando se redimensiona la ventana
-window.addEventListener('resize', () => {
-    setTimeout(() => {
-        removeProductsScroll();
-        enforceBodyScroll();
-    }, 100);
-});
-
-// Observer para elementos que se agregan dinámicamente
-const scrollObserver = new MutationObserver(mutations => {
-    mutations.forEach(mutation => {
-        if (mutation.type === 'childList') {
-            mutation.addedNodes.forEach(node => {
-                if (node.nodeType === 1) {
-                    // Si se agrega un elemento en products section
-                    if (node.closest('.products-section, .productos-section')) {
-                        setTimeout(() => {
-                            removeProductsScroll();
-                        }, 100);
-                    }
-                }
-            });
-        }
-    });
-});
-
-// Inicializar observer
-document.addEventListener('DOMContentLoaded', () => {
-    const productsSection = document.querySelector('.products-section, .productos-section, #productos');
-    if (productsSection) {
-        scrollObserver.observe(productsSection, {
-            childList: true,
-            subtree: true
-        });
-    }
-});
-
-// Función manual para corregir scroll
-window.fixProductsScroll = function() {
-    removeProductsScroll();
-    enforceBodyScroll();
-    fixOverflowIssues();
+// Función manual para testing
+window.testSpecificClass = function(productType) {
+    console.log(`🧪 Probando clase para: ${productType}`);
+    applySpecificClass(productType);
 };
 
-// Aplicar también cuando se actualiza el DOM
-if (typeof MutationObserver !== 'undefined') {
-    const observer = new MutationObserver(() => {
-        // Solo ejecutar si no hay modal abierto
-        const openModal = document.querySelector('.catalog-modal.active, .catalog-modal.catalog-open');
-        if (!openModal) {
-            setTimeout(() => {
-                removeProductsScroll();
-                enforceBodyScroll();
-            }, 300);
+// Función para verificar qué clase está activa
+window.checkActiveClass = function() {
+    const modal = document.querySelector('.catalog-modal.active, .catalog-modal.catalog-open');
+    if (modal) {
+        const classes = Array.from(modal.classList).filter(c => c.includes('-active'));
+        const dataProduct = modal.getAttribute('data-product');
+        console.log(`📊 Clases activas: ${classes.join(', ')}`);
+        console.log(`📊 Data product: ${dataProduct}`);
+        
+        const catalogSection = modal.querySelector('.catalog-section');
+        if (catalogSection) {
+            const style = window.getComputedStyle(catalogSection);
+            console.log(`📏 Padding actual: ${style.padding}`);
         }
-    });
-    
-    observer.observe(document.body, {
-        childList: true,
-        subtree: true
-    });
-}
+    } else {
+        console.log('❌ No hay modal activo');
+    }
+};
+
+console.log('🔧 JavaScript de clases específicas cargado - Usa checkActiveClass() para verificar');

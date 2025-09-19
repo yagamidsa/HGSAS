@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+                           http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+	<!-- Página Principal -->
+	<url>
+		<loc>
+			https://www.discomerhgsas.com.co/
+		</loc>
+		<lastmod>
+			2025-01-15
+		</lastmod>
+		<changefreq>
+			weekly
+		</changefreq>
+		<priority>
+			1.0
+		</priority>
+		<mobile />
+		<image>
+			<loc>
+				https://www.discomerhgsas.com.co/assets/images/products/ajedrez-collection.webp
+			</loc>
+			<title>
+				Colección completa AJEDREZ - 4 variedades de vinos espumosos sin alcohol
+			</title>
+			<caption>
+				AJEDREZ Rosado, Cereza, Manzana y Uva - Vinos espumosos premium sin alcohol distribuidos por COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S
+			</caption>
+		</image>
+	</url>
+	<!-- Sección Productos -->
+	<url>
+		<loc>
+			https://www.discomerhgsas.com.co/#productos
+		</loc>
+		<lastmod>
+			2025-01-15
+		</lastmod>
+		<changefreq>
+			monthly
+		</changefreq>
+		<priority>
+			0.9
+		</priority>
+		<mobile />
+		<image>
+			<loc>
+				https://www.discomerhgsas.com.co/assets/images/products/ajedrez-rosado.webp
+			</loc>
+			<title>
+				AJEDREZ Rosado - Vino espumoso sin alcohol 750ml
+			</title>
+			<caption>
+				Elegancia y frescura para brindis especiales - AJEDREZ Rosado 750ml 0% Vol
+			</caption>
+		</image>
+		<image>
+			<loc>
+				https://www.discomerhgsas.com.co/assets/images/products/ajedrez-cereza.webp
+			</loc>
+			<title>
+				AJEDREZ Cereza - Vino espumoso sin alcohol 750ml
+			</title>
+			<caption>
+				Intensidad frutal para celebraciones únicas - AJEDREZ Cereza 750ml 0% Vol
+			</caption>
+		</image>
+		<image>
+			<loc>
+				https://www.discomerhgsas.com.co/assets/images/products/ajedrez-manzana.webp
+			</loc>
+			<title>
+				AJEDREZ Manzana - Vino espumoso sin alcohol 750ml
+			</title>
+			<caption>
+				Refrescancia natural y sofisticación - AJEDREZ Manzana 750ml 0% Vol
+			</caption>
+		</image>
+		<image>
+			<loc>
+				https://www.discomerhgsas.com.co/assets/images/products/ajedrez-uva.webp
+			</loc>
+			<title>
+				AJEDREZ Uva - Vino espumoso sin alcohol 750ml
+			</title>
+			<caption>
+				Tradición y calidad en cada sorbo - AJEDREZ Uva 750ml 0% Vol
+			</caption>
+		</image>
+	</url>
+	<!-- Sección Quiénes Somos -->
+	<url>
+		<loc>
+			https://www.discomerhgsas.com.co/#quienes-somos
+		</loc>
+		<lastmod>
+			2025-01-15
+		</lastmod>
+		<changefreq>
+			quarterly
+		</changefreq>
+		<priority>
+			0.8
+		</priority>
+		<mobile />
+	</url>
+	<!-- Sección Contacto -->
+	<url>
+		<loc>
+			https://www.discomerhgsas.com.co/#contacto
+		</loc>
+		<lastmod>
+			2025-01-15
+		</lastmod>
+		<changefreq>
+			monthly
+		</changefreq>
+		<priority>
+			0.8
+		</priority>
+		<mobile />
+	</url>
+	<!-- Sección Testimonios -->
+	<url>
+		<loc>
+			https://www.discomerhgsas.com.co/#testimonios
+		</loc>
+		<lastmod>
+			2025-01-15
+		</lastmod>
+		<changefreq>
+			monthly
+		</changefreq>
+		<priority>
+			0.7
+		</priority>
+		<mobile />
+	</url>
+	<!-- Sección Galería -->
+	<url>
+		<loc>
+			https://www.discomerhgsas.com.co/#galeria
+		</loc>
+		<lastmod>
+			2025-01-15
+		</lastmod>
+		<changefreq>
+			monthly
+		</changefreq>
+		<priority>
+			0.6
+		</priority>
+		<mobile />
+		<image>
+			<loc>
+				https://www.discomerhgsas.com.co/assets/images/gallery/evento-corporativo.webp
+			</loc>
+			<title>
+				AJEDREZ en evento corporativo
+			</title>
+			<caption>
+				Productos AJEDREZ siendo utilizados en eventos empresariales
+			</caption>
+		</image>
+		<image>
+			<loc>
+				https://www.discomerhgsas.com.co/assets/images/gallery/celebracion-familiar.webp
+			</loc>
+			<title>
+				AJEDREZ en celebración familiar
+			</title>
+			<caption>
+				Vinos espumosos sin alcohol AJEDREZ para celebraciones familiares
+			</caption>
+		</image>
+		<image>
+			<loc>
+				https://www.discomerhgsas.com.co/assets/images/gallery/brindis-especial.webp
+			</loc>
+			<title>
+				Brindis especial con AJEDREZ
+			</title>
+			<caption>
+				Momentos especiales con vinos espumosos sin alcohol AJEDREZ
+			</caption>
+		</image>
+	</url>
+	<!-- Sección Noticias -->
+	<url>
+		<loc>
+			https://www.discomerhgsas.com.co/#noticias
+		</loc>
+		<lastmod>
+			2025-01-15
+		</lastmod>
+		<changefreq>
+			weekly
+		</changefreq>
+		<priority>
+			0.6
+		</priority>
+		<mobile />
+	</url>
+	<!-- Páginas de productos individuales (si existen) -->
+	<url>
+		<loc>
+			https://www.discomerhgsas.com.co/productos/ajedrez-rosado
+		</loc>
+		<lastmod>
+			2025-01-15
+		</lastmod>
+		<changefreq>
+			monthly
+		</changefreq>
+		<priority>
+			0.7
+		</priority>
+		<mobile />
+		<image>
+			<loc>
+				https://www.discomerhgsas.com.co/assets/images/products/ajedrez-rosado-detail.webp
+			</loc>
+			<title>
+				AJEDREZ Rosado - Vista detallada
+			</title>
+			<caption>
+				Detalles completos del vino espumoso sin alcohol AJEDREZ Rosado 750ml
+			</caption>
+		</image>
+	</url>
+	<url>
+		<loc>
+			https://www.discomerhgsas.com.co/productos/ajedrez-cereza
+		</loc>
+		<lastmod>
+			2025-01-15
+		</lastmod>
+		<changefreq>
+			monthly
+		</changefreq>
+		<priority>
+			0.7
+		</priority>
+		<mobile />
+		<image>
+			<loc>
+				https://www.discomerhgsas.com.co/assets/images/products/ajedrez-cereza-detail.webp
+			</loc>
+			<title>
+				AJEDREZ Cereza - Vista detallada
+			</title>
+			<caption>
+				Detalles completos del vino espumoso sin alcohol AJEDREZ Cereza 750ml
+			</caption>
+		</image>
+	</url>
+	<url>
+		<loc>
+			https://www.discomerhgsas.com.co/productos/ajedrez-manzana
+		</loc>
+		<lastmod>
+			2025-01-15
+		</lastmod>
+		<changefreq>
+			monthly
+		</changefreq>
+		<priority>
+			0.7
+		</priority>
+		<mobile />
+		<image>
+			<loc>
+				https://www.discomerhgsas.com.co/assets/images/products/ajedrez-manzana-detail.webp
+			</loc>
+			<title>
+				AJEDREZ Manzana - Vista detallada
+			</title>
+			<caption>
+				Detalles completos del vino espumoso sin alcohol AJEDREZ Manzana 750ml
+			</caption>
+		</image>
+	</url>
+	<url>
+		<loc>
+			https://www.discomerhgsas.com.co/productos/ajedrez-uva
+		</loc>
+		<lastmod>
+			2025-01-15
+		</lastmod>
+		<changefreq>
+			monthly
+		</changefreq>
+		<priority>
+			0.7
+		</priority>
+		<mobile />
+		<image>
+			<loc>
+				https://www.discomerhgsas.com.co/assets/images/products/ajedrez-uva-detail.webp
+			</loc>
+			<title>
+				AJEDREZ Uva - Vista detallada
+			</title>
+			<caption>
+				Detalles completos del vino espumoso sin alcohol AJEDREZ Uva 750ml
+			</caption>
+		</image>
+	</url>
+	<!-- Página de Política de Privacidad -->
+	<url>
+		<loc>
+			https://www.discomerhgsas.com.co/politica-privacidad
+		</loc>
+		<lastmod>
+			2025-01-15
+		</lastmod>
+		<changefreq>
+			yearly
+		</changefreq>
+		<priority>
+			0.3
+		</priority>
+		<mobile />
+	</url>
+	<!-- Página de Términos y Condiciones -->
+	<url>
+		<loc>
+			https://www.discomerhgsas.com.co/terminos-condiciones
+		</loc>
+		<lastmod>
+			2025-01-15
+		</lastmod>
+		<changefreq>
+			yearly
+		</changefreq>
+		<priority>
+			0.3
+		</priority>
+		<mobile />
+	</url>
+	<!-- Página de Cookies -->
+	<url>
+		<loc>
+			https://www.discomerhgsas.com.co/politica-cookies
+		</loc>
+		<lastmod>
+			2025-01-15
+		</lastmod>
+		<changefreq>
+			yearly
+		</changefreq>
+		<priority>
+			0.3
+		</priority>
+		<mobile />
+	</url>
+</urlset>

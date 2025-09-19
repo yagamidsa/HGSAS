@@ -7178,132 +7178,214 @@ select option:selected {
 
 
 /* ===================================================================
-   🔒 BLOQUEAR SCROLL DE PRODUCTS-SECTION - SOLO BODY
-   🎯 Eliminar scroll interno de la sección productos
+   🖼️ FIX PARA IMÁGENES HERO - RESTAURAR ORIGINAL
+   🎯 Quitar el puto recuadro y scroll que se agregó por error
    =================================================================== */
 
-/* Eliminar cualquier scroll interno de la sección productos */
-.products-section {
+/* RESETEAR IMÁGENES PRINCIPALES - COMO ESTABAN ANTES */
+.hero-image img,
+.hero-main-image,
+.products-section img,
+.product-card img,
+.product-image img {
+    /* QUITAR toda la mierda que agregué */
     overflow: visible !important;
-    overflow-x: visible !important;
-    overflow-y: visible !important;
+    height: auto !important;
+    max-height: none !important;
+    border: none !important;
+    background: none !important;
+    padding: 0 !important;
+    margin: 0 auto !important;
+    display: block !important;
+    
+    /* Propiedades normales de imagen */
+    width: 100% !important;
+    object-fit: cover !important;
+    border-radius: 8px !important;
+}
+
+/* QUITAR RECUADROS RAROS */
+.hero-image,
+.product-image {
+    overflow: visible !important;
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
     height: auto !important;
     max-height: none !important;
 }
 
-/* Asegurar que el contenedor de productos no haga scroll */
+/* BOTONES DE DETALLES - RESTAURAR */
+.catalog-btn,
+.product-actions .catalog-btn,
+.btn-catalog {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 10 !important;
+    pointer-events: auto !important;
+    
+    /* Estilos del botón */
+    background: linear-gradient(135deg, #bd93f9, #ff79c6) !important;
+    border: none !important;
+    padding: 12px 24px !important;
+    border-radius: 25px !important;
+    color: white !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    text-decoration: none !important;
+    font-size: 0.95rem !important;
+}
+
+.catalog-btn:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 25px rgba(189, 147, 249, 0.4) !important;
+}
+
+/* PRODUCT CARDS - RESTAURAR LAYOUT ORIGINAL */
+.product-card {
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
+    background: rgba(30, 30, 63, 0.3) !important;
+    border-radius: 15px !important;
+    padding: 20px !important;
+    transition: all 0.3s ease !important;
+    border: 1px solid rgba(189, 147, 249, 0.2) !important;
+}
+
+.product-card:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 15px 40px rgba(189, 147, 249, 0.3) !important;
+    border-color: #bd93f9 !important;
+}
+
+/* GRID DE PRODUCTOS - NORMAL */
+.productos-grid,
+.products-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+    gap: 30px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
+}
+
+/* RESPONSIVE NORMAL */
+@media (max-width: 768px) {
+    .productos-grid,
+    .products-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+    
+    .product-card {
+        margin-bottom: 0 !important;
+    }
+}
+
+/* SECTION PRODUCTS - SIN SCROLL INTERNO PERO SIN JODER IMÁGENES */
+.products-section {
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
+    padding: 80px 0 !important;
+}
+
 .products-section .container {
     overflow: visible !important;
     height: auto !important;
     max-height: none !important;
 }
 
-/* Grid de productos sin scroll interno */
-.productos-grid,
-.products-grid {
+/* HERO SECTION - RESTAURAR */
+.hero {
     overflow: visible !important;
-    overflow-x: visible !important;
-    overflow-y: visible !important;
-    height: auto !important;
-    max-height: none !important;
-    display: grid !important;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
-    gap: 30px !important;
-}
-
-/* Cada card de producto sin scroll */
-.product-card {
-    overflow: visible !important;
-    height: auto !important;
-    max-height: none !important;
-    position: relative !important;
-}
-
-/* Eliminar scroll de cualquier elemento dentro de productos */
-.products-section * {
-    overflow-x: visible !important;
-}
-
-/* Solo permitir scroll-y en elementos específicos que lo necesiten */
-.products-section .product-description {
-    overflow-y: auto !important;
-    max-height: 100px !important; /* Solo si es necesario */
-}
-
-/* Responsive - mantener sin scroll interno */
-@media (max-width: 768px) {
-    .products-section {
-        overflow: visible !important;
-        height: auto !important;
-    }
-    
-    .productos-grid,
-    .products-grid {
-        grid-template-columns: 1fr !important;
-        gap: 20px !important;
-        overflow: visible !important;
-    }
-    
-    .product-card {
-        margin-bottom: 20px !important;
-        overflow: visible !important;
-    }
-}
-
-/* Forzar que solo el body tenga scroll */
-html {
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
-}
-
-body {
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
     height: auto !important;
     min-height: 100vh !important;
+    display: flex !important;
+    align-items: center !important;
 }
 
-/* Eliminar scroll horizontal en toda la página */
-* {
-    overflow-x: hidden !important;
+.hero-content {
+    display: flex !important;
+    align-items: center !important;
+    gap: 50px !important;
+    width: 100% !important;
 }
 
-/* Excepciones donde sí necesitamos scroll */
-.catalog-content,
-.modal-content,
-textarea,
-input[type="text"],
-pre,
-code {
-    overflow-x: auto !important;
+.hero-image {
+    flex: 1 !important;
+    text-align: center !important;
 }
 
-/* Fix específico si tienes algún contenedor problemático */
-.section-container,
-.main-content,
-.page-wrapper {
-    overflow: visible !important;
-    height: auto !important;
+.hero-text {
+    flex: 1 !important;
 }
 
-/* Asegurar que las imágenes no causen overflow */
-.products-section img {
-    max-width: 100% !important;
-    height: auto !important;
-    object-fit: contain !important;
-}
-
-/* Grid responsive sin overflow */
-@media (max-width: 480px) {
-    .productos-grid,
-    .products-grid {
-        padding: 0 15px !important;
-        overflow: visible !important;
+/* RESPONSIVE HERO */
+@media (max-width: 768px) {
+    .hero-content {
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: 30px !important;
     }
     
-    .product-card {
-        width: 100% !important;
-        max-width: 100% !important;
-        overflow: visible !important;
+    .hero-image {
+        order: 1 !important;
+    }
+    
+    .hero-text {
+        order: 2 !important;
+    }
+}
+
+
+/* ===================================================================
+   📱 PADDING ESPECÍFICO SOLO PARA ROSADO Y CEREZA
+   🎯 Aplicar padding: 65px solo en estos dos catálogos
+   =================================================================== */
+
+/* Padding específico para catálogo de ROSADO */
+@media (max-width: 767px) {
+    .catalog-modal[data-product="rosado"] .catalog-section,
+    .catalog-modal:has(.product-title:contains("ROSADO")) .catalog-section,
+    .rosado-catalog .catalog-section {
+        padding: 65px !important;
+        min-height: 60px !important;
+    }
+}
+
+/* Padding específico para catálogo de CEREZA */
+@media (max-width: 767px) {
+    .catalog-modal[data-product="cereza"] .catalog-section,
+    .catalog-modal:has(.product-title:contains("CEREZA")) .catalog-section,
+    .cereza-catalog .catalog-section {
+        padding: 65px !important;
+        min-height: 60px !important;
+    }
+}
+
+/* Si no funcionan los selectores de arriba, usar clases dinámicas */
+@media (max-width: 767px) {
+    .catalog-modal.rosado-active .catalog-section,
+    .catalog-modal.cereza-active .catalog-section {
+        padding: 65px !important;
+        min-height: 60px !important;
+    }
+}
+
+/* Mantener padding normal para otros productos */
+@media (max-width: 767px) {
+    .catalog-modal[data-product="blanco"] .catalog-section,
+    .catalog-modal[data-product="manzana"] .catalog-section,
+    .catalog-modal[data-product="uva"] .catalog-section {
+        padding: 30px !important; /* Padding normal */
+        min-height: auto !important;
     }
 }

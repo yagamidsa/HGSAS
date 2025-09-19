@@ -1,0 +1,304 @@
+# .htaccess para COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S
+# Optimización, Seguridad y SEO
+
+# ===== CONFIGURACIÓN BÁSICA =====
+Options -Indexes
+Options +FollowSymLinks
+ServerSignature Off
+
+# ===== SEGURIDAD =====
+
+# Proteger archivos sensibles
+<Files ".htaccess">
+    Order allow,deny
+    Deny from all
+</Files>
+
+<Files "*.log">
+    Order allow,deny
+    Deny from all
+</Files>
+
+<Files "*.sql">
+    Order allow,deny
+    Deny from all
+</Files>
+
+<Files "*.env">
+    Order allow,deny
+    Deny from all
+</Files>
+
+<Files "composer.json">
+    Order allow,deny
+    Deny from all
+</Files>
+
+<Files "package.json">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Bloquear acceso a directorios de desarrollo
+RedirectMatch 403 /\.git
+RedirectMatch 403 /node_modules
+RedirectMatch 403 /vendor
+RedirectMatch 403 /\.env
+
+# Headers de seguridad
+<IfModule mod_headers.c>
+    # Prevenir XSS
+    Header always set X-XSS-Protection "1; mode=block"
+    
+    # Prevenir MIME sniffing
+    Header always set X-Content-Type-Options "nosniff"
+    
+    # Clickjacking protection
+    Header always set X-Frame-Options "SAMEORIGIN"
+    
+    # Referrer policy
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # Content Security Policy
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://connect.facebook.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://stats.g.doubleclick.net; frame-src 'self' https://www.google.com"
+    
+    # Permissions Policy
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), fullscreen=(self)"
+    
+    # HSTS (solo si tienes HTTPS)
+    # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+</IfModule>
+
+# ===== COMPRESIÓN GZIP =====
+<IfModule mod_deflate.c>
+    # Comprimir HTML, CSS, JavaScript, Text, XML
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/json
+    AddOutputFilterByType DEFLATE image/svg+xml
+    
+    # Excluir archivos ya comprimidos
+    SetEnvIfNoCase Request_URI \
+        \.(?:gif|jpe?g|png|webp|zip|gz|rar|bz2|7z)$ no-gzip dont-vary
+    SetEnvIfNoCase Request_URI \
+        \.(?:exe|t?gz|zip|bz2|sit|rar)$ no-gzip dont-vary
+</IfModule>
+
+# ===== CACHE CONTROL =====
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 1 month"
+    
+    # HTML
+    ExpiresByType text/html "access plus 1 week"
+    
+    # CSS y JavaScript
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType text/javascript "access plus 1 year"
+    
+    # Imágenes
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
+    
+    # Fuentes
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType application/font-woff "access plus 1 year"
+    ExpiresByType application/font-woff2 "access plus 1 year"
+    
+    # Manifest y otros
+    ExpiresByType application/manifest+json "access plus 1 week"
+    ExpiresByType text/cache-manifest "access plus 0 seconds"
+</IfModule>
+
+# ===== CACHE HEADERS =====
+<IfModule mod_headers.c>
+    # Cache para archivos estáticos
+    <FilesMatch "\.(css|js|png|jpg|jpeg|gif|webp|svg|woff|woff2|ttf|eot)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+    
+    # No cache para HTML
+    <FilesMatch "\.(html|htm|php)$">
+        Header set Cache-Control "no-cache, must-revalidate"
+    </FilesMatch>
+    
+    # Cache específico para manifest
+    <FilesMatch "manifest\.json$">
+        Header set Cache-Control "public, max-age=604800"
+    </FilesMatch>
+</IfModule>
+
+# ===== REWRITE RULES =====
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Forzar HTTPS (descomenta si tienes SSL)
+    # RewriteCond %{HTTPS} off
+    # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+    
+    # Forzar www (opcional)
+    # RewriteCond %{HTTP_HOST} !^www\. [NC]
+    # RewriteRule ^(.*)$ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+    
+    # Redirecciones específicas para el sitio
+    # Redirigir URLs antiguas si las hay
+    # RewriteRule ^old-page$ /new-page [R=301,L]
+    
+    # Pretty URLs para productos (si decides implementarlas)
+    RewriteRule ^productos/([^/]+)/?$ /index.html#productos [L,QSA]
+    RewriteRule ^contacto/?$ /index.html#contacto [L,QSA]
+    RewriteRule ^quienes-somos/?$ /index.html#quienes-somos [L,QSA]
+    
+    # Manejo de archivos inexistentes
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ /404.html [L]
+</IfModule>
+
+# ===== TIPOS MIME =====
+<IfModule mod_mime.c>
+    # JavaScript
+    AddType application/javascript .js
+    AddType text/javascript .js
+    
+    # CSS
+    AddType text/css .css
+    
+    # Imágenes modernas
+    AddType image/webp .webp
+    AddType image/avif .avif
+    
+    # Fuentes web
+    AddType font/woff .woff
+    AddType font/woff2 .woff2
+    AddType application/font-woff .woff
+    AddType application/font-woff2 .woff2
+    
+    # Manifest
+    AddType application/manifest+json .webmanifest
+    AddType application/manifest+json .json
+    
+    # SVG
+    AddType image/svg+xml .svg
+    
+    # Otros archivos útiles
+    AddType text/plain .txt
+    AddType application/xml .xml
+    AddType application/rss+xml .rss
+</IfModule>
+
+# ===== PREVENIR HOTLINKING =====
+<IfModule mod_rewrite.c>
+    RewriteCond %{HTTP_REFERER} !^$
+    RewriteCond %{HTTP_REFERER} !^https?://(www\.)?discomerhgsas\.com\.co [NC]
+    RewriteCond %{REQUEST_URI} \.(jpe?g|png|gif|webp|svg)$ [NC]
+    RewriteRule \.(jpe?g|png|gif|webp|svg)$ /assets/images/hotlink-protection.jpg [R=302,L]
+</IfModule>
+
+# ===== ERROR PAGES =====
+ErrorDocument 400 /error-pages/400.html
+ErrorDocument 401 /error-pages/401.html
+ErrorDocument 403 /error-pages/403.html
+ErrorDocument 404 /404.html
+ErrorDocument 500 /error-pages/500.html
+ErrorDocument 502 /error-pages/502.html
+ErrorDocument 503 /error-pages/503.html
+
+# ===== REDIRECTS ESPECÍFICOS =====
+# Redirect old domain to new (si aplica)
+# RewriteCond %{HTTP_HOST} ^old-domain\.com$ [NC]
+# RewriteRule ^(.*)$ https://www.discomerhgsas.com.co/$1 [R=301,L]
+
+# WhatsApp redirect
+RewriteRule ^whatsapp/?$ https://wa.me/573222284212?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20los%20productos%20AJEDREZ [R=302,L]
+
+# Social media redirects (si tienes redes sociales)
+# RewriteRule ^facebook/?$ https://www.facebook.com/tu-pagina [R=302,L]
+# RewriteRule ^instagram/?$ https://www.instagram.com/tu-cuenta [R=302,L]
+
+# ===== OPTIMIZACIÓN ADICIONAL =====
+<IfModule mod_env.c>
+    # Eliminar información del servidor
+    SetEnv SERVER_ADMIN webmaster@discomerhgsas.com.co
+    UnsetEnv SERVER_SOFTWARE
+    UnsetEnv SERVER_SIGNATURE
+</IfModule>
+
+# ===== CONFIGURACIÓN ESPECÍFICA PARA ARCHIVOS =====
+
+# Configuración para manifest.json
+<Files "manifest.json">
+    Header set Content-Type "application/manifest+json; charset=utf-8"
+    Header set Cache-Control "public, max-age=604800"
+</Files>
+
+# Configuración para sitemap.xml
+<Files "sitemap.xml">
+    Header set Content-Type "application/xml; charset=utf-8"
+    Header set Cache-Control "public, max-age=86400"
+</Files>
+
+# Configuración para robots.txt
+<Files "robots.txt">
+    Header set Content-Type "text/plain; charset=utf-8"
+    Header set Cache-Control "public, max-age=86400"
+</Files>
+
+# Configuración para archivos de fuentes
+<FilesMatch "\.(woff|woff2|ttf|eot)$">
+    Header set Access-Control-Allow-Origin "*"
+    Header set Cache-Control "public, max-age=31536000, immutable"
+</FilesMatch>
+
+# ===== BLOQUEAR IPs MALICIOSAS =====
+# Descomenta y agrega IPs problemáticas si es necesario
+# <RequireAll>
+#     Require all granted
+#     Require not ip 192.168.1.1
+#     Require not ip 10.0.0.0/8
+# </RequireAll>
+
+# ===== LIMITAR TAMAÑO DE SUBIDA =====
+# php_value upload_max_filesize 10M
+# php_value post_max_size 10M
+# php_value max_execution_time 300
+# php_value max_input_time 300
+
+# ===== CONFIGURACIÓN DE DIRECTORIO =====
+<IfModule mod_autoindex.c>
+    Options -Indexes
+    IndexIgnore *
+</IfModule>
+
+# ===== CONFIGURACIÓN PARA PWA =====
+<Files "sw.js">
+    Header set Content-Type "application/javascript; charset=utf-8"
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set Service-Worker-Allowed "/"
+</Files>
+
+# ===== CONFIGURACIÓN FINAL =====
+# Información del sitio web
+# Empresa: COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S
+# NIT: 901.000.572-1
+# Productos: AJEDREZ - Vinos Espumosos Sin Alcohol
+# Ubicación: Cundinamarca, Colombia
+# Fundación: 2016
+
+# Contacto técnico: webmaster@discomerhgsas.com.co
+# Última actualización: 2025-01-15

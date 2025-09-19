@@ -1,0 +1,309 @@
+/* ===================================================================
+   ANIMATIONS.CSS - COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S
+   Animaciones SEGURAS que NO afectan funcionalidad existente
+   =================================================================== */
+
+/* ===== VARIABLES DE ANIMACIÓN ===== */
+:root {
+    /* Timing Functions */
+    --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+    --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+    --ease-out-back: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    
+    /* Duraciones */
+    --duration-fast: 0.2s;
+    --duration-normal: 0.3s;
+    --duration-slow: 0.6s;
+}
+
+/* ===== SOLO ANIMACIONES DE ENTRADA PARA INTERSECTION OBSERVER ===== */
+
+/* Fade In - SOLO para elementos que NO sean navegación */
+.content-fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity var(--duration-slow) var(--ease-out-quart), 
+                transform var(--duration-slow) var(--ease-out-quart);
+}
+
+.content-fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Slide In desde diferentes direcciones - SOLO contenido estático */
+.content-slide-up {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity var(--duration-slow) var(--ease-out-back), 
+                transform var(--duration-slow) var(--ease-out-back);
+}
+
+.content-slide-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.content-slide-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity var(--duration-slow) var(--ease-out-back), 
+                transform var(--duration-slow) var(--ease-out-back);
+}
+
+.content-slide-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.content-slide-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity var(--duration-slow) var(--ease-out-back), 
+                transform var(--duration-slow) var(--ease-out-back);
+}
+
+.content-slide-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ===== ANIMACIONES ESPECÍFICAS SOLO PARA CONTENIDO ESTÁTICO ===== */
+
+/* Solo para elementos de contenido que NO interfieran con navegación */
+.testimonial-card.content-fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity var(--duration-slow) var(--ease-out-expo), 
+                transform var(--duration-slow) var(--ease-out-expo);
+}
+
+.testimonial-card.content-fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.info-card.content-fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity var(--duration-slow) var(--ease-out-back), 
+                transform var(--duration-slow) var(--ease-out-back);
+}
+
+.info-card.content-fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.gallery-item.content-fade-in {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity var(--duration-slow) var(--ease-out-expo), 
+                transform var(--duration-slow) var(--ease-out-expo);
+}
+
+.gallery-item.content-fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.news-card.content-fade-in {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity var(--duration-slow) var(--ease-out-back), 
+                transform var(--duration-slow) var(--ease-out-back);
+}
+
+.news-card.content-fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===== DELAYS ESCALONADOS SOLO PARA ELEMENTOS CON CLASE ESPECÍFICA ===== */
+.stagger-1 { transition-delay: 0.1s; }
+.stagger-2 { transition-delay: 0.2s; }
+.stagger-3 { transition-delay: 0.3s; }
+.stagger-4 { transition-delay: 0.4s; }
+
+/* ===== HERO SECTION ANIMATIONS - SIN AFECTAR FUNCIONALIDAD ===== */
+.hero-content {
+    animation: heroSlideIn 1s var(--ease-out-expo) forwards;
+}
+
+@keyframes heroSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px) translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) translateY(0);
+    }
+}
+
+.hero-visual {
+    animation: heroVisualSlideIn 1s var(--ease-out-expo) 0.3s both;
+}
+
+@keyframes heroVisualSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(50px) scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+/* ===== LOADING ANIMATIONS BÁSICAS ===== */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.spinner {
+    width: 24px;
+    height: 24px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top: 2px solid var(--accent-purple);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.02);
+    }
+}
+
+.pulse {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* ===== FLOATING ANIMATION SOLO PARA ELEMENTOS ESPECÍFICOS ===== */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.float {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* ===== UTILITY ANIMATIONS - NO AFECTAN FUNCIONALIDAD ===== */
+.fade-in-fast {
+    animation: fadeIn var(--duration-fast) var(--ease-out-quart) forwards;
+}
+
+.fade-out-fast {
+    animation: fadeOut var(--duration-fast) var(--ease-out-quart) forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+/* ===== SCROLL PROGRESS ANIMATION ===== */
+.scroll-progress .progress-fill {
+    transition: width 0.2s ease-out;
+}
+
+/* ===== REDUCIR MOVIMIENTO PARA ACCESIBILIDAD ===== */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ===== PROTECCIÓN ABSOLUTA PARA ELEMENTOS DE NAVEGACIÓN ===== */
+/* Estos elementos NO deben tener NINGUNA animación que interfiera */
+.whatsapp-float,
+.back-to-top,
+.skip-link,
+.product-catalog,
+.catalog-content,
+.catalog-close,
+.menu-orbital,
+.menu-hexagonal,
+.menu-morphing,
+.orbital-item,
+.hex-item,
+.morphing-item,
+.orbital-activator,
+.hex-activator,
+.morphing-trigger,
+.product-card,
+.product-open-catalog,
+.loading-screen,
+.header,
+.navbar,
+.menu-system {
+    /* NINGUNA animación automática */
+    animation: none !important;
+    transition-delay: 0s !important;
+}
+
+/* Remover cualquier transition conflictiva */
+.product-card,
+.menu-orbital *,
+.menu-hexagonal *,
+.menu-morphing * {
+    /* Solo permitir sus propias transiciones específicas */
+    animation: none !important;
+}
+
+/* Asegurar que los menús no sean afectados por Intersection Observer */
+.menu-orbital,
+.menu-hexagonal,
+.menu-morphing,
+.menu-system {
+    will-change: auto !important;
+    transform: none !important;
+    opacity: 1 !important;
+}
+
+/* ===== ANIMACIONES SIMPLES PARA TEXTO ===== */
+.text-reveal {
+    position: relative;
+    overflow: hidden;
+}
+
+.text-reveal.animate::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: var(--accent-purple);
+    animation: textReveal 1.5s var(--ease-out-expo) forwards;
+}
+
+@keyframes textReveal {
+    0% { width: 0; }
+    50% { width: 100%; }
+    100% { width: 0; left: 100%; }
+}
+
+

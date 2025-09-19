@@ -1,0 +1,3025 @@
+/* ===================================================================
+   CSS COMPLETO - GALERÍA BIEN ORDENADA MOBILE Y DESKTOP
+   =================================================================== */
+
+/* ===== CONTENEDORES BASE ===== */
+.gallery-item {
+    width: 100%;
+    height: 520px;
+    border: 2px solid rgba(189, 147, 249, 0.3);
+    border-radius: 20px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* ===== FLEXBOX DIFERENTE PARA CADA GRUPO ===== */
+
+/* Primeras dos: texto pegado abajo */
+.gallery-item:nth-child(1),
+.gallery-item:nth-child(2) {
+    justify-content: space-between;
+}
+
+/* Últimas dos: sin justify, para poder mover el texto */
+.gallery-item:nth-child(3),
+.gallery-item:nth-child(4) {
+    justify-content: flex-start;
+}
+
+/* ===== ÁREA DE IMAGEN ===== */
+.gallery-item .image-container,
+.gallery-item>div:first-child {
+    width: 100%;
+    height: 420px;
+    border-radius: 15px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    /* No se encoja */
+}
+
+/* ===== IMÁGENES ===== */
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 10px;
+}
+
+/* Ajuste para las últimas dos */
+.gallery-item:nth-child(3) img,
+.gallery-item:nth-child(4) img {
+    width: 100%;
+    height: 100%;
+    margin: -1%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* ===== TEXTO BASE ===== */
+.gallery-item h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--accent-purple);
+    text-align: left;
+    /* Cambiar a izquierda */
+    margin: 0;
+    padding: 15px 10px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    /* Alinear contenido a la izquierda */
+    background: rgba(15, 15, 35, 0.3);
+    border-radius: 10px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    /* No se encoja */
+}
+
+/* ===== TEXTO ESPECÍFICO POR GRUPO ===== */
+
+/* Primeras dos: sin margin-top (pegado abajo por space-between) */
+.gallery-item:nth-child(1) h3,
+.gallery-item:nth-child(2) h3 {
+    margin-top: 0;
+}
+
+/* Últimas dos: con margin-top para bajar */
+.gallery-item:nth-child(3) h3,
+.gallery-item:nth-child(4) h3 {
+    margin-top: 40px;
+}
+
+/* ===== GRID ===== */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* ===== HOVER ===== */
+.gallery-item:hover {
+    transform: translateY(-5px);
+    transition: all 0.3s ease;
+}
+
+.gallery-item:hover img {
+    opacity: 0.9;
+    transform: scale(1.02);
+    transition: all 0.3s ease;
+}
+
+/* ===== RESPONSIVE TABLET (768px - 1023px) ===== */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        padding: 15px;
+    }
+
+    .gallery-item {
+        height: 480px;
+        /* Ajustar altura para tablet */
+    }
+
+    .gallery-item .image-container,
+    .gallery-item>div:first-child {
+        height: 380px;
+        /* Ajustar imagen para tablet */
+    }
+
+    .gallery-item h3 {
+        height: 55px;
+        padding: 12px 8px;
+        font-size: 1rem;
+    }
+
+    /* Texto de las últimas dos en tablet */
+    .gallery-item:nth-child(3) h3,
+    .gallery-item:nth-child(4) h3 {
+        margin-top: 30px;
+        /* Menos margen en tablet */
+    }
+}
+
+/* ===== RESPONSIVE MOBILE (320px - 767px) ===== */
+@media (max-width: 767px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 15px;
+    }
+
+    .gallery-item {
+        height: 450px;
+        /* Altura ajustada para mobile */
+        padding: 15px;
+        /* Menos padding en mobile */
+    }
+
+    .gallery-item .image-container,
+    .gallery-item>div:first-child {
+        height: 350px;
+        /* Imagen más pequeña en mobile */
+    }
+
+    .gallery-item h3 {
+        height: 50px;
+        padding: 10px 8px;
+        font-size: 0.95rem;
+        margin-top: 0 !important;
+        /* RESETEAR margin-top en mobile */
+    }
+
+    /* En mobile, todas usan space-between para aprovechar espacio */
+    .gallery-item:nth-child(3),
+    .gallery-item:nth-child(4) {
+        justify-content: space-between !important;
+    }
+
+    /* Hover más sutil en mobile */
+    .gallery-item:hover {
+        transform: translateY(-2px);
+    }
+}
+
+/* ===== MOBILE PEQUEÑO (320px - 480px) ===== */
+@media (max-width: 480px) {
+    .gallery-grid {
+        padding: 10px;
+        gap: 15px;
+    }
+
+    .gallery-item {
+        height: 420px;
+        padding: 12px;
+    }
+
+    .gallery-item .image-container,
+    .gallery-item>div:first-child {
+        height: 320px;
+    }
+
+    .gallery-item h3 {
+        font-size: 0.9rem;
+        height: 45px;
+        padding: 8px 6px;
+    }
+}
+
+/* ===== DESKTOP GRANDE (1200px+) ===== */
+@media (min-width: 1200px) {
+    .gallery-grid {
+        gap: 30px;
+        padding: 25px;
+    }
+
+    .gallery-item {
+        height: 550px;
+        /* Un poco más alto en pantallas grandes */
+    }
+
+    .gallery-item .image-container,
+    .gallery-item>div:first-child {
+        height: 440px;
+    }
+
+    .gallery-item h3 {
+        font-size: 1.2rem;
+        height: 65px;
+        padding: 18px 12px;
+    }
+
+    /* Más margen para las últimas dos en desktop grande */
+    .gallery-item:nth-child(3) h3,
+    .gallery-item:nth-child(4) h3 {
+        margin-top: 50px;
+    }
+}
+
+/* ===== UTILIDADES ===== */
+
+/* Evitar overflow de texto */
+.gallery-item h3 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Focus para accesibilidad */
+.gallery-item:focus {
+    outline: 2px solid var(--accent-purple);
+    outline-offset: 2px;
+}
+
+/* Loading state */
+.gallery-item.loading {
+    opacity: 0.7;
+}
+
+.gallery-item.loading .image-container {
+    background: linear-gradient(45deg,
+            rgba(189, 147, 249, 0.1) 0%,
+            rgba(80, 250, 123, 0.1) 50%,
+            rgba(255, 121, 198, 0.1) 100%);
+    animation: loadingPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes loadingPulse {
+
+    0%,
+    100% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+}
+
+
+
+.hero-products-image,
+.products-showcase-hero img {
+    transition: all 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    will-change: transform, opacity, filter !important;
+    backface-visibility: hidden !important;
+    transform-style: preserve-3d !important;
+}
+
+/* ===================================================================
+   AUMENTAR ALTURA DE IMÁGENES +20px VERTICALMENTE (EL DOBLE)
+   =================================================================== */
+
+/* ===== HERO IMAGE MÁS ALTA ===== */
+.hero-products-image,
+.products-showcase-hero img,
+.hero-visual img {
+    height: calc(100% + 20px) !important;
+    margin-top: -10px !important;
+    /* Centrar el exceso */
+    margin-bottom: -10px !important;
+    /* Centrar el exceso */
+}
+
+/* ===== CONTENEDOR HERO TAMBIÉN MÁS ALTO ===== */
+.hero-visual,
+.products-showcase-hero {
+    height: calc(100% + 20px) !important;
+    min-height: calc(100% + 20px) !important;
+}
+
+/* ===== ALTERNATIVA: SOLO AUMENTAR LA IMAGEN ===== */
+.hero-products-image {
+    transform: scaleY(1.05) !important;
+    /* Agranda 5% verticalmente */
+}
+
+/* ===== PARA IMÁGENES EN LA GALERÍA TAMBIÉN ===== */
+.gallery-item img {
+    height: calc(100% + 20px) !important;
+    margin-top: -10px !important;
+    margin-bottom: -10px !important;
+}
+
+.gallery-item .image-container {
+    height: calc(420px + 20px) !important;
+    /* Si la altura era 420px */
+}
+
+/* ===== RESPONSIVE - MANTENER PROPORCIÓN ===== */
+@media (max-width: 767px) {
+
+    .hero-products-image,
+    .products-showcase-hero img {
+        height: calc(100% + 16px) !important;
+        /* Menos en mobile */
+        margin-top: -8px !important;
+        margin-bottom: -8px !important;
+    }
+}
+
+@media (min-width: 1024px) {
+
+    .hero-products-image,
+    .products-showcase-hero img {
+        height: calc(100% + 24px) !important;
+        /* Más en desktop */
+        margin-top: -12px !important;
+        margin-bottom: -12px !important;
+    }
+}
+
+
+
+
+
+
+
+/* ===================================================================
+   ORGANIZACIÓN PROFESIONAL DEL CATÁLOGO - TODAS LAS PANTALLAS
+   =================================================================== 
+/* ===================================================================
+   CATÁLOGO - APROVECHAR TODO EL ESPACIO DISPONIBLE
+   =================================================================== */
+
+/* ===== CONTENEDOR PRINCIPAL OPTIMIZADO ===== */
+/* ===== CENTRADO PERFECTO Y LIMPIO ===== */
+.catalog-container {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 90vw !important;
+    max-width: 1100px !important;
+    height: 85vh !important;
+    max-height: 750px !important;
+    background: linear-gradient(135deg, #1e1e3f, #0f0f23) !important;
+    border-radius: 20px !important;
+    border: 2px solid rgba(189, 147, 249, 0.3) !important;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6) !important;
+    overflow: hidden !important;
+    z-index: 9999 !important;
+}
+
+/* ===== CONTENIDO PERFECTAMENTE CENTRADO ===== */
+.catalog-content {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 94% !important;
+    height: 94% !important;
+    padding: 20px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 15px !important;
+    box-sizing: border-box !important;
+}
+
+/* ===== HEADER COMPACTO: IMAGEN + INFO PRINCIPAL ===== */
+.catalog-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    height: 45% !important;
+    gap: 20px !important;
+    background: rgba(255, 255, 255, 0.02) !important;
+    border-radius: 15px !important;
+    padding: 15px !important;
+    border: 1px solid rgba(189, 147, 249, 0.1) !important;
+}
+
+/* ===== IMAGEN DEL PRODUCTO ===== */
+.product-image-large {
+    flex: 0 0 30% !important;
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(189, 147, 249, 0.15) !important;
+    position: relative !important;
+    padding: 10px !important;
+}
+
+.product-image-large img {
+    max-width: 159% !important;
+    max-height: 100% !important;
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain !important;
+    filter: drop-shadow(0 8px 25px rgba(0,0,0,0.4)) !important;
+    transition: transform 0.3s ease !important;
+}
+
+/* ===== INFORMACIÓN PRINCIPAL CENTRADA ===== */
+.product-info {
+    flex: 1 !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 12px !important;
+    padding: 0 10px !important;
+}
+
+/* ===== TÍTULO BALANCEADO ===== */
+.product-title {
+    font-size: 2.5rem !important;
+    font-weight: 700 !important;
+    margin: 0 !important;
+    line-height: 1.1 !important;
+    background: linear-gradient(135deg, var(--product-color, #bd93f9), white) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+}
+
+/* ===== DESCRIPCIÓN UNIFORME ===== */
+.product-description {
+    font-size: 1rem !important;
+    color: rgba(255, 255, 255, 0.85) !important;
+    line-height: 1.3 !important;
+    margin: 0 !important;
+    font-weight: 400 !important;
+    max-width: 85% !important;
+}
+
+/* ===== ESPECIFICACIONES LIMPIAS ===== */
+.product-specs {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 28px !important;
+    flex-wrap: wrap !important;
+}
+
+.spec-item {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-radius: 8px !important;
+    border: 1px solid rgba(189, 147, 249, 0.2) !important;
+    padding: 8px 12px !important;
+    text-align: center !important;
+    min-width: 80px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+}
+
+.spec-label {
+    font-size: 0.75rem !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    font-weight: 500 !important;
+    margin-bottom: 6px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+}
+
+.spec-value {
+    font-size: 0.9rem !important;
+    color: var(--product-color, #bd93f9) !important;
+    font-weight: 600 !important;
+    line-height: 1.1 !important;
+}
+
+/* ===== INFORMACIÓN SECUNDARIA ORGANIZADA EN GRID ===== */
+.catalog-body {
+    flex: 1 !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+    overflow: hidden !important;
+    min-height: 0 !important;
+}
+
+.catalog-section {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(189, 147, 249, 0.15) !important;
+    padding: 12px !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.catalog-section h3 {
+    font-size: 0.8rem !important;
+    color: var(--product-color, #bd93f9) !important;
+    margin: 0 0 8px 0 !important;
+    text-align: center !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    padding-bottom: 4px !important;
+    border-bottom: 1px solid rgba(189, 147, 249, 0.2) !important;
+}
+
+/* ===== CONTENIDO DE SECCIONES SIN LISTAS ===== */
+.section-content {
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+    overflow: hidden !important;
+}
+
+/* ===== INGREDIENTES COMO TAGS PROFESIONALES ===== */
+.ingredients-container {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 4px !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex: 1 !important;
+}
+
+.ingredient-tag {
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: 0.65rem !important;
+    font-weight: 500 !important;
+    padding: 3px 6px !important;
+    border-radius: 4px !important;
+    border: 1px solid rgba(189, 147, 249, 0.1) !important;
+    white-space: nowrap !important;
+    text-align: center !important;
+}
+
+/* ===== TEXTO PROFESIONAL PARA OTRAS SECCIONES ===== */
+.section-text {
+    color: rgba(255, 255, 255, 0.85) !important;
+    font-size: 0.75rem !important;
+    line-height: 1.4 !important;
+    text-align: center !important;
+    margin: 0 !important;
+    font-weight: 400 !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 4 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+}
+
+
+/* ===== RESPONSIVE TABLET (768px - 1199px) ===== */
+@media (min-width: 768px) and (max-width: 1199px) {
+    .catalog-container {
+        width: 92vw !important;
+        height: 88vh !important;
+    }
+    
+    .product-title {
+        font-size: 2.2rem !important;
+    }
+    
+    .product-description {
+        font-size: 0.95rem !important;
+    }
+    
+    .catalog-header {
+        height: 42% !important;
+    }
+}
+
+/* ===== RESPONSIVE MOBILE (320px - 767px) ===== */
+@media (max-width: 767px) {
+    .catalog-container {
+        width: 96vw !important;
+        height: 92vh !important;
+        max-height: none !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    
+    .catalog-content {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        width: 94% !important;
+        height: 94% !important;
+        padding: 15px !important;
+        gap: 12px !important;
+        margin: auto !important;
+    }
+    
+    /* LAYOUT VERTICAL LIMPIO EN MOBILE */
+    .catalog-header {
+        flex-direction: column !important;
+        height: 50% !important;
+        gap: 12px !important;
+        padding: 12px !important;
+    }
+    
+    .product-image-large {
+        flex: 0 0 45% !important;
+        width: 80% !important;
+        padding: 8px !important;
+    }
+    
+    .product-info {
+        flex: 1 !important;
+        width: 100% !important;
+        gap: 8px !important;
+        padding: 0 !important;
+    }
+    
+    .product-title {
+        font-size: 1.8rem !important;
+        line-height: 1.1 !important;
+    }
+    
+    .product-description {
+        font-size: 0.9rem !important;
+        max-width: 100% !important;
+    }
+    
+    .product-specs {
+        gap: 8px !important;
+    }
+    
+    .spec-item {
+        min-width: 70px !important;
+        padding: 6px 8px !important;
+    }
+    
+    .spec-label {
+        font-size: 0.7rem !important;
+    }
+    
+    .spec-value {
+        font-size: 0.8rem !important;
+    }
+    
+    /* GRID DE 1 COLUMNA EN MOBILE */
+    .catalog-body {
+        grid-template-columns: 1fr !important;
+        gap: 8px !important;
+    }
+    
+    .catalog-section {
+        padding: 8px !important;
+        min-height: 60px !important;
+    }
+    
+    .catalog-section h3 {
+        font-size: 0.75rem !important;
+        margin: 0 0 6px 0 !important;
+        padding-bottom: 3px !important;
+    }
+    
+    .section-text {
+        font-size: 0.7rem !important;
+        line-height: 1.3 !important;
+        -webkit-line-clamp: 2 !important;
+    }
+    
+    .ingredient-tag {
+        font-size: 0.6rem !important;
+        padding: 2px 4px !important;
+    }
+    
+    
+}
+
+/* ===== RESPONSIVE SMALL MOBILE (320px - 414px) ===== */
+@media (max-width: 414px) {
+    .catalog-container {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    
+    .catalog-content {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        margin: auto !important;
+    }
+    
+    .product-title {
+        font-size: 1.6rem !important;
+    }
+    
+    .product-description {
+        font-size: 0.85rem !important;
+    }
+    
+    .catalog-header {
+        height: 45% !important;
+    }
+    
+    .spec-item {
+        min-width: 60px !important;
+        padding: 5px 6px !important;
+    }
+    
+    .spec-label {
+        font-size: 0.65rem !important;
+    }
+    
+    .spec-value {
+        font-size: 0.75rem !important;
+    }
+    
+    .catalog-section {
+        min-height: 50px !important;
+    }
+}
+
+/* ===== RESPONSIVE DESKTOP GRANDE (1200px+) ===== */
+@media (min-width: 1200px) {
+    .catalog-container {
+        max-width: 1200px !important;
+        max-height: 850px !important;
+    }
+    
+    .catalog-header {
+        height: 48% !important;
+        padding: 20px !important;
+    }
+    
+    .product-title {
+        font-size: 2.8rem !important;
+    }
+    
+    .product-description {
+        font-size: 1.1rem !important;
+    }
+    
+    .catalog-section {
+        padding: 15px !important;
+    }
+    
+    .section-text {
+        font-size: 0.8rem !important;
+        -webkit-line-clamp: 5 !important;
+    }
+    
+    .ingredient-tag {
+        font-size: 0.7rem !important;
+    }
+}
+
+/* ===== EFECTOS VISUALES SUTILES Y PROFESIONALES ===== */
+.product-image-large:hover img {
+    transform: scale(1.02) !important;
+}
+
+/* Glow effect muy sutil */
+.product-image-large::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    width: 40% !important;
+    height: 40% !important;
+    background: radial-gradient(circle, var(--product-color, #bd93f9) 0%, transparent 70%) !important;
+    border-radius: 50% !important;
+    opacity: 0.05 !important;
+    filter: blur(15px) !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 1 !important;
+}
+
+/* Hover effects profesionales */
+.spec-item:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: var(--product-color, #bd93f9) !important;
+    transition: all 0.2s ease !important;
+}
+
+.ingredient-tag:hover {
+    background: rgba(255, 255, 255, 0.12) !important;
+    transform: scale(1.02) !important;
+    transition: all 0.2s ease !important;
+}
+
+.catalog-section:hover {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: rgba(189, 147, 249, 0.25) !important;
+    transition: all 0.2s ease !important;
+}
+
+/* Animación de entrada suave */
+.catalog-content {
+    animation: smoothFadeIn 0.4s ease-out !important;
+}
+
+@keyframes smoothFadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -48%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* Focus states para accesibilidad */
+.spec-item:focus,
+.ingredient-tag:focus,
+.whatsapp-btn:focus {
+    outline: 2px solid var(--product-color, #bd93f9) !important;
+    outline-offset: 1px !important;
+}
+
+/* Mejora tipográfica */
+* {
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+}
+
+/* Sin scrollbars */
+.catalog-section,
+.section-content {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+}
+
+.catalog-section::-webkit-scrollbar,
+.section-content::-webkit-scrollbar {
+    display: none !important;
+}
+
+
+
+/* ===================================================================
+   ATTACK MODE - BUSCAR TODOS LOS BOTONES PERO EXCLUIR FLOTANTE
+   =================================================================== */
+
+/* ===== ATTACK MODE: TODOS LOS BOTONES WHATSAPP EXCEPTO FLOTANTES ===== */
+button[class*="whatsapp"]:not([class*="float"]):not(.whatsapp-float):not(.floating):not([style*="position: fixed"]),
+a[class*="whatsapp"]:not([class*="float"]):not(.whatsapp-float):not(.floating):not([style*="position: fixed"]),
+.btn[class*="whatsapp"]:not([class*="float"]):not(.whatsapp-float):not(.floating),
+[class*="btn-whatsapp"]:not([class*="float"]):not(.whatsapp-float):not(.floating),
+[class*="whatsapp-btn"]:not([class*="float"]):not(.whatsapp-float):not(.floating),
+a[href*="wa.me"]:not([class*="float"]):not(.whatsapp-float):not(.floating):not([style*="position: fixed"]),
+a[href*="whatsapp"]:not([class*="float"]):not(.whatsapp-float):not(.floating):not([style*="position: fixed"]),
+button[onclick*="whatsapp"]:not([class*="float"]):not(.whatsapp-float):not(.floating),
+button[onclick*="wa.me"]:not([class*="float"]):not(.whatsapp-float):not(.floating),
+.catalog-footer button:not([class*="float"]):not(.whatsapp-float),
+.catalog-footer a:not([class*="float"]):not(.whatsapp-float),
+.product-catalog button:not([class*="float"]):not(.whatsapp-float),
+.product-catalog a[href*="wa"]:not([class*="float"]):not(.whatsapp-float),
+.btn-large:not([class*="float"]):not(.whatsapp-float),
+*[class*="solicitar"]:not([class*="float"]):not(.whatsapp-float) {
+    /* TAMAÑO PEQUEÑO */
+    padding: 4px 10px !important;
+    font-size: 0.7rem !important;
+    
+    /* CENTRADO */
+    display: block !important;
+    margin: 10px auto 0 auto !important;
+    width: fit-content !important;
+    text-align: center !important;
+    
+    /* ESTILO BÁSICO */
+    background: #1DB954 !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 18px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 2px 8px rgba(29, 185, 84, 0.25) !important;
+    text-decoration: none !important;
+}
+
+/* ===== HOVER ATTACK MODE (EXCLUYENDO FLOTANTES) ===== */
+button[class*="whatsapp"]:not([class*="float"]):not(.whatsapp-float):not(.floating):hover,
+a[class*="whatsapp"]:not([class*="float"]):not(.whatsapp-float):not(.floating):hover,
+.btn[class*="whatsapp"]:not([class*="float"]):not(.whatsapp-float):not(.floating):hover,
+[class*="btn-whatsapp"]:not([class*="float"]):not(.whatsapp-float):not(.floating):hover,
+[class*="whatsapp-btn"]:not([class*="float"]):not(.whatsapp-float):not(.floating):hover,
+a[href*="wa.me"]:not([class*="float"]):not(.whatsapp-float):not(.floating):hover,
+a[href*="whatsapp"]:not([class*="float"]):not(.whatsapp-float):not(.floating):hover,
+button[onclick*="whatsapp"]:not([class*="float"]):not(.whatsapp-float):not(.floating):hover,
+button[onclick*="wa.me"]:not([class*="float"]):not(.whatsapp-float):not(.floating):hover,
+.catalog-footer button:not([class*="float"]):not(.whatsapp-float):hover,
+.catalog-footer a:not([class*="float"]):not(.whatsapp-float):hover,
+.product-catalog button:not([class*="float"]):not(.whatsapp-float):hover,
+.product-catalog a[href*="wa"]:not([class*="float"]):not(.whatsapp-float):hover,
+.btn-large:not([class*="float"]):not(.whatsapp-float):hover,
+*[class*="solicitar"]:not([class*="float"]):not(.whatsapp-float):hover {
+    background: #1ed760 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(29, 185, 84, 0.4) !important;
+}
+
+/* ===== PRODUCT-OPEN-CATALOG ATTACK ===== */
+.product-open-catalog:not([class*="float"]):not(.whatsapp-float) {
+    display: block !important;
+    margin: -7px auto 0 auto !important;
+    width: fit-content !important;
+    text-align: center !important;
+    padding: 20px 2px !important;
+    font-size: 0.8rem !important;
+}
+
+/* ===== RESPONSIVE ATTACK MODE ===== */
+@media (max-width: 480px) {
+    button[class*="whatsapp"]:not([class*="float"]):not(.whatsapp-float):not(.floating),
+    a[class*="whatsapp"]:not([class*="float"]):not(.whatsapp-float):not(.floating),
+    .btn[class*="whatsapp"]:not([class*="float"]):not(.whatsapp-float):not(.floating),
+    [class*="btn-whatsapp"]:not([class*="float"]):not(.whatsapp-float):not(.floating),
+    [class*="whatsapp-btn"]:not([class*="float"]):not(.whatsapp-float):not(.floating),
+    a[href*="wa.me"]:not([class*="float"]):not(.whatsapp-float):not(.floating),
+    a[href*="whatsapp"]:not([class*="float"]):not(.whatsapp-float):not(.floating),
+    button[onclick*="whatsapp"]:not([class*="float"]):not(.whatsapp-float):not(.floating),
+    button[onclick*="wa.me"]:not([class*="float"]):not(.whatsapp-float):not(.floating),
+    .catalog-footer button:not([class*="float"]):not(.whatsapp-float),
+    .catalog-footer a:not([class*="float"]):not(.whatsapp-float),
+    .product-catalog button:not([class*="float"]):not(.whatsapp-float),
+    .product-catalog a[href*="wa"]:not([class*="float"]):not(.whatsapp-float),
+    .btn-large:not([class*="float"]):not(.whatsapp-float),
+    *[class*="solicitar"]:not([class*="float"]):not(.whatsapp-float) {
+        padding: 3px 8px !important;
+        font-size: 0.65rem !important;
+    }
+    
+    .product-open-catalog:not([class*="float"]):not(.whatsapp-float) {
+        padding: 6px 14px !important;
+        font-size: 0.75rem !important;
+        margin: 12px auto 0 auto !important;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    button[class*="whatsapp"]:not([class*="float"]):not(.whatsapp-float):not(.floating),
+    a[class*="whatsapp"]:not([class*="float"]):not(.whatsapp-float):not(.floating),
+    .btn[class*="whatsapp"]:not([class*="float"]):not(.whatsapp-float):not(.floating),
+    [class*="btn-whatsapp"]:not([class*="float"]):not(.whatsapp-float):not(.floating),
+    [class*="whatsapp-btn"]:not([class*="float"]):not(.whatsapp-float):not(.floating),
+    a[href*="wa.me"]:not([class*="float"]):not(.whatsapp-float):not(.floating),
+    a[href*="whatsapp"]:not([class*="float"]):not(.whatsapp-float):not(.floating),
+    button[onclick*="whatsapp"]:not([class*="float"]):not(.whatsapp-float):not(.floating),
+    button[onclick*="wa.me"]:not([class*="float"]):not(.whatsapp-float):not(.floating),
+    .catalog-footer button:not([class*="float"]):not(.whatsapp-float),
+    .catalog-footer a:not([class*="float"]):not(.whatsapp-float),
+    .product-catalog button:not([class*="float"]):not(.whatsapp-float),
+    .product-catalog a[href*="wa"]:not([class*="float"]):not(.whatsapp-float),
+    .btn-large:not([class*="float"]):not(.whatsapp-float),
+    *[class*="solicitar"]:not([class*="float"]):not(.whatsapp-float) {
+        padding: 4px 9px !important;
+        font-size: 0.68rem !important;
+    }
+    
+    .product-open-catalog:not([class*="float"]):not(.whatsapp-float) {
+        padding: 7px 15px !important;
+        font-size: 0.78rem !important;
+        margin: 13px auto 0 auto !important;
+    }
+}
+
+@media (min-width: 768px) {
+    button[class*="whatsapp"]:not([class*="float"]):not(.whatsapp-float):not(.floating),
+    a[class*="whatsapp"]:not([class*="float"]):not(.whatsapp-float):not(.floating),
+    .btn[class*="whatsapp"]:not([class*="float"]):not(.whatsapp-float):not(.floating),
+    [class*="btn-whatsapp"]:not([class*="float"]):not(.whatsapp-float):not(.floating),
+    [class*="whatsapp-btn"]:not([class*="float"]):not(.whatsapp-float):not(.floating),
+    a[href*="wa.me"]:not([class*="float"]):not(.whatsapp-float):not(.floating),
+    a[href*="whatsapp"]:not([class*="float"]):not(.whatsapp-float):not(.floating),
+    button[onclick*="whatsapp"]:not([class*="float"]):not(.whatsapp-float):not(.floating),
+    button[onclick*="wa.me"]:not([class*="float"]):not(.whatsapp-float):not(.floating),
+    .catalog-footer button:not([class*="float"]):not(.whatsapp-float),
+    .catalog-footer a:not([class*="float"]):not(.whatsapp-float),
+    .product-catalog button:not([class*="float"]):not(.whatsapp-float),
+    .product-catalog a[href*="wa"]:not([class*="float"]):not(.whatsapp-float),
+    .btn-large:not([class*="float"]):not(.whatsapp-float),
+    *[class*="solicitar"]:not([class*="float"]):not(.whatsapp-float) {
+        padding: 5px 12px !important;
+        font-size: 0.75rem !important;
+    }
+}
+
+/* ===== ELIMINAR PSEUDO-ELEMENTOS RAROS ===== */
+button[class*="whatsapp"]:not([class*="float"]):not(.whatsapp-float)::before,
+a[class*="whatsapp"]:not([class*="float"]):not(.whatsapp-float)::before,
+.btn[class*="whatsapp"]:not([class*="float"]):not(.whatsapp-float)::before,
+[class*="btn-whatsapp"]:not([class*="float"]):not(.whatsapp-float)::before,
+[class*="whatsapp-btn"]:not([class*="float"]):not(.whatsapp-float)::before,
+button[class*="whatsapp"]:not([class*="float"]):not(.whatsapp-float)::after,
+a[class*="whatsapp"]:not([class*="float"]):not(.whatsapp-float)::after,
+.btn[class*="whatsapp"]:not([class*="float"]):not(.whatsapp-float)::after,
+[class*="btn-whatsapp"]:not([class*="float"]):not(.whatsapp-float)::after,
+[class*="whatsapp-btn"]:not([class*="float"]):not(.whatsapp-float)::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* ===== CENTRADO DE CONTENEDORES ===== */
+@media (max-width: 767px) {
+    .product-card,
+    .product-preview,
+    .product-content {
+        text-align: center !important;
+    }
+}
+
+
+
+/* ===================================================================
+   GALERÍA INTELIGENTE - RESPETA PROPORCIONES ORIGINALES
+   =================================================================== */
+
+/* ===== CONTENEDOR PRINCIPAL - ALTURA FIJA UNIFORME ===== */
+.gallery-grid .gallery-item {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    align-items: stretch !important;
+    position: relative !important;
+    
+    width: 100% !important;
+    height: 420px !important; /* ALTURA MÁS COMPACTA PARA 4 COLUMNAS */
+    
+    border: 2px solid rgba(189, 147, 249, 0.3) !important;
+    border-radius: 15px !important; /* MENOS REDONDEADO */
+    padding: 15px !important; /* MENOS PADDING */
+    background: rgba(255, 255, 255, 0.05) !important;
+    backdrop-filter: blur(10px) !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+}
+
+/* ===== CONTENEDOR DE IMAGEN CON ALTURA FIJA ===== */
+.gallery-grid .gallery-item .image-container {
+    flex: none !important; /* NO FLEXIBLE */
+    position: relative !important;
+    width: 100% !important;
+    height: 340px !important; /* ALTURA MÁS COMPACTA */
+    margin-bottom: 12px !important;
+    
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    background: rgba(0, 0, 0, 0.1) !important;
+    
+    /* FLEXBOX PARA CENTRAR */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* ===== IMAGEN INTELIGENTE - MANTIENE PROPORCIONES ===== */
+.gallery-grid .gallery-item img {
+    /* RESETEAR POSICIONAMIENTO ABSOLUTO */
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    
+    /* DIMENSIONES INTELIGENTES */
+    max-width: 100% !important;
+    max-height: 100% !important;
+    width: auto !important;
+    height: auto !important;
+    
+    /* MANTENER PROPORCIONES ORIGINALES */
+    object-fit: contain !important;
+    object-position: center center !important;
+    
+    /* ESTILO VISUAL */
+    border-radius: 12px !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    
+    /* CENTRADO PERFECTO */
+    display: block !important;
+    margin: 0 auto !important;
+}
+
+/* ===== OVERLAY GRADIENTE SUTIL ===== */
+.gallery-grid .gallery-item .image-container::after {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    
+    /* GRADIENTE MUY SUTIL */
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0) 60%,
+        rgba(0, 0, 0, 0.1) 80%,
+        rgba(0, 0, 0, 0.2) 100%
+    ) !important;
+    
+    border-radius: 12px !important;
+    z-index: 2 !important;
+    pointer-events: none !important;
+}
+
+/* ===== TEXTO FIJO CON ALTURA ESPECÍFICA ===== */
+.gallery-grid .gallery-item .gallery-overlay {
+    /* ALTURA FIJA */
+    position: relative !important;
+    flex-shrink: 0 !important;
+    width: 100% !important;
+    height: 55px !important; /* ALTURA MÁS COMPACTA */
+    
+    background: rgba(15, 15, 35, 0.92) !important;
+    border: 1px solid rgba(189, 147, 249, 0.5) !important;
+    border-radius: 10px !important;
+    padding: 8px 12px !important; /* MENOS PADDING */
+    margin: 0 !important;
+    
+    backdrop-filter: blur(10px) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4) !important;
+    
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    
+    z-index: 10 !important;
+}
+
+/* ===== TEXTO LEGIBLE ===== */
+.gallery-grid .gallery-item .gallery-overlay span {
+    font-size: 1.1rem !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    line-height: 1.3 !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8) !important;
+    
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: initial !important;
+}
+
+/* ===== RESPONSIVE - TABLET (768px - 1023px) ===== */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .gallery-grid .gallery-item {
+        height: 480px !important; /* ALTURA FIJA TABLET */
+        padding: 18px !important;
+    }
+    
+    .gallery-grid .gallery-item .image-container {
+        height: 380px !important; /* ALTURA FIJA IMAGEN TABLET */
+        margin-bottom: 18px !important;
+        border-radius: 14px !important;
+    }
+    
+    .gallery-grid .gallery-item img {
+        border-radius: 12px !important;
+    }
+    
+    .gallery-grid .gallery-item .gallery-overlay {
+        height: 60px !important; /* ALTURA FIJA TEXTO TABLET */
+    }
+    
+    .gallery-grid .gallery-item .gallery-overlay span {
+        font-size: 1.05rem !important;
+    }
+}
+
+/* ===== RESPONSIVE - DESKTOP GRANDE (1200px+) ===== */
+@media (min-width: 1200px) {
+    .gallery-grid .gallery-item {
+        height: 480px !important; /* ALTURA OPTIMIZADA PARA 4 COLUMNAS */
+        padding: 18px !important;
+    }
+    
+    .gallery-grid .gallery-item .image-container {
+        height: 390px !important; /* ALTURA OPTIMIZADA */
+        margin-bottom: 15px !important;
+        border-radius: 15px !important;
+    }
+    
+    .gallery-grid .gallery-item img {
+        border-radius: 12px !important;
+    }
+    
+    .gallery-grid .gallery-item .gallery-overlay {
+        height: 60px !important; /* ALTURA OPTIMIZADA */
+        padding: 12px 15px !important;
+        border-radius: 12px !important;
+    }
+    
+    .gallery-grid .gallery-item .gallery-overlay span {
+        font-size: 1.1rem !important;
+    }
+}
+
+/* ===== RESPONSIVE - MOBILE GRANDE (481px - 767px) ===== */
+@media (min-width: 481px) and (max-width: 767px) {
+    .gallery-grid .gallery-item {
+        height: 450px !important; /* ALTURA FIJA MOBILE GRANDE */
+        padding: 16px !important;
+    }
+    
+    .gallery-grid .gallery-item .image-container {
+        height: 350px !important; /* ALTURA FIJA IMAGEN MOBILE */
+        margin-bottom: 15px !important;
+        border-radius: 12px !important;
+    }
+    
+    .gallery-grid .gallery-item img {
+        border-radius: 10px !important;
+    }
+    
+    .gallery-grid .gallery-item .gallery-overlay {
+        height: 58px !important; /* ALTURA FIJA TEXTO MOBILE */
+        padding: 10px 14px !important;
+        border-radius: 10px !important;
+    }
+    
+    .gallery-grid .gallery-item .gallery-overlay span {
+        font-size: 1rem !important;
+    }
+}
+
+/* ===== RESPONSIVE - MOBILE ESTÁNDAR (375px - 480px) ===== */
+@media (min-width: 375px) and (max-width: 480px) {
+    .gallery-grid .gallery-item {
+        height: 420px !important; /* ALTURA FIJA MOBILE ESTÁNDAR */
+        padding: 14px !important;
+    }
+    
+    .gallery-grid .gallery-item .image-container {
+        height: 320px !important; /* ALTURA FIJA IMAGEN */
+        margin-bottom: 12px !important;
+        border-radius: 10px !important;
+    }
+    
+    .gallery-grid .gallery-item img {
+        border-radius: 8px !important;
+    }
+    
+    .gallery-grid .gallery-item .gallery-overlay {
+        height: 55px !important; /* ALTURA FIJA TEXTO */
+        padding: 9px 12px !important;
+        border-radius: 8px !important;
+    }
+    
+    .gallery-grid .gallery-item .gallery-overlay span {
+        font-size: 0.95rem !important;
+    }
+}
+
+/* ===== RESPONSIVE - MOBILE PEQUEÑO (320px - 374px) ===== */
+@media (max-width: 374px) {
+    .gallery-grid .gallery-item {
+        height: 390px !important; /* ALTURA FIJA MOBILE PEQUEÑO */
+        padding: 12px !important;
+    }
+    
+    .gallery-grid .gallery-item .image-container {
+        height: 290px !important; /* ALTURA FIJA IMAGEN PEQUEÑA */
+        margin-bottom: 10px !important;
+        border-radius: 8px !important;
+    }
+    
+    .gallery-grid .gallery-item img {
+        border-radius: 6px !important;
+    }
+    
+    .gallery-grid .gallery-item .gallery-overlay {
+        height: 52px !important; /* ALTURA FIJA TEXTO PEQUEÑO */
+        padding: 8px 10px !important;
+        border-radius: 6px !important;
+    }
+    
+    .gallery-grid .gallery-item .gallery-overlay span {
+        font-size: 0.9rem !important;
+    }
+}
+
+/* ===== HOVER EFFECTS ===== */
+.gallery-grid .gallery-item:hover {
+    transform: translateY(-8px) !important;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    box-shadow: 0 15px 35px rgba(189, 147, 249, 0.3) !important;
+    border-color: rgba(189, 147, 249, 0.6) !important;
+}
+
+.gallery-grid .gallery-item:hover .image-container {
+    transform: scale(1.02) !important;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+.gallery-grid .gallery-item:hover img {
+    transform: scale(1.05) !important;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5) !important;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+.gallery-grid .gallery-item:hover .gallery-overlay {
+    background: linear-gradient(
+        135deg,
+        rgba(189, 147, 249, 0.95) 0%,
+        rgba(255, 121, 198, 0.9) 100%
+    ) !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 25px rgba(189, 147, 249, 0.5) !important;
+    border-color: rgba(255, 255, 255, 0.6) !important;
+    transition: all 0.3s ease !important;
+}
+
+/* ===== LIMPIAR CSS ANTERIOR ===== */
+.gallery-grid .gallery-item::before,
+.gallery-grid .gallery-item::after {
+    display: none !important;
+}
+
+.gallery-item h3 {
+    display: none !important;
+}
+
+/* ===== GRID CONTAINER - 4 COLUMNAS DESKTOP, 1 COLUMNA MOBILE ===== */
+.gallery-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important; /* SIEMPRE 4 COLUMNAS */
+    gap: 20px !important;
+    align-items: start !important;
+    width: 100% !important;
+}
+
+/* ===== MOBILE - 1 COLUMNA (UNA DEBAJO DE OTRA) ===== */
+@media (max-width: 767px) {
+    .gallery-grid {
+        grid-template-columns: 1fr !important; /* 1 COLUMNA EN MOBILE */
+        gap: 20px !important;
+    }
+}
+
+/* ===== TABLET - 4 COLUMNAS ===== */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .gallery-grid {
+        grid-template-columns: repeat(4, 1fr) !important; /* 4 COLUMNAS EN TABLET */
+        gap: 18px !important;
+    }
+}
+
+/* ===== DESKTOP - 4 COLUMNAS ===== */
+@media (min-width: 1024px) {
+    .gallery-grid {
+        grid-template-columns: repeat(4, 1fr) !important; /* 4 COLUMNAS EN DESKTOP */
+        gap: 25px !important;
+    }
+}
+
+/* ===== DESKTOP GRANDE - 4 COLUMNAS ===== */
+@media (min-width: 1200px) {
+    .gallery-grid {
+        grid-template-columns: repeat(4, 1fr) !important; /* 4 COLUMNAS SIEMPRE */
+        gap: 30px !important;
+    }
+}
+
+
+
+/* ===================================================================
+   SECCIÓN NOVEDADES AJEDREZ - IMÁGENES SE AJUSTAN AL CONTENEDOR
+   =================================================================== */
+
+/* ===== CONTENEDOR PRINCIPAL DE NOTICIAS ===== */
+.news-section {
+    padding: 80px 0 !important;
+    background: linear-gradient(135deg, #1e1e3f 0%, #0f0f23 100%) !important;
+}
+
+/* ===== GRID DE NOTICIAS ===== */
+.news-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important; /* 3 COLUMNAS EN DESKTOP */
+    gap: 30px !important;
+    align-items: start !important;
+}
+
+/* ===== TARJETA DE NOTICIA - ALTURA FIJA ===== */
+.news-card {
+    display: flex !important;
+    flex-direction: column !important;
+    position: relative !important;
+    
+    width: 100% !important;
+    height: 450px !important; /* ALTURA FIJA UNIFORME */
+    
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 2px solid rgba(189, 147, 249, 0.3) !important;
+    border-radius: 20px !important;
+    padding: 0 !important; /* SIN PADDING PARA CONTROL TOTAL */
+    
+    backdrop-filter: blur(10px) !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    
+    transition: all 0.3s ease !important;
+}
+
+/* ===== CONTENEDOR DE IMAGEN FIJO ===== */
+.news-image {
+    position: relative !important;
+    width: 100% !important;
+    height: 250px !important; /* ALTURA FIJA DEL CONTENEDOR */
+    flex-shrink: 0 !important; /* NO SE ENCOGE */
+    
+    border-radius: 18px 18px 0 0 !important; /* SOLO ESQUINAS SUPERIORES */
+    overflow: hidden !important;
+    background: rgba(0, 0, 0, 0.1) !important;
+    
+    /* CENTRAR IMAGEN */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* ===== IMAGEN SE AJUSTA AL CONTENEDOR ===== */
+.news-image img {
+    /* DIMENSIONES CONTROLADAS */
+    width: 100% !important;
+    height: 100% !important;
+    
+    /* LA IMAGEN SE AJUSTA AL CONTENEDOR, NO LO CRECE */
+    object-fit: cover !important;
+    object-position: center center !important;
+    
+    /* SIN POSICIONAMIENTO ABSOLUTO */
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    
+    /* ESTILO VISUAL */
+    border-radius: 0 !important; /* SIN BORDER RADIUS PROPIO */
+    transition: all 0.3s ease !important;
+    
+    /* PREVENIR CRECIMIENTO */
+    max-width: 100% !important;
+    max-height: 100% !important;
+    min-width: 100% !important;
+    min-height: 100% !important;
+}
+
+/* ===== CONTENIDO DE TEXTO FIJO ===== */
+.news-content {
+    flex: 1 !important; /* OCUPA EL ESPACIO RESTANTE */
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    
+    padding: 20px !important;
+    height: 200px !important; /* ALTURA FIJA DEL CONTENIDO */
+    
+    background: rgba(15, 15, 35, 0.3) !important;
+    border-radius: 0 0 18px 18px !important;
+}
+
+/* ===== TÍTULO DE NOTICIA ===== */
+.news-content h3 {
+    font-size: 1.2rem !important;
+    font-weight: 700 !important;
+    color: var(--accent-purple, #bd93f9) !important;
+    line-height: 1.3 !important;
+    margin: 0 0 12px 0 !important;
+    
+    /* CONTROLAR OVERFLOW */
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+/* ===== DESCRIPCIÓN DE NOTICIA ===== */
+.news-content p {
+    font-size: 0.95rem !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+    line-height: 1.4 !important;
+    margin: 0 0 15px 0 !important;
+    flex: 1 !important; /* OCUPA EL ESPACIO DISPONIBLE */
+    
+    /* CONTROLAR OVERFLOW */
+    display: -webkit-box !important;
+    -webkit-line-clamp: 3 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+/* ===== FECHA DE NOTICIA ===== */
+.news-content time {
+    font-size: 0.85rem !important;
+    color: var(--accent-green, #50fa7b) !important;
+    font-weight: 600 !important;
+    margin: 0 !important;
+    
+    display: block !important;
+    flex-shrink: 0 !important; /* NO SE ENCOGE */
+}
+
+/* ===== EFECTOS HOVER ===== */
+.news-card:hover {
+    transform: translateY(-8px) !important;
+    border-color: rgba(189, 147, 249, 0.6) !important;
+    box-shadow: 0 15px 35px rgba(189, 147, 249, 0.3) !important;
+}
+
+.news-card:hover .news-image img {
+    transform: scale(1.05) !important;
+}
+
+.news-card:hover .news-content {
+    background: rgba(189, 147, 249, 0.1) !important;
+}
+
+/* ===== RESPONSIVE - TABLET (768px - 1023px) ===== */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .news-grid {
+        grid-template-columns: repeat(2, 1fr) !important; /* 2 COLUMNAS EN TABLET */
+        gap: 25px !important;
+    }
+    
+    .news-card {
+        height: 420px !important;
+    }
+    
+    .news-image {
+        height: 220px !important;
+    }
+    
+    .news-content {
+        height: 180px !important;
+        padding: 18px !important;
+    }
+    
+    .news-content h3 {
+        font-size: 1.1rem !important;
+    }
+    
+    .news-content p {
+        font-size: 0.9rem !important;
+    }
+}
+
+/* ===== RESPONSIVE - MOBILE (320px - 767px) ===== */
+@media (max-width: 767px) {
+    .news-section {
+        padding: 60px 0 !important;
+    }
+    
+    .news-grid {
+        grid-template-columns: 1fr !important; /* 1 COLUMNA EN MOBILE */
+        gap: 20px !important;
+    }
+    
+    .news-card {
+        height: 380px !important;
+    }
+    
+    .news-image {
+        height: 200px !important;
+    }
+    
+    .news-content {
+        height: 160px !important;
+        padding: 15px !important;
+    }
+    
+    .news-content h3 {
+        font-size: 1rem !important;
+        margin-bottom: 10px !important;
+    }
+    
+    .news-content p {
+        font-size: 0.85rem !important;
+        -webkit-line-clamp: 2 !important; /* MENOS LÍNEAS EN MOBILE */
+        margin-bottom: 12px !important;
+    }
+    
+    .news-content time {
+        font-size: 0.8rem !important;
+    }
+}
+
+/* ===== RESPONSIVE - MOBILE PEQUEÑO (320px - 374px) ===== */
+@media (max-width: 374px) {
+    .news-card {
+        height: 350px !important;
+        border-radius: 15px !important;
+    }
+    
+    .news-image {
+        height: 180px !important;
+        border-radius: 13px 13px 0 0 !important;
+    }
+    
+    .news-content {
+        height: 150px !important;
+        padding: 12px !important;
+        border-radius: 0 0 13px 13px !important;
+    }
+    
+    .news-content h3 {
+        font-size: 0.95rem !important;
+    }
+    
+    .news-content p {
+        font-size: 0.8rem !important;
+    }
+}
+
+/* ===== RESPONSIVE - DESKTOP GRANDE (1200px+) ===== */
+@media (min-width: 1200px) {
+    .news-grid {
+        gap: 35px !important;
+    }
+    
+    .news-card {
+        height: 480px !important;
+    }
+    
+    .news-image {
+        height: 270px !important;
+    }
+    
+    .news-content {
+        height: 210px !important;
+        padding: 25px !important;
+    }
+    
+    .news-content h3 {
+        font-size: 1.3rem !important;
+        margin-bottom: 15px !important;
+    }
+    
+    .news-content p {
+        font-size: 1rem !important;
+        margin-bottom: 18px !important;
+    }
+    
+    .news-content time {
+        font-size: 0.9rem !important;
+    }
+}
+
+/* ===== ESTADOS DE CARGA ===== */
+.news-card.loading .news-image {
+    background: linear-gradient(
+        45deg,
+        rgba(189, 147, 249, 0.1) 0%,
+        rgba(80, 250, 123, 0.1) 50%,
+        rgba(255, 121, 198, 0.1) 100%
+    ) !important;
+    animation: newsLoadingPulse 1.5s ease-in-out infinite !important;
+}
+
+@keyframes newsLoadingPulse {
+    0%, 100% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+/* ===== ACCESIBILIDAD ===== */
+.news-card:focus {
+    outline: 2px solid var(--accent-purple, #bd93f9) !important;
+    outline-offset: 2px !important;
+}
+
+.news-card:focus .news-image img {
+    transform: scale(1.02) !important;
+}
+
+/* ===== PREVENIR CONFLICTOS CON OTROS CSS ===== */
+.news-section * {
+    box-sizing: border-box !important;
+}
+
+.news-image::before,
+.news-image::after {
+    display: none !important;
+}
+
+.news-content::before,
+.news-content::after {
+    display: none !important;
+}
+
+
+/* ===================================================================
+   GALERÍA UNIFORME - IMÁGENES SIN RECORTES IMPORTANTES
+   =================================================================== */
+
+/* ===== CONTENEDOR BASE - SIN CAMBIOS ===== */
+.gallery-grid .gallery-item {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    align-items: stretch !important;
+    position: relative !important;
+    
+    width: 100% !important;
+    height: 420px !important;
+    
+    border: 2px solid rgba(189, 147, 249, 0.3) !important;
+    border-radius: 15px !important;
+    padding: 15px !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    backdrop-filter: blur(10px) !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+}
+
+/* ===== CONTENEDOR DE IMAGEN - SIN CAMBIOS ===== */
+.gallery-grid .gallery-item .image-container {
+    flex: none !important;
+    position: relative !important;
+    width: 100% !important;
+    height: 340px !important;
+    margin-bottom: 12px !important;
+    
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    background: rgba(0, 0, 0, 0.1) !important;
+    
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* ===== IMÁGENES BASE - CONFIGURACIÓN INTELIGENTE ===== */
+.gallery-grid .gallery-item img {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    
+    /* DIMENSIONES INTELIGENTES */
+    max-width: 100% !important;
+    max-height: 100% !important;
+    width: auto !important;
+    height: auto !important;
+    
+    /* USAR CONTAIN PARA VER TODO EL CONTENIDO */
+    object-fit: contain !important;
+    object-position: center center !important;
+    
+    border-radius: 8px !important;
+    transition: all 0.3s ease !important;
+    display: block !important;
+    margin: 0 auto !important;
+}
+
+/* ===== AJUSTES ESPECÍFICOS POR IMAGEN ===== */
+
+/* IMAGEN 1: Eventos Corporativos (vertical) */
+.gallery-grid .gallery-item:nth-child(1) img {
+    object-fit: cover !important;
+    object-position: center 25% !important; /* Enfocar en la botella */
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* IMAGEN 2: Celebraciones Familiares (horizontal) */
+.gallery-grid .gallery-item:nth-child(2) img {
+    object-fit: cover !important;
+    object-position: center center !important; /* Mantener centrada */
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* IMAGEN 3: Brindis Especiales (cuadrada) */
+.gallery-grid .gallery-item:nth-child(3) img {
+    object-fit: cover !important;
+    object-position: center center !important; /* Perfecta como está */
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* IMAGEN 4: Distribuidores Satisfechos (vertical) */
+.gallery-grid .gallery-item:nth-child(4) img {
+    object-fit: cover !important;
+    object-position: center 30% !important; /* Enfocar en persona + botella */
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* ===== FONDO MEJORADO PARA UNIFORMIDAD ===== */
+.gallery-grid .gallery-item .image-container::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    
+    background: linear-gradient(
+        135deg,
+        rgba(15, 15, 35, 0.02) 0%,
+        rgba(189, 147, 249, 0.02) 50%,
+        rgba(80, 250, 123, 0.02) 100%
+    ) !important;
+    
+    border-radius: 8px !important;
+    z-index: 1 !important;
+    pointer-events: none !important;
+}
+
+/* ===== IMAGEN SOBRE EL FONDO ===== */
+.gallery-grid .gallery-item img {
+    z-index: 2 !important;
+    position: relative !important;
+}
+
+/* ===== TEXTO - SIN CAMBIOS ===== */
+.gallery-grid .gallery-item .gallery-overlay {
+    position: relative !important;
+    flex-shrink: 0 !important;
+    width: 100% !important;
+    height: 55px !important;
+    
+    background: rgba(15, 15, 35, 0.92) !important;
+    border: 1px solid rgba(189, 147, 249, 0.5) !important;
+    border-radius: 10px !important;
+    padding: 8px 12px !important;
+    margin: 0 !important;
+    
+    backdrop-filter: blur(10px) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4) !important;
+    
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    
+    z-index: 10 !important;
+}
+
+.gallery-grid .gallery-item .gallery-overlay span {
+    font-size: 1.1rem !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    line-height: 1.3 !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8) !important;
+    
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: initial !important;
+}
+
+/* ===== HOVER EFFECTS - MEJORADOS ===== */
+.gallery-grid .gallery-item:hover {
+    transform: translateY(-8px) !important;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    box-shadow: 0 15px 35px rgba(189, 147, 249, 0.3) !important;
+    border-color: rgba(189, 147, 249, 0.6) !important;
+}
+
+.gallery-grid .gallery-item:hover .image-container {
+    transform: scale(1.02) !important;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+.gallery-grid .gallery-item:hover img {
+    transform: scale(1.05) !important;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+.gallery-grid .gallery-item:hover .gallery-overlay {
+    background: linear-gradient(
+        135deg,
+        rgba(189, 147, 249, 0.95) 0%,
+        rgba(255, 121, 198, 0.9) 100%
+    ) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 25px rgba(189, 147, 249, 0.5) !important;
+    border-color: rgba(255, 255, 255, 0.6) !important;
+    transition: all 0.3s ease !important;
+}
+
+/* ===== RESPONSIVE - TABLET ===== */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .gallery-grid .gallery-item {
+        height: 480px !important;
+        padding: 18px !important;
+    }
+    
+    .gallery-grid .gallery-item .image-container {
+        height: 380px !important;
+        margin-bottom: 18px !important;
+    }
+    
+    .gallery-grid .gallery-item .gallery-overlay {
+        height: 60px !important;
+    }
+}
+
+/* ===== RESPONSIVE - DESKTOP GRANDE ===== */
+@media (min-width: 1200px) {
+    .gallery-grid .gallery-item {
+        height: 480px !important;
+        padding: 18px !important;
+    }
+    
+    .gallery-grid .gallery-item .image-container {
+        height: 390px !important;
+        margin-bottom: 15px !important;
+    }
+    
+    .gallery-grid .gallery-item .gallery-overlay {
+        height: 60px !important;
+    }
+}
+
+/* ===== RESPONSIVE - MOBILE ===== */
+@media (max-width: 767px) {
+    .gallery-grid .gallery-item {
+        height: 450px !important;
+        padding: 16px !important;
+    }
+    
+    .gallery-grid .gallery-item .image-container {
+        height: 350px !important;
+        margin-bottom: 15px !important;
+    }
+    
+    .gallery-grid .gallery-item .gallery-overlay {
+        height: 58px !important;
+    }
+    
+    /* En mobile, usar contain para ver todo el contenido */
+    .gallery-grid .gallery-item img {
+        object-fit: contain !important;
+        object-position: center center !important;
+    }
+}
+
+/* ===== LIMPIAR CSS CONFLICTIVO ===== */
+.gallery-grid .gallery-item::before,
+.gallery-grid .gallery-item::after {
+    display: none !important;
+}
+
+.gallery-item h3 {
+    display: none !important;
+}
+
+/* ===== GRID LAYOUT ===== */
+.gallery-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 20px !important;
+    align-items: start !important;
+    width: 100% !important;
+}
+
+@media (max-width: 767px) {
+    .gallery-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .gallery-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 18px !important;
+    }
+}
+
+@media (min-width: 1024px) {
+    .gallery-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 25px !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .gallery-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 30px !important;
+    }
+}
+
+
+/* ===================================================================
+   GRID DE PRODUCTOS - 5 COLUMNAS EN UNA LÍNEA
+   =================================================================== */
+
+/* ===== GRID PRINCIPAL - 5 PRODUCTOS ===== */
+.products-grid {
+    display: grid !important;
+    grid-template-columns: repeat(5, 1fr) !important; /* 5 COLUMNAS IGUALES */
+    gap: 20px !important;
+    align-items: start !important;
+    width: 100% !important;
+    max-width: 1400px !important; /* MÁS ANCHO PARA 5 PRODUCTOS */
+    margin: 0 auto !important;
+    padding: 0 20px !important;
+}
+
+/* ===== TARJETAS DE PRODUCTO MÁS COMPACTAS ===== */
+.product-card {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-radius: 18px !important; /* MENOS REDONDEADO PARA AHORRAR ESPACIO */
+    padding: 18px !important; /* MENOS PADDING */
+    text-align: center !important;
+    transition: transform 0.3s ease !important;
+    border: 1px solid rgba(189, 147, 249, 0.2) !important;
+    
+    /* ALTURA FIJA PARA UNIFORMIDAD */
+    height: 420px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+}
+
+/* ===== IMAGEN DE PRODUCTO COMPACTA ===== */
+.product-image {
+    width: 100% !important;
+    max-width: 140px !important; /* MÁS PEQUEÑA PARA 5 COLUMNAS */
+    height: 200px !important; /* ALTURA FIJA */
+    margin: 0 auto 15px !important;
+    
+    /* IMAGEN SE AJUSTA AL CONTENEDOR */
+    object-fit: contain !important;
+    object-position: center !important;
+    
+    border-radius: 10px !important;
+    transition: transform 0.3s ease !important;
+}
+
+/* ===== NOMBRE DE PRODUCTO COMPACTO ===== */
+.product-name {
+    font-size: 1.1rem !important; /* MÁS PEQUEÑO */
+    color: var(--accent-purple, #bd93f9) !important;
+    margin-bottom: 8px !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+    
+    /* CONTROLAR OVERFLOW */
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    
+    min-height: 2.4rem !important; /* ALTURA MÍNIMA PARA UNIFORMIDAD */
+}
+
+/* ===== DESCRIPCIÓN COMPACTA ===== */
+.product-description-short {
+    font-size: 0.85rem !important; /* MÁS PEQUEÑA */
+    color: rgba(255, 255, 255, 0.8) !important;
+    margin-bottom: 15px !important;
+    line-height: 1.3 !important;
+    
+    /* CONTROLAR OVERFLOW */
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    
+    min-height: 2.2rem !important; /* ALTURA MÍNIMA */
+}
+
+/* ===== BOTÓN COMPACTO ===== */
+.btn-catalog-product {
+    padding: 10px 15px !important; /* MÁS COMPACTO */
+    font-size: 0.9rem !important; /* TEXTO MÁS PEQUEÑO */
+    border-radius: 10px !important;
+    background: linear-gradient(135deg, var(--accent-purple, #bd93f9), var(--accent-pink, #ff79c6)) !important;
+    color: white !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    min-height: 40px !important;
+}
+
+/* ===== HOVER EFFECTS ===== */
+.product-card:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 10px 30px rgba(189, 147, 249, 0.3) !important;
+    border-color: rgba(189, 147, 249, 0.5) !important;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.05) !important;
+}
+
+.product-card:hover .btn-catalog-product {
+    background: linear-gradient(135deg, var(--accent-pink, #ff79c6), var(--accent-green, #50fa7b)) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 5px 15px rgba(255, 121, 198, 0.4) !important;
+}
+
+/* ===== RESPONSIVE - DESKTOP GRANDE (1200px+) ===== */
+@media (min-width: 1200px) {
+    .products-grid {
+        grid-template-columns: repeat(5, 1fr) !important; /* 5 COLUMNAS */
+        gap: 25px !important;
+        max-width: 1500px !important; /* MÁS ESPACIO */
+        padding: 0 30px !important;
+    }
+    
+    .product-card {
+        height: 450px !important; /* UN POCO MÁS ALTO */
+        padding: 20px !important;
+    }
+    
+    .product-image {
+        max-width: 160px !important; /* UN POCO MÁS GRANDE */
+        height: 220px !important;
+    }
+    
+    .product-name {
+        font-size: 1.2rem !important;
+    }
+    
+    .product-description-short {
+        font-size: 0.9rem !important;
+    }
+    
+    .btn-catalog-product {
+        padding: 12px 18px !important;
+        font-size: 0.95rem !important;
+    }
+}
+
+/* ===== RESPONSIVE - DESKTOP ULTRA (1400px+) ===== */
+@media (min-width: 1400px) {
+    .products-grid {
+        grid-template-columns: repeat(5, 1fr) !important; /* 5 COLUMNAS */
+        gap: 30px !important;
+        max-width: 1600px !important; /* MÁXIMO ESPACIO */
+        padding: 0 40px !important;
+    }
+    
+    .product-card {
+        height: 480px !important; /* MÁS ALTO EN ULTRA WIDE */
+        padding: 25px !important;
+    }
+    
+    .product-image {
+        max-width: 180px !important; /* MÁS GRANDE */
+        height: 240px !important;
+    }
+    
+    .product-name {
+        font-size: 1.3rem !important;
+    }
+    
+    .product-description-short {
+        font-size: 1rem !important;
+    }
+}
+
+/* ===== RESPONSIVE - TABLET (768px - 1199px) ===== */
+@media (min-width: 768px) and (max-width: 1199px) {
+    .products-grid {
+        grid-template-columns: repeat(3, 1fr) !important; /* 3 COLUMNAS EN TABLET */
+        gap: 20px !important;
+        padding: 0 20px !important;
+    }
+    
+    .product-card {
+        height: 400px !important;
+        padding: 16px !important;
+    }
+    
+    .product-image {
+        max-width: 130px !important;
+        height: 180px !important;
+    }
+    
+    .product-name {
+        font-size: 1rem !important;
+    }
+    
+    .product-description-short {
+        font-size: 0.8rem !important;
+    }
+    
+    /* EN TABLET, EL 4º Y 5º PRODUCTO VAN EN SEGUNDA FILA */
+    .product-card:nth-child(4),
+    .product-card:nth-child(5) {
+        grid-column: span 1 !important;
+    }
+    
+    /* CENTRAR LA SEGUNDA FILA CON 2 PRODUCTOS */
+    .product-card:nth-child(4) {
+        grid-column: 1 / 2 !important;
+        margin-left: auto !important;
+        margin-right: 10px !important;
+    }
+    
+    .product-card:nth-child(5) {
+        grid-column: 2 / 3 !important;
+        margin-left: 10px !important;
+        margin-right: auto !important;
+    }
+}
+
+/* ===== RESPONSIVE - MOBILE (320px - 767px) ===== */
+@media (max-width: 767px) {
+    .products-grid {
+        grid-template-columns: 1fr !important; /* 1 COLUMNA EN MOBILE */
+        gap: 20px !important;
+        padding: 0 15px !important;
+    }
+    
+    .product-card {
+        height: 350px !important; /* MÁS COMPACTO EN MOBILE */
+        padding: 15px !important;
+        max-width: 400px !important; /* LIMITAR ANCHO EN MOBILE */
+        margin: 0 auto !important; /* CENTRAR */
+    }
+    
+    .product-image {
+        max-width: 120px !important;
+        height: 160px !important;
+        margin-bottom: 12px !important;
+    }
+    
+    .product-name {
+        font-size: 1.1rem !important;
+        margin-bottom: 10px !important;
+    }
+    
+    .product-description-short {
+        font-size: 0.85rem !important;
+        margin-bottom: 12px !important;
+    }
+    
+    .btn-catalog-product {
+        padding: 10px 15px !important;
+        font-size: 0.9rem !important;
+    }
+}
+
+/* ===== MOBILE PEQUEÑO (320px - 480px) ===== */
+@media (max-width: 480px) {
+    .product-card {
+        height: 320px !important; /* AÚN MÁS COMPACTO */
+        padding: 12px !important;
+    }
+    
+    .product-image {
+        max-width: 183px !important;
+        height: 140px !important;
+    }
+    
+    .product-name {
+        font-size: 1rem !important;
+    }
+    
+    .product-description-short {
+        font-size: 0.8rem !important;
+        -webkit-line-clamp: 1 !important; /* SOLO 1 LÍNEA */
+    }
+}
+
+/* ===== ORDEN ESPECÍFICO DE PRODUCTOS ===== */
+.product-card[data-product="rosado"] {
+    order: 1 !important;
+}
+
+.product-card[data-product="blanco"] {
+    order: 2 !important; /* CHAMPAGNE BLANCO SEGUNDO */
+}
+
+.product-card[data-product="cereza"] {
+    order: 3 !important;
+}
+
+.product-card[data-product="manzana"] {
+    order: 4 !important;
+}
+
+.product-card[data-product="uva"] {
+    order: 5 !important;
+}
+
+/* ===== CONTENEDOR DE SECCIÓN ===== */
+.products-section {
+    padding: 80px 0 !important;
+    overflow-x: hidden !important; /* PREVENIR SCROLL HORIZONTAL */
+}
+
+.products-section .container {
+    max-width: 1600px !important; /* MÁS ANCHO PARA 5 PRODUCTOS */
+    margin: 0 auto !important;
+    padding: 0 20px !important;
+}
+
+/* ===== TÍTULO DE SECCIÓN ===== */
+.section-title {
+    text-align: center !important;
+    margin-bottom: 15px !important;
+}
+
+.section-subtitle {
+    text-align: center !important;
+    margin-bottom: 50px !important;
+}
+
+/* ===== ACCESIBILIDAD ===== */
+.product-card:focus {
+    outline: 2px solid var(--accent-purple, #bd93f9) !important;
+    outline-offset: 2px !important;
+}
+
+.btn-catalog-product:focus {
+    outline: 2px solid var(--accent-green, #50fa7b) !important;
+    outline-offset: 2px !important;
+}
+
+/* ===================================================================
+   TARJETAS ESTILO APPLE - MINIMALISMO Y ELEGANCIA PURA
+   =================================================================== */
+
+/* ===== TARJETA BASE - REALMENTE ANCHA ===== */
+.product-card {
+    background: rgba(30, 30, 63, 0.8);
+    border-radius: 20px;
+    border: 1px solid rgba(189, 147, 249, 0.2);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    min-height: 400px; /* MENOS ALTO */
+    max-height: 450px; /* LÍMITE DE ALTURA */
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 20px 40px rgba(189, 147, 249, 0.3),
+        0 10px 20px rgba(0, 0, 0, 0.2);
+    border-color: rgba(189, 147, 249, 0.4);
+}
+
+.product-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.05) 50%,
+        rgba(0, 0, 0, 0.05) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.product-card:hover {
+    transform: translateY(-12px) scale(1.03);
+    box-shadow: 
+        0 40px 80px rgba(0, 0, 0, 0.25),
+        0 20px 50px rgba(189, 147, 249, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-color: rgba(189, 147, 249, 0.3);
+}
+
+.product-card:hover::before {
+    opacity: 1;
+}
+
+/* ===== CONTENEDOR PRINCIPAL - PADDING EQUILIBRADO ===== */
+.product-preview {
+    padding: 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    position: relative;
+    flex: 1;
+}
+
+/* ===== IMAGEN ANCHA Y PROPORCIONADA ===== */
+.product-image {
+    width: calc(100% - 6px) !important; /* SÚPER ANCHO */
+    height: 280px !important; /* ALTURA PROPORCIONADA */
+    object-fit: contain !important;
+    object-position: center !important;
+    margin: 3px auto 8px auto !important;
+    border-radius: 14px;
+    background: linear-gradient(
+        145deg,
+        rgba(0, 0, 0, 0.9) 0%,
+        rgba(10, 10, 25, 0.95) 50%,
+        rgba(0, 0, 0, 0.9) 100%
+    );
+    padding: 8px !important; /* PADDING BALANCEADO */
+    filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.4));
+    border: 1px solid rgba(189, 147, 249, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+    display: block;
+    box-shadow: 
+        0 5px 15px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.product-image::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    background: linear-gradient(
+        135deg,
+        rgba(189, 147, 249, 0.4) 0%,
+        rgba(80, 250, 123, 0.3) 35%,
+        rgba(255, 121, 198, 0.3) 65%,
+        rgba(189, 147, 249, 0.4) 100%
+    );
+    border-radius: 23px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    blur: 2px;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.05) rotateY(2deg);
+    filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.4));
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.product-card:hover .product-image::before {
+    opacity: 1;
+}
+
+/* ===== INFORMACIÓN EQUILIBRADA ===== */
+.product-info-preview {
+    flex: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.product-name {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #bd93f9;
+    margin-bottom: 10px;
+    line-height: 1.2;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.product-description-short {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 12px;
+    line-height: 1.4;
+    font-weight: 400;
+}
+
+.product-specs {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(189, 147, 249, 0.15);
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid rgba(189, 147, 249, 0.3);
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+/* ===== BOTÓN COLOR ORIGINAL PÁGINA ===== */
+.product-open-catalog {
+    background: linear-gradient(135deg, #50fa7b 0%, #8be9fd 100%); /* COLOR ORIGINAL */
+    color: #0f0f23;
+    border: none;
+    border-radius: 24px;
+    padding: 12px 24px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 6px 18px rgba(80, 250, 123, 0.3);
+    margin-top: auto;
+    align-self: center;
+    min-width: 150px;
+    position: relative;
+    overflow: hidden;
+}
+
+.product-open-catalog:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(80, 250, 123, 0.4);
+    background: linear-gradient(135deg, #8be9fd 0%, #50fa7b 100%);
+}
+
+.product-open-catalog:active {
+    transform: translateY(0);
+    transition: transform 0.1s ease;
+}
+
+/* ===== GRID SÚPER ANCHO - USA TODA LA PANTALLA ===== */
+.products-grid {
+    display: grid;
+    gap: 25px;
+    padding: 25px 10px; /* PADDING MÍNIMO LATERAL */
+    width: 100%;
+    max-width: 100%; /* SIN LÍMITES DE ANCHO */
+    margin: 0;
+    justify-items: center;
+}
+
+/* ===================================================================
+   RESPONSIVE BREAKPOINTS - ESTILO APPLE
+   =================================================================== */
+
+/* ===== MOBILE PEQUEÑO - ANCHO Y PROPORCIONADO ===== */
+@media (max-width: 480px) {
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 15px 8px; /* PADDING LATERAL MÍNIMO */
+        max-width: 100%;
+        margin: 0;
+    }
+    
+    .product-card {
+        width: calc(100% - 16px); /* ANCHO COMPLETO */
+        max-width: none;
+        min-height: 516px; /* MENOS ALTO */
+        max-height: 420px; /* LÍMITE DE ALTURA */
+        margin: 0 8px;
+    }
+    
+    .product-preview {
+        padding: 15px;
+    }
+    
+    .product-image {
+        height: 284px !important; /* ALTURA PROPORCIONADA */
+        padding: 0px !important;
+        margin: -21px auto 7px auto !important;
+        object-fit: contain !important;
+        width: calc(100% - 10px) !important;
+        background: rgba(0, 0, 0, 0.9);
+        border-radius: 10px;
+    }
+    
+    .product-name {
+        font-size: 1.1rem;
+        margin-bottom: 5px;
+    }
+    
+    .product-description-short {
+        font-size: 0.85rem;
+        margin-bottom: 6px;
+        line-height: 1.2;
+    }
+    
+    .product-specs {
+        font-size: 0.8rem;
+        padding: 4px 10px;
+        margin-bottom: 8px;
+    }
+    
+    .product-open-catalog {
+        padding: 8px 16px;
+        font-size: 0.8rem;
+        min-width: 120px;
+        border-radius: 16px;
+    }
+}
+
+/* ===== MOBILE ESTÁNDAR - ANCHO Y PROPORCIONADO ===== */
+@media (min-width: 481px) and (max-width: 767px) {
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 20px 10px;
+        max-width: 100%;
+        margin: 0;
+    }
+    
+    .product-card {
+        width: calc(100% - 20px);
+        max-width: none;
+        min-height: 420px; /* MENOS ALTO */
+        max-height: 460px; /* LÍMITE DE ALTURA */
+        margin: 0 10px;
+    }
+    
+    .product-preview {
+        padding: 18px;
+    }
+    
+    .product-image {
+        height: 280px !important; /* ALTURA PROPORCIONADA */
+        padding: 12px !important;
+        margin: 6px auto 12px auto !important;
+        object-fit: contain !important;
+        width: calc(100% - 12px) !important;
+        background: rgba(0, 0, 0, 0.9);
+    }
+    
+    .product-name {
+        font-size: 1.2rem;
+        margin-bottom: 6px;
+    }
+    
+    .product-description-short {
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+    }
+    
+    .product-specs {
+        font-size: 0.85rem;
+        margin-bottom: 10px;
+    }
+    
+    .product-open-catalog {
+        padding: 10px 20px;
+        font-size: 0.85rem;
+        min-width: 140px;
+    }
+}
+
+/* ===== TABLET - ANCHO Y PROPORCIONADO ===== */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+        padding: 25px 15px;
+        max-width: 100%;
+        margin: 0;
+    }
+    
+    .product-card {
+        min-height: 450px; /* MENOS ALTO */
+        max-height: 500px; /* LÍMITE DE ALTURA */
+        max-width: none;
+        width: 100%;
+    }
+    
+    .product-preview {
+        padding: 20px;
+    }
+    
+    .product-image {
+        height: 300px !important; /* ALTURA PROPORCIONADA */
+        padding: 12px !important;
+        margin: 6px auto 15px auto !important;
+        object-fit: contain !important;
+        width: calc(100% - 12px) !important;
+        background: rgba(0, 0, 0, 0.9);
+    }
+    
+    .product-name {
+        font-size: 1.2rem;
+        margin-bottom: 6px;
+    }
+    
+    .product-description-short {
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+    }
+    
+    .product-specs {
+        margin-bottom: 10px;
+    }
+    
+    .product-open-catalog {
+        padding: 9px 18px;
+        font-size: 0.85rem;
+    }
+}
+
+/* ===== DESKTOP - ANCHO Y PROPORCIONADO ===== */
+@media (min-width: 1024px) {
+    .products-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 25px;
+        padding: 30px 20px;
+        max-width: 100%;
+        margin: 0;
+    }
+    
+    .product-card {
+        min-height: 480px; /* MENOS ALTO */
+        max-height: 520px; /* LÍMITE DE ALTURA */
+        max-width: none;
+        width: 106%;
+    }
+    
+    .product-preview {
+        padding: 22px;
+    }
+    
+    .product-image {
+        height: 320px !important; /* ALTURA PROPORCIONADA */
+        padding: 15px !important;
+        margin: 8px auto 18px auto !important;
+        object-fit: contain !important;
+        width: calc(100% - 15px) !important;
+    }
+    
+    .product-name {
+        font-size: 1.3rem;
+        margin-bottom: 8px;
+    }
+    
+    .product-description-short {
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+    
+    .product-specs {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+        margin-bottom: 15px;
+    }
+    
+    .product-open-catalog {
+        padding: 10px 20px;
+        font-size: 0.85rem;
+        min-width: 140px;
+    }
+}
+
+/* ===== DESKTOP ESTÁNDAR (1200px - 1439px) ===== */
+@media (min-width: 1200px) and (max-width: 1439px) {
+    .products-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 32px;
+        padding: 40px 32px;
+        max-width: 1400px;
+    }
+    
+    .product-card {
+        min-height: 680px;
+        max-width: 320px;
+    }
+    
+    .product-preview {
+        padding: 24px;
+    }
+    
+    .product-image {
+        height: 480px !important; /* IMAGEN DOMINANTE */
+        padding: 20px !important;
+        margin-bottom: 20px !important;
+    }
+}
+
+/* ===== DESKTOP GRANDE - IMAGEN MÁS GRANDE ===== */
+@media (min-width: 1440px) {
+    .products-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+        padding: 40px 30px;
+        max-width: 1600px;
+        margin: 0 auto;
+    }
+    
+    .product-card {
+        min-height: 584px;
+        max-width: 380px;
+    }
+    
+    .product-preview {
+        padding: 20px; /* MENOS PADDING */
+    }
+    
+    .product-image {
+        height: 252px !important; /* ALTURA GRANDE */
+        padding: 0px !important; /* PADDING MÍNIMO */
+        margin: -19px auto 16px auto !important;
+        object-fit: contain !important;
+        width: calc(100% - 10px) !important; /* MÁS ANCHO */
+        transform: scale(1.08); /* AGRANDA LA IMAGEN */
+    }
+    
+    .product-name {
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+    }
+    
+    .product-description-short {
+        font-size: 1.05rem;
+        margin-bottom: 12px;
+    }
+    
+    .product-specs {
+        font-size: 0.95rem;
+        padding: 16px 21px;
+        margin-bottom: 18px;
+    }
+    
+    .product-open-catalog {
+        padding: 12px 24px;
+        font-size: 0.9rem;
+        min-width: 160px;
+    }
+}
+
+/* ===== ULTRA WIDE (2560px+) ===== */
+@media (min-width: 2560px) {
+    .products-grid {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 40px;
+        padding: 50px 40px;
+        max-width: 2200px;
+    }
+    
+    .product-card {
+        min-height: 760px;
+        max-width: 400px;
+    }
+    
+    .product-image {
+        height: 540px !important; /* IMAGEN GIGANTE */
+        padding: 24px !important;
+    }
+    
+    .product-name {
+        font-size: 1.7rem;
+    }
+    
+    .product-description-short {
+        font-size: 1.2rem;
+    }
+    
+    .product-open-catalog {
+        padding: 20px 40px;
+        font-size: 1.1rem;
+        min-width: 220px;
+    }
+}
+
+/* ===== ESTADOS ESPECIALES ESTILO APPLE ===== */
+.product-card.featured {
+    border: 2px solid rgba(0, 122, 255, 0.4);
+    box-shadow: 
+        0 30px 60px rgba(0, 122, 255, 0.2),
+        0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.product-card.out-of-stock {
+    opacity: 0.6;
+    filter: grayscale(0.8);
+}
+
+.product-card.out-of-stock .product-open-catalog {
+    background: linear-gradient(135deg, #8E8E93, #AEAEB2);
+    cursor: not-allowed;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* ===== LOADING STATE ESTILO APPLE ===== */
+.product-image.loading {
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.08) 0%,
+        rgba(255, 255, 255, 0.12) 50%,
+        rgba(255, 255, 255, 0.08) 100%
+    );
+    background-size: 200% 100%;
+    animation: appleShimmer 2s infinite;
+}
+
+@keyframes appleShimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+/* ===== ACCESIBILIDAD ESTILO APPLE ===== */
+@media (prefers-reduced-motion: reduce) {
+    .product-card,
+    .product-image,
+    .product-open-catalog,
+    .product-open-catalog::before {
+        transition: none;
+        animation: none;
+        transform: none;
+    }
+    
+    .product-card:hover {
+        transform: none;
+    }
+}
+
+/* ===== FOCUS STATES ESTILO APPLE ===== */
+.product-open-catalog:focus,
+.product-card:focus {
+    outline: 3px solid #007AFF;
+    outline-offset: 4px;
+}
+
+@media (prefers-color-scheme: light) {
+    .product-card {
+        background: rgba(255, 255, 255, 0.8);
+        border-color: rgba(0, 0, 0, 0.1);
+    }
+    
+    .product-name {
+        color: rgba(0, 0, 0, 0.9);
+    }
+    
+    .product-description-short {
+        color: rgba(0, 0, 0, 0.7);
+    }
+    
+    .product-specs {
+        color: rgba(0, 0, 0, 0.6);
+        background: rgba(0, 0, 0, 0.05);
+        border-color: rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+    .product-card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 2px solid #ccc;
+        background: white;
+    }
+    
+    .product-open-catalog {
+        display: none;
+    }
+}
