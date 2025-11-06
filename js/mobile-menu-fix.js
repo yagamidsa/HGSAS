@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', function() {
             e.stopImmediatePropagation();
             
             const href = this.getAttribute('href');
-            console.log('🔗 Click en enlace mobile:', href);
+            
             
             if (href && href.startsWith('#')) {
                 closeMenu();
@@ -198,10 +198,6 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('📋 Navigation panel:', !!nav);
     };
     
-    // LOGS INICIALES
-    console.log('✅ Mobile menu FORCE configurado');
-    console.log('📱 Enlaces mobile:', navLinks.length);
-    console.log('💡 Ejecuta testMobileNavigation() para debug');
     
     // Test automático
     setTimeout(() => {

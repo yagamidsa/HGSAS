@@ -23,7 +23,7 @@ class CatalogSystem {
         this.setupTouchGestures();
         this.setupAccessibility();
 
-        console.log('📖 Catalog System inicializado');
+
     }
 
     loadCatalogData() {
@@ -408,20 +408,18 @@ class CatalogSystem {
     closeCatalog() {
         if (!this.isOpen) return;
 
+        // ✅ RESTAURAR SCROLL INMEDIATAMENTE
+        document.body.style.overflow = '';
+
         this.catalogModal.classList.remove('catalog-open');
 
-        setTimeout(() => {
+        // ✅ requestAnimationFrame en lugar de setTimeout(300ms)
+        requestAnimationFrame(() => {
             this.catalogModal.style.display = 'none';
             this.catalogContent.innerHTML = '';
             this.isOpen = false;
             this.currentProduct = null;
-
-            // Restore body scroll
-            document.body.style.overflow = '';
-
-        }, 300);
-
-        console.log('📖 Catálogo cerrado');
+        });
     }
 
     enhanceCardHover(card, isHover) {

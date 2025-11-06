@@ -671,12 +671,11 @@ responsiveController
 document.addEventListener('DOMContentLoaded', function() {
     // Esperar que todos los scripts se carguen
     setTimeout(() => {
-        console.log('🔥 Eliminando event listeners duplicados...');
+        
         
         // ENCONTRAR TODOS LOS ENLACES PROBLEMÁTICOS
         const enlacesProblematicos = document.querySelectorAll('a[href^="#"]:not(.whatsapp-btn)');
         
-        console.log('🔍 Encontrados', enlacesProblematicos.length, 'enlaces para limpiar');
         
         // REEMPLAZAR CADA ENLACE (esto elimina TODOS los event listeners)
         enlacesProblematicos.forEach((enlaceViejo, index) => {

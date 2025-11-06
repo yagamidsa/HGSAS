@@ -5122,7 +5122,7 @@ select option:selected {
         rgba(80, 250, 123, 0.1) 50%, 
         rgba(255, 121, 198, 0.1) 100%);
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.15s ease;
     z-index: 1;
 }
 
@@ -7389,3 +7389,370 @@ select option:selected {
         min-height: auto !important;
     }
 }
+
+
+/* ===== SELECTOR ESPECÍFICO PARA CATÁLOGO DE BLANCO =====*/
+.catalog-modal[data-product="blanco"] .product-title,
+.catalog-modal.blanco-active .product-title,
+.product-catalog[id="catalog-blanco"] h3,
+.catalog-modal:has(.product-title:contains("BLANCO")) .product-title,
+.catalog-modal:has(.product-title:contains("Champaña Blanco")) .product-title {
+    letter-spacing: 0 !important;
+    word-spacing: 0 !important;
+    font-variant: normal !important;
+    text-transform: none !important;
+    white-space: normal !important;
+    font-stretch: normal !important;
+}
+
+/* ===== CSS ESPECÍFICO PARA EL HTML ESTÁTICO DE BLANCO =====*/
+#catalog-blanco h3,
+#catalog-blanco .catalog-details h3,
+.product-catalog#catalog-blanco h3 {
+    letter-spacing: 0 !important;
+    word-spacing: 0 !important;
+    font-variant: normal !important;
+    text-transform: none !important;
+    white-space: normal !important;
+}
+
+/* ===== SI EL CATÁLOGO DINÁMICO TIENE CLASE ESPECÍFICA =====*/
+.catalog-modal.blanco-active h2,
+.catalog-modal.blanco-active h3,
+.catalog-modal.blanco-active .product-name,
+.catalog-modal.blanco-active .catalog-title {
+    letter-spacing: 0 !important;
+    word-spacing: 0 !important;
+    font-variant: normal !important;
+    white-space: normal !important;
+}
+
+/* ===== FORZAR ESPACIADO NORMAL PARA CUALQUIER ELEMENTO CON "BLANCO" =====*/
+*[class*="blanco"] .product-title,
+*[class*="blanco"] h2,
+*[class*="blanco"] h3,
+*[id*="blanco"] h3,
+*[data-product="blanco"] .product-title {
+    letter-spacing: 0 !important;
+    word-spacing: 0 !important;
+    font-variant: normal !important;
+}
+
+/* ===== SELECTOR MÁS ESPECÍFICO SI NADA FUNCIONA =====*/
+body .catalog-modal[data-product="blanco"] .product-title,
+body .catalog-modal.blanco-active .product-title,
+body #catalog-blanco h3,
+body .product-catalog#catalog-blanco .catalog-details h3 {
+    letter-spacing: 0 !important;
+    word-spacing: 0 !important;
+    font-variant: normal !important;
+    text-transform: none !important;
+    white-space: normal !important;
+    font-stretch: normal !important;
+    text-decoration: none !important;
+}
+
+/* ===== SELECTORES CON :contains() SI EL NAVEGADOR LO SOPORTA =====*/
+.catalog-modal .product-title:contains("BLANCO"),
+.catalog-modal .product-title:contains("Blanco"),
+.catalog-modal .product-title:contains("CHAMPAÑA BLANCO"),
+h3:contains("AJEDREZ Blanco") {
+    letter-spacing: 0 !important;
+    word-spacing: 0 !important;
+    font-variant: normal !important;
+}
+
+
+@media (min-width: 1024px) {
+    
+    /* ===== TÍTULO PRINCIPAL - FORZAR MARGIN PEQUEÑO ===== */
+    .hero-title {
+        font-size: clamp(3.2rem, 4vw, 4.2rem) !important;
+        line-height: 0.9 !important;
+        margin: 0 0 8px 0 !important; /* ✅ FORZAR MARGIN PEQUEÑO */
+        margin-top: 0 !important;
+        margin-bottom: 8px !important;
+        text-align: left !important;
+        padding: 0 !important;
+        background: var(--gradient-accent) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        background-clip: text !important;
+    }
+
+    /* ===== SUBTÍTULO DEL TÍTULO - FORZAR PEGADO ===== */
+    .title-subtitle {
+        display: block !important;
+        font-size: clamp(1.1rem, 1.8vw, 1.3rem) !important;
+        color: var(--accent-green) !important;
+        margin: 0 0 15px 0 !important; /* ✅ FORZAR MARGIN PEQUEÑO */
+        margin-top: 0 !important;
+        margin-bottom: 15px !important;
+        text-align: left !important;
+        line-height: 1.1 !important;
+        padding: 0 !important;
+    }
+
+    /* ===== SUBTÍTULO PRINCIPAL - FORZAR PEGADO ===== */
+    .hero-subtitle {
+        font-size: clamp(1.4rem, 2vw, 1.7rem) !important;
+        color: var(--accent-pink) !important;
+        margin: 0 0 12px 0 !important; /* ✅ FORZAR MARGIN PEQUEÑO */
+        margin-top: 0 !important;
+        margin-bottom: 12px !important;
+        text-align: left !important;
+        line-height: 1.2 !important;
+        padding: 0 !important;
+    }
+
+    /* ===== DESCRIPCIÓN - FORZAR PEGADA ===== */
+    .hero-description {
+        font-size: 1.1rem !important;
+        color: rgba(255, 255, 255, 0.9) !important;
+        line-height: 1.4 !important;
+        margin: 0 0 18px 0 !important; /* ✅ FORZAR MARGIN PEQUEÑO */
+        margin-top: 0 !important;
+        margin-bottom: 18px !important;
+        max-width: 520px !important;
+        text-align: left !important;
+        padding: 0 !important;
+    }
+
+    /* ===== BOTÓN CTA - FORZAR PEGADO ===== */
+    .hero-cta {
+        margin: 0 !important; /* ✅ FORZAR SIN MARGIN */
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        text-align: left !important;
+        padding: 0 !important;
+    }
+
+    /* ===== CONTENEDOR HERO - FORZAR SIN GAPS EXTRAS ===== */
+    .hero-content {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        text-align: left !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        gap: 0 !important; /* ✅ SIN GAP */
+    }
+
+    /* ===== ELIMINAR CUALQUIER SPACING EXTRA DE H1, H2, P ===== */
+    .hero-content h1,
+    .hero-content h2,
+    .hero-content h3,
+    .hero-content p,
+    .hero-content div {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    /* ===== FORZAR QUE LOS ELEMENTOS ESPECÍFICOS TENGAN MARGIN MÍNIMO ===== */
+    .hero-content .hero-title {
+        margin-bottom: 8px !important;
+    }
+
+    .hero-content .title-subtitle {
+        margin-bottom: 15px !important;
+    }
+
+    .hero-content .hero-subtitle {
+        margin-bottom: 12px !important;
+    }
+
+    .hero-content .hero-description {
+        margin-bottom: 18px !important;
+    }
+
+    .hero-content .hero-cta {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+    }
+}
+
+/* ===== DESKTOP GRANDE - FORZAR MISMO CONCEPTO ===== */
+@media (min-width: 1400px) {
+    .hero-title {
+        margin: 0 0 10px 0 !important;
+        margin-bottom: 10px !important;
+    }
+
+    .title-subtitle {
+        margin: 0 0 18px 0 !important;
+        margin-bottom: 18px !important;
+    }
+
+    .hero-subtitle {
+        margin: 0 0 15px 0 !important;
+        margin-bottom: 15px !important;
+    }
+
+    .hero-description {
+        margin: 0 0 20px 0 !important;
+        margin-bottom: 20px !important;
+    }
+}
+
+/* ===== ANULAR CUALQUIER CSS DE OTRO ARCHIVO QUE ESTÉ JODIENDO ===== */
+@media (min-width: 1024px) {
+    
+    /* Si hay clases específicas que están metiendo spacing */
+    .section-title,
+    .page-title,
+    .main-title {
+        margin-bottom: 8px !important;
+    }
+
+    /* Si hay CSS de tipografía general que está jodiendo */
+    h1, h2, h3, h4, h5, h6 {
+        margin-bottom: revert !important;
+    }
+
+    /* Pero específicamente en hero, forzar nuestros margins */
+    .hero-section h1,
+    .hero-section h2,
+    .hero-section h3,
+    .hero-section p {
+        margin-bottom: revert !important;
+    }
+
+    .hero-section .hero-title {
+        margin-bottom: 8px !important;
+    }
+
+    .hero-section .hero-subtitle {
+        margin-bottom: 12px !important;
+    }
+
+    .hero-section .hero-description {
+        margin-bottom: 18px !important;
+    }
+}
+
+
+.product-image {
+    /* ✅ CAMBIAR DE 200px FIJO A RECTANGULAR */
+    height: auto !important; /* En lugar de height: 200px !important; */
+    aspect-ratio: 0.75 !important; /* ✅ RECTANGULAR (3:4) en lugar de cuadrado */
+    
+    /* ✅ ESQUINAS REDONDEADAS */
+    border-radius: 15px !important; /* En lugar de border-radius: 10px !important; */
+    
+    /* ✅ MANTENER TODO LO DEMÁS IGUAL */
+    width: 100% !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    transition: transform 0.3s ease !important;
+    margin: 0 auto 15px !important;
+}
+
+/* Esquinas redondas en las cards también */
+.product-card {
+    border-radius: 20px !important; /* ✅ MÁS REDONDEADO */
+    /* NO TOCAR NADA MÁS DE LA CARD */
+}
+
+/* ===== RESPONSIVE - MANTENER LOS TAMAÑOS ACTUALES ===== */
+
+/* Desktop Grande (1200px+) */
+@media (min-width: 1200px) {
+    .product-image {
+        max-width: 140px !important; /* ✅ MANTENER TAMAÑO ACTUAL */
+        aspect-ratio: 0.75 !important; /* ✅ RECTANGULAR */
+        border-radius: 15px !important;
+    }
+}
+
+/* Desktop Mediano (1024px - 1199px) */
+@media (min-width: 1024px) and (max-width: 1199px) {
+    .product-image {
+        max-width: 130px !important; /* ✅ MANTENER TAMAÑO ACTUAL */
+        aspect-ratio: 0.75 !important; /* ✅ RECTANGULAR */
+        border-radius: 15px !important;
+    }
+}
+
+/* Tablet (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .product-image {
+        max-width: 120px !important; /* ✅ MANTENER TAMAÑO ACTUAL */
+        aspect-ratio: 0.75 !important; /* ✅ RECTANGULAR */
+        border-radius: 15px !important;
+    }
+}
+
+/* Mobile (hasta 767px) */
+@media (max-width: 767px) {
+    .product-image {
+        max-width: 140px !important; /* ✅ MANTENER TAMAÑO ACTUAL */
+        aspect-ratio: 0.75 !important; /* ✅ RECTANGULAR */
+        border-radius: 15px !important;
+    }
+}
+
+
+/* Fix Blanco mobile */
+@media (max-width: 767px) {
+    .catalog-modal[data-product="blanco"] .catalog-section {
+        padding: 0px !important;
+    }
+}
+
+/* Fix Manzana imagen */
+.product-card[data-product="manzana"] .product-image {
+    display: block !important;
+    opacity: 1 !important;
+    loading: eager !important;
+}
+
+
+/* CSS específico para catálogo BLANCO - Fix hover ocasiones ideales */
+.catalog-modal[data-product="blanco"] .occasion-tag:hover,
+.catalog-modal.blanco-active .occasion-tag:hover,
+.blanco-catalog .occasion-tag:hover {
+    background: white !important;
+    color: #0f0f23 !important; /* Texto dark en fondo blanco */
+    border-color: #bd93f9 !important;
+}
+
+/* También para otros elementos similares en catálogo blanco */
+.catalog-modal[data-product="blanco"] .occasions-grid .occasion-tag:hover,
+.catalog-modal[data-product="blanco"] .ingredient-tag:hover,
+.catalog-modal[data-product="blanco"] .benefit-tag:hover {
+    background: white !important;
+    color: #0f0f23 !important; /* Texto oscuro legible */
+    border-color: #bd93f9 !important;
+}
+
+/* Si los selectores de arriba no funcionan, usar este más específico */
+body .catalog-modal[data-product="blanco"] .occasion-tag:hover {
+    background: white !important;
+    color: #0f0f23 !important;
+    border-color: #bd93f9 !important;
+}
+
+/* Para mobile también */
+@media (max-width: 767px) {
+    .catalog-modal[data-product="blanco"] .occasion-tag:hover,
+    .catalog-modal[data-product="blanco"] .occasion-tag:active {
+        background: white !important;
+        color: #0f0f23 !important;
+        border-color: #bd93f9 !important;
+    }
+}
+
+
+/* Solo aplicar cuando blanco tenga la clase activa */
+.catalog-modal.blanco-active .product-title {
+    position: relative !important;
+    top: -40px !important;
+    z-index: 999 !important;
+}
+
+.catalog-modal.blanco-active .product-description {
+    position: relative !important;
+    top: -30px !important;
+    z-index: 999 !important;
+}   

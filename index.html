@@ -50,6 +50,9 @@
     <link rel="stylesheet" href="css/images-fix.css">
     <link rel="stylesheet" href="css/menu-mobile-fix.css">
 
+    <!-- EmailJS Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
     <!-- Schema Markup -->
     <script type="application/ld+json">
     {
@@ -74,7 +77,14 @@
           {
             "@type": "Product",
             "name": "AJEDREZ Rosado",
-            "description": "Vino espumoso sin alcohol sabor rosado",
+            "description": "Champaña espumosa sin alcohol sabor rosado",
+            "brand": "AJEDREZ",
+            "manufacturer": "COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S"
+          },
+          {
+            "@type": "Product",
+            "name": "AJEDREZ Blanco",
+            "description": "Champaña espumosa sin alcohol sabor blanco",
             "brand": "AJEDREZ",
             "manufacturer": "COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S"
           },
@@ -337,7 +347,7 @@
                             <img src="images/rosadafinal.png" alt="AJEDREZ Rosado - Champaña espumosa sin alcohol 750ml"
                                 class="product-image" loading="lazy">
                             <div class="product-info-preview">
-                                <h3 class="product-name">AJEDREZ Rosado</h3>
+                                <h3 class="product-name"></h3>
                                 <p class="product-description-short">Elegancia y frescura para brindis especiales</p>
                                 <span class="product-specs">750ml | 0% Vol</span>
                             </div>
@@ -352,7 +362,7 @@
                             <img src="images/blancofinal.png" alt="AJEDREZ Blanco - Champaña espumosa sin alcohol 750ml"
                                 class="product-image" loading="lazy">
                             <div class="product-info-preview">
-                                <h3 class="product-name">AJEDREZ Blanco</h3>
+                                <h3 class="product-name"></h3>
                                 <p class="product-description-short">Pureza y distinción para momentos especiales</p>
                                 <span class="product-specs">750ml | 0% Vol</span>
                             </div>
@@ -369,7 +379,7 @@
                                 alt="AJEDREZ Cereza - Vino espumoso sin alcohol sabor cereza 750ml"
                                 class="product-image" loading="lazy">
                             <div class="product-info-preview">
-                                <h3 class="product-name">AJEDREZ Cereza</h3>
+                                <h3 class="product-name"></h3>
                                 <p class="product-description-short">Intensidad frutal para celebraciones únicas</p>
                                 <span class="product-specs">750ml | 0% Vol</span>
                             </div>
@@ -386,7 +396,7 @@
                                 alt="AJEDREZ Manzana - Vino espumoso sin alcohol sabor manzana 750ml"
                                 class="product-image" loading="lazy">
                             <div class="product-info-preview">
-                                <h3 class="product-name">AJEDREZ Manzana</h3>
+                                <h3 class="product-name"></h3>
                                 <p class="product-description-short">Refrescancia natural y sofisticación</p>
                                 <span class="product-specs">750ml | 0% Vol</span>
                             </div>
@@ -402,7 +412,7 @@
                             <img src="images/uvafinal.png" alt="AJEDREZ Uva - Vino espumoso sin alcohol sabor uva 750ml"
                                 class="product-image" loading="lazy">
                             <div class="product-info-preview">
-                                <h3 class="product-name">AJEDREZ Uva</h3>
+                                <h3 class="product-name"></h3>
                                 <p class="product-description-short">Tradición y calidad en cada sorbo</p>
                                 <span class="product-specs">750ml | 0% Vol</span>
                             </div>
@@ -415,6 +425,51 @@
             </div>
         </section>
 
+
+        <!-- News/Blog Section (Optional) -->
+        <section id="noticias" class="news-section" aria-labelledby="news-title">
+            <div class="container">
+                <header class="section-header">
+                    <h2 id="news-title" class="section-title">Novedades AJEDREZ</h2>
+                    <p class="section-subtitle">Mantente al día con nuestras últimas noticias</p>
+                </header>
+
+                <div class="news-grid">
+                    <article class="news-card">
+                        <div class="news-image">
+                            <img src="images/Expansion.webp" alt="Expansión nacional de AJEDREZ" loading="lazy">
+                        </div>
+                        <div class="news-content">
+                            <h3>Expansión Nacional 2025</h3>
+                            <p>AJEDREZ amplía su cobertura a nuevas ciudades principales de Colombia...</p>
+                            <time datetime="2025-01-15">15 de Enero, 2025</time>
+                        </div>
+                    </article>
+
+                    <article class="news-card">
+                        <div class="news-image">
+                            <img src="images/wine.jpg" alt="Nuevos distribuidores AJEDREZ" loading="lazy">
+                        </div>
+                        <div class="news-content">
+                            <h3>Nuevos Distribuidores Autorizados</h3>
+                            <p>Conoce los nuevos socios que se han unido a la familia AJEDREZ...</p>
+                            <time datetime="2024-12-20">20 de Diciembre, 2024</time>
+                        </div>
+                    </article>
+
+                    <article class="news-card">
+                        <div class="news-image">
+                            <img src="images/bebidas.png" alt="Tendencias bebidas sin alcohol" loading="lazy">
+                        </div>
+                        <div class="news-content">
+                            <h3>Tendencias en Bebidas Sin Alcohol</h3>
+                            <p>El mercado colombiano abraza las alternativas saludables...</p>
+                            <time datetime="2024-12-10">10 de Diciembre, 2024</time>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
         <!-- Testimonials Section -->
         <section id="testimonios" class="testimonials-section" aria-labelledby="testimonials-title">
             <div class="container">
@@ -1151,51 +1206,6 @@
                 </div>
             </div>
         </section>
-
-        <!-- News/Blog Section (Optional) -->
-        <section id="noticias" class="news-section" aria-labelledby="news-title">
-            <div class="container">
-                <header class="section-header">
-                    <h2 id="news-title" class="section-title">Novedades AJEDREZ</h2>
-                    <p class="section-subtitle">Mantente al día con nuestras últimas noticias</p>
-                </header>
-
-                <div class="news-grid">
-                    <article class="news-card">
-                        <div class="news-image">
-                            <img src="images/Expansion.webp" alt="Expansión nacional de AJEDREZ" loading="lazy">
-                        </div>
-                        <div class="news-content">
-                            <h3>Expansión Nacional 2025</h3>
-                            <p>AJEDREZ amplía su cobertura a nuevas ciudades principales de Colombia...</p>
-                            <time datetime="2025-01-15">15 de Enero, 2025</time>
-                        </div>
-                    </article>
-
-                    <article class="news-card">
-                        <div class="news-image">
-                            <img src="images/wine.jpg" alt="Nuevos distribuidores AJEDREZ" loading="lazy">
-                        </div>
-                        <div class="news-content">
-                            <h3>Nuevos Distribuidores Autorizados</h3>
-                            <p>Conoce los nuevos socios que se han unido a la familia AJEDREZ...</p>
-                            <time datetime="2024-12-20">20 de Diciembre, 2024</time>
-                        </div>
-                    </article>
-
-                    <article class="news-card">
-                        <div class="news-image">
-                            <img src="images/bebidas.png" alt="Tendencias bebidas sin alcohol" loading="lazy">
-                        </div>
-                        <div class="news-content">
-                            <h3>Tendencias en Bebidas Sin Alcohol</h3>
-                            <p>El mercado colombiano abraza las alternativas saludables...</p>
-                            <time datetime="2024-12-10">10 de Diciembre, 2024</time>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
     </main>
 
     <!-- WhatsApp Floating Button -->
@@ -1691,7 +1701,7 @@
         <div class="catalog-content">
             <button class="catalog-close" aria-label="Cerrar catálogo de AJEDREZ Manzana">&times;</button>
             <div class="catalog-image">
-                <img src="images/Manzana.png" alt="AJEDREZ Manzana - Vista detallada del producto" loading="lazy">
+                <img src="images/manzana.png" alt="AJEDREZ Manzana - Vista detallada del producto" loading="lazy">
             </div>
             <div class="catalog-details">
                 <h3>AJEDREZ Manzana</h3>

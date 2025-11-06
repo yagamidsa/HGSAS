@@ -2,7 +2,9 @@
    CATALOG SYSTEM - COMERCIALIZADORA Y DISTRIBUIDORA HG S.A.S
    Sistema de catálogo digital interactivo para productos AJEDREZ
    =================================================================== */
-
+function hasClass(element, className) {
+    return element && element.classList && element.classList.contains(className);
+}
 class CatalogSystem {
     constructor() {
         this.currentProduct = null;
@@ -22,8 +24,6 @@ class CatalogSystem {
         this.setupKeyboardNavigation();
         this.setupTouchGestures();
         this.setupAccessibility();
-
-        console.log('📖 Catalog System inicializado');
     }
 
     loadCatalogData() {
@@ -203,11 +203,10 @@ class CatalogSystem {
 
         // Cerrar con click en backdrop
         catalogModal.addEventListener('click', (e) => {
-            if (e.target === catalogModal) {
+            if (e.target.classList && e.target.classList.contains('catalog-overlay')) {
                 this.closeCatalog();
             }
         });
-
         // Escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && this.isOpen) {
@@ -400,7 +399,7 @@ class CatalogSystem {
             sections.forEach((section, index) => {
                 setTimeout(() => {
                     section.classList.add('section-animate');
-                }, index * 100);
+                }, index * 30);
             });
         }, 100);
     }
@@ -408,21 +407,22 @@ class CatalogSystem {
     closeCatalog() {
         if (!this.isOpen) return;
 
+        // 🚀 RESTAURAR SCROLL INMEDIATAMENTE (no esperar al setTimeout)
+        document.body.style.overflow = '';
+
+        // Iniciar animación de cierre
         this.catalogModal.classList.remove('catalog-open');
 
+        // Limpiar después de la animación (pero sin tocar el scroll)
         setTimeout(() => {
             this.catalogModal.style.display = 'none';
             this.catalogContent.innerHTML = '';
             this.isOpen = false;
             this.currentProduct = null;
-
-            // Restore body scroll
-            document.body.style.overflow = '';
-
-        }, 300);
-
-        console.log('📖 Catálogo cerrado');
+            // ❌ NO TOCAR document.body.style.overflow aquí
+        }, 150); // Ya reducido a 150ms
     }
+
 
     enhanceCardHover(card, isHover) {
         const image = card.querySelector('.product-image');
@@ -652,7 +652,7 @@ catalogStyles.textContent = `
         align-items: center;
         justify-content: center;
         opacity: 0;
-        transition: opacity 0.3s ease;
+        transition: opacity 0.2s ease;
     }
     
     .catalog-modal.catalog-open {
@@ -739,7 +739,7 @@ catalogStyles.textContent = `
         padding: 30px;
         opacity: 0;
         transform: translateY(20px);
-        transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
     
     .catalog-page.catalog-page-animate {
