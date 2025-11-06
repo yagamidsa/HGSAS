@@ -1085,10 +1085,35 @@ class FormController {
     }
 
     setupFormSubmission() {
+        // Obtener el botón de submit
+        const submitBtn = document.getElementById('submitBtn');
+
+        if (submitBtn) {
+            // Remover cualquier listener previo
+            submitBtn.replaceWith(submitBtn.cloneNode(true));
+            const newSubmitBtn = document.getElementById('submitBtn');
+
+            // Agregar listener al botón directamente
+            newSubmitBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('🖱️ Botón clickeado - iniciando envío');
+                this.handleFormSubmit();
+            });
+
+            // Actualizar referencia
+            this.submitButton = newSubmitBtn;
+
+            console.log('✅ Event listener instalado en el botón');
+        }
+
+        // Prevención adicional en el form como respaldo
         this.form.addEventListener('submit', (e) => {
             e.preventDefault();
-            this.handleFormSubmit();
-        });
+            e.stopPropagation();
+            console.log('⚠️ Submit del form interceptado (respaldo)');
+            return false;
+        }, true);
     }
 
     async handleFormSubmit() {
@@ -1957,45 +1982,73 @@ console.log('✅ Parte 6 del main.js cargada - Sistema de clases específicas ac
 // Export para compatibilidad
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = { applySpecificClass, detectProductFromModal };
-}   
+}
 
 
 /* ===================================================================
    INICIALIZACIÓN DEL FORMULARIO CON EMAILJS
    =================================================================== */
 
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('🔍 Buscando formulario distributorForm...');
-    
-    // Esperar a que EmailJS esté disponible
-    const initFormWithEmailJS = () => {
-        const form = document.getElementById('distributorForm');
-        
-        if (!form) {
-            console.error('❌ Formulario distributorForm no encontrado');
-            return;
-        }
-        
-        if (typeof emailjs === 'undefined') {
-            console.warn('⚠️ EmailJS no disponible aún, reintentando...');
-            setTimeout(initFormWithEmailJS, 500);
-            return;
-        }
-        
-        console.log('📝 Inicializando FormController con EmailJS...');
-        
-        // Crear instancia del FormController
-        const formController = new FormController(form);
-        
-        // Guardar referencia global
-        if (window.siteController) {
-            window.siteController.formController = formController;
-        }
-        window.distributorFormController = formController;
-        
-        console.log('✅ FormController inicializado exitosamente');
+// PREVENCIÓN INMEDIATA - Instalada ANTES de cualquier otra cosa
+(function () {
+    const preventNativeSubmit = function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log('⚠️ Submit nativo prevenido');
+        return false;
     };
-    
-    // Iniciar después de un pequeño delay
-    setTimeout(initFormWithEmailJS, 1000);
-});
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('distributorForm');
+            if (form) {
+                form.addEventListener('submit', preventNativeSubmit, true);
+                console.log('✅ Prevención de submit instalada INMEDIATAMENTE');
+            }
+        });
+    } else {
+        const form = document.getElementById('distributorForm');
+        if (form) {
+            form.addEventListener('submit', preventNativeSubmit, true);
+            console.log('✅ Prevención de submit instalada INMEDIATAMENTE');
+        }
+    }
+})();
+
+// Función de inicialización mejorada
+function initFormWithEmailJS() {
+    const form = document.getElementById('distributorForm');
+
+    if (!form) {
+        console.error('❌ Formulario distributorForm no encontrado');
+        return;
+    }
+
+    if (typeof emailjs === 'undefined') {
+        console.warn('⚠️ EmailJS no disponible, reintentando en 200ms...');
+        setTimeout(initFormWithEmailJS, 200);
+        return;
+    }
+
+    console.log('📝 Inicializando FormController con EmailJS...');
+
+    // Crear instancia del FormController
+    const formController = new FormController(form);
+
+    // Guardar referencia global
+    if (window.siteController) {
+        window.siteController.formController = formController;
+    }
+    window.distributorFormController = formController;
+
+    console.log('✅ FormController inicializado exitosamente');
+}
+
+// Iniciar la inicialización
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () {
+        setTimeout(initFormWithEmailJS, 100);
+    });
+} else {
+    setTimeout(initFormWithEmailJS, 100);
+}

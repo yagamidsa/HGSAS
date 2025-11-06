@@ -864,7 +864,7 @@
                             <p class="form-subtitle">Todos los campos marcados con * son obligatorios</p>
                         </div>
 
-                        <form id="distributorForm" class="contact-form" novalidate>
+                        <form id="distributorForm" class="contact-form" novalidate onsubmit="return false;">
                             <!-- Información Personal -->
                             <div class="form-section">
                                 <h4 class="section-title-form">📋 Información Personal</h4>
@@ -1036,7 +1036,7 @@
 
                             <!-- Botones de Acción -->
                             <div class="form-actions">
-                                <button type="submit" class="submit-btn" id="submitBtn">
+                                <button type="button" class="submit-btn" id="submitBtn">
                                     <span class="btn-text">Enviar Solicitud</span>
                                     <span class="btn-loading" style="display: none;">
                                         <svg class="loading-spinner" viewBox="0 0 24 24">
